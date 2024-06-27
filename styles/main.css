@@ -1,0 +1,186 @@
+/*
+
+BOLD HEADINGS
+font-family: "motiva-sans", sans-serif;
+font-weight: 700;
+font-style: normal;
+
+REGULAR HEADINGS
+font-family: "motiva-sans", sans-serif;
+font-weight: 400;
+font-style: normal;
+
+BODY 
+font-family: "Inter", sans-serif;
+font-weight: 400 / 500;
+font-style: normal;
+
+*/
+
+/* css reset */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border: 0;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  user-select: none;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  font-size: inherit;
+}
+
+button p::selection {
+  color: inherit;
+}
+
+p,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.large {
+  display: block;
+}
+
+.small {
+  display: none;
+}
+
+/* css reset end */
+
+/* custom */
+
+:root {
+  --color-1: hsl(0, 0, 5%);
+  --color-1: ;
+  --color-1: ;
+  --color-1: ;
+  --color-1: ;
+  --white: hsl(0, 0%, 100%);
+  --black: hsl(0, 0%, 0%);
+
+  --gradient1: hsl(293, 79.6%, 55.7%);
+  --gradient2: hsl(264.3, 87.3%, 40%);
+
+  --heading: "motiva-sans", sans-serif;
+  --body: "Inter", sans-serif;
+
+  --responsive-text: clamp(1rem, calc(14px + 0.290625vw), 1.8rem);
+}
+
+/* custom end */
+
+::selection {
+  color: var(--gradient1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: var(--heading);
+  color: var(--black);
+  transition: transform 0.5s ease-in-out;
+
+  &:hover {
+    transform: translateY(-15px);
+  }
+}
+
+h4 {
+  color: var(--white);
+}
+
+p,
+button,
+.text {
+  font-size: 1rem;
+  line-height: 1.8;
+  font-family: var(--body);
+  color: var(--color-1);
+}
+
+html {
+  background-color: var(--white);
+  font-family: var(--body);
+  font-size: var(--responsive-text);
+}
+
+nav {
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100px;
+  width: 100vw;
+  align-content: center;
+  margin-bottom: 50px;
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-inline: 50px;
+
+  ul {
+    display: inline-flex;
+    list-style: none;
+    gap: 30px;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  max-width: 900px;
+  align-items: center;
+  text-align: center;
+  gap: 100px;
+  margin: auto;
+}
