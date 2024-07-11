@@ -2,13 +2,13 @@
 
 * {
   /* hue - also controls the button text */
-  --h: 222;
-  --s: 20%;
+  --h: 150;
+  --s: 80%;
   --l: 22%;
 
   /* button text color */
   --canvas: var(--h);
-  --bg: hsl(var(--canvas), 15%, 22%);
+  --bg: hsl(var(--canvas), 15%, 100%);
 
   /* --light: hsl(var(--h), var(--s), 95%);
   --dark: hsl(var(--h), var(--s), 20%); */
@@ -18,13 +18,13 @@
   /* controls the color of the button */
   --shimmer-hue-1: 385deg;
   --shimmer-sat-1: 95%;
-  --shimmer-lit-1: 91%;
-  --shimmer-hue-2: 17deg;
+  --shimmer-lit-1: 51%;
+  --shimmer-hue-2: 380deg;
   --shimmer-sat-2: 100%;
-  --shimmer-lit-2: 87%;
-  --shimmer-hue-3: 391deg;
-  --shimmer-sat-3: 114%;
-  --shimmer-lit-3: 44%;
+  --shimmer-lit-2: 67%;
+  --shimmer-hue-3: 381deg;
+  --shimmer-sat-3: 86%;
+  --shimmer-lit-3: 54%;
 
   /* glow and shadow of button */
   --glow-hue: 222deg;
@@ -66,27 +66,29 @@
 }
 
 @property --mask {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 33deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 33deg;
 }
 
 @keyframes spin {
-    0% {
-        --mask: 0deg;
-    }
-    100% {
-        --mask: 360deg;
-    }
+  0% {
+    --mask: 0deg;
+  }
+  100% {
+    --mask: 360deg;
+  }
 }
 
 @keyframes pulse {
-    0%, 90%, 100% {
-        opacity: 0;
-    }
-    20% {
-        opacity: 1;
-    }
+  0%,
+  90%,
+  100% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
 }
 
 @keyframes wipe {
@@ -121,7 +123,7 @@
     background-position: -100% center;
   }
 }
-
+/* box shadow for dark mode only */
 button {
   color: var(--bg);
   font-weight: 600;
@@ -135,7 +137,7 @@ button {
   padding: 0.8em 1.4em;
   position: relative;
   isolation: isolate;
-  box-shadow: 0 2px 3px 1px hsl(var(--glow-hue) 50% 20% / 50%);
+  /* box-shadow: 0 2px 3px 1px hsl(var(--glow-hue) 50% 20% / 50%); */
   border: none;
   outline: none;
   border-radius: 0.66em;
@@ -165,17 +167,16 @@ button {
 }
 
 .shimmer::before {
-  box-shadow: 0 0 3px 2px hsl(var(--shimmer-hue-1) 20% 95%),
-    0 0 7px 4px hsl(var(--shimmer-hue-1) 20% 80%),
-    0 0 13px 8px hsl(var(--shimmer-hue-2) 40% 60%),
-    0 0 22px 6px hsl(var(--shimmer-hue-2) 20% 40%);
+  box-shadow:  0 0 0 1px hsl(var(--shimmer-hue-1) 70% 95%),
+   0 0 3px 1px hsl(var(--shimmer-hue-1) 100% 80%),
+   0 0 20px 1px hsl(var(--shimmer-hue-1) 100% 70%);
   z-index: -1;
 }
 
 .shimmer::after {
-  box-shadow: inset 0 0 0 1px hsl(var(--shimmer-hue-2) 70% 95%),
-    inset 0 0 3px 1px hsl(var(--shimmer-hue-2) 100% 80%),
-    inset 0 0 9px 1px hsl(var(--shimmer-hue-2) 100% 70%);
+  box-shadow: inset 0 0 0 1px hsl(var(--shimmer-hue-1) 70% 25%),
+    inset 0 0 3px 1px hsl(var(--shimmer-hue-1) 100% 30%),
+    inset 0 0 10px 1px hsl(var(--shimmer-hue-1) 100% 20%);
   z-index: 2;
 }
 
@@ -185,8 +186,11 @@ button[disabled] {
 }
 
 button:hover:not(:active):not([disabled]) {
-  scale: 1.1;
+  scale: 1.02;
   transition-duration: calc(var(--spring-duration) * 0.5);
+  background-size: 110%;
+  opacity: 1;
+
 }
 
 button:active:not([disabled]) {
@@ -274,17 +278,14 @@ button:not([disabled])[data-effect="wave"] .shimmer {
 }
 
 button:not([disabled])[data-effect="throb"] .shimmer {
-    mask-image: none;
-    animation: pulse 3s ease infinite both  -0.5s;
+  mask-image: none;
+  animation: pulse 3s ease infinite both -0.5s;
 }
 
 button:not([disabled])[data-effect="none"] .shimmer {
-
-    mask-image: none;
-    &::before,
-    &::after {
-        opacity: 0;
-
-    }
+  mask-image: none;
+  &::before,
+  &::after {
+    opacity: 0;
+  }
 }
-

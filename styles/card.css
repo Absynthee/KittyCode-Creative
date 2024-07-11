@@ -1,0 +1,219 @@
+--bgrotate {
+  initial-value: 120deg;
+  inherits: false;
+  syntax: "<angle>";
+}
+--bgrotate2 {
+  initial-value: 255deg;
+  inherits: false;
+  syntax: "<angle>";
+}
+--text {
+  initial-value: 220deg;
+  inherits: false;
+  syntax: "<angle>";
+}
+
+:root {
+  --ar: 1/1.1;
+  --br: 4.55% / 3.5%;
+  --hl: 0;
+  /*   --bg: white; */
+  --t: all 0.66s
+    linear(
+      0,
+      0.007,
+      0.028 2.1%,
+      0.112 4.6%,
+      0.224 6.9%,
+      0.604 14.2%,
+      0.713,
+      0.803,
+      0.879,
+      0.939,
+      0.985 26.2%,
+      1.019 28.9%,
+      1.034 30.7%,
+      1.045,
+      1.051 34.8%,
+      1.053 37.2%,
+      1.046 41.6%,
+      1.012 54.7%,
+      1.001 62.8%,
+      0.997 73%,
+      1
+    );
+}
+
+.card {
+  width: 400px;
+  min-width: 400px;
+  aspect-ratio: var(--ar);
+  border-radius: var(--br);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  position: relative;
+  background-size: 100% 100%;
+  /* background-position: 0px 0px, 0px 0px, 0px 0px, 50% 50%, 0px 0px, 0px 0px; */
+  background-image: radial-gradient(
+      farthest-side circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
+      hsla(222, 100%, 94%, var(--hl)) 8%,
+      hsla(222, 100%, 80%, var(--hl)) 22%,
+      hsla(222, 100%, 70%, 0) 66%
+    ),
+    radial-gradient(40% 51% at 7% 32%, #d1af49 0%, #073aff00 100%),
+    radial-gradient(40% 52% at 85% 67%, #ff7800c4 0%, #073aff00 100%),
+    radial-gradient(80% 80% at 50% 50%, #f00 27%, #073aff00 58%),
+    conic-gradient(
+      from var(--bgrotate) at 50% 50%,
+      #ff4c4c 5%,
+      #07c6ff00 17%,
+      #07c6ff00 40%,
+      #ffb300 48%,
+      #ff8300 51%,
+      #07c6ff00 59%,
+      #07c6ff00 83%,
+      #ff4c4c 95%
+    ),
+    conic-gradient(
+      from var(--bgrotate2) at 50% 50%,
+      #ff985a 0%,
+      #fff078 34%,
+      #ff7878 64%,
+      #000 100%
+    );
+  /*   background-blend-mode: color-dodge, normal, normal, normal, normal; */
+  animation: glow-bg 4s linear infinite;
+  transform: translate3d(0, 0, 0.1px);
+  cursor: pointer;
+  transition: all 1s;
+  z-index: 1;
+}
+.card:hover {
+  --hl: 1;
+}
+
+.card::before,
+.card::after,
+.inside {
+  border-radius: inherit;
+  content: "";
+  grid-column: 1/-1;
+  grid-row: 1/-1;
+  inset: -1px;
+  position: absolute;
+}
+
+.primary {
+  transform: scale(110%);
+  z-index: 2;
+}
+
+.inside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: inherit;
+  color: black;
+  overflow: hidden;
+  padding-top: 40px;
+  background: hsl(28, 55%, 100%);
+  z-index: 2;
+}
+
+.inside h3 {
+  padding-bottom: 25px;
+}
+
+.inside::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    farthest-corner circle at var(--pointer-x) var(--pointer-y),
+    hsl(248, 25%, 80%) 12%,
+    hsla(207, 40%, 30%, 0.2) 90%
+  );
+  mix-blend-mode: overlay;
+  filter: brightness(1) contrast(1.2);
+  opacity: var(--hl);
+  transition: var(--t);
+}
+
+.card::after {
+  background: inherit;
+  inset: -50px;
+  scale: 0.8;
+  filter: blur(36px) brightness(1) contrast(0.85) saturate(1.4);
+  z-index: 0;
+  transition: var(--t);
+}
+
+.card:hover::after {
+  scale: 0.85;
+  filter: blur(36px) brightness(1) contrast(1) saturate(1);
+}
+
+.card::before {
+  content: "";
+  inset: 0;
+  /*   box-shadow: rgba(0, 0, 0, 0.9) 0px 10px 20px -5px; */
+  z-index: 1;
+}
+
+@keyframes glow-bg {
+  0% {
+    --bgrotate: 0deg;
+    --bgrotate2: 0deg;
+    --text: 90deg;
+  }
+  25% {
+    --bgrotate2: 360deg;
+    --text: 260deg;
+  }
+  50% {
+    --bgrotate2: 720deg;
+  }
+  100% {
+    --bgrotate: 720deg;
+    --bgrotate2: 0deg;
+    --text: 90deg;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .card {
+    width: 320px;
+    min-width: 320px;
+  }
+  .packages {
+    gap: 4%;
+    /* overflow: hidden; */
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .card {
+    width: 300px;
+    min-width: 300px;
+  }
+  .packages {
+    gap: 4%;
+    /* overflow: hidden; */
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .card {
+    width: 375px;
+    min-width: 375px;
+  }
+  .packages {
+    flex-wrap: wrap;
+    gap: 4%;
+    justify-content: center;
+    /* overflow: hidden; */
+    margin-bottom: 160px;
+  }
+}

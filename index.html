@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KittyCode Creative</title>
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"> -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png">
     <link rel="stylesheet" href="https://use.typekit.net/qqu4sal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +14,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="styles/scripts.js" defer></script>
+    <script src="styles/vanilla-tilt.js" defer></script>
+    <script type="module" src="styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
+    <link rel="stylesheet" href="styles/card.css">
 
 </head>
 
@@ -24,30 +27,322 @@
     <nav>
         <div class="navbar">
             <div class="logo">
+                <img src="images/logo.png" alt="">
                 <h4>KittyCode Creative</h4>
             </div>
             <div class="links">
-                <ul>
-                    <li>Home</li>
-                    <li>Portfolio</li>
-                    <li>About</li>
-                    <li>Packages</li>
-                    <li>Contact</li>
-                </ul>
+                <div class="large">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Packages</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
             </div>
+            <div class="small">
+                <div id="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+            </div>
+              
         </div>
     </nav>
+    <div class="blur1"></div>
+    <div class="blur2"></div>
+    <div class="blur3"></div>
+    <div class="blur4"></div>
+    <div class="blur5"></div>
+    <div class="blur6"></div>
+
 
     <main>
-        <h1>KittyCode Creative</h1>
-        <p>This formula calculates our font size as 15px plus 0.00390625% of the screen width. These values have been
-            specifically chosen because they result in the perfect font sizes at every breakpoint.</p>
-            <br><br><br>
-                <button class="" data-effect="none">
-                    <span class="text">LEARN MORE</span>
+        <div class="hero">
+            <div class="hero-text">
+                <label for="hero">Welcome to</label>
+                <h1>KittyCode Creative</h1>
+                <div class="hero-description">
+                    <p>KittyCode Creative is a <sparkly-text
+                            style="--sparkly-text-size: 2.5em"><strong>brand-new</strong></sparkly-text> digital
+                        creative agency based in
+                        Eastbourne, East Sussex. We specialise in
+                        creative beautiful and professional bespoke web design, front-end web development and design
+                        solutions.</p>
+                </div>
+                <div class="hero-buttons">
+                    <button class="" data-effect="none">
+                        <span class="text">learn more</span>
+                        <span class="shimmer"></span>
+                    </button>
+                    <button class="" data-effect="throb">
+                        <span class="text">contact us</span>
+                        <span class="shimmer"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="images/logo_2.png" alt="">
+            </div>
+        </div>
+
+        <section class="what-we-do">
+            <div class="section-text">
+                <label for="what-we-do">Unleash your inner cat.</label>
+                <h1>What We Do</h1>
+                <div class="section-description">
+                    <p>We offer a unique and personal service to each and every client. All of our websites are built
+                        from scratch and are available in monthly packages to keep your costs down.</p>
+
+                    <p>Our web design solutions include an SEO service which helps your website rank well in search
+                        engines. If your aim is to raise visibility and gain traction on your website, we can help.</p>
+
+                    <p>As well as web design and development, we provide a logo design service that is sure to improve
+                        your brand image.</p>
+                </div>
+            </div>
+            <div class="section-img">
+                <img src="images/what-we-do.png" alt="">
+            </div>
+        </section>
+
+        <section class="blurbs">
+            <div class="blurb1"></div>
+            <div class="blurb1"></div>
+            <div class="blurb1"></div>
+
+        </section>
+
+        <section class="why-choose-us">
+            <div class="section-text">
+                <label for="why-choose-us">We’re the cat’s paw-jamas.</label>
+                <h1>Why Choose Us</h1>
+                <div class="section-description">
+                    <p>The cats behind KittyCode Creative strive to offer excellent, friendly personal service. No job
+                        is too big or too small. Feel free to contact us with any request, and we will try our best to
+                        achieve your vision.</p>
+                    <p>Our goal is to provide unique and accessible websites for everyone. With our low pricing entry,
+                        we cater towards individuals promoting their personal website or portfolio, and small businesses
+                        hoping to improve their digital footprint.</p>
+                </div>
+                <div class="section-buttons">
+                    <button class="" data-effect="throb">
+                        <span class="text">contact us</span>
+                        <span class="shimmer"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="section-img">
+                <img src="images/why-us.png" alt="">
+            </div>
+        </section>
+
+        <section class="our-services">
+            <div class="section-text centered">
+                <label for="our-services">We offer purrfection.</label>
+                <h1>Our Services</h1>
+                <div class="section-description centered">
+                    <p>These are the services that we offer.</p>
+                </div>
+                <div class="packages">
+                    <div class="data-tilt" data-tilt data-tilt-reverse="true" data-tilt data-tilt-axis="x">
+                        <section class="card">
+                            <div class="inside">
+                                <h3>Package 1</h3>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                            </div>
+                        </section>
+                    </div>
+                    <section class="card primary">
+                        <div class="inside">
+                            <h3>Package 2</h3>
+                            <p>one thing</p>
+                            <p>one thing</p>
+                            <p>one thing</p>
+                            <p>one thing</p>
+                            <p>one thing</p>
+                        </div>
+                    </section>
+                    <div class="data-tilt" data-tilt data-tilt-reverse="true" data-tilt data-tilt-axis="x">
+                        <section class="card">
+                            <div class="inside">
+                                <h3>Package 3</h3>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                                <p>one thing</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+        </section>
+
+        <section class="our-portfolio">
+            <div class="section-text centered">
+                <label for="our-portfolio">How do you like us meow?</label>
+                <h1>Our Portfolio</h1>
+                <div class="section-description centered">
+                    <p>These are the projects we have completed for clients.</p>
+                </div>
+            </div>
+            <div class="website-portfolios">
+                <div class="portfolio-container">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-austinspillman.jpg" alt="">
+                    </div>
+                    <div class="portfolio-text">
+                        <h3>Austin's Portfolio</h3>
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum amet quod voluptates
+                            labore nisi quasi neque corrupti nam quo voluptate doloremque earum, vero, quisquam nulla,
+                            nihil impedit illo sit quidem.</p>
+                    </div>
+                </div>
+                <div class="portfolio-container">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-beyondthetavern.jpg" alt="">
+                    </div>
+                    <div class="portfolio-text">
+                        <h3>Beyond The Tavern</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi laborum placeat suscipit sint,
+                            officia numquam nostrum ullam illum, corrupti ad deserunt consectetur tenetur commodi natus
+                            reiciendis? Temporibus eius animi libero!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-buttons centered-button">
+                <button class="" data-effect="throb">
+                    <span class="text">see more</span>
                     <span class="shimmer"></span>
                 </button>
-            </main>
+            </div>
+
+        </section>
+
+        <section class="our-reviews">
+            <div class="section-text centered">
+                <label for="our-reviews">We think you’re pretty paw-some.</label>
+                <h1>Our Reviews</h1>
+                <div class="section-description centered">
+                    <p>The cats behind KittyCode Creative strive to offer excellent, friendly personal service. No job
+                        is too big or too small. Feel free to contact us with any request, and we will try our best to
+                        achieve your vision.</p>
+                </div>
+            </div>
+
+            <div class="testimonial-container">
+                <div class="testimonial-blur"></div>
+                <div class="quoteLoop">
+                    <blockquote class="quote"> <img src="images/logo.png" alt="Testimonial Author" />
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <h4>Rose Butcher, Beyond the Tavern</h4>
+                    </blockquote>
+                    <blockquote class="quote"> <img src="images/logo_2.png" alt="Testimonial Author" />
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                            laudantium, totam rem aperiam.</p>
+                        <h4>Tom Jones, Sed ut perspiciatis unde omnis</h4>
+                    </blockquote>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="our-faqs">
+            <div class="section-text">
+                <label for="our-faqs">These look fur-miliar...</label>
+                <h1>FAQs</h1>
+                <div class="section-description">
+                    <p>If you can’t find an answer to one of your burning questions, please get in touch. Hopefully
+                        though, we already have the answers right here!</p>
+                </div>
+                <div class="faq open">
+                    <h3>This is a frequently asked question.</h4>
+                        <p>This is an answer to the frequently asked question.</p>
+                </div>
+                <div class="faq closed">
+                    <h3>This is a frequently asked question.</h4>
+                        <p>This is an answer to the frequently asked question.</p>
+                </div>
+                <div class="faq closed">
+                    <h3>This is a frequently asked question.</h4>
+                        <p>This is an answer to the frequently asked question.</p>
+                </div>
+                <div class="faq closed">
+                    <h3>This is a frequently asked question.</h4>
+                        <p>This is an answer to the frequently asked question.</p>
+                </div>
+
+            </div>
+            <div class="section-img">
+                <img src="images/faq.png" alt="">
+            </div>
+        </section>
+
+        <section class="contact-us">
+            <div class="section-text">
+                <label for="contact-us">Whisker me away.</label>
+                <h1>Contact Us</h1>
+                <div class="section-description">
+                    <p>Ready to join the clowder?</p>
+                </div>
+            </div>
+            <div class="section-img">
+                <img src="images/contact-us.png" alt="">
+            </div>
+        </section>
+
+
+    </main>
+    <div class="footer-top"></div>
+    <footer>
+        <div class="footer-grid-container"></div>
+        <div class="grid2">
+            <h3>KittyCode&nbsp;Creative</h3>
+            <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
+            <div class="socials">
+                <div class="social-box"><img src="images/icons/facebook.png" alt=""></div>
+                <div class="social-box"><img src="images/icons/linkedin.png" alt=""></div>
+                <div class="social-box"><img src="images/icons/twitter.png" alt=""></div>
+                <div class="social-box"><img src="images/icons/instagram.png" alt=""></div>
+            </div>
+            <p><a href="#">Privacy Policy</a></p>
+            <p><a href="#">Terms & Conditions</a></p>
+            <br><br>
+            <p>Company No: #########</p>
+            <br><br><br>
+            <p>Copyright © KittyCode Creative 2024</p>
+        </div>
+        <div class="grid1">
+            <h4>Navigation</h4>
+            <a href="#">About Us</a>
+            <a href="#">Our Portfolio</a>
+            <a href="#">Contact Us</a>
+            <a href="#">FAQ</a>
+        </div>
+        <div class="grid1">
+            <h4>Services</h4>
+            <a href="#">Website Design</a>
+            <a href="#">Website Questionnaire</a>
+            <a href="#">Logo Design</a>
+            <a href="#">Logo Questionnaire</a>
+        </div>
+        <div class="grid1">
+            <h4>Blog</h4>
+            <a href="#">Post 1</a>
+            <a href="#">Post 2</a>
+            <a href="#">Post 3</a>
+        </div>
+        </div>
+
+    </footer>
 
 </body>
 
