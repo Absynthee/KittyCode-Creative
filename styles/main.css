@@ -772,7 +772,9 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: var(--neutral-color-2);
+  background-color: #eeeeee50;
+  border-top: 4px solid var(--accent-color-2);
+  border-radius: 8px;
   margin-block: var(--spacing-2);
   padding: var(--spacing-1);
   align-content: center;
