@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/card.css">
-
 </head>
 
 <body>
@@ -47,21 +46,31 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                  </div>
+                </div>
             </div>
-              
+            <div class="mobile-menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Packages</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-    <div class="blur1"></div>
-    <div class="blur2"></div>
-    <div class="blur3"></div>
-    <div class="blur4"></div>
-    <div class="blur5"></div>
-    <div class="blur6"></div>
 
+    <div class="blur1"></div>
+    <!-- <div class="blur2"></div> -->
+    <!-- <div class="blur3"></div> -->
+    <div class="blur4"></div>
+    <!-- <div class="blur5"></div> -->
+    <!-- <div class="blur6"></div> -->
 
     <main>
+
         <div class="hero">
+
             <div class="hero-text">
                 <label for="hero">Welcome to</label>
                 <h1>KittyCode Creative</h1>
@@ -73,6 +82,7 @@
                         creative beautiful and professional bespoke web design, front-end web development and design
                         solutions.</p>
                 </div>
+
                 <div class="hero-buttons">
                     <button class="" data-effect="none">
                         <span class="text">learn more</span>
@@ -83,10 +93,13 @@
                         <span class="shimmer"></span>
                     </button>
                 </div>
+
             </div>
+
             <div class="hero-img">
                 <img src="images/logo_2.png" alt="">
             </div>
+
         </div>
 
         <section class="what-we-do">
@@ -104,16 +117,36 @@
                         your brand image.</p>
                 </div>
             </div>
+
             <div class="section-img">
                 <img src="images/what-we-do.png" alt="">
             </div>
         </section>
 
         <section class="blurbs">
-            <div class="blurb1"></div>
-            <div class="blurb1"></div>
-            <div class="blurb1"></div>
-
+            <div class="blurb">
+                <div class="blurb-container">
+                    <img src="images/icons/responsive.svg" alt="">
+                    <h3><sparkly-text style="--sparkly-text-color: orange">Fully Responsive</sparkly-text></h3>
+                    <p>Your website will fit all mobile screens sizes, tablets, and desktop sizes so new clients can
+                        access your site from anywhere.</p>
+                </div>
+            </div>
+            <div class="blurb">
+                <div class="blurb-container">
+                    <img src="images/icons/design.svg" alt="">
+                    <h3><sparkly-text style="--sparkly-text-color: orange">Unique Design</sparkly-text></h3>
+                    <p>Your website will be 100% handcrafted and totally unique to you. No templates here.</p>
+                </div>
+            </div>
+            <div class="blurb">
+                <div class="blurb-container">
+                    <img src="images/icons/accessible.svg" alt="">
+                    <h3><sparkly-text style="--sparkly-text-color: orange">Accessibility</sparkly-text></h3>
+                    <p>Making the web accessible benefits individuals, businesses, and society. Your website will be
+                        fully perceivable, operable, understandable and robust. </p>
+                </div>
+            </div>
         </section>
 
         <section class="why-choose-us">
@@ -128,12 +161,25 @@
                         we cater towards individuals promoting their personal website or portfolio, and small businesses
                         hoping to improve their digital footprint.</p>
                 </div>
-                <div class="section-buttons">
-                    <button class="" data-effect="throb">
-                        <span class="text">contact us</span>
-                        <span class="shimmer"></span>
-                    </button>
+
+                <div class="small">
+                    <div class="section-buttons centered-button">
+                        <button class="" data-effect="none">
+                            <span class="text">contact us</span>
+                            <span class="shimmer"></span>
+                        </button>
+                    </div>
                 </div>
+
+                <div class="large">
+                    <div class="section-buttons">
+                        <button class="" data-effect="none">
+                            <span class="text">contact us</span>
+                            <span class="shimmer"></span>
+                        </button>
+                    </div>
+                </div>
+
             </div>
             <div class="section-img">
                 <img src="images/why-us.png" alt="">
@@ -147,41 +193,71 @@
                 <div class="section-description centered">
                     <p>These are the services that we offer.</p>
                 </div>
+
                 <div class="packages">
                     <div class="data-tilt" data-tilt data-tilt-reverse="true" data-tilt data-tilt-axis="x">
                         <section class="card">
                             <div class="inside">
-                                <h3>Package 1</h3>
-                                <p>one thing</p>
-                                <p>one thing</p>
-                                <p>one thing</p>
-                                <p>one thing</p>
-                                <p>one thing</p>
+                                <label for="basic">basic</label>
+                                <h3><small></small> <br>£40/month</h3>
+                                <p>1-3 page website</p>
+                                <p>hosting included</p>
+                                <p>enhanced security</p>
+                                <p>10,000 monthly visits</p>
+                                <p>perfect for individuals</p>
+                                <div class="section-buttons centered-button">
+                                    <button class="" data-effect="none">
+                                        <span class="text">get started</span>
+                                        <span class="shimmer"></span>
+                                    </button>
+                                </div>
+
                             </div>
                         </section>
                     </div>
+
                     <section class="card primary">
                         <div class="inside">
-                            <h3>Package 2</h3>
-                            <p>one thing</p>
-                            <p>one thing</p>
-                            <p>one thing</p>
-                            <p>one thing</p>
-                            <p>one thing</p>
+                            <div class="popular"><sparkly-text
+                                style="--sparkly-text-color: yellow">recommended</sparkly-text></div>
+                            <label for="standard">standard</label>
+                            <h3><small></small> <br>£75/month</h3>
+                            <p>3-7 page website</p>
+                            <p>hosting included</p>
+                            <p>unlimited updates</p>
+                            <p>50,000 monthly visits</p>
+                            <p>secure SSL</p>
+                            <div class="section-buttons centered-button">
+                                <button class="" data-effect="throb">
+                                    <span class="text">get started</span>
+                                    <span class="shimmer"></span>
+                                </button>
+                            </div>
+
                         </div>
                     </section>
+
                     <div class="data-tilt" data-tilt data-tilt-reverse="true" data-tilt data-tilt-axis="x">
                         <section class="card">
                             <div class="inside">
-                                <h3>Package 3</h3>
-                                <p>one thing</p>
-                                <p>one thing</p>
-                                <p>one thing</p>
-                                <p>one thing</p>
-                                <p>one thing</p>
+                                <label for="premium">premium</label>
+                                <h3><small></small> <br>£100/month</h3>
+                                <p>up to 100 pages</p>
+                                <p>CMS content & blog pages</p>
+                                <p>increased hosting speed</p>
+                                <p>1,000,000 monthly visits</p>
+                                <p>priority edits and updates</p>
+                                <div class="section-buttons centered-button">
+                                    <button class="" data-effect="none">
+                                        <span class="text">get started</span>
+                                        <span class="shimmer"></span>
+                                    </button>
+                                </div>
+
                             </div>
                         </section>
                     </div>
+
                 </div>
         </section>
 
@@ -193,7 +269,9 @@
                     <p>These are the projects we have completed for clients.</p>
                 </div>
             </div>
+
             <div class="website-portfolios">
+
                 <div class="portfolio-container">
                     <div class="portfolio-image">
                         <img src="images/portfolio-austinspillman.jpg" alt="">
@@ -205,6 +283,7 @@
                             nihil impedit illo sit quidem.</p>
                     </div>
                 </div>
+
                 <div class="portfolio-container">
                     <div class="portfolio-image">
                         <img src="images/portfolio-beyondthetavern.jpg" alt="">
@@ -216,14 +295,15 @@
                             reiciendis? Temporibus eius animi libero!</p>
                     </div>
                 </div>
+
             </div>
+
             <div class="section-buttons centered-button">
                 <button class="" data-effect="throb">
                     <span class="text">see more</span>
                     <span class="shimmer"></span>
                 </button>
             </div>
-
         </section>
 
         <section class="our-reviews">
@@ -231,9 +311,7 @@
                 <label for="our-reviews">We think you’re pretty paw-some.</label>
                 <h1>Our Reviews</h1>
                 <div class="section-description centered">
-                    <p>The cats behind KittyCode Creative strive to offer excellent, friendly personal service. No job
-                        is too big or too small. Feel free to contact us with any request, and we will try our best to
-                        achieve your vision.</p>
+                    <p>Testimonials from the cool cats who have hired us.</p>
                 </div>
             </div>
 
@@ -245,10 +323,11 @@
                             labore et dolore magna aliqua.</p>
                         <h4>Rose Butcher, Beyond the Tavern</h4>
                     </blockquote>
+
                     <blockquote class="quote"> <img src="images/logo_2.png" alt="Testimonial Author" />
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                             laudantium, totam rem aperiam.</p>
-                        <h4>Tom Jones, Sed ut perspiciatis unde omnis</h4>
+                        <h4>Austin Spillman, Austin's Portfolio</h4>
                     </blockquote>
                 </div>
             </div>
@@ -263,6 +342,7 @@
                     <p>If you can’t find an answer to one of your burning questions, please get in touch. Hopefully
                         though, we already have the answers right here!</p>
                 </div>
+
                 <div class="faq open">
                     <h3>This is a frequently asked question.</h4>
                         <p>This is an answer to the frequently asked question.</p>
@@ -281,6 +361,7 @@
                 </div>
 
             </div>
+
             <div class="section-img">
                 <img src="images/faq.png" alt="">
             </div>
@@ -293,7 +374,61 @@
                 <div class="section-description">
                     <p>Ready to join the clowder?</p>
                 </div>
+                <div class="contact-container">
+                    <form id="contact" action="" method="post" novalidate>
+                        <input type="hidden" name="access_key" value="34317982-f38f-4672-b238-073c162f37c4">
+
+                        <fieldset>
+                            <label for="name">Name</label>
+                            <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" required>
+                            <div class="invalid" id="name-invalid">
+                                Please provide your name.
+                            </div>
+
+                        </fieldset>
+                        <fieldset>
+                            <label for="email">Email</label>
+                            <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
+                                required>
+                            <div class="invalid" id="email-invalid">
+                                Please provide your email address.
+                            </div>
+
+                        </fieldset>
+                        <fieldset>
+                            <label for="subject">Subject</label>
+                            <input placeholder="We want your paws to create our website!" name="subject" id="subject"
+                                type="text" required>
+                            <div class="invalid" id="subject-invalid">
+                                Let us know why you're contacting us.
+                            </div>
+
+                        </fieldset>
+
+                        <fieldset>
+                            <label for="message">Your Message</label>
+                            <textarea placeholder="Type your Message Here..." name="message" id="message"
+                                required></textarea>
+                            <div class="invalid" id="message-invalid">
+                                Leave us a nice message. Let us know what you're after.
+                            </div>
+
+                        </fieldset>
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <fieldset>
+                            <button disabled class="disabled" name="submit" type="submit" id="contact-submit"
+                                data-effect="spin">
+                                <span class="text">submit</span>
+                                <span class="shimmer"></span>
+                            </button>
+                        </fieldset>
+                        <div id="result"></div>
+                    </form>
+
+
+                </div>
             </div>
+
             <div class="section-img">
                 <img src="images/contact-us.png" alt="">
             </div>
@@ -301,9 +436,10 @@
 
 
     </main>
+
     <div class="footer-top"></div>
+
     <footer>
-        <div class="footer-grid-container"></div>
         <div class="grid2">
             <h3>KittyCode&nbsp;Creative</h3>
             <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
@@ -320,26 +456,28 @@
             <br><br><br>
             <p>Copyright © KittyCode Creative 2024</p>
         </div>
-        <div class="grid1">
-            <h4>Navigation</h4>
-            <a href="#">About Us</a>
-            <a href="#">Our Portfolio</a>
-            <a href="#">Contact Us</a>
-            <a href="#">FAQ</a>
-        </div>
-        <div class="grid1">
-            <h4>Services</h4>
-            <a href="#">Website Design</a>
-            <a href="#">Website Questionnaire</a>
-            <a href="#">Logo Design</a>
-            <a href="#">Logo Questionnaire</a>
-        </div>
-        <div class="grid1">
-            <h4>Blog</h4>
-            <a href="#">Post 1</a>
-            <a href="#">Post 2</a>
-            <a href="#">Post 3</a>
-        </div>
+
+        <div class="footer-nav">
+            <div class="grid1">
+                <h4>Navigation</h4>
+                <a href="#">About Us</a>
+                <a href="#">Our Portfolio</a>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="grid1">
+                <h4>Services</h4>
+                <a href="#">Website Design</a>
+                <a href="#">Website Questionnaire</a>
+                <a href="#">Logo Design</a>
+                <a href="#">Logo Questionnaire</a>
+            </div>
+            <div class="grid1 blog-links">
+                <h4>Blog</h4>
+                <a href="#">Post 1</a>
+                <a href="#">Post 2</a>
+                <a href="#">Post 3</a>
+            </div>
         </div>
 
     </footer>

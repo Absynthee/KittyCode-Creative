@@ -48,7 +48,7 @@
 .card {
   width: 400px;
   min-width: 400px;
-  aspect-ratio: var(--ar);
+  height: 450px;
   border-radius: var(--br);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -64,17 +64,17 @@
     ),
     radial-gradient(40% 51% at 7% 32%, #d1af49 0%, #073aff00 100%),
     radial-gradient(40% 52% at 85% 67%, #ff7800c4 0%, #073aff00 100%),
-    radial-gradient(80% 80% at 50% 50%, #f00 27%, #073aff00 58%),
+    radial-gradient(80% 80% at 50% 50%, var(--primary-color-1) 27%, #073aff00 58%),
     conic-gradient(
       from var(--bgrotate) at 50% 50%,
-      #ff4c4c 5%,
-      #07c6ff00 17%,
-      #07c6ff00 40%,
+      var(--primary-color-1) 5%,
+      var(--primary-color-1) 17%,
+      var(--primary-color-1) 40%,
       #ffb300 48%,
       #ff8300 51%,
       #07c6ff00 59%,
       #07c6ff00 83%,
-      #ff4c4c 95%
+      var(--primary-color-1) 95%
     ),
     conic-gradient(
       from var(--bgrotate2) at 50% 50%,
@@ -91,7 +91,7 @@
   z-index: 1;
 }
 .card:hover {
-  --hl: 1;
+  --hl: 0.5;
 }
 
 .card::before,
@@ -103,11 +103,29 @@
   grid-row: 1/-1;
   inset: -1px;
   position: absolute;
+  /* justify-content: space-evenly; */
+
+  button {
+    margin-top: var(--spacing-5);
+    z-index: 12;
+  }
 }
 
 .primary {
+  margin-top: -8px;
   transform: scale(110%);
   z-index: 2;
+}
+
+.popular {
+  background-color: var(--primary-color-2);
+  width: 100%;
+  height: calc(28px + 0.2vw);
+  position: absolute;
+  top: 0;
+  padding-top: 4px;
+  font-weight: 600;
+  color: var(--white);
 }
 
 .inside {
@@ -143,7 +161,7 @@
 
 .card::after {
   background: inherit;
-  inset: -50px;
+  inset: -40px;
   scale: 0.8;
   filter: blur(36px) brightness(1) contrast(0.85) saturate(1.4);
   z-index: 0;
@@ -182,10 +200,43 @@
   }
 }
 
+
+
+@media screen and (min-width: 1825px) {
+  .card {
+    height: 480px;
+  }
+}
+
+@media screen and (min-width: 2450px) {
+  .card {
+    height: 500px;
+  }
+}
+
+@media screen and (min-width: 2900px) {
+  .card {
+    height: 520px;
+  }
+}
+
+@media screen and (min-width: 3250px) {
+  .card {
+    height: 550px;
+  }
+}
+
+@media screen and (min-width: 3950px) {
+  .card {
+    height: 590px;
+  }
+}
+
 @media screen and (max-width: 1250px) {
   .card {
     width: 320px;
     min-width: 320px;
+    height: 420px;
   }
   .packages {
     gap: 4%;
