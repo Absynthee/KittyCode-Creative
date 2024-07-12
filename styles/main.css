@@ -589,6 +589,7 @@ main {
   p {
     font-size: 0.9rem;
   }
+
   img {
     width: 100px;
     margin-inline: auto;
@@ -627,6 +628,15 @@ main {
 .portfolio-container {
   width: 500px;
   height: fit-content;
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
 }
 
 .portfolio-image {
@@ -1241,9 +1251,19 @@ footer {
 }
 
 @media screen and (max-width: 550px) {
+  .navbar {
+    padding-inline: 12px;
+  }
+
   .hero-buttons {
     gap: 25%;
     justify-content: center;
     flex-wrap: wrap;
   }
+
+ .blog-links {
+  padding-top: var(--spacing-6);
+ }
+  
+  
 }
