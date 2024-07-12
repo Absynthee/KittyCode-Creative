@@ -718,9 +718,9 @@ main {
 .phone-container::after {
   content: url(../images/why-us.png);
   position: absolute;
-  bottom: 50px;
-  right: -150px;
-  opacity: 0;
+  bottom: -40px;
+  left: -110px;
+  /* opacity: 0; */
   animation: appear 1s linear forwards;
   animation-delay: 9s;
 }

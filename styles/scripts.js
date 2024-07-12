@@ -47,7 +47,7 @@ function handleIntersection(entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       animateElements();
-      observer.unobserve(entry.target); // Stop observing the element after animation
+      // observer.unobserve(entry.target); // Stop observing the element after animation
     }
   });
 }
