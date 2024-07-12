@@ -720,7 +720,7 @@ main {
   position: absolute;
   bottom: -40px;
   left: -110px;
-  /* opacity: 0; */
+  opacity: 0;
   animation: appear 1s linear forwards;
   animation-delay: 9s;
 }
