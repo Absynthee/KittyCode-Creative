@@ -69,12 +69,12 @@
 
     <main>
 
-        <div class="hero">
+        <div class="hero fade-content">
 
-            <div class="hero-text">
+            <div class="hero-text fade-content">
                 <label for="hero">Welcome to</label>
                 <h1>KittyCode Creative</h1>
-                <div class="hero-description">
+                <div class="hero-description fade-content">
                     <p>KittyCode Creative is a <sparkly-text
                             style="--sparkly-text-size: 2.5em"><strong>brand-new</strong></sparkly-text> digital
                         creative agency based in
@@ -102,8 +102,8 @@
 
         </div>
 
-        <section class="what-we-do">
-            <div class="section-text">
+        <section class="what-we-do fade-content">
+            <div class="section-text fade-content">
                 <label for="what-we-do">Unleash your inner cat.</label>
                 <h1>What We Do</h1>
                 <div class="section-description">
@@ -123,7 +123,7 @@
             </div>
         </section>
 
-        <section class="blurbs">
+        <section class="blurbs fade-content">
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/responsive.svg" alt="">
@@ -149,8 +149,8 @@
             </div>
         </section>
 
-        <section class="why-choose-us">
-            <div class="section-text">
+        <section class="why-choose-us fade-content">
+            <div class="section-text fade-content">
                 <label for="why-choose-us">We’re the cat’s paw-jamas.</label>
                 <h1>Why Choose Us</h1>
                 <div class="section-description">
@@ -186,32 +186,43 @@
             </div>
         </section>
 
-        <section class="our-services">
-            <div class="section-text centered">
+        <section class="our-services fade-content">
+            <div class="section-text centered fade-content">
                 <label for="our-services">We offer purrfection.</label>
                 <h1>Our Services</h1>
                 <div class="section-description centered">
                     <p>These are the services that we offer.</p>
                 </div>
 
-                <div class="packages">
-                    <div class="data-tilt" data-tilt data-tilt-reverse="true" data-tilt data-tilt-axis="x">
+                <div class="packages fade-content">
+                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt
+                        data-tilt-axis="x">
                         <section class="card">
                             <div class="inside">
-                                <label for="basic">basic</label>
-                                <h3><small></small> <br>£40/month</h3>
-                                <p>1-3 page website</p>
-                                <p>hosting included</p>
-                                <p>enhanced security</p>
-                                <p>10,000 monthly visits</p>
-                                <p>perfect for individuals</p>
-                                <div class="section-buttons centered-button">
+                                <div class="card-plan">
+                                    <label for="basic">basic</label>
+                                    <h3>£40/month</h3>
+                                </div>
+                                <div class="card-details">
+                                    <p>1-3 page website</p>
+                                    <p>hosting included</p>
+                                    <p>enhanced security</p>
+                                    <p>10,000 monthly visits</p>
+                                    <p>perfect for individuals</p>
+                                    <p>another thing</p>
+                                    <p>another thing</p>
+
+                                    <p>another thing</p>
+
+                                    <p>another thing</p>
+
+                                </div>
+                                <div class="centered-button">
                                     <button class="" data-effect="none">
                                         <span class="text">get started</span>
                                         <span class="shimmer"></span>
                                     </button>
                                 </div>
-
                             </div>
                         </section>
                     </div>
@@ -219,16 +230,18 @@
                     <section class="card primary">
                         <div class="inside">
                             <div class="popular"><sparkly-text
-                                style="--sparkly-text-color: yellow">recommended</sparkly-text></div>
-                            <label for="standard" style="padding-top: 16px;">standard</label>
-                            <h3><small></small> <br>£75/month</h3>
+                                    style="--sparkly-text-color: yellow">recommended</sparkly-text></div>
+                            <div class="plan">
+                                <label for="standard" style="padding-top: 16px;">standard</label>
+                                <h3>£75/month</h3>
+                            </div>
                             <p>3-7 page website</p>
                             <p>hosting included</p>
                             <p>unlimited updates</p>
                             <p>50,000 monthly visits</p>
                             <p>secure SSL</p>
-                            <div class="section-buttons centered-button">
-                                <button class="" data-effect="throb">
+                            <div class="centered-button">
+                                <button class="" data-effect="spin">
                                     <span class="text">get started</span>
                                     <span class="shimmer"></span>
                                 </button>
@@ -237,17 +250,20 @@
                         </div>
                     </section>
 
-                    <div class="data-tilt" data-tilt data-tilt-reverse="true" data-tilt data-tilt-axis="x">
+                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt
+                        data-tilt-axis="x">
                         <section class="card">
                             <div class="inside">
-                                <label for="premium">premium</label>
-                                <h3><small></small> <br>£100/month</h3>
+                                <div class="plan">
+                                    <label for="premium">premium</label>
+                                    <h3>£100/month</h3>
+                                </div>
                                 <p>up to 100 pages</p>
                                 <p>CMS content & blog pages</p>
                                 <p>increased hosting speed</p>
                                 <p>1,000,000 monthly visits</p>
                                 <p>priority edits and updates</p>
-                                <div class="section-buttons centered-button">
+                                <div class="centered-button">
                                     <button class="" data-effect="none">
                                         <span class="text">get started</span>
                                         <span class="shimmer"></span>
@@ -261,8 +277,8 @@
                 </div>
         </section>
 
-        <section class="our-portfolio">
-            <div class="section-text centered">
+        <section class="our-portfolio fade-content">
+            <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
                 <h1>Our Portfolio</h1>
                 <div class="section-description centered">
@@ -270,7 +286,7 @@
                 </div>
             </div>
 
-            <div class="website-portfolios">
+            <div class="website-portfolios fade-content">
 
                 <div class="portfolio-container">
                     <div class="portfolio-image">
@@ -306,8 +322,8 @@
             </div>
         </section>
 
-        <section class="our-reviews">
-            <div class="section-text centered">
+        <section class="our-reviews fade-content">
+            <div class="section-text centered fade-content">
                 <label for="our-reviews">We think you’re pretty paw-some.</label>
                 <h1>Our Reviews</h1>
                 <div class="section-description centered">
@@ -334,8 +350,8 @@
 
         </section>
 
-        <section class="our-faqs">
-            <div class="section-text">
+        <section class="our-faqs fade-content">
+            <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
                 <h1>FAQs</h1>
                 <div class="section-description">
@@ -367,8 +383,8 @@
             </div>
         </section>
 
-        <section class="contact-us">
-            <div class="section-text">
+        <section class="contact-us fade-content">
+            <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
                 <h1>Contact Us</h1>
                 <div class="section-description">
@@ -397,8 +413,7 @@
                         </fieldset>
                         <fieldset>
                             <label for="subject">Subject</label>
-                            <input placeholder="We want your paws to create our website!" name="subject" id="subject"
-                                type="text" required>
+                            <input placeholder="What do you knead?" name="subject" id="subject" type="text" required>
                             <div class="invalid" id="subject-invalid">
                                 Let us know why you're contacting us.
                             </div>
@@ -439,21 +454,23 @@
 
     <div class="footer-top"></div>
 
-    <footer>
+    <footer class="fade-content">
         <div class="grid2">
-            <h3>KittyCode&nbsp;Creative</h3>
-            <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
-            <div class="socials">
-                <div class="social-box"><img src="images/icons/facebook.png" alt=""></div>
-                <div class="social-box"><img src="images/icons/linkedin.png" alt=""></div>
-                <div class="social-box"><img src="images/icons/twitter.png" alt=""></div>
-                <div class="social-box"><img src="images/icons/instagram.png" alt=""></div>
+            <div class="large">
+                <h3>KittyCode&nbsp;Creative</h3>
+                <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
+                <div class="socials">
+                    <div class="social-box"><img src="images/icons/facebook.png" alt=""></div>
+                    <div class="social-box"><img src="images/icons/linkedin.png" alt=""></div>
+                    <div class="social-box"><img src="images/icons/twitter.png" alt=""></div>
+                    <div class="social-box"><img src="images/icons/instagram.png" alt=""></div>
+                </div>
             </div>
             <p><a href="#">Privacy Policy</a></p>
             <p><a href="#">Terms & Conditions</a></p>
-            <br><br>
+            <div class="large"><br><br></div>
             <p>Company No: #########</p>
-            <br><br><br>
+            <div class="large"><br><br></div><br>
             <p>Copyright © KittyCode Creative 2024</p>
         </div>
 
@@ -477,6 +494,19 @@
                 <a href="#">Post 1</a>
                 <a href="#">Post 2</a>
                 <a href="#">Post 3</a>
+            </div>
+        </div>
+
+        <div class="small">
+            <div class="grid2">
+                <h3>KittyCode&nbsp;Creative</h3>
+                <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
+                <div class="socials">
+                    <div class="social-box"><img src="images/icons/facebook.png" alt=""></div>
+                    <div class="social-box"><img src="images/icons/linkedin.png" alt=""></div>
+                    <div class="social-box"><img src="images/icons/twitter.png" alt=""></div>
+                    <div class="social-box"><img src="images/icons/instagram.png" alt=""></div>
+                </div>
             </div>
         </div>
 

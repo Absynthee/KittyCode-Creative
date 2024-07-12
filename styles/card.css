@@ -48,7 +48,7 @@
 .card {
   width: 400px;
   min-width: 400px;
-  height: 450px;
+  height: 500px;
   border-radius: var(--br);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -115,15 +115,16 @@
   margin-top: -8px;
   transform: scale(110%);
   z-index: 2;
+  margin-inline: calc(2px + 2vw);
 }
 
 .popular {
   background-color: var(--primary-color-2);
   width: 100%;
-  height: calc(28px + 0.2vw);
+  height: calc(36px + 0.2vw);
   position: absolute;
   top: 0;
-  padding-top: 4px;
+  padding-top: 8px;
   font-weight: 600;
   color: var(--white);
 }
@@ -135,14 +136,36 @@
   border-radius: inherit;
   color: black;
   overflow: hidden;
-  padding-top: 40px;
+  padding-block: var(--spacing-6);
+  padding-inline: var(--spacing-2);
+  justify-content: space-around;
   background: hsl(28, 55%, 100%);
   z-index: 2;
+
 }
 
-.inside h3 {
-  padding-bottom: 25px;
+.card-details {
+  text-transform: capitalize;
 }
+
+.card-plan {
+  padding-bottom: var(--spacing-3);
+}
+
+/* .inside .card-plan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+
+  label {
+    width: inherit;
+  }
+} */
+
+/* .inside h3 {
+  padding-bottom: 25px;
+} */
 
 .inside::after {
   content: "";
@@ -204,31 +227,31 @@
 
 @media screen and (min-width: 1825px) {
   .card {
-    height: 480px;
+    height: 530px;
   }
 }
 
 @media screen and (min-width: 2450px) {
   .card {
-    height: 500px;
+    height: 550px;
   }
 }
 
 @media screen and (min-width: 2900px) {
   .card {
-    height: 520px;
+    height: 570px;
   }
 }
 
 @media screen and (min-width: 3250px) {
   .card {
-    height: 550px;
+    height: 600px;
   }
 }
 
 @media screen and (min-width: 3950px) {
   .card {
-    height: 590px;
+    height: 640px;
   }
 }
 
@@ -236,35 +259,74 @@
   .card {
     width: 320px;
     min-width: 320px;
-    height: 420px;
+    height: 450px;
   }
+
+  .primary {
+    margin-top: -8px;
+    transform: scale(110%);
+    z-index: 2;
+    margin-inline: 0;
+    margin-block: calc(2px + 1vw);
+  }
+
   .packages {
     gap: 4%;
-    /* overflow: hidden; */
   }
 }
 
 @media screen and (max-width: 1050px) {
   .card {
-    width: 300px;
-    min-width: 300px;
+    width: 75%;
+    min-width: 400px;
   }
+
   .packages {
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 4%;
-    /* overflow: hidden; */
+    margin-bottom: calc(var(--spacing-10) * 2);
   }
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 800px) {
   .card {
     width: 375px;
     min-width: 375px;
   }
+  
   .packages {
     flex-wrap: wrap;
     gap: 4%;
     justify-content: center;
-    /* overflow: hidden; */
-    margin-bottom: 160px;
+    margin-bottom: calc(var(--spacing-10) * 2);
   }
+}
+
+@media screen and (max-width: 600px) {
+
+  .primary {
+    transform: scale(102%);
+    width: 90%;
+  }
+
+  .card {
+    width: 90%;
+    min-width: calc(200px * 10vw);
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+
+  .primary {
+    transform: scale(102%);
+    width: 90%;
+  }
+
+  .card {
+    width: 90%;
+    min-width: 300px;
+  }
+
 }

@@ -1,31 +1,17 @@
-// Select all sections that need to be loaded
-const sections = document.querySelectorAll(".section");
+// Hide the element. Doing this here will prevent the elements from disappering if JS is disabled.
+$('.fade-content > *').css({'opacity':'0', 'transform': 'translateY(' + 2 + 'em)'});
 
-// Create a new Intersection Observer instance
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // If the section is intersecting with the viewport, load its content
-        loadSectionContent(entry.target);
-        // Stop observing the section once it's loaded
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  { rootMargin: "0px 0px 200px 0px" }
-);
-
-// Function to load the content of a section
-function loadSectionContent(section) {
-  // Replace this with your code to load the section content
-  // For example, you could make an AJAX request to fetch the content
-  console.log(`Loading content for section: ${section.id}`);
-}
-
-// Observe each section
-sections.forEach((section) => {
-  observer.observe(section);
+// Trigger fade in as window scrolls
+$(window).on('scroll load', function(){
+  $('.fade-content > *').each( function(i){
+    var bottom_of_object = $(this).offset().top + $(this).outerHeight()/8;
+    var bottom_of_window = $(window).scrollTop() + $(window).height();
+    if( bottom_of_window > bottom_of_object ){  
+      $(this).css({'opacity':'1', 'transform': 'translateY(' + 0 + 'em)'});        
+    } else {
+      $(this).css({'opacity':'0', 'transform': 'translateY(' + 2 + 'em)'});
+    }
+  });
 });
 
 // mobile nav icon
@@ -320,5 +306,36 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   messageField.addEventListener("input", validateMessageLength);
+});
+
+// remove tilt on mobile devices
+
+function isMobileDevice() {
+  return (
+    typeof window.orientation !== 'undefined' ||
+    navigator.userAgent.indexOf('IEMobile') !== -1
+  );
+}
+
+// Function to remove 'data-tilt' attribute from divs
+function removeTiltFromDivs() {
+  const divs = document.querySelectorAll('div[data-tilt]');
+  divs.forEach((div) => {
+    div.removeAttribute('data-tilt');
+  });
+}
+
+// Check if the device is a mobile device on page load
+window.addEventListener('load', () => {
+  if (isMobileDevice()) {
+    removeTiltFromDivs();
+  }
+});
+
+// Check if the device orientation changes (for mobile devices)
+window.addEventListener('orientationchange', () => {
+  if (isMobileDevice()) {
+    removeTiltFromDivs();
+  }
 });
 
