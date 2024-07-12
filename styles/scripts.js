@@ -17,6 +17,49 @@ $(window).on('scroll load', function(){
   });
 });
 
+// loads the phone conversation
+
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  return (
+    rect.top >= 0 &&
+    rect.left >= 0 &&
+    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+  );
+}
+
+function animateElements() {
+  const elements = document.querySelectorAll(".phone-element");
+  let delay = 0;
+
+  elements.forEach((element) => {
+    if (isElementInViewport(element)) {
+      setTimeout(() => {
+        element.style.opacity = "1";
+      }, delay);
+      delay += 1000;
+    }
+  });
+}
+
+function handleIntersection(entries) {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      animateElements();
+      observer.unobserve(entry.target); // Stop observing the element after animation
+    }
+  });
+}
+
+const observer = new IntersectionObserver(handleIntersection);
+const elements = document.querySelectorAll(".phone-element");
+
+elements.forEach((element) => {
+  observer.observe(element);
+});
+
+
 // sticky nav
 
 let prevScrollPos = window.scrollY;

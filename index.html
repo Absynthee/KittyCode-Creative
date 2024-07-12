@@ -16,6 +16,7 @@
     <script src="styles/scripts.js" defer></script>
     <script src="styles/vanilla-tilt.js" defer></script>
     <script type="module" src="styles/sparkly-text.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/card.css">
@@ -182,7 +183,52 @@
 
             </div>
             <div class="section-img">
-                <img src="images/why-us.png" alt="">
+                <div class="phone-container">
+                    <div class="phone">
+                        <div class="phone-top-cutout"></div>
+                        <div class="phone-menu">
+                            <div class="menu-back">
+                                &lt; </div>
+                            <img src="images/logo.png" class="menu-avatar" alt="Samuel photo">
+                            <div class="contact-info">
+                                <p class="name">KittyCode Creative</p>
+                                <p class="role">Available to Code</p>
+                            </div>
+                            <div class="menu-more">⋮</div>
+                        </div>
+                        <div class="chat-container">
+                            <div class="right-text">
+                                <div class="chat-user-2 phone-element">Hey KittyCode, we need a new website!</div>
+                                <div class="chat-user-2 phone-element">Are you available to take us on?</div>
+                            </div>
+                            <div class="chat-user-1-special phone-element">
+                                <dotlottie-player
+                                    src="https://lottie.host/f9407abf-7229-4395-b661-ad87f888963d/AlRkb3hTeS.json"
+                                    background="transparent" speed="1" style="width: 124px; height: 124;" loop
+                                    autoplay></dotlottie-player>
+                            </div>
+                            <div class="chat-user-1 phone-element">Hi there!</div>
+                            <div class="chat-user-1 phone-element">Sure thing! We can have an initial design for you in
+                                just a couple of days.</div>
+                            <div class="chat-user-1 phone-element">Just complete our website questionnaire and we'll
+                                back to you ASAP.</div>
+                            <div class="chat-user-1 phone-element">Here's a link to the form.</div>
+                            <div class="chat-user-1 phone-element"><a href="http://www.kittycodecreative.com/websitequestionnaire">www.kittycodecreative.com/websitequestionnaire</a></div>
+
+                            <div class="right-text">
+                                <div class="chat-user-2 phone-element">Awesome. Thank you, KittyCode! 😍</div>
+                            </div>
+                        </div>
+                        <div class="send-message-container">
+                            <div class="send-message">Type a message…</div>
+                            <div class="send-arrow" onkeydown="happyDog()" onclick="happyDog()" tabindex="0"
+                                aria-label="send message" role="button">
+                                &gt;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <img src="images/why-us.png" alt=""> -->
             </div>
         </section>
 
@@ -208,9 +254,10 @@
                                     <p>hosting included</p>
                                     <p>enhanced security</p>
                                     <p>10,000 monthly visits</p>
-                                    <p>perfect for individuals</p>
                                     <p>secure SSL</p>
-                                    <br>
+                                    <p>perfect for individuals</p>
+                                </div>
+                                <div class="card-extras">
                                     <p><strong>12 month contract</strong></p>
                                     <p><label for="">£150</label> initial design fee applies</p>
                                 </div>
@@ -239,7 +286,8 @@
                                 <p>50,000 monthly visits</p>
                                 <p>secure SSL</p>
                                 <p>best for startups</p>
-                                <br>
+                            </div>
+                            <div class="card-extras">
                                 <p><strong>24 month contract</strong></p>
                                 <p><label for="">£250</label> initial design fee applies</p>
                             </div>
@@ -267,8 +315,9 @@
                                     <p>increased hosting speed</p>
                                     <p>1,000,000 monthly visits</p>
                                     <p>priority edits and updates</p>
-                                    <p>perfect for small growing businesses</p>
-                                    <br>
+                                    <p>perfect for small businesses</p>
+                                </div>
+                                <div class="card-extras">
                                     <p><strong>24 month contract</strong></p>
                                     <p><label for="">£350</label> initial design fee applies</p>
                                 </div>

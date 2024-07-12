@@ -64,7 +64,11 @@
     ),
     radial-gradient(40% 51% at 7% 32%, #d1af49 0%, #073aff00 100%),
     radial-gradient(40% 52% at 85% 67%, #ff7800c4 0%, #073aff00 100%),
-    radial-gradient(80% 80% at 50% 50%, var(--primary-color-1) 27%, #073aff00 58%),
+    radial-gradient(
+      80% 80% at 50% 50%,
+      var(--primary-color-1) 27%,
+      #073aff00 58%
+    ),
     conic-gradient(
       from var(--bgrotate) at 50% 50%,
       var(--primary-color-1) 5%,
@@ -83,7 +87,7 @@
       #ff7878 64%,
       #000 100%
     );
-  /*   background-blend-mode: color-dodge, normal, normal, normal, normal; */
+  background-blend-mode: color-dodge, normal, normal, normal, normal;
   animation: glow-bg 4s linear infinite;
   transform: translate3d(0, 0, 0.1px);
   cursor: pointer;
@@ -103,10 +107,14 @@
   grid-row: 1/-1;
   inset: -1px;
   position: absolute;
-  /* justify-content: space-evenly; */
+  justify-content: space-evenly;
+
+  label {
+    font-size: 1.2rem;
+  }
 
   button {
-    margin-top: var(--spacing-4);
+    margin-top: var(--spacing-2);
     z-index: 12;
   }
 }
@@ -116,6 +124,23 @@
   transform: scale(110%);
   z-index: 2;
   margin-inline: calc(2px + 2vw);
+  animation: glow-bg 4s linear infinite, float 3s ease-in-out infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .popular {
@@ -141,15 +166,27 @@
   justify-content: space-around;
   background: hsl(28, 55%, 100%);
   z-index: 2;
+}
 
+.card-plan {
+  padding-bottom: var(--spacing-4);
 }
 
 .card-details {
   text-transform: capitalize;
 }
 
-.card-plan {
-  padding-bottom: var(--spacing-3);
+.card-extras {
+  padding-top: var(--spacing-4);
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.2;
+
+    label {
+      font-size: 0.9rem;
+    }
+  }
 }
 
 /* .inside .card-plan {
@@ -223,8 +260,6 @@
   }
 }
 
-
-
 @media screen and (min-width: 1825px) {
   .card {
     height: 530px;
@@ -294,7 +329,7 @@
     width: 375px;
     min-width: 375px;
   }
-  
+
   .packages {
     flex-wrap: wrap;
     gap: 4%;
@@ -304,7 +339,6 @@
 }
 
 @media screen and (max-width: 600px) {
-
   .primary {
     transform: scale(102%);
     width: 90%;
@@ -314,11 +348,9 @@
     width: 90%;
     min-width: calc(200px * 10vw);
   }
-
 }
 
 @media screen and (max-width: 400px) {
-
   .primary {
     transform: scale(102%);
     width: 90%;
@@ -328,5 +360,4 @@
     width: 90%;
     min-width: 300px;
   }
-
 }

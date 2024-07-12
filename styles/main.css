@@ -107,6 +107,11 @@ a:hover {
   --primary-color-1-20: #f259223b;
   --primary-color-1-10: #f2592217;
   --primary-color-2: #f58426;
+  --primary-color-2-80: #f58426c9;
+  --primary-color-2-60: #f5842688;
+  --primary-color-2-40: #f5842667;
+  --primary-color-2-20: #f584263b;
+  --primary-color-2-10: #f5842617;
   --accent-color-1: #ebcb5c;
   --accent-color-2: #2fad9f;
   --accent-color-3: #4686c2;
@@ -136,17 +141,20 @@ a:hover {
 
 /* custom end */
 
+/* timing for progressing loading. */
+
 .fade-content > * {
   transition: ease opacity 0.5s, ease transform 0.5s;
 }
 
-/* Offsets timing for groups of three. This must be adjusted if there are more or less than three element per row.*/
 .fade-content > *:nth-child(3n + 2) {
   transition-delay: 0.2s;
 }
+
 .fade-content > *:nth-child(3n + 3) {
   transition-delay: 0.4s;
 }
+
 .fade-content > *:nth-child(3n + 4) {
   transition-delay: 0.6s;
 }
@@ -222,6 +230,8 @@ html {
   font-size: var(--responsive-text);
 }
 
+/* navigation */
+
 nav {
   position: relative;
   background: var(--white);
@@ -234,7 +244,6 @@ nav {
   align-content: center;
   margin-bottom: 50px;
   transition: all 0.5s;
-
 }
 
 .navbar {
@@ -279,11 +288,10 @@ nav {
     a {
       position: relative;
       transition: all 0.5s;
-
     }
 
     a:hover::after {
-      content: '';
+      content: "";
       background-color: var(--primary-color-1);
       position: absolute;
       left: 0;
@@ -392,7 +400,7 @@ nav {
   }
 
   a:hover::after {
-    content: '|';
+    content: "|";
     position: absolute;
     transition: all 0.5;
     margin-left: 8px;
@@ -413,12 +421,16 @@ nav {
 }
 
 .sticky .small {
-align-content: center;
+  align-content: center;
 }
+
+/* body styles */
 
 body {
   position: relative;
 }
+
+/* background blurs */
 
 .blur1,
 .blur2,
@@ -511,12 +523,16 @@ body {
   right: 2%;
 }
 
+/* main styles */
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: auto;
 }
+
+/* hero & generic */
 
 .hero,
 .what-we-do,
@@ -605,6 +621,8 @@ main {
   min-width: 300px;
 }
 
+/* what we do */
+
 .what-we-do {
   flex-direction: row-reverse;
 
@@ -629,6 +647,8 @@ main {
   text-align: center;
   justify-content: center;
 }
+
+/* blurby bits */
 
 .blurbs {
   display: flex;
@@ -665,6 +685,288 @@ main {
     width: 100px;
     margin-inline: auto;
   }
+}
+
+/* why us  */
+
+.phone-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 635px;
+  max-height: 800px;
+  height: 35vw;
+  aspect-ratio: 9 / 18;
+  border: 0.5vw solid var(--white);
+  border-width: clamp(10px, 0.5vw, 12px);
+  border-radius: 30px;
+  font-size: clamp(10px, calc(8px + (100vw - 1440px) * 0.006849), 15px);
+  line-height: 1.3;
+  box-shadow: 0px 20px 50px -10px rgba(0, 0, 0, 0.26);
+  box-shadow: 0px 20px 50px -10px var(--primary-color-1-20);
+
+  animation: float 3s ease-in-out infinite;
+  animation-delay: 9s;
+  transition: transform 1s ease-in-out;
+  z-index: 10;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.phone-container::after {
+  content: url(../images/why-us.png);
+  position: absolute;
+  bottom: 50px;
+  right: -150px;
+  opacity: 0;
+  animation: appear 1s linear forwards;
+  animation-delay: 9s;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.phone {
+  display: block;
+  position: relative;
+  background-color: var(--white);
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.phone-top-cutout {
+  display: block;
+  position: relative;
+  width: 57%;
+  height: 30px;
+  top: -10px;
+  margin-top: -50px;
+  background-color: var(--white);
+  margin: auto;
+  border-radius: 0px 0px 13px 13px;
+  z-index: 10;
+}
+
+.phone-menu {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-start;
+  color: var(--white);
+  top: -30px;
+  padding-top: 15px;
+  padding-top: 5%;
+  border-radius: 20px 20px 7px 7px;
+  height: 14%;
+  width: 100%;
+  right: 1px;
+  background: linear-gradient(
+    -90deg in oklab,
+    var(--primary-color-2),
+    var(--accent-color-1)
+  );
+  z-index: -1;
+}
+
+.menu-back {
+  display: flex;
+  position: relative;
+  justify-content: start;
+  align-items: center;
+  margin-left: 7%;
+  margin-right: 7%;
+  font-weight: 700;
+  transform: scaleY(2.5) scaleX(1.5);
+  cursor: pointer;
+
+  &::selection {
+    color: inherit;
+  }
+}
+
+.menu-avatar {
+  display: block;
+  position: relative;
+  height: 24px;
+  height: 43%;
+  aspect-ratio: 1 / 1;
+  border: 1px var(--white) solid;
+  border-radius: 50%;
+  margin-right: 7%;
+  place-content: center;
+}
+
+.contact-info {
+  width: 51%;
+  user-select: none;
+}
+
+p.name {
+  font-size: clamp(10.4px, calc(10.4px + (100vw - 1440px) * 0.008837), 18px);
+  font-weight: 700;
+  line-height: clamp(130%, 0.9vw, 140%);
+  color: var(--white);
+}
+
+p.role {
+  font-size: 8px;
+  font-size: 12.6px;
+  font-size: clamp(8px, calc(8px + (100vw - 1440px) * 0.005349), 12.6px);
+
+  line-height: 1;
+  color: var(--white);
+}
+
+.menu-more {
+  display: flex;
+  position: relative;
+  justify-content: end;
+  align-items: center;
+  color: var(--white);
+  height: 9%;
+  margin-left: 7%;
+  margin-right: 7%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &::selection {
+    color: inherit;
+  }
+}
+
+.chat-container {
+  position: relative;
+  height: 72%;
+  top: -15px;
+  margin-inline: var(--spacing-3);
+}
+
+.chat-user-1 {
+  display: flex;
+  justify-content: start;
+  text-align: left;
+  width: fit-content;
+  margin-bottom: var(--spacing-2);
+  padding-block: var(--spacing-1);
+  padding-inline: 8px;
+  border-radius: 12px 12px 12px 2px;
+  background-color: var(--primary-color-2-20);
+  color: var(--ModerateViolet);
+  max-width: 65%;
+  box-shadow: 0px 5px 4px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* .chat-user-1-special {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(
+    90deg in oklab,
+    var(--accent-color-1),
+    var(--accent-color-2)
+  );
+  margin-bottom: var(--spacing-3);
+  height: 8.7%;
+  padding: 6px;
+  border-radius: 12px 12px 12px 3px;
+  max-width: 75%;
+  justify-content: space-between;
+} */
+
+.right-text {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  width: 100%;
+}
+
+.chat-user-2 {
+  position: relative;
+  display: flex;
+  text-align: left;
+  width: fit-content;
+  margin-bottom: var(--spacing-2);
+  padding-block: var(--spacing-1);
+  padding-inline: 8px;
+  background-color: var(--neutral-color-2);
+  color: var(--neutral-color-1);
+  border-radius: 12px 12px 2px 12px;
+  max-width: 60%;
+  box-shadow: 01px 5px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* .chat-user-2-img {
+  position: relative;
+  display: flex;
+  gap: 3%;
+  margin-bottom: var(--spacing-3);
+  background-color: transparent;
+  justify-content: end;
+
+  img {
+    min-height: 40px;
+    min-width: 40px;
+    height: 20%;
+    width: 20%;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+  }
+} */
+
+.send-message-container {
+  position: absolute;
+  display: flex;
+  padding-left: 15px;
+  padding-right: 5px;
+  background-color: var(--neutral-color-2);
+  margin: auto;
+  width: 90%;
+  height: 6.5%;
+  align-items: center;
+  bottom: 2%;
+  left: 5%;
+  border-radius: 25px;
+  justify-content: space-between;
+  color: var(--neutral-color-1);
+
+  .send-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-color-2);
+    color: var(--white);
+    width: 13%;
+    height: 79%;
+    border-radius: 50%;
+    font-size: 1rem;
+    font-size: clamp(16px, calc(16px + (100vw - 1440px) * 0.01163), 26px);
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      background: linear-gradient(
+        270deg in oklab,
+        var(--primary-color-2),
+        var(--accent-color-1)
+      );
+    }
+  }
+}
+
+.phone-element {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 /* services */
