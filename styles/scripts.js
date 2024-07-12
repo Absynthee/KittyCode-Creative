@@ -19,7 +19,7 @@ $(window).on('scroll load', function(){
 
 // sticky nav
 
-let prevScrollPos = window.pageYOffset;
+let prevScrollPos = window.scrollY;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
