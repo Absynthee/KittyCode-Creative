@@ -957,7 +957,7 @@ footer {
   p {
     overflow-wrap: unset;
   }
-  
+
   p,
   a {
     color: var(--white);
@@ -1092,7 +1092,13 @@ footer {
   }
   .grid1 {
     width: 100%;
-    height: 180px;
+    height: 220px;
+  }
+
+  footer {
+    h4 {
+      padding-bottom: var(--spacing-2);
+    }
   }
 }
 
@@ -1175,6 +1181,17 @@ footer {
     max-width: 100%;
   }
 
+  .hero-text,
+  .section-text {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
   .hero-text label,
   .section-text label {
     width: 100%;
@@ -1190,6 +1207,7 @@ footer {
   .blurbs {
     flex-direction: column;
     justify-content: center;
+    width: 90%;
   }
 
   .blurb {
@@ -1198,6 +1216,14 @@ footer {
 
   .quoteLoop {
     width: 95%;
+  }
+
+  .website-portfolios {
+    flex-direction: column;
+  }
+
+  .portfolio-container {
+    margin: auto;
   }
 
   .our-faqs .section-text {
@@ -1209,8 +1235,8 @@ footer {
   }
 
   .contact-us .contact-container form {
-      text-align: left ;
-    }
+    text-align: left;
+  }
 }
 
 @media screen and (max-width: 550px) {
