@@ -1,4 +1,7 @@
+// progressing loading with fade-content
+
 // Hide the element. Doing this here will prevent the elements from disappering if JS is disabled.
+
 $('.fade-content > *').css({'opacity':'0', 'transform': 'translateY(' + 2 + 'em)'});
 
 // Trigger fade in as window scrolls
@@ -14,6 +17,25 @@ $(window).on('scroll load', function(){
   });
 });
 
+// sticky nav
+
+let prevScrollPos = window.pageYOffset;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+  const currentScrollPos = window.pageYOffset;
+
+  if (prevScrollPos > currentScrollPos) {
+    // Scrolling up
+    navbar.classList.add('sticky');
+  } else {
+    // Scrolling down
+    navbar.classList.remove('sticky');
+  }
+
+  prevScrollPos = currentScrollPos;
+});
+
 // mobile nav icon
 
 $(document).ready(function () {
@@ -25,7 +47,7 @@ $(document).ready(function () {
 // mobile nav toggle
 
 const navIcon = document.getElementById("nav-icon");
-const navbar = document.querySelector(".navbar");
+// const navbar = document.querySelector(".navbar"); already called in sticky nav
 
 navIcon.addEventListener("click", () => {
   navbar.classList.toggle("show-menu");
