@@ -1224,6 +1224,7 @@ footer {
 
   .portfolio-container {
     margin: auto;
+    width: 90%;
   }
 
   .our-faqs .section-text {
