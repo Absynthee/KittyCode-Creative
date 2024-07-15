@@ -1501,6 +1501,10 @@ footer {
     display: none;
   }
 
+h1 {
+  margin: auto;
+}
+
   .mobile-menu {
     display: block;
     position: absolute;
