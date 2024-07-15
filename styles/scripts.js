@@ -66,18 +66,19 @@ let prevScrollPos = window.scrollY;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
-  const currentScrollPos = window.pageYOffset;
+  const currentScrollPos = window.scrollY;
 
-  if (prevScrollPos > currentScrollPos) {
-    // Scrolling up
+  if (prevScrollPos > currentScrollPos && currentScrollPos >= 100) {
+    // Scrolling up and scrolled at least 15px
     navbar.classList.add('sticky');
   } else {
-    // Scrolling down
+    // Scrolling down or scrolled less than 15px
     navbar.classList.remove('sticky');
   }
 
   prevScrollPos = currentScrollPos;
 });
+
 
 // mobile nav icon
 
