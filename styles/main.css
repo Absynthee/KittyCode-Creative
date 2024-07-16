@@ -1115,18 +1115,13 @@ p.role {
 }
 
 .portfolio-image-small:hover img {
-  transform: scale(150%); 
+  transform: scale(150%);
 }
 
 .portfolio-image-small:hover::before,
 .portfolio-image-small:hover::after {
   opacity: 1;
 }
-
-
-
-
-
 
 .portfolio-text {
   position: relative;
@@ -1350,6 +1345,7 @@ fieldset {
   margin: 0 auto;
   position: relative;
   border: 0;
+  padding-bottom: var(--spacing-4);
 }
 
 #contact input[type="text"],
@@ -1385,6 +1381,9 @@ fieldset {
 #contact [type="submit"] {
   width: 800px;
   padding: var(--spacing-2);
+  scale: 1;
+  font-size: 1rem;
+  height: 100%;
 }
 
 #contact input:focus,
@@ -1400,10 +1399,54 @@ fieldset {
   color: var(--accent-color-3);
 }
 
+.contact-page {
+  display: flex;
+  width: 100%;
+  max-width: 1920px;
+  min-height: 700px;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8);
+  transition: all 0.5s;
+
+  .section-text {
+    width: 50%;
+  }
+
+  .contact-container {
+    width: 50%;
+
+    #contact input,
+    #contact textarea,
+    #contact button {
+      width: 100%;
+    }
+  }
+}
+
 #result {
   font-weight: 500;
   color: var(--neutral-color-1);
   padding-left: var(--spacing-3);
+}
+
+.contact-us-links {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: var(--spacing-5);
+
+  a {
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    width: 100%;
+
+    img {
+      margin-right: var(--spacing-3);
+    }
+  }
 }
 
 /* portfolio page */
@@ -1452,8 +1495,8 @@ fieldset {
 
 .grid-images {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); 
-  gap: var(--spacing-4); 
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: var(--spacing-4);
   justify-items: center;
   margin-bottom: var(--spacing-6);
 }
@@ -1565,7 +1608,8 @@ footer {
   .our-reviews,
   .our-faqs,
   .contact-us,
-  .logos {
+  .logos,
+  .contact-page {
     padding: var(--spacing-6);
   }
 
@@ -1584,7 +1628,8 @@ footer {
   .our-reviews,
   .our-faqs,
   .contact-us,
-  .logos {
+  .logos,
+  .contact-page {
     padding: var(--spacing-4);
   }
 
@@ -1595,6 +1640,36 @@ footer {
 
   .portfolio-image {
     height: 650px;
+  }
+
+  .contact-page {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: var(--spacing-10);
+    min-height: 475px;
+
+    .section-text {
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+
+      .contact-us-links {
+        flex-direction: row;
+        a {
+          justify-content: center;
+        }
+      }
+
+      .section-buttons {
+        width: 80%;
+        justify-content: center;
+      }
+    }
+
+    .contact-container {
+      width: 89%;
+    }
   }
 }
 
@@ -1607,7 +1682,8 @@ footer {
   .our-reviews,
   .our-faqs,
   .contact-us,
-  .logos {
+  .logos,
+  .contact-page {
     padding: var(--spacing-2);
   }
 
@@ -1652,8 +1728,8 @@ footer {
   }
 
   .grid-images {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-    gap: var(--spacing-3); 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-3);
   }
 
   footer {
@@ -1854,8 +1930,8 @@ footer {
 
   .grid-images {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: var(--spacing-2); 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2);
   }
 
   footer {
@@ -1902,6 +1978,24 @@ footer {
     gap: var(--spacing-3);
     justify-content: center;
     flex-wrap: wrap;
+  }
+
+  .contact-page {
+    .section-text {
+      .section-buttons {
+        gap: var(--spacing-3);
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .contact-us-links {
+        flex-direction: column;
+        a {
+          justify-content: center;
+        }
+      }
+
+    }
   }
 
   .footer-nav {
