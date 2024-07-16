@@ -263,7 +263,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: var(--spacing-4);
     transition: all 0.5s;
 
     h4 {
@@ -310,7 +310,7 @@ nav {
     display: inline-flex;
     list-style: none;
     align-items: center;
-    gap: 30px;
+    gap: var(--spacing-5);
   }
 }
 
@@ -554,7 +554,7 @@ main {
   min-height: 700px;
   align-items: center;
   justify-content: center;
-  gap: 2%;
+  gap: var(--spacing-4);
   padding: var(--spacing-8);
   transition: all 0.5s;
 }
@@ -614,7 +614,7 @@ main {
   display: flex;
   max-width: 100%;
   min-width: 200px;
-  gap: 5%;
+  gap: var(--spacing-3);
   padding-bottom: var(--spacing-4);
 
   button {
@@ -631,7 +631,7 @@ main {
   display: flex;
   max-width: 100%;
   min-width: 200px;
-  gap: 5%;
+  gap: var(--spacing-3);
 }
 
 .long-button {
@@ -687,16 +687,13 @@ main {
   justify-content: center;
   width: 100%;
   max-width: 1880px;
-  /* height: 450px; */
-  /* background-color: var(--accent-color-3); */
-  gap: 1%;
-  margin-bottom: var(--spacing-4);
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
 }
 
 .blurb {
   display: flex;
   justify-content: center;
-
   width: 30%;
   height: 100%;
 }
@@ -1006,10 +1003,10 @@ p.role {
   display: flex;
   justify-content: center;
   margin-top: var(--spacing-7);
-  margin-bottom: var(--spacing-10);
+  margin-bottom: var(--spacing-8);
   width: 100%;
   display: flex;
-  gap: 2%;
+  gap: var(--spacing-4);
   transition: all 1s;
   /* overflow: hidden; */
 
@@ -1023,7 +1020,7 @@ p.role {
 .website-portfolios {
   display: flex;
   flex-direction: row;
-  gap: 5%;
+  gap: var(--spacing-4);
   width: 100%;
   justify-content: center;
   padding-bottom: var(--spacing-6);
@@ -1431,7 +1428,7 @@ fieldset {
 .tags {
   display: flex;
   flex-direction: row;
-  gap: 2%;
+  gap: var(--spacing-2);
   font-size: 0.8rem;
 }
 
@@ -1897,20 +1894,18 @@ footer {
     padding-inline: var(--spacing-4);
 
     .logo {
-      gap: 12px;
+      gap: var(--spacing-2);
     }
   }
 
   .hero-buttons {
-    gap: 25%;
+    gap: var(--spacing-3);
     justify-content: center;
     flex-wrap: wrap;
   }
-}
 
-@media screen and (max-width: 625px) {
   .footer-nav {
-    gap: 48px;
+    gap: var(--spacing-6);
   }
 
   .grid1 {

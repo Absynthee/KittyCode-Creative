@@ -342,7 +342,7 @@
   .packages {
     /* flex-wrap: wrap; */
     justify-content: center;
-    gap: 2%;
+    gap: var(--spacing-4);
     margin-bottom: calc(var(--spacing-10) * 2);
   }
 }
@@ -355,7 +355,7 @@
 
   .packages {
     flex-wrap: wrap;
-    gap: 2%;
+    gap: var(--spacing-4);
     justify-content: center;
     margin-bottom: calc(var(--spacing-10) * 2);
   }
