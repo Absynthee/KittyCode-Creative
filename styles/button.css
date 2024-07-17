@@ -196,7 +196,7 @@ button[disabled] {
 }
 
 button:hover:not(:active):not([disabled]) {
-  scale: 1.02;
+  scale: 1.05;
   transition-duration: calc(var(--spring-duration) * 0.5);
   background-size: 110%;
   opacity: 1;

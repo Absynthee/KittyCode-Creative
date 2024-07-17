@@ -85,14 +85,18 @@
                 </div>
 
                 <div class="hero-buttons">
-                    <button class="" data-effect="none">
-                        <span class="text">learn more</span>
-                        <span class="shimmer"></span>
-                    </button>
-                    <button class="" data-effect="throb">
-                        <span class="text">contact us</span>
-                        <span class="shimmer"></span>
-                    </button>
+                    <a href="services.html">
+                        <button class="" data-effect="none">
+                            <span class="text">learn more</span>
+                            <span class="shimmer"></span>
+                        </button>
+                    </a>
+                    <a href="contact.html">
+                        <button class="" data-effect="throb">
+                            <span class="text">contact us</span>
+                            <span class="shimmer"></span>
+                        </button>
+                    </a>
                 </div>
 
             </div>
@@ -153,7 +157,9 @@
         <section class="why-choose-us fade-content">
             <div class="section-text fade-content">
                 <label for="why-choose-us">We’re the cat’s paw-jamas.</label>
-                <h1>Why Choose Us</h1>
+                <a href="about.html">
+                    <h1>Why Choose Us</h1>
+                </a>
                 <div class="section-description">
                     <p>The cats behind KittyCode Creative strive to offer excellent, friendly personal service. No job
                         is too big or too small. Feel free to contact us with any request, and we will try our best to
@@ -165,19 +171,23 @@
 
                 <div class="small">
                     <div class="section-buttons centered-button">
-                        <button class="" data-effect="none">
-                            <span class="text">about us</span>
-                            <span class="shimmer"></span>
-                        </button>
+                        <a href="about.html">
+                            <button class="" data-effect="none">
+                                <span class="text">about us</span>
+                                <span class="shimmer"></span>
+                            </button>
+                        </a>
                     </div>
                 </div>
 
                 <div class="large">
                     <div class="section-buttons">
-                        <button class="" data-effect="none">
-                            <span class="text">about us</span>
-                            <span class="shimmer"></span>
-                        </button>
+                        <a href="about.html">
+                            <button class="" data-effect="none">
+                                <span class="text">about us</span>
+                                <span class="shimmer"></span>
+                            </button>
+                        </a>
                     </div>
                 </div>
 
@@ -237,9 +247,24 @@
         <section class="our-services fade-content">
             <div class="section-text centered fade-content">
                 <label for="our-services">We offer purrfection.</label>
-                <h1>Our Services</h1>
+                <a href="services.html">
+                    <h1>Our Services</h1>
+                </a>
                 <div class="section-description centered">
-                    <p>These are the services that we offer.</p>
+                    <p>We offer a variety of services with limited options to make the selection process easier for you.
+                        Our packages come in either monthly contracts which includes hosting, or a straight up
+                        purchase of the design which you are able to take away and choose your own hosting.</p>
+                    <p>After a logo design instead? We've got you covered. <a href="services/logodesign.html"
+                            style="color: var(--primary-color-1);">Check out out logo page here</a>.</p>
+
+                    <div class="services-toggle">
+                        <input id="toggle-on" onclick="translatePaymentTypeMonthly()" class="toggle toggle-left"
+                            name="toggle" value="false" type="radio" checked>
+                        <label for="toggle-on" class="toggle-button">Monthly</label>
+                        <input id="toggle-off" onclick="translatePaymentTypeOneOff()" class="toggle toggle-right"
+                            name="toggle" value="true" type="radio">
+                        <label for="toggle-off" class="toggle-button">One-off</label>
+                    </div>
                 </div>
 
                 <div class="packages fade-content">
@@ -249,7 +274,10 @@
                             <div class="inside">
                                 <div class="card-plan">
                                     <label for="basic">standard</label>
-                                    <h3>£40/month</h3>
+                                    <div class="payment-type">
+                                        <h3 id="monthly">£40/month</h3>
+                                        <h3 id="one-off">£720</h3>
+                                    </div>
                                 </div>
                                 <div class="card-details">
                                     <p>1-3 page website</p>
@@ -260,14 +288,17 @@
                                     <p>perfect for individuals</p>
                                 </div>
                                 <div class="card-extras">
-                                    <p><strong>12 month contract</strong></p>
-                                    <p><label for="design-fee">£150</label> initial design fee applies</p>
+                                    <p id="monthly-contract"><strong>12 month contract</strong></p>
+                                    <p id="one-off-deposit"><strong>50% deposit required</strong></p>
+                                    <p><label for="design-fee">£300</label> initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
-                                    <button class="" data-effect="none">
-                                        <span class="text">get started</span>
-                                        <span class="shimmer"></span>
-                                    </button>
+                                    <a href="services/websitedesign.html">
+                                        <button class="" data-effect="none">
+                                            <span class="text">get started</span>
+                                            <span class="shimmer"></span>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </section>
@@ -279,25 +310,31 @@
                                     style="--sparkly-text-color: yellow">recommended</sparkly-text></div>
                             <div class="card-plan">
                                 <label for="standard">premium</label>
-                                <h3>£75/month</h3>
+                                <div class="payment-type">
+                                    <h3 id="monthly">£75/month</h3>
+                                    <h3 id="one-off">£2250</h3>
+                                </div>
                             </div>
                             <div class="card-details">
-                                <p>4-7 page website</p>
+                                <p>4-10 page website</p>
                                 <p>hosting included</p>
                                 <p>unlimited updates</p>
-                                <p>50,000 monthly visits</p>
+                                <p>100,000 monthly visits</p>
                                 <p>secure SSL</p>
                                 <p>best for startups</p>
                             </div>
                             <div class="card-extras">
-                                <p><strong>24 month contract</strong></p>
-                                <p><label for="design-fee">£250</label> initial design fee applies</p>
+                                <p id="monthly-contract"><strong>24 month contract</strong></p>
+                                <p id="one-off-deposit"><strong>50% deposit required</strong></p>
+                                <p><label for="design-fee">£450</label> initial design fee applies</p>
                             </div>
                             <div class="centered-button">
-                                <button class="" data-effect="spin">
-                                    <span class="text">get started</span>
-                                    <span class="shimmer"></span>
-                                </button>
+                                <a href="services/websitedesign.html">
+                                    <button class="" data-effect="spin">
+                                        <span class="text">get started</span>
+                                        <span class="shimmer"></span>
+                                    </button>
+                                </a>
                             </div>
 
                         </div>
@@ -309,7 +346,10 @@
                             <div class="inside">
                                 <div class="card-plan">
                                     <label for="premium">premium+</label>
-                                    <h3>£100/month</h3>
+                                    <div class="payment-type">
+                                        <h3 id="monthly">£100/month</h3>
+                                        <h3 id="one-off">£3500</h3>
+                                    </div>
                                 </div>
                                 <div class="card-details">
                                     <p>up to 100 pages</p>
@@ -320,14 +360,17 @@
                                     <p>perfect for small businesses</p>
                                 </div>
                                 <div class="card-extras">
-                                    <p><strong>24 month contract</strong></p>
-                                    <p><label for="design-fee">£350</label> initial design fee applies</p>
+                                    <p id="monthly-contract"><strong>24 month contract</strong></p>
+                                    <p id="one-off-deposit"><strong>50% deposit required</strong></p>
+                                    <p><label for="design-fee">£750</label> initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
-                                    <button class="" data-effect="none">
-                                        <span class="text">get started</span>
-                                        <span class="shimmer"></span>
-                                    </button>
+                                    <a href="services/websitedesign.html">
+                                        <button class="" data-effect="none">
+                                            <span class="text">get started</span>
+                                            <span class="shimmer"></span>
+                                        </button>
+                                    </a>
                                 </div>
 
                             </div>
@@ -340,7 +383,9 @@
         <section class="our-portfolio fade-content">
             <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
-                <h1>Our Portfolio</h1>
+                <a href="portfolio.html">
+                    <h1>Our Portfolio</h1>
+                </a>
                 <div class="section-description centered">
                     <p>These are the projects we have completed for clients.</p>
                 </div>
@@ -417,7 +462,9 @@
         <section class="our-faqs fade-content">
             <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
-                <h1>FAQs</h1>
+                <a href="faq.html">
+                    <h1>FAQs</h1>
+                </a>
                 <div class="section-description">
                     <p>If you can’t find an answer to one of your burning questions, please get in touch. Hopefully
                         though, we already have the answers right here!</p>
@@ -450,7 +497,9 @@
         <section class="contact-us fade-content">
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
-                <h1>Contact Us</h1>
+                <a href="contact.html">
+                    <h1>Contact Us</h1>
+                </a>
                 <div class="section-description">
                     <p>Ready to join the clowder?</p>
                 </div>

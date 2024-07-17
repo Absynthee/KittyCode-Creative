@@ -97,6 +97,63 @@ navIcon.addEventListener("click", () => {
   navbar.classList.toggle("show-menu");
 });
 
+// switch payment type 
+
+function translatePaymentTypeMonthly() {
+  const paymentTypes = document.querySelectorAll('.payment-type');
+  const contractTypes = document.querySelectorAll('.card-extras');
+
+  paymentTypes.forEach(function(paymentType) {
+    const monthly = paymentType.querySelector('#monthly');
+    const oneOff = paymentType.querySelector('#one-off');
+    monthly.style.transform = 'translateX(0)';
+    oneOff.style.transform = 'translateX(500px)';
+  });
+
+  contractTypes.forEach(function(contractType) {
+    const monthlyContracts = contractType.querySelectorAll('#monthly-contract');
+    const oneOffDeposits = contractType.querySelectorAll('#one-off-deposit');
+
+    monthlyContracts.forEach(function(monthlyContract) {
+      monthlyContract.style.display = 'block';
+    });
+
+    oneOffDeposits.forEach(function(oneOffDeposit) {
+      oneOffDeposit.style.display = 'none';
+    });
+  });
+}
+
+function translatePaymentTypeOneOff() {
+  const paymentTypes = document.querySelectorAll('.payment-type');
+  const contractTypes = document.querySelectorAll('.card-extras');
+
+  paymentTypes.forEach(function(paymentType) {
+    const monthly = paymentType.querySelector('#monthly');
+    const oneOff = paymentType.querySelector('#one-off');
+    monthly.style.transform = 'translateX(-500px)';
+    oneOff.style.transform = 'translateX(-225px)';
+  });
+
+  contractTypes.forEach(function(contractType) {
+    const monthlyContracts = contractType.querySelectorAll('#monthly-contract');
+    const oneOffDeposits = contractType.querySelectorAll('#one-off-deposit');
+
+    monthlyContracts.forEach(function(monthlyContract) {
+      monthlyContract.style.display = 'none';
+    });
+
+    oneOffDeposits.forEach(function(oneOffDeposit) {
+      oneOffDeposit.style.display = 'block';
+    });
+  });
+}
+
+
+
+
+
+
 // services card hover
 // uses too many resources
 
