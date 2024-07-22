@@ -1643,6 +1643,11 @@ fieldset {
   margin-bottom: var(--spacing-6);
 }
 
+.about-grid {
+  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
+
+}
+
 /* footer */
 
 .footer-top {
