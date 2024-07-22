@@ -201,12 +201,19 @@ p,
 button,
 .text {
   font-size: 1rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--neutral-color-1);
 }
 
 strong {
   color: var(--primary-color-1);
+}
+
+ol {
+  display: grid;
+  line-height: 1.5;
+  gap: 1rem;
+  padding-bottom: var(--spacing-5);
 }
 
 label {
@@ -560,11 +567,13 @@ main {
 }
 
 .full-text {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 1920px;
+  justify-content: center;
+  gap: var(--spacing-4);
   padding: var(--spacing-8);
-  padding-top: 0;
   transition: all 0.5s;
 
   .section-text {
@@ -588,6 +597,10 @@ main {
 .centered {
   align-items: center;
   text-align: center;
+}
+
+.gap {
+  gap: var(--spacing-3);
 }
 
 .centered-button {
@@ -698,7 +711,8 @@ main {
   height: 100%;
 }
 
-.blurb-container {
+.blurb-container,
+.about-blurb {
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -714,6 +728,11 @@ main {
     width: 100px;
     margin-inline: auto;
   }
+}
+
+.about-blurb {
+  width: 100%;
+  max-width: 600px;
 }
 
 /* why us  */
@@ -999,6 +1018,10 @@ p.role {
 
 /* services */
 
+.logos > .section-text {
+  width: 75%;
+}
+
 .services-toggle {
   display: flex;
   background-color: var(--white);
@@ -1112,7 +1135,7 @@ input[type="radio"].toggle {
   position: relative;
   width: 225px;
   transition: all 0.5s ease-in-out;
-  transform:  translateX(500px);
+  transform: translateX(500px);
   overflow: hidden;
 }
 
@@ -1220,7 +1243,7 @@ input[type="radio"].toggle {
   opacity: 0;
   background-color: var(--white);
   transition: all 0.3s ease;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 .portfolio-image-small:hover img {
@@ -1358,7 +1381,7 @@ input[type="radio"].toggle {
   border-radius: 8px;
   margin-top: var(--spacing-2);
   margin-bottom: var(--spacing-2);
-  padding: var(--spacing-2);
+  padding: 8px 8px 4px 8px;
   align-content: center;
   cursor: pointer;
   text-align: left;
@@ -1428,6 +1451,9 @@ form {
 
   label {
     text-align: left;
+    background-image: none;
+    color: var(--primary-color-1);
+
   }
 }
 
@@ -1608,10 +1634,11 @@ fieldset {
   }
 }
 
-.grid-images {
+.grid-images,
+.about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: var(--spacing-4);
+  gap: var(--spacing-8);
   justify-items: center;
   margin-bottom: var(--spacing-6);
 }
@@ -1709,6 +1736,128 @@ footer {
 
   img {
     height: 75%;
+  }
+}
+
+/* questionnaire forms */
+
+#logo,
+#website {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  overflow: hidden;
+
+  label {
+    background-image: none;
+    color: var(--primary-color-1);
+  }
+
+  .invalid {
+    text-align: left;
+  }
+}
+
+.questionnaire-title {
+  text-align: left;
+  padding: var(--spacing-3);
+}
+
+#logo input[type="text"],
+#logo input[type="email"],
+#logo input[type="tel"],
+#logo input[type="url"],
+#logo textarea,
+#website input[type="text"],
+#website input[type="email"],
+#website input[type="tel"],
+#website input[type="url"],
+#website textarea {
+  width: 100%;
+  border: 1px solid var(--black);
+  background-color: #eeeeee40;
+  padding: var(--spacing-3);
+  border-radius: 5px;
+}
+
+#logo input[type="text"]:hover,
+#logo input[type="email"]:hover,
+#logo input[type="tel"]:hover,
+#logo input[type="url"]:hover,
+#logo textarea:hover,
+#website input[type="text"]:hover,
+#website input[type="email"]:hover,
+#website input[type="tel"]:hover,
+#website input[type="url"]:hover,
+#website textarea:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid var(--primary-color-1);
+  box-shadow: 0px 2px 30px 3px var(--primary-color-1-20);
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  min-width: 96px;
+}
+
+#logo input[type="checkbox"],
+#website input[type="checkbox"] {
+  margin-right: 8px;
+  accent-color: var(--primary-color-1);
+  width: 16px;
+  height: 16px;
+}
+
+#logo textarea,
+#website textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: vertical;
+}
+
+#logo [type="submit"],
+#website [type="submit"] {
+  width: 100%;
+  padding: var(--spacing-2);
+  scale: 1;
+  font-size: 1rem;
+  height: 100%;
+  justify-self: center;
+
+  .shimmer {
+    inset: -40px;
+    overflow: hidden;
+  }
+}
+
+#logo input:focus,
+#logo textarea:focus,
+#website input:focus,
+#website textarea:focus {
+  outline: 0;
+  border: 1px solid var(--primary-color-1);
+}
+
+#form-row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-3);
+}
+
+.row-wrap {
+  flex-wrap: wrap;
+}
+
+fieldset > .one-column {
+  width: 100%;
+
+  label {
+    display: flex;
+    align-items: flex-start;
   }
 }
 
@@ -1986,6 +2135,13 @@ footer {
     width: 100%;
   }
 
+  input[type="radio"].toggle {
+  
+    & + label {
+      min-width: 165px;
+    }
+  }
+
   .tilt-disable-mobile {
     transform: none !important;
   }
@@ -2027,6 +2183,16 @@ footer {
       justify-content: center;
       align-items: center;
     }
+  }
+
+  #form-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+  }
+
+  .row-wrap {
+    flex-direction: row !important;
   }
 
   .backlink {
