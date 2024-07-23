@@ -1875,8 +1875,9 @@ h4.questionnaire-title {
 }
 
 .website-likes {
-  height: 62px !important;
+  height: 60px !important;
   resize: none !important;
+  overflow: hidden;
 }
 
 textarea#extra-information {
