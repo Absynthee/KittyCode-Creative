@@ -59,6 +59,26 @@ elements.forEach((element) => {
   observer.observe(element);
 });
 
+//dropdown nav
+
+const dropdownMenus = document.querySelectorAll('li > ul');
+let timeout;
+
+dropdownMenus.forEach(function(dropdown) {
+    const parentLi = dropdown.parentElement;
+
+    parentLi.addEventListener('mouseenter', function() {
+        clearTimeout(timeout); // Clear any existing timeout
+        dropdown.classList.add('show');
+    });
+
+    parentLi.addEventListener('mouseleave', function() {
+        timeout = setTimeout(function() {
+            dropdown.classList.remove('show');
+        }, 700); // 1000 milliseconds = 1 second
+    });
+});
+
 
 // sticky nav
 
