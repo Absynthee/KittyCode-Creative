@@ -622,6 +622,254 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// website questionnaire form
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log('Script is running');
+
+  const form = document.getElementById("website");
+  const result = document.getElementById("result");
+
+  form.addEventListener("submit", function (event) {
+    console.log("Form submit event triggered");
+    event.preventDefault(); // Prevent form submission for testing
+
+    // Validation logic
+    let isValid = true;
+
+    // Name validation
+    const name = document.getElementById("name").value;
+    if (!name) {
+      document.getElementById("name-invalid").style.display = "block";
+      isValid = false;
+      console.log("Name is invalid");
+    } else {
+      document.getElementById("name-invalid").style.display = "none";
+    }
+
+    const businessname = document.getElementById("business-name").value;
+    if (!businessname) {
+      document.getElementById("business-name-invalid").style.display = "block";
+      isValid = false;
+      console.log("Business name is invalid");
+    } else {
+      document.getElementById("business-name-invalid").style.display = "none";
+    }
+
+
+    // Email validation
+    const email = document.getElementById("email").value;
+    const confirmemail = document.getElementById("confirm-email").value;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!email || !emailPattern.test(email)) {
+      document.getElementById("email-invalid").style.display = "block";
+      isValid = false;
+      console.log("Email is invalid");
+    } else {
+      document.getElementById("email-invalid").style.display = "none";
+    }
+
+    if (email.value !== confirmemail.value) {
+      document.getElementById("confirm-email-invalid").style.display = "block";
+      isValid = false;
+      console.log("Email confirmation is invalid");
+    } else {
+      document.getElementById("confirm-email-invalid").style.display = "none";
+    }    
+
+
+    // Message validation
+    const businessmessage1 = document.getElementById("what-does-your-business-do").value;
+    const businessmessage2 = document.getElementById("do-you-have-a-website").value;
+    const businessmessage3 = document.getElementById("potential-customers").value;
+    const businessmessage4 = document.getElementById("differ-from-competitors").value;
+    const businessmessage5 = document.getElementById("main-competitors").value;
+    const websitemessage1 = document.getElementById("website-purpose").value;
+    const websitemessage2 = document.getElementById("website-logo").value;
+    const websitemessage3 = document.getElementById("website-content").value;
+    const websitemessage4 = document.getElementById("website-hosting").value;
+    const websitemessage5 = document.getElementById("website-likes-1").value;
+    const websitemessage6 = document.getElementById("website-likes-2").value;
+    const websitemessage7 = document.getElementById("website-likes-3").value;
+    const websitemessage8 = document.getElementById("brand-guide").value;
+    const websitemessage9 = document.getElementById("seo-ranking").value;
+    const websitemessage10 = document.getElementById("launch-date").value;
+    const websitemessage11 = document.getElementById("website-budget").value;
+
+
+    if (!businessmessage1) {
+      document.getElementById("business-1-invalid").style.display = "block";
+      isValid = false;
+      console.log("Business Message 1 is invalid");
+    } else {
+      document.getElementById("business-1-invalid").style.display = "none";
+    }
+
+    if (!businessmessage2) {
+      document.getElementById("business-2-invalid").style.display = "block";
+      isValid = false;
+      console.log("Business Message 2 is invalid");
+    } else {
+      document.getElementById("business-2-invalid").style.display = "none";
+    }
+
+    if (!businessmessage3) {
+      document.getElementById("business-3-invalid").style.display = "block";
+      isValid = false;
+      console.log("Business Message 3 is invalid");
+    } else {
+      document.getElementById("business-3-invalid").style.display = "none";
+    }
+
+    if (!businessmessage4) {
+      document.getElementById("business-4-invalid").style.display = "block";
+      isValid = false;
+      console.log("Business Message 4 is invalid");
+    } else {
+      document.getElementById("business-4-invalid").style.display = "none";
+    }
+
+    if (!businessmessage5) {
+      document.getElementById("business-5-invalid").style.display = "block";
+      isValid = false;
+      console.log("Business Message 5 is invalid");
+    } else {
+      document.getElementById("business-5-invalid").style.display = "none";
+    }
+
+    if (!websitemessage1) {
+      document.getElementById("website-1-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 1 is invalid");
+    } else {
+      document.getElementById("website-1-invalid").style.display = "none";
+    }
+
+    if (!websitemessage2) {
+      document.getElementById("website-2-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 2 is invalid");
+    } else {
+      document.getElementById("website-2-invalid").style.display = "none";
+    }
+
+    if (!websitemessage3) {
+      document.getElementById("website-3-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 3 is invalid");
+    } else {
+      document.getElementById("website-3-invalid").style.display = "none";
+    }
+
+    if (!websitemessage4) {
+      document.getElementById("website-4-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 4 is invalid");
+    } else {
+      document.getElementById("website-4-invalid").style.display = "none";
+    }
+
+    if (!websitemessage5) {
+      document.getElementById("website-5-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 5 is invalid");
+    } else {
+      document.getElementById("website-5-invalid").style.display = "none";
+    }
+
+    if (!websitemessage6) {
+      document.getElementById("website-6-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 6 is invalid");
+    } else {
+      document.getElementById("website-6-invalid").style.display = "none";
+    }
+
+    if (!websitemessage7) {
+      document.getElementById("website-7-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 7 is invalid");
+    } else {
+      document.getElementById("website-7-invalid").style.display = "none";
+    }
+
+    if (!websitemessage8) {
+      document.getElementById("website-8-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 8 is invalid");
+    } else {
+      document.getElementById("website-8-invalid").style.display = "none";
+    }
+
+    if (!websitemessage9) {
+      document.getElementById("website-9-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 9 is invalid");
+    } else {
+      document.getElementById("website-9-invalid").style.display = "none";
+    }
+
+    if (!websitemessage10) {
+      document.getElementById("website-10-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 10 is invalid");
+    } else {
+      document.getElementById("website-10-invalid").style.display = "none";
+    }
+
+    if (!websitemessage11) {
+      document.getElementById("website-11-invalid").style.display = "block";
+      isValid = false;
+      console.log("website Message 11 is invalid");
+    } else {
+      document.getElementById("website-11-invalid").style.display = "none";
+    }
+
+
+    if (isValid) {
+      console.log("Form is valid");
+      // Proceed with form submission
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+      result.innerHTML = "Please wait...";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.innerHTML =
+              "Thanks, your message has been submitted! We'll get back to you as soon as possible.";
+          } else {
+            console.log(response);
+            result.innerHTML = json.message;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          result.innerHTML = "Something went wrong!";
+        })
+        .then(function () {
+          form.reset();
+          setTimeout(() => {
+            result.style.display = "none";
+          }, 10000);
+        });
+    } else {
+      console.log("Form is invalid. Make sure to fill out all fields.");
+    }
+  });
+});
+
+
 
 // button enabler
 

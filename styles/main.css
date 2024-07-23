@@ -717,7 +717,7 @@ main {
   flex-direction: column;
   width: 400px;
   text-align: center;
-  padding-block: var(--spacing-4);
+  padding: var(--spacing-4);
   gap: var(--spacing-3);
 
   p {
@@ -1461,6 +1461,7 @@ fieldset {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-1);
+  padding: var(--spacing-3);
 }
 
 .invalid {
@@ -1643,11 +1644,6 @@ fieldset {
   margin-bottom: var(--spacing-6);
 }
 
-.about-grid {
-  grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
-
-}
-
 /* footer */
 
 .footer-top {
@@ -1765,7 +1761,14 @@ footer {
 
 .questionnaire-title {
   text-align: left;
+  color: var(--neutral-color-1);
   padding: var(--spacing-3);
+}
+
+h4.questionnaire-title {
+margin-bottom: -16px;
+padding-bottom: 0px;
+font-weight: 600;
 }
 
 #logo input[type="text"],
@@ -1784,6 +1787,7 @@ footer {
   padding: var(--spacing-3);
   border-radius: 5px;
 }
+
 
 #logo input[type="text"]:hover,
 #logo input[type="email"]:hover,
@@ -1806,11 +1810,18 @@ footer {
   display: flex;
   align-items: center;
   margin-right: 16px;
-  min-width: 96px;
+  /* min-width: 96px; */
+
+  label {
+    background-color: var(--neutral-color-1);
+    font-weight: 500;
+  }
 }
 
 #logo input[type="checkbox"],
-#website input[type="checkbox"] {
+#logo input[type="radio"],
+#website input[type="checkbox"],
+#website input[type="radio"] {
   margin-right: 8px;
   accent-color: var(--primary-color-1);
   width: 16px;
@@ -1822,6 +1833,15 @@ footer {
   height: 100px;
   max-width: 100%;
   resize: vertical;
+}
+
+.website-likes {
+  height: 62px !important;
+  resize: none !important;
+}
+
+textarea#extra-information {
+  height: 200px;
 }
 
 #logo [type="submit"],
@@ -2138,6 +2158,10 @@ fieldset > .one-column {
 
   .blurb {
     width: 100%;
+  }
+
+  .about-grid {
+    grid-template-columns: repeat(auto-fit, minmax(325px, 1fr));
   }
 
   input[type="radio"].toggle {
