@@ -270,7 +270,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-4);
+    gap: var(--spacing-3);
     transition: all 0.5s;
 
     h4 {
@@ -587,6 +587,83 @@ main {
 
 /* hero & generic */
 
+.hero-cat::before {
+  content: '';
+  background: url(../images/hero_1a.png);
+}
+
+.hero-cat {
+  width: 100%;
+  height: 44vw;
+  max-height: 700px;
+  background: url(../images/hero_1a.png);
+  animation: changeImage 1s infinite;
+
+  &:hover {
+      background: url(../images/hero_2a.png);
+      animation: changeImage 0.7s infinite;
+  }
+
+  &:active {
+      background: url(../images/hero_1a.png);
+      padding-top: 2px;
+      animation: changeImageClick 0.1s infinite;
+  }
+}
+
+@keyframes changeImage {
+  0% {
+      background: url(../images/hero_1a.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+  50% {
+      background: url(../images/hero_2a.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+  100% {
+      background: url(../images/hero_1a.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+}
+
+@keyframes changeImageClick {
+  0% {
+      background: url(../images/hero_1b.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+  50% {
+      background: url(../images/hero_2b.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+  100% {
+      background: url(../images/hero_1b.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .hero-cat {
+      height: 80vw;
+      max-height: 600px;
+  }
+}
+
 .hero,
 .what-we-do,
 .why-choose-us,
@@ -697,7 +774,7 @@ main {
   display: flex;
   width: 35%;
   max-width: 600px;
-  min-width: 500px;
+  min-width: 450px;
   justify-content: center;
   /* aspect-ratio: 1.1/1; */
 }
@@ -806,8 +883,8 @@ main {
 .phone-container::after {
   content: url(../images/why-us.png);
   position: absolute;
-  bottom: -40px;
-  left: -110px;
+  bottom: -28px;
+  left: -100px;
   opacity: 0;
   animation: appear 1s linear forwards;
   animation-delay: 9s;
@@ -2023,7 +2100,7 @@ fieldset > .one-column {
 
   .hero-img {
     width: 35%;
-    min-width: 400px;
+    min-width: 350px;
   }
 
   .section-img {
@@ -2102,7 +2179,7 @@ fieldset > .one-column {
     margin: 0;
     padding-right: var(--spacing-5);
     padding-block: var(--spacing-3);
-    /* gap: 16px; */
+    gap: var(--spacing-3);
     list-style: none;
   }
 

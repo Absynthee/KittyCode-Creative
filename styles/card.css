@@ -91,7 +91,7 @@
   animation: glow-bg 4s linear infinite;
   transform: translate3d(0, 0, 0.1px);
   cursor: pointer;
-  transition: all 1s;
+  transition: opacity 1s;
   z-index: 1;
 }
 .card:hover {
@@ -347,7 +347,7 @@
   .packages {
     /* flex-wrap: wrap; */
     justify-content: center;
-    gap: var(--spacing-4);
+    gap: var(--spacing-3);
     margin-bottom: calc(var(--spacing-10) * 2);
   }
 }
