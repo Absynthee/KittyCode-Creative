@@ -842,7 +842,7 @@ main {
   }
 
   img {
-    width: 100px;
+    width: 80px;
     margin-inline: auto;
   }
 }
@@ -1549,14 +1549,14 @@ input[type="radio"].toggle {
 }
 
 .open h3::after {
-  content: url(../images/icons/arrow_up.png);
+  content: url(../images/icons/arrow_up.svg);
   color: var(--primary-color-1);
   margin-inline: var(--spacing-2);
   transition: all 0.5s;
 }
 
 .closed h3::after {
-  content: url(../images/icons/arrow_down.png);
+  content: url(../images/icons/arrow_down.svg);
   color: var(--primary-color-1);
   margin-inline: var(--spacing-2);
   transition: all 0.5s;
