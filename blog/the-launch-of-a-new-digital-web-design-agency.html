@@ -189,7 +189,7 @@
                         <input type="hidden" name="access_key" value="34317982-f38f-4672-b238-073c162f37c4">
 
                         <fieldset>
-                            <label for="name">Name</label>
+                            <legend><label for="name">Name</label></legend>
                             <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" required>
                             <div class="invalid" id="name-invalid">
                                 Please provide your name.
@@ -197,7 +197,7 @@
 
                         </fieldset>
                         <fieldset>
-                            <label for="email">Email</label>
+                            <legend><label for="email">Email</label></legend>
                             <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
                                 required>
                             <div class="invalid" id="email-invalid">
@@ -206,7 +206,7 @@
 
                         </fieldset>
                         <fieldset>
-                            <label for="subject">Subject</label>
+                            <legend><label for="subject">Subject</label></legend>
                             <input placeholder="What do you knead?" name="subject" id="subject" type="text" required>
                             <div class="invalid" id="subject-invalid">
                                 Let us know why you're contacting us.
@@ -214,7 +214,7 @@
                         </fieldset>
 
                         <fieldset>
-                            <label for="message">Your Message</label>
+                            <legend><label for="message">Your Message</label></legend>
                             <textarea placeholder="Type your Message Here..." name="message" id="message"
                                 required></textarea>
                             <div class="invalid" id="message-invalid">
@@ -223,7 +223,7 @@
 
                         </fieldset>
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                        <fieldset>
+                        <fieldset aria-labelledby="contact-submit">
                             <button disabled class="disabled" name="submit" type="submit" id="contact-submit"
                                 data-effect="spin">
                                 <span class="text">submit</span>

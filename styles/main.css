@@ -2078,7 +2078,7 @@ h4.questionnaire-title {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  border: 1px solid var(--primary-color-1);
+  border: 2px solid var(--primary-color-1);
   box-shadow: 0px 2px 30px 3px var(--primary-color-1-20);
 }
 
@@ -2091,6 +2091,14 @@ h4.questionnaire-title {
   label {
     background-color: var(--neutral-color-1);
     font-weight: 500;
+
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:active {
+      background-color: var(--primary-color-1);
+      accent-color: var(--primary-color-1);
+    }
   }
 }
 
@@ -2102,6 +2110,13 @@ h4.questionnaire-title {
   accent-color: var(--primary-color-1);
   width: 16px;
   height: 16px;
+}
+
+input[type="checkbox"]:focus,
+input[type="checkbox"]:focus-visible {
+  label {
+    background-color: var(--primary-color-1);
+  }
 }
 
 #logo textarea,
@@ -2141,7 +2156,7 @@ textarea#extra-information {
 #website input:focus,
 #website textarea:focus {
   outline: 0;
-  border: 1px solid var(--primary-color-1);
+  border: 2px solid var(--primary-color-1);
 }
 
 #form-row {
