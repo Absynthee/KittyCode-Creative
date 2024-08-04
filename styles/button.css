@@ -302,3 +302,11 @@ button:not([disabled])[data-effect="none"] .shimmer {
     opacity: 0;
   }
 }
+
+button:focus {
+  transform: scale(105%);
+}
+
+button:focus-visible {
+  transform: scale(105%);
+}
