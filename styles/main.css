@@ -973,7 +973,8 @@ main {
   height: 24px;
   height: 43%;
   aspect-ratio: 1 / 1;
-  border: 1px var(--white) solid;
+  background-color: var(--white);
+  border: 1px var(--neutral-color-1) solid;
   border-radius: 50%;
   margin-right: 7%;
   place-content: center;
@@ -1526,7 +1527,8 @@ input[type="radio"].toggle {
     }
   }
 
-  h4 {
+  h3 {
+    font-size: 1rem;
     color: black;
   }
 }
