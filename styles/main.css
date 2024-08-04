@@ -1181,6 +1181,11 @@ input[type="radio"].toggle {
     min-width: 200px;
     z-index: 2;
 
+    &:focus,
+    &:focus-visible {
+      outline: 2px solid var(--primary-color-1);
+    }
+
     &:after {
       content: "";
       background-color: var(--primary-color-2-20);
