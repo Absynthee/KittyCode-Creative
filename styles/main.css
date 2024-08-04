@@ -234,6 +234,13 @@ label {
   z-index: 11;
 }
 
+hr {
+  width: 100%;
+  /* margin: auto; */
+  height: 1px;
+  background-color: var(--primary-color-2);
+}
+
 html {
   background-color: var(--white);
   font-family: var(--body);
@@ -671,6 +678,7 @@ main {
 .our-reviews,
 .our-faqs,
 .contact-us,
+.our-blog,
 .logos {
   display: flex;
   width: 100%;
@@ -804,6 +812,7 @@ main {
 
 .our-services,
 .our-portfolio,
+.our-blog,
 .our-reviews {
   flex-direction: column;
   text-align: center;
@@ -1288,7 +1297,8 @@ input[type="radio"].toggle {
 
 /* portfolio */
 
-.website-portfolios {
+.website-portfolios,
+.blog-posts {
   display: flex;
   flex-direction: row;
   gap: var(--spacing-4);
@@ -1332,7 +1342,8 @@ input[type="radio"].toggle {
   }
 }
 
-.portfolio-image-small {
+.portfolio-image-small,
+.blog-image-small {
   position: relative;
   height: 400px;
   width: 100%;
@@ -1354,7 +1365,8 @@ input[type="radio"].toggle {
   }
 }
 
-.portfolio-image-small::before {
+.portfolio-image-small::before,
+.blog-image-small::before {
   content: "";
   position: absolute;
   top: 0;
@@ -1366,7 +1378,8 @@ input[type="radio"].toggle {
   transition: opacity 0.3s ease;
 }
 
-.portfolio-image-small::after {
+.portfolio-image-small::after,
+.blog-image-small::after {
   content: attr(data-text);
   position: absolute;
   bottom: -25px;
@@ -1385,12 +1398,15 @@ input[type="radio"].toggle {
   pointer-events: none;
 }
 
-.portfolio-image-small:hover img {
+.portfolio-image-small:hover img,
+.blog-image-small:hover img {
   transform: scale(150%);
 }
 
 .portfolio-image-small:hover::before,
-.portfolio-image-small:hover::after {
+.portfolio-image-small:hover::after,
+.blog-image-small:hover::before,
+.blog-image-small:hover::after {
   opacity: 1;
 }
 
@@ -1730,6 +1746,127 @@ fieldset {
   }
 }
 
+/* blog */
+
+.blog-container {
+  max-width: 600px;
+  overflow: hidden;
+  border-radius: 25px;
+  box-shadow: 0 24px 48px -12px var(--primary-color-1-10);
+}
+
+.blog-container.latest-post {
+  border-radius: 25px;
+  justify-content: flex-start;
+}
+
+.latest-post {
+  display: flex;
+  flex-direction: row;
+  max-width: 1400px;
+
+  .blog-details {
+    border-radius: 0 25px 25px 0;
+    background-color: var(--white);
+    padding-inline: var(--spacing-4);
+    height: 100%;
+
+    p {
+      line-clamp: 7;
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+      flex-shrink: 0;
+    }
+  }
+
+  .blog-image {
+    flex-shrink: 1;
+    width: 100%;
+    /* max-width: 600px; */
+    height: fit-content;
+    background-size: cover;
+    border-radius: 25px 0 0 25px;
+  }
+}
+
+.latest-post-image {
+  width: 100%;
+}
+
+.blog-details {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--spacing-4);
+  padding: var(--spacing-2);
+  padding-block: var(--spacing-4);
+  background-color: var(--white);
+  border-radius: 0 0 25px 25px;
+  border-top: 4px solid var(--primary-color-2);
+  box-shadow: 0 24px 48px -12px var(--primary-color-1-10);
+
+  p {
+    text-align: left;
+    line-clamp: 4;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.blog-subtitle {
+  color: var(--neutral-color-1);
+  margin-block-end: var(--spacing-2);
+
+  &::before {
+    content: "|";
+    color: var(--primary-color-1);
+    margin-inline-end: var(--spacing-2);
+  }
+}
+
+.blog-list {
+  flex-direction: column;
+  list-style: none;
+  margin-block-start: -1rem;
+  margin-block-end: 1rem;
+
+  li {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    margin-block-end: 1rem;
+
+    &::before {
+      position: absolute;
+      content: url(../images/icons/tick.svg);
+      margin-right: var(--spacing-2);
+      top: -21px;
+      left: -36px;
+    }
+  }
+}
+
+.further-reading {
+  font-size: 0.8rem;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-block-end: var(--spacing-8);
+
+  .tag {
+    gap: 16px;
+    margin-block-end: var(--spacing-3);
+  }
+}
+
 /* portfolio page */
 
 .align-items-normal {
@@ -1749,7 +1886,8 @@ fieldset {
   user-select: none;
 }
 
-.tags {
+.tags,
+.blog-tags {
   display: flex;
   flex-direction: row;
   gap: var(--spacing-2);
@@ -2037,6 +2175,7 @@ fieldset > .one-column {
   .our-faqs,
   .contact-us,
   .logos,
+  .our-blog,
   .contact-page {
     padding: var(--spacing-6);
   }
@@ -2057,6 +2196,7 @@ fieldset > .one-column {
   .our-faqs,
   .contact-us,
   .logos,
+  .our-blog,
   .contact-page {
     padding: var(--spacing-4);
   }
@@ -2099,6 +2239,17 @@ fieldset > .one-column {
       width: 89%;
     }
   }
+
+  .latest-post {
+    .blog-image {
+      max-width: 600px;
+      width: 140%;
+    }
+  }
+  .latest-post-image {
+    max-width: 600px;
+    /* width: 50%; */
+  }
 }
 
 @media screen and (max-width: 1000px) {
@@ -2111,6 +2262,7 @@ fieldset > .one-column {
   .our-faqs,
   .contact-us,
   .logos,
+  .our-blog,
   .contact-page {
     padding: var(--spacing-2);
   }
@@ -2221,7 +2373,8 @@ fieldset > .one-column {
   .our-reviews,
   .our-faqs,
   .contact-us,
-  .logos {
+  .logos,
+  .our-blog {
     flex-direction: column-reverse;
     justify-content: center;
     text-align: center;
@@ -2230,7 +2383,8 @@ fieldset > .one-column {
   }
 
   .our-portfolio,
-  .our-reviews {
+  .our-reviews,
+  .our-blog {
     flex-direction: column;
   }
 
@@ -2317,7 +2471,8 @@ fieldset > .one-column {
     width: 95%;
   }
 
-  .website-portfolios {
+  .website-portfolios,
+  .blog-posts {
     flex-direction: column;
   }
 
@@ -2414,6 +2569,32 @@ fieldset > .one-column {
   .socials {
     justify-content: center;
     padding-bottom: var(--spacing-5);
+  }
+
+  .latest-post {
+    flex-direction: column;
+    border-radius: 0 0 25px 25px;
+
+    .blog-details {
+      border-radius: 0;
+    }
+    .blog-image {
+      width: 100%;
+      max-width: unset;
+      border-radius: 0;
+    }
+  }
+  .latest-post-image {
+    max-width: unset;
+    /* width: 50%; */
+  }
+}
+.blog-image {
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &:hover {
+    transform: scale(105%);
   }
 }
 
