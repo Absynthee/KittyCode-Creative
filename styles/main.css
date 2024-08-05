@@ -2024,6 +2024,11 @@ footer {
   img {
     height: 75%;
   }
+
+  &:hover {
+    transform: scale(110%);
+    filter: brightness(60%);
+  }
 }
 
 /* questionnaire forms */
@@ -2185,6 +2190,27 @@ fieldset > .one-column {
     display: flex;
     align-items: flex-start;
   }
+}
+
+/* privacy */ 
+
+.privacy-section {
+  p {
+    padding-bottom: var(--spacing-2);
+  }
+}
+
+.terms-title {
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary-color-1);
+  }
+}
+
+.privacy-list {
+  margin-block-end: var(--spacing-2);
 }
 
 /* breakpoints */
