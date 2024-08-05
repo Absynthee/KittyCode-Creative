@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://kittycodecreative.com/images/kittycode_logo.svg" />
     <meta property="og:url" content="https://kittycodecreative.com/" />
     <title>Web Design & Digital Services, Eastbourne, East Sussex | KittyCode Creative</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.svg">
+    <link rel="icon" type="image/svg" sizes="32x32" href="images/favicon.svg">
     <link rel="stylesheet" href="https://use.typekit.net/qqu4sal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +97,7 @@
                 <h1>KittyCode Creative</h1>
                 <div class="hero-description fade-content">
                     <p>KittyCode Creative is a <sparkly-text
-                            style="--sparkly-text-size: 2.5em" role="presentation"><strong>brand-new</strong></sparkly-text> digital
+                            style="--sparkly-text-size: 2.5em" role="img"><strong>brand-new</strong></sparkly-text> digital
                         creative agency based in
                         Eastbourne, East Sussex. We specialise in
                         creative beautiful and professional bespoke web design, front-end web development and design
@@ -307,7 +307,7 @@
                                 <div class="card-extras">
                                     <p class="monthly-contract"><strong>12 month contract</strong></p>
                                     <p class="one-off-deposit"><strong>50% deposit required</strong></p>
-                                    <p><label for="design-fee">£300</label> initial design fee applies</p>
+                                    <p id="design-fee-standard"><label for="design-fee-standard">£300</label> initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
                                     <a href="services/web-design.html">
@@ -344,7 +344,7 @@
                             <div class="card-extras">
                                 <p class="monthly-contract"><strong>24 month contract</strong></p>
                                 <p class="one-off-deposit"><strong>50% deposit required</strong></p>
-                                <p><label for="design-fee">£450</label> initial design fee applies</p>
+                                <p id="design-fee-premium"><label for="design-fee-premium">£450</label> initial design fee applies</p>
                             </div>
                             <div class="centered-button">
                                 <a href="services/web-design.html">
@@ -379,7 +379,7 @@
                                 <div class="card-extras">
                                     <p class="monthly-contract"><strong>24 month contract</strong></p>
                                     <p class="one-off-deposit"><strong>50% deposit required</strong></p>
-                                    <p><label for="design-fee">£750</label> initial design fee applies</p>
+                                    <p id="design-fee-premium-plus"><label for="design-fee-premium-plus">£750</label> initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
                                     <a href="services/web-design.html">
@@ -537,7 +537,7 @@
                         <fieldset>
                             <legend><label for="name">Name</label></legend>
                             <input placeholder="Sir Pawsworth III" name="name" id="name" type="text"
-                            autocomplete="given-name family-name" required>
+                            autocomplete="given-name" required>
                             <div class="invalid" id="name-invalid">
                                 Please provide your name.
                             </div>
