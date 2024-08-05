@@ -82,17 +82,34 @@ dropdownMenus.forEach(function(dropdown) {
 
 // sticky nav
 
+// let prevScrollPos = window.scrollY;
+// const navbar = document.querySelector('.navbar');
+
+// window.addEventListener('scroll', () => {
+//   const currentScrollPos = window.scrollY;
+
+//   if (prevScrollPos > currentScrollPos && currentScrollPos >= 100) {
+//     // Scrolling up and scrolled at least 15px
+//     navbar.classList.add('sticky');
+//   } else {
+//     // Scrolling down or scrolled less than 15px
+//     navbar.classList.remove('sticky');
+//   }
+
+//   prevScrollPos = currentScrollPos;
+// });
+
 let prevScrollPos = window.scrollY;
 const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
   const currentScrollPos = window.scrollY;
 
-  if (prevScrollPos > currentScrollPos && currentScrollPos >= 100) {
-    // Scrolling up and scrolled at least 15px
+  if (prevScrollPos - currentScrollPos > 40) {
+    // Scrolling up more than 40px
     navbar.classList.add('sticky');
-  } else {
-    // Scrolling down or scrolled less than 15px
+  } else if (currentScrollPos - prevScrollPos > 40) {
+    // Scrolling down more than 40px
     navbar.classList.remove('sticky');
   }
 
