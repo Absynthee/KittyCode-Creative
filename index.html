@@ -92,12 +92,12 @@
 
         <div class="hero fade-content">
 
-            <div class="hero-text fade-content">
+            <div class="hero-text fade-content" id="hero">
                 <label for="hero">Welcome to</label>
                 <h1>KittyCode Creative</h1>
                 <div class="hero-description fade-content">
                     <p>KittyCode Creative is a <sparkly-text
-                            style="--sparkly-text-size: 2.5em"><strong>brand-new</strong></sparkly-text> digital
+                            style="--sparkly-text-size: 2.5em" role="presentation"><strong>brand-new</strong></sparkly-text> digital
                         creative agency based in
                         Eastbourne, East Sussex. We specialise in
                         creative beautiful and professional bespoke web design, front-end web development and design
@@ -127,7 +127,7 @@
 
         </div>
 
-        <section class="what-we-do fade-content">
+        <section class="what-we-do fade-content" id="what-we-do">
             <div class="section-text fade-content">
                 <label for="what-we-do">Unleash your inner cat.</label>
                 <h1>What We Do</h1>
@@ -152,7 +152,7 @@
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/5.svg" alt="Responsive">
-                    <h3><sparkly-text style="--sparkly-text-color: orange">Fully Responsive</sparkly-text></h3>
+                    <h3><sparkly-text style="--sparkly-text-color: orange" role="presentation">Fully Responsive</sparkly-text></h3>
                     <p>Your website will fit all mobile screens sizes, tablets, and desktop sizes so new clients can
                         access your site from anywhere.</p>
                 </div>
@@ -160,21 +160,21 @@
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/2.svg" alt="Design">
-                    <h3><sparkly-text style="--sparkly-text-color: orange">Unique Design</sparkly-text></h3>
+                    <h3><sparkly-text style="--sparkly-text-color: orange" role="presentation">Unique Design</sparkly-text></h3>
                     <p>Your website will be 100% handcrafted and totally unique to you. No templates here.</p>
                 </div>
             </div>
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/4.svg" alt="Accessible">
-                    <h3><sparkly-text style="--sparkly-text-color: orange">Accessibility</sparkly-text></h3>
+                    <h3><sparkly-text style="--sparkly-text-color: orange" role="presentation">Accessibility</sparkly-text></h3>
                     <p>Making the web accessible benefits individuals, businesses, and society. Your website will be
                         fully perceivable, operable, understandable and robust. </p>
                 </div>
             </div>
         </section>
 
-        <section class="why-choose-us fade-content">
+        <section class="why-choose-us fade-content" id="why-choose-us">
             <div class="section-text fade-content">
                 <label for="why-choose-us">We’re the cat’s paw-jamas.</label>
                 <a href="about-us.html">
@@ -231,11 +231,11 @@
                                 <div class="chat-user-2 phone-element">Hey KittyCode, we need a new website!</div>
                                 <div class="chat-user-2 phone-element">Are you available to take us on?</div>
                             </div>
-                            <div class="chat-user-1-special phone-element" aria-label="KittyCode Sticker">
+                            <div class="chat-user-1-special phone-element">
                                 <dotlottie-player 
                                     src="https://lottie.host/f9407abf-7229-4395-b661-ad87f888963d/AlRkb3hTeS.json"
-                                    background="transparent" speed="1" style="width: 124px; height: 124;" loop aria-label="KittyCode Sticker"
-                                    autoplay></dotlottie-player>
+                                    background="transparent" speed="1" style="width: 124px; height: 124px;" loop alt="KittyCode Sticker"
+                                    autoplay role="presentation"></dotlottie-player>
                             </div>
                             <div class="chat-user-1 phone-element">Hi there!</div>
                             <div class="chat-user-1 phone-element">Sure thing! We can have an initial design for you in
@@ -262,7 +262,7 @@
             </div>
         </section>
 
-        <section class="our-services fade-content">
+        <section class="our-services fade-content" id="our-services">
             <div class="section-text centered fade-content">
                 <label for="our-services">We offer purrfection.</label>
                 <a href="services/web-design.html">
@@ -278,23 +278,22 @@
                     <div class="services-toggle">
                         <input id="toggle-on" onclick="translatePaymentTypeMonthly()" class="toggle toggle-left"
                             name="toggle" value="false" type="radio" checked>
-                        <label for="toggle-on" class="toggle-button" tabindex="0">Monthly</label>
+                        <label for="toggle-on" class="toggle-button" tabindex="0" role="option">Monthly</label>
                         <input id="toggle-off" onclick="translatePaymentTypeOneOff()" class="toggle toggle-right"
-                            name="toggle" value="true" type="radio">
-                        <label for="toggle-off" class="toggle-button" tabindex="0">One-off</label>
+                            name="toggle" value="true" type="radio" >
+                        <label for="toggle-off" class="toggle-button" tabindex="0" role="option">One-off</label>
                     </div>
                 </div>
 
                 <div class="packages fade-content">
-                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt
-                        data-tilt-axis="x">
-                        <section class="card">
+                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt-axis="x">
+                        <section class="card" >
                             <div class="inside">
                                 <div class="card-plan">
-                                    <label for="basic">standard</label>
+                                    <label for="standard-plan">standard</label>
                                     <div class="payment-type">
-                                        <h3 id="monthly">£40/month</h3>
-                                        <h3 id="one-off">£650</h3>
+                                        <h3 class="monthly">£40/month</h3>
+                                        <h3 class="one-off">£650</h3>
                                     </div>
                                 </div>
                                 <div class="card-details">
@@ -306,13 +305,13 @@
                                     <p>perfect for individuals</p>
                                 </div>
                                 <div class="card-extras">
-                                    <p id="monthly-contract"><strong>12 month contract</strong></p>
-                                    <p id="one-off-deposit"><strong>50% deposit required</strong></p>
+                                    <p class="monthly-contract"><strong>12 month contract</strong></p>
+                                    <p class="one-off-deposit"><strong>50% deposit required</strong></p>
                                     <p><label for="design-fee">£300</label> initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
                                     <a href="services/web-design.html">
-                                        <button class="" data-effect="none">
+                                        <button class="" data-effect="none" id="standard-plan">
                                             <span class="text">get started</span>
                                             <span class="shimmer"></span>
                                         </button>
@@ -322,15 +321,16 @@
                         </section>
                     </div>
 
-                    <section class="card primary">
+                    <section class="card primary" >
                         <div class="inside">
-                            <div class="popular"><sparkly-text
-                                    style="--sparkly-text-color: yellow">recommended</sparkly-text></div>
+                            <div class="popular">
+                                <sparkly-text style="--sparkly-text-color: yellow" role="presentation">recommended</sparkly-text>
+                                </div>
                             <div class="card-plan">
-                                <label for="standard">premium</label>
+                                <label for="premium-plan">premium</label>
                                 <div class="payment-type">
-                                    <h3 id="monthly">£75/month</h3>
-                                    <h3 id="one-off">£2000</h3>
+                                    <h3 class="monthly">£75/month</h3>
+                                    <h3 class="one-off">£2000</h3>
                                 </div>
                             </div>
                             <div class="card-details">
@@ -342,13 +342,13 @@
                                 <p>best for startups</p>
                             </div>
                             <div class="card-extras">
-                                <p id="monthly-contract"><strong>24 month contract</strong></p>
-                                <p id="one-off-deposit"><strong>50% deposit required</strong></p>
+                                <p class="monthly-contract"><strong>24 month contract</strong></p>
+                                <p class="one-off-deposit"><strong>50% deposit required</strong></p>
                                 <p><label for="design-fee">£450</label> initial design fee applies</p>
                             </div>
                             <div class="centered-button">
                                 <a href="services/web-design.html">
-                                    <button class="" data-effect="spin">
+                                    <button class="" data-effect="spin" id="premium-plan">
                                         <span class="text">get started</span>
                                         <span class="shimmer"></span>
                                     </button>
@@ -358,15 +358,14 @@
                         </div>
                     </section>
 
-                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt
-                        data-tilt-axis="x">
-                        <section class="card">
+                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt-axis="x">
+                        <section class="card" >
                             <div class="inside">
                                 <div class="card-plan">
-                                    <label for="premium">premium+</label>
+                                    <label for="premium-plus-plan">premium+</label>
                                     <div class="payment-type">
-                                        <h3 id="monthly">£100/month</h3>
-                                        <h3 id="one-off">£3000</h3>
+                                        <h3 class="monthly">£100/month</h3>
+                                        <h3 class="one-off">£3000</h3>
                                     </div>
                                 </div>
                                 <div class="card-details">
@@ -378,13 +377,13 @@
                                     <p>perfect for small businesses</p>
                                 </div>
                                 <div class="card-extras">
-                                    <p id="monthly-contract"><strong>24 month contract</strong></p>
-                                    <p id="one-off-deposit"><strong>50% deposit required</strong></p>
+                                    <p class="monthly-contract"><strong>24 month contract</strong></p>
+                                    <p class="one-off-deposit"><strong>50% deposit required</strong></p>
                                     <p><label for="design-fee">£750</label> initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
                                     <a href="services/web-design.html">
-                                        <button class="" data-effect="none">
+                                        <button class="" data-effect="none" id="premium-plus-plan">
                                             <span class="text">get started</span>
                                             <span class="shimmer"></span>
                                         </button>
@@ -398,7 +397,7 @@
                 </div>
         </section>
 
-        <section class="our-portfolio fade-content">
+        <section class="our-portfolio fade-content" id="our-portfolio">
             <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
                 <a href="portfolio.html">
@@ -451,7 +450,7 @@
             </div>
         </section>
 
-        <section class="our-reviews fade-content">
+        <section class="our-reviews fade-content" id="our-reviews">
             <div class="section-text centered fade-content">
                 <label for="our-reviews">We think you’re pretty paw-some.</label>
                 <h1>Our Reviews</h1>
@@ -471,14 +470,14 @@
                     <!-- <blockquote class="quote"> <img src="images/logo_2.png" alt="Testimonial Author" />
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
                             laudantium, totam rem aperiam.</p>
-                        <h4>Austin Spillman, Austin's Portfolio</h4>
+                        <h3>Austin Spillman, Austin's Portfolio</h3>
                     </blockquote> -->
                 </div>
             </div>
 
         </section>
 
-        <section class="our-faqs fade-content">
+        <section class="our-faqs fade-content" id="our-faqs">
             <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
                 <a href="faq.html">
@@ -489,25 +488,25 @@
                         though, we already have the answers right here!</p>
                 </div>
 
-                <div class="faq open" tabindex="0">
+                <div class="faq open" tabindex="0" role="article">
                     <h3>Why should we choose you?</h3>
                         <p>We're certainly glad you're considering us! As a new agency we don't have the portfolio of
                             others that have been around for years. However, we have all the skills and know-how to
                             deliver you the best website for your needs... and we do it cheaper than anyone else.</p>
                 </div>
-                <div class="faq closed" tabindex="0">
+                <div class="faq closed" tabindex="0" role="article">
                     <h3>I already have a website, I just need you to manage it for me. Is this something you offer?</h3>
                         <p>Absolutely! We have no set pricing for this sort of request, so it will depend on a
                             case-by-case basis. Send us a message and we will gladly manage your website for you.</p>
                 </div>
-                <div class="faq closed" tabindex="0">
+                <div class="faq closed" tabindex="0" role="article">
                     <h3>Is hosting included in your packages?</h3>
                         <p>Yes, all of our monthly packages include hosting charges. This enables us to keep your
                             website up and running. If you stop your monthly payments before your contract expires, your
                             hosting will also stop. If you're not on a monthly package, we can host for you for an
                             additional fee.</p>
                 </div>
-                <div class="faq closed" tabindex="0">
+                <div class="faq closed" tabindex="0" role="article">
                     <h3>Do you offer SEO?</h3>
                         <p>All of our web packages include SEO. While we cannot guarantee that your website will be
                             listed within the top search results of Google, we will do our best to get your website as
@@ -522,7 +521,7 @@
             </div>
         </section>
 
-        <section class="contact-us fade-content">
+        <section class="contact-us fade-content" id="contact-us">
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
                 <a href="contact.html">
@@ -537,7 +536,8 @@
 
                         <fieldset>
                             <legend><label for="name">Name</label></legend>
-                            <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" required>
+                            <input placeholder="Sir Pawsworth III" name="name" id="name" type="text"
+                            autocomplete="given-name family-name" required>
                             <div class="invalid" id="name-invalid">
                                 Please provide your name.
                             </div>
@@ -546,7 +546,7 @@
                         <fieldset>
                             <legend><label for="email">Email</label></legend>
                             <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
-                                required>
+                             autocomplete="email" required>
                             <div class="invalid" id="email-invalid">
                                 Please provide your email address.
                             </div>

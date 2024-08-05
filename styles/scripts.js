@@ -124,15 +124,15 @@ function translatePaymentTypeMonthly() {
   const contractTypes = document.querySelectorAll('.card-extras');
 
   paymentTypes.forEach(function(paymentType) {
-    const monthly = paymentType.querySelector('#monthly');
-    const oneOff = paymentType.querySelector('#one-off');
+    const monthly = paymentType.querySelector('.monthly');
+    const oneOff = paymentType.querySelector('.one-off');
     monthly.style.transform = 'translateX(0)';
     oneOff.style.transform = 'translateX(500px)';
   });
 
   contractTypes.forEach(function(contractType) {
-    const monthlyContracts = contractType.querySelectorAll('#monthly-contract');
-    const oneOffDeposits = contractType.querySelectorAll('#one-off-deposit');
+    const monthlyContracts = contractType.querySelectorAll('.monthly-contract');
+    const oneOffDeposits = contractType.querySelectorAll('.one-off-deposit');
 
     monthlyContracts.forEach(function(monthlyContract) {
       monthlyContract.style.display = 'block';
@@ -149,15 +149,15 @@ function translatePaymentTypeOneOff() {
   const contractTypes = document.querySelectorAll('.card-extras');
 
   paymentTypes.forEach(function(paymentType) {
-    const monthly = paymentType.querySelector('#monthly');
-    const oneOff = paymentType.querySelector('#one-off');
+    const monthly = paymentType.querySelector('.monthly');
+    const oneOff = paymentType.querySelector('.one-off');
     monthly.style.transform = 'translateX(-500px)';
     oneOff.style.transform = 'translateX(-225px)';
   });
 
   contractTypes.forEach(function(contractType) {
-    const monthlyContracts = contractType.querySelectorAll('#monthly-contract');
-    const oneOffDeposits = contractType.querySelectorAll('#one-off-deposit');
+    const monthlyContracts = contractType.querySelectorAll('.monthly-contract');
+    const oneOffDeposits = contractType.querySelectorAll('.one-off-deposit');
 
     monthlyContracts.forEach(function(monthlyContract) {
       monthlyContract.style.display = 'none';

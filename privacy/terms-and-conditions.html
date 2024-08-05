@@ -21,77 +21,6 @@
     <link rel="stylesheet" href="../styles/button.css">
     <link rel="stylesheet" href="../styles/card.css">
 </head>
-<style>
-    .cat-v2::before {
-        content: '';
-        background: url(../images/v3_cat1.png);
-    }
-
-    .cat-v2 {
-        width: 100%;
-        height: 800px;
-        max-height: 800px;
-        background: url(../images/v3_cat1.png);
-        animation: changeImage 1s infinite;
-
-        &:hover {
-            background: url(../images/v3_cat2.png);
-            animation: changeImage 0.7s infinite;
-        }
-
-        &:active {
-            background: url(../images/v3_cat3.png);
-            margin-top: 2px;
-            animation: changeImageClick 0.1s infinite;
-        }
-    }
-
-    @keyframes changeImage {
-        0% {
-            background: url(../images/v3_cat3.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        50% {
-            background: url(../images/v3_cat2.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        100% {
-            background: url(../images/v3_cat3.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    }
-
-    @keyframes changeImageClick {
-        0% {
-            background: url(../images/v3_cat3a.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        50% {
-            background: url(../images/v3_cat2a.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        100% {
-            background: url(../images/v3_cat3a.png);
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    }
-</style>
 
 <body>
 
@@ -148,7 +77,7 @@
 
     <main>
 
-        <section class="full-text fade-content">
+        <section class="full-text fade-content" id="terms-and-conditions">
             <div class="section-text fade-content">
                 <label for="terms-and-conditions">Terms and Kittens?</label>
                 <h1>Terms and Conditions</h1>
@@ -222,8 +151,8 @@
                                 src="../images/icons/instagram.png" alt="Instagram"></a></div>
             </div>
             </div>
-            <p><a href="privacypolicy.html">Privacy Policy</a></p>
-            <p><a href="termsandconditions.html">Terms & Conditions</a></p>
+            <p><a href="privacy-policy.html">Privacy Policy</a></p>
+            <p><a href="terms-and-conditions.html">Terms & Conditions</a></p>
             <div class="large"><br><br></div>
             <p>Company No: #########</p>
             <div class="large"><br><br></div><br>

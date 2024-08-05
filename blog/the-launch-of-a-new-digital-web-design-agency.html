@@ -89,7 +89,7 @@
     <main>
 
 
-        <div class="hero align-items-normal fade-content">
+        <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../blog.html">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
@@ -113,9 +113,9 @@
 
         </div>
 
-        <section class="full-text fade-content">
+        <section class="full-text">
             <img src="../images/blog/kittycode-banner.jpg" alt="">
-            <div class="section-text fade-content">
+            <div class="section-text">
                 <div class="section-description">
                     <h4 class="blog-subtitle">Our Vision and Mission</h4>
                     <p>KittyCode Creative was founded with a vision to create beautiful, functional, and accessible
@@ -190,7 +190,7 @@
 
                         <fieldset>
                             <legend><label for="name">Name</label></legend>
-                            <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" required>
+                            <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" autocomplete="given-name" required>
                             <div class="invalid" id="name-invalid">
                                 Please provide your name.
                             </div>
@@ -199,7 +199,7 @@
                         <fieldset>
                             <legend><label for="email">Email</label></legend>
                             <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
-                                required>
+                            autocomplete="email" required>
                             <div class="invalid" id="email-invalid">
                                 Please provide your email address.
                             </div>
@@ -304,8 +304,8 @@
                                 src="../images/icons/instagram.png" alt="Instagram"></a></div>
             </div>
             </div>
-            <p><a href="#">Privacy Policy</a></p>
-            <p><a href="#">Terms & Conditions</a></p>
+            <p><a href="../privacy/privacy-policy.html">Privacy Policy</a></p>
+            <p><a href="../privacy/terms-and-conditions.html">Terms & Conditions</a></p>
             <div class="large"><br><br></div>
             <p>Company No: #########</p>
             <div class="large"><br><br></div><br>

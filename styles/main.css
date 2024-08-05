@@ -100,19 +100,19 @@ a:hover {
 /* custom */
 
 :root {
-  --primary-color-1: #f25922;
-  --primary-color-1-80: #f25922c9;
-  --primary-color-1-60: #f2592288;
-  --primary-color-1-40: #f2592267;
-  --primary-color-1-20: #f259223b;
-  --primary-color-1-10: #f2592217;
+  --primary-color-1: #d94713;
+  --primary-color-1-80: #d94713c9;
+  --primary-color-1-60: #d9471388;
+  --primary-color-1-40: #d9471367;
+  --primary-color-1-20: #d947133b;
+  --primary-color-1-10: #d9471317;
   --primary-color-2: #f58426;
   --primary-color-2-80: #f58426c9;
   --primary-color-2-60: #f5842688;
   --primary-color-2-40: #f5842667;
   --primary-color-2-20: #f584263b;
   --primary-color-2-10: #f5842617;
-  --accent-color-1: #ebcb5c;
+  --accent-color-1: #cba936;
   --accent-color-2: #2fad9f;
   --accent-color-3: #4686c2;
   --neutral-color-1: #262626;
@@ -1176,6 +1176,7 @@ p.role {
 
 input[type="radio"].toggle {
   display: none;
+  
 
   & + label {
     cursor: pointer;
@@ -1186,8 +1187,8 @@ input[type="radio"].toggle {
     &:focus-visible {
       outline: 2px solid var(--primary-color-1);
     }
-
-    &:after {
+    
+    &::after {
       content: "";
       background-color: var(--primary-color-2-20);
       position: absolute;
@@ -1211,8 +1212,8 @@ input[type="radio"].toggle {
 
   &.toggle-right + label {
     border-left: 0;
-
     border-radius: 0 10px 10px 0;
+    
     &:after {
       left: -100%;
     }
@@ -1222,7 +1223,8 @@ input[type="radio"].toggle {
     box-shadow: inset 0px 0px 10px -5px var(--primary-color-2);
     cursor: default;
     transition: all 200ms;
-    &:after {
+
+    &::after {
       left: 0;
     }
   }
@@ -1277,7 +1279,7 @@ input[type="radio"].toggle {
   text-align: center;
 }
 
-#monthly {
+.monthly {
   display: block;
   position: relative;
   width: 225px;
@@ -1285,7 +1287,7 @@ input[type="radio"].toggle {
   transform: translateX(0);
 }
 
-#one-off {
+.one-off {
   position: relative;
   width: 225px;
   transition: all 0.5s ease-in-out;
@@ -1293,11 +1295,11 @@ input[type="radio"].toggle {
   overflow: hidden;
 }
 
-#monthly-contract {
+.monthly-contract {
   display: block;
 }
 
-#one-off-deposit {
+.one-off-deposit {
   display: none;
 }
 

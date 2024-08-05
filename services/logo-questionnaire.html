@@ -83,8 +83,8 @@
     <main>
         <div class="full-text centered fade-content">
 
-            <div class="section-text centered fade-content">
-                <label for="welcome">Design my logo.</label>
+            <div class="section-text centered fade-content" id="logo-questionnaire">
+                <label for="logo-questionnaire">Design my logo.</label>
                 <h1>Logo Design Questionnaire</h1>
                 <div class="section-description fade-content">
                     <p>We know this is long but for us to provide you the best service we require as much information as
@@ -93,16 +93,17 @@
                         across all formats. Usually this will be a combination mark, wordmark and brandmark (symbol).
                     </p>
                 </div>
-                <div class="contact-container fade-content">
+                <div class="contact-container">
                     <form id="logo" action="" method="post" novalidate>
                         <input type="hidden" name="access_key" value="34317982-f38f-4672-b238-073c162f37c4">
                         <input type="hidden" name="subject" id="subject" value="Logo Questionnaire">
+                        <input type="hidden" name="redirect" value="../thank-you.html">
 
                         <h3 class="questionnaire-title">Your Details</h3>
                         <fieldset id="form-row">
                             <div class="one-column">
                                 <legend><label for="name">Your name</label></legend>
-                                <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" required>
+                                <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" autocomplete="given-name" required>
                                 <div class="invalid" id="name-invalid">
                                     Please provide your name.
                                 </div>
@@ -122,7 +123,7 @@
                             <div class="one-column">
                                 <legend><label for="email">Email</label></legend>
                                 <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
-                                    required>
+                                autocomplete="email" required>
                                 <div class="invalid" id="email-invalid">
                                     Please provide your email address.
                                 </div>
@@ -130,7 +131,7 @@
                             <div class="one-column">
                                 <legend><label for="confirm-email">Confirm Email</label></legend>
                                 <input placeholder="meow@kittycodecreative.com" name="Email Confirmation" id="confirm-email"
-                                    type="email" required>
+                                autocomplete="email" type="email" required>
                                 <div class="invalid" id="confirm-email-invalid">
                                     Please confirm your email address.
                                 </div>
@@ -339,8 +340,8 @@
                                 src="../images/icons/instagram.png" alt="Instagram"></a></div>
             </div>
             </div>
-            <p><a href="#">Privacy Policy</a></p>
-            <p><a href="#">Terms & Conditions</a></p>
+            <p><a href="../privacy/privacy-policy.html">Privacy Policy</a></p>
+            <p><a href="../privacy/terms-and-conditions.html">Terms & Conditions</a></p>
             <div class="large"><br><br></div>
             <p>Company No: #########</p>
             <div class="large"><br><br></div><br>
