@@ -12,7 +12,9 @@
     <meta property="og:image" content="https://kittycodecreative.com/images/contact-us.png" />
     <meta property="og:url" content="https://kittycodecreative.com/contact-us" />
     <title>Contact Us - Get Started | KittyCode Creative</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="./images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="favicon-180x180.png">
     <link rel="stylesheet" href="https://use.typekit.net/qqu4sal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +29,17 @@
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/button.css">
     <link rel="stylesheet" href="./styles/card.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZSCGN3WZR0');
+    </script>
 </head>
 
 <body>
@@ -40,21 +53,21 @@
             <div class="links">
                 <div class="large">
                     <ul id="services-nested">
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./about-us.html">About</a></li>
-                        <li><a href="./portfolio.html">Portfolio</a></li>
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./about-us">About</a></li>
+                        <li><a href="./our-portfolio">Portfolio</a></li>
                         <li>
                             <a href="/" onclick="return false;">Services</a>
                             <ul class="">
-                                <li class="nested"><a href="services/web-design.html">Website Design</a></li>
-                                <li class="nested"><a href="services/website-questionnaire.html">Website
+                                <li class="nested"><a href="services/web-design">Website Design</a></li>
+                                <li class="nested"><a href="services/website-questionnaire">Website
                                         Questionnaire</a></li>
-                                <li class="nested"><a href="services/logo-design.html">Logo Design</a></li>
-                                <li class="nested"><a href="services/logo-questionnaire.html">Logo Questionnaire</a>
+                                <li class="nested"><a href="services/logo-design">Logo Design</a></li>
+                                <li class="nested"><a href="services/logo-questionnaire">Logo Questionnaire</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="./contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,14 +81,14 @@
             </div>
             <div class="mobile-menu">
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
-                    <li><a href="./about-us.html">About</a></li>
-                    <li><a href="./portfolio.html">Portfolio</a></li>
-                    <li><a href="./services/web-design.html">Website Design</a></li>
-                    <li><a href="./services/website-questionnaire.html">Website Questionnaire</a></li>
-                    <li><a href="./services/logo-design.html">Logo Design</a></li>
-                    <li><a href="./services/logo-questionnaire.html">Logo Questionnaire</a></li>
-                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./">Home</a></li>
+                    <li><a href="./about-us">About</a></li>
+                    <li><a href="./our-portfolio">Portfolio</a></li>
+                    <li><a href="./services/web-design">Website Design</a></li>
+                    <li><a href="./services/website-questionnaire">Website Questionnaire</a></li>
+                    <li><a href="./services/logo-design">Logo Design</a></li>
+                    <li><a href="./services/logo-questionnaire">Logo Questionnaire</a></li>
+                    <li><a href="./contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -116,13 +129,13 @@
                 </div>
 
                 <div class="section-buttons">
-                    <a href="services/website-questionnaire.html">
+                    <a href="services/website-questionnaire">
                         <button class="long-button" data-effect="throb">
                             <span class="text">website questionnaire</span>
                             <span class="shimmer"></span>
                         </button>
                     </a>
-                    <a href="services/logo-questionnaire.html">
+                    <a href="services/logo-questionnaire">
                         <button class="long-button secondary" data-effect="none">
                             <span class="text">logo questionnaire</span>
                             <span class="shimmer"></span>
@@ -138,7 +151,8 @@
 
                     <fieldset>
                         <legend><label for="name">Name</label></legend>
-                        <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" autocomplete="given-name" required>
+                        <input placeholder="Sir Pawsworth III" name="name" id="name" type="text"
+                            autocomplete="given-name" required>
                         <div class="invalid" id="name-invalid">
                             Please provide your name.
                         </div>
@@ -148,7 +162,8 @@
                         <legend>
                             <label for="email">Email</label>
                         </legend>
-                        <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email" autocomplete="email" required>
+                        <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
+                            autocomplete="email" required>
                         <div class="invalid" id="email-invalid">
                             Please provide your email address.
                         </div>
@@ -210,8 +225,8 @@
                                 src="images/icons/instagram.png" alt="Instagram"></a></div>
                 </div>
             </div>
-            <p><a href="../privacy/privacy-policy.html">Privacy Policy</a></p>
-            <p><a href="../privacy/terms-and-conditions.html">Terms & Conditions</a></p>
+            <p><a href="../privacy/privacy-policy">Privacy Policy</a></p>
+            <p><a href="../privacy/terms-and-conditions">Terms & Conditions</a></p>
             <div class="large"><br><br></div>
             <p>Company No: #########</p>
             <div class="large"><br><br></div><br>
@@ -221,25 +236,25 @@
         <div class="footer-nav">
             <div class="grid1">
                 <h4>Navigation</h4>
-                <a href="./about-us.html">About Us</a>
-                <a href="./portfolio.html">Our Portfolio</a>
-                <a href="./contact.html">Contact Us</a>
-                <a href="./faq.html">FAQ</a>
+                <a href="./about-us">About Us</a>
+                <a href="./our-portfolio">Our Portfolio</a>
+                <a href="./contact">Contact Us</a>
+                <a href="./faq">FAQ</a>
             </div>
             <div class="grid1">
                 <h4>Services</h4>
-                <a href="./services/web-design.html">Website Design</a>
-                <a href="./services/website-questionnaire.html">Website Questionnaire</a>
-                <a href="./services/logo-design.html">Logo Design</a>
-                <a href="./services/logo-questionnaire.html">Logo Questionnaire</a>
+                <a href="./services/web-design">Website Design</a>
+                <a href="./services/website-questionnaire">Website Questionnaire</a>
+                <a href="./services/logo-design">Logo Design</a>
+                <a href="./services/logo-questionnaire">Logo Questionnaire</a>
             </div>
             <div class="grid1 blog-links">
-                <a href="blog.html">
+                <a href="our-blog">
                     <h4>Blog</h4>
                 </a>
-                <a href="./blog/benefits-of-hand-coding-your-website.html">The Benefits of Hand-Coding Your Website</a>
-                <a href="./blog/why-acessibility-matters.html">Why Accessibility Matters in Web Design</a>
-                <a href="./blog/the-launch-of-a-new-digital-web-design-agency.html">The Launch of KittyCode Creative</a>
+                <a href="./blog/benefits-of-hand-coding-your-website">The Benefits of Hand-Coding Your Website</a>
+                <a href="./blog/why-acessibility-matters">Why Accessibility Matters in Web Design</a>
+                <a href="./blog/the-launch-of-a-new-digital-web-design-agency">The Launch of KittyCode Creative</a>
             </div>
         </div>
 

@@ -4,13 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fill out our logo questionnaire to help KittyCode Creative understand your branding needs. Your responses will guide us in creating a custom logo that perfectly aligns with your vision and goals."/>
-    <meta property="og:title" content="Logo Questionnaire - KittyCode Creative"/>
-<meta property="og:description" content="Fill out our logo questionnaire to help KittyCode Creative understand your branding needs. Your responses will guide us in creating a custom logo that perfectly aligns with your vision and goals."/>
-<meta property="og:image" content="https://kittycodecreative.com/images/what-we-do.png"/>
-<meta property="og:url" content="https://kittycodecreative.com/services/logo-questionnaire"/>
+    <meta name="description"
+        content="Fill out our logo questionnaire to help KittyCode Creative understand your branding needs. Your responses will guide us in creating a custom logo that perfectly aligns with your vision and goals." />
+    <meta property="og:title" content="Logo Questionnaire - KittyCode Creative" />
+    <meta property="og:description"
+        content="Fill out our logo questionnaire to help KittyCode Creative understand your branding needs. Your responses will guide us in creating a custom logo that perfectly aligns with your vision and goals." />
+    <meta property="og:image" content="https://kittycodecreative.com/images/what-we-do.png" />
+    <meta property="og:url" content="https://kittycodecreative.com/services/logo-questionnaire" />
     <title>Logo Design Questionnaire | KittyCode Creative</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="../images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../favicon-192x192.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../favicon-180x180.png">
     <link rel="stylesheet" href="https://use.typekit.net/qqu4sal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,6 +29,17 @@
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/button.css">
     <link rel="stylesheet" href="../styles/card.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZSCGN3WZR0');
+    </script>
 </head>
 
 <body>
@@ -38,19 +53,20 @@
             <div class="links">
                 <div class="large">
                     <ul id="services-nested">
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../about-us.html">About</a></li>
-                        <li><a href="../portfolio.html">Portfolio</a></li>
+                        <li><a href="../">Home</a></li>
+                        <li><a href="../about-us">About</a></li>
+                        <li><a href="../our-portfolio">Portfolio</a></li>
                         <li>
-                            <a href="/" onclick="return false;" >Services</a>
+                            <a href="/" onclick="return false;">Services</a>
                             <ul class="">
-                                <li class="nested"><a href="../services/web-design.html">Website Design</a></li>
-                                <li class="nested"><a href="../services/website-questionnaire.html">Website Questionnaire</a></li>
-                                <li class="nested"><a href="../services/logo-design.html">Logo Design</a></li>
-                                <li class="nested"><a href="../services/logo-questionnaire.html">Logo Questionnaire</a></li>
+                                <li class="nested"><a href="../services/web-design">Website Design</a></li>
+                                <li class="nested"><a href="../services/website-questionnaire">Website Questionnaire</a>
+                                </li>
+                                <li class="nested"><a href="../services/logo-design">Logo Design</a></li>
+                                <li class="nested"><a href="../services/logo-questionnaire">Logo Questionnaire</a></li>
                             </ul>
                         </li>
-                        <li><a href="../contact.html">Contact</a></li>
+                        <li><a href="../contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,15 +80,15 @@
             </div>
             <div class="mobile-menu">
                 <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../about-us.html">About</a></li>
-                    <li><a href="../portfolio.html">Portfolio</a></li>
-                    <li><a href="../services/web-design.html">Website Design</a></li>
-                    <li><a href="../services/website-questionnaire.html">Website Questionnaire</a></li>
-                    <li><a href="../services/logo-design.html">Logo Design</a></li>
-                    <li><a href="../services/logo-questionnaire.html">Logo Questionnaire</a></li>
+                    <li><a href="../">Home</a></li>
+                    <li><a href="../about-us">About</a></li>
+                    <li><a href="../our-portfolio">Portfolio</a></li>
+                    <li><a href="../services/web-design">Website Design</a></li>
+                    <li><a href="../services/website-questionnaire">Website Questionnaire</a></li>
+                    <li><a href="../services/logo-design">Logo Design</a></li>
+                    <li><a href="../services/logo-questionnaire">Logo Questionnaire</a></li>
 
-                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="../contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -103,7 +119,8 @@
                         <fieldset id="form-row">
                             <div class="one-column">
                                 <legend><label for="name">Your name</label></legend>
-                                <input placeholder="Sir Pawsworth III" name="name" id="name" type="text" autocomplete="given-name" required>
+                                <input placeholder="Sir Pawsworth III" name="name" id="name" type="text"
+                                    autocomplete="given-name" required>
                                 <div class="invalid" id="name-invalid">
                                     Please provide your name.
                                 </div>
@@ -123,15 +140,15 @@
                             <div class="one-column">
                                 <legend><label for="email">Email</label></legend>
                                 <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
-                                autocomplete="email" required>
+                                    autocomplete="email" required>
                                 <div class="invalid" id="email-invalid">
                                     Please provide your email address.
                                 </div>
                             </div>
                             <div class="one-column">
                                 <legend><label for="confirm-email">Confirm Email</label></legend>
-                                <input placeholder="meow@kittycodecreative.com" name="Email Confirmation" id="confirm-email"
-                                autocomplete="email" type="email" required>
+                                <input placeholder="meow@kittycodecreative.com" name="Email Confirmation"
+                                    id="confirm-email" autocomplete="email" type="email" required>
                                 <div class="invalid" id="confirm-email-invalid">
                                     Please confirm your email address.
                                 </div>
@@ -142,7 +159,8 @@
 
                         <fieldset id="form-row">
                             <div class="one-column">
-                                <legend><label for="what-does-your-business-do">What does your business do?</label></legend>
+                                <legend><label for="what-does-your-business-do">What does your business do?</label>
+                                </legend>
                                 <textarea placeholder="Industry and goals." name="What does your business do?"
                                     id="what-does-your-business-do" required></textarea>
                                 <div class="invalid" id="business-1-invalid">
@@ -151,7 +169,8 @@
                             </div>
 
                             <div class="one-column">
-                                <legend><label for="what-does-your-logo-achieve">What do you want your logo to achieve?</label></legend>
+                                <legend><label for="what-does-your-logo-achieve">What do you want your logo to
+                                        achieve?</label></legend>
                                 <textarea placeholder="Example: Update my business with a fresh new look."
                                     name="What do you want your logo to achieve?" id="what-does-your-logo-achieve"
                                     required></textarea>
@@ -163,9 +182,10 @@
 
                         <fieldset id="form-row">
                             <div class="one-column">
-                                <legend><label for="potential-customers">Who are your potential customers?</label></legend>
-                                <textarea placeholder="Age, etc." name="Who are your potential customers?" id="potential-customers"
-                                    required></textarea>
+                                <legend><label for="potential-customers">Who are your potential customers?</label>
+                                </legend>
+                                <textarea placeholder="Age, etc." name="Who are your potential customers?"
+                                    id="potential-customers" required></textarea>
                                 <div class="invalid" id="business-3-invalid">
                                     Required field.
                                 </div>
@@ -179,8 +199,7 @@
                                 <textarea
                                     placeholder="What do you do differently? How do you market yourself in a way that's better than others?"
                                     name="How does your business differ from
-                                    competitors?" id="differ-from-competitors"
-                                    required></textarea>
+                                    competitors?" id="differ-from-competitors" required></textarea>
                                 <div class="invalid" id="business-4-invalid">
                                     Required field.
                                 </div>
@@ -225,16 +244,19 @@
 
                         <fieldset id="form-row">
                             <div class="one-column">
-                                <legend><label for="logo-tagline">Do you have a tagline that you want to use?</label></legend>
+                                <legend><label for="logo-tagline">Do you have a tagline that you want to use?</label>
+                                </legend>
                                 <textarea placeholder="For example: Business name. We Do Good Business!"
-                                    name="Do you have a tagline that you want to use?" id="logo-tagline" required></textarea>
+                                    name="Do you have a tagline that you want to use?" id="logo-tagline"
+                                    required></textarea>
                                 <div class="invalid" id="logo-3-invalid">
                                     Required field.
                                 </div>
                             </div>
 
                             <div class="one-column">
-                                <legend><label for="logo-emotions">What do you want your logo to convey?</label></legend>
+                                <legend><label for="logo-emotions">What do you want your logo to convey?</label>
+                                </legend>
                                 <textarea
                                     placeholder="What feeling or message do you want your logo to convey to those who see it?"
                                     name="What do you want your logo to convey?" id="logo-emotions" required></textarea>
@@ -244,7 +266,8 @@
                             </div>
                         </fieldset>
 
-                        <h4 class="questionnaire-title">What kind of style(s) would you like? (see below for examples)</h4>
+                        <h4 class="questionnaire-title">What kind of style(s) would you like? (see below for examples)
+                        </h4>
                         <fieldset>
                             <div id="form-row" class="row-wrap">
                                 <div class="checkbox"><input type="checkbox" name="Logo Type" id="wordmark">
@@ -266,8 +289,8 @@
                                     <label for="mascot">Mascot</label>
                                 </div>
                                 <div class="checkbox"><input type="checkbox" name="Logo Type" id="combination">
-                                        <label for="combination">Combination</label>
-                                    </div>
+                                    <label for="combination">Combination</label>
+                                </div>
                                 <div class="checkbox"><input type="checkbox" name="Logo Type" id="dynamic">
                                     <label for="dynamic">Dynamic</label>
                                 </div>
@@ -278,8 +301,10 @@
 
                         </fieldset>
 
-                        <div class="large"><img src="../images/logo-types-long.jpg" alt="Examples of different logo types"></div>
-                        <div class="small"><img src="../images/logo-types.jpg" alt="Examples of different logo types"></div>
+                        <div class="large"><img src="../images/logo-types-long.jpg"
+                                alt="Examples of different logo types"></div>
+                        <div class="small"><img src="../images/logo-types.jpg" alt="Examples of different logo types">
+                        </div>
 
                         <fieldset id="form-row">
                             <div class="one-column">
@@ -306,8 +331,7 @@
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
                         <fieldset class="centered" aria-labelledby="logo-submit">
-                            <button name="submit" type="submit" id="logo-submit"
-                                data-effect="spin">
+                            <button name="submit" type="submit" id="logo-submit" data-effect="spin">
                                 <span class="text">submit</span>
                                 <span class="shimmer"></span>
                             </button>
@@ -338,10 +362,10 @@
                                 src="../images/icons/twitter.png" alt="Twitter/X"></a></div>
                     <div class="social-box"><a href="https://www.instagram.com/kittycode_creative/" target="_blank"><img
                                 src="../images/icons/instagram.png" alt="Instagram"></a></div>
+                </div>
             </div>
-            </div>
-            <p><a href="../privacy/privacy-policy.html">Privacy Policy</a></p>
-            <p><a href="../privacy/terms-and-conditions.html">Terms & Conditions</a></p>
+            <p><a href="../privacy/privacy-policy">Privacy Policy</a></p>
+            <p><a href="../privacy/terms-and-conditions">Terms & Conditions</a></p>
             <div class="large"><br><br></div>
             <p>Company No: #########</p>
             <div class="large"><br><br></div><br>
@@ -351,25 +375,25 @@
         <div class="footer-nav">
             <div class="grid1">
                 <h4>Navigation</h4>
-                <a href="../about-us.html">About Us</a>
-                <a href="../portfolio.html">Our Portfolio</a>
-                <a href="../contact.html">Contact Us</a>
-                <a href="../faq.html">FAQ</a>
+                <a href="../about-us">About Us</a>
+                <a href="../our-portfolio">Our Portfolio</a>
+                <a href="../contact">Contact Us</a>
+                <a href="../faq">FAQ</a>
             </div>
             <div class="grid1">
                 <h4>Services</h4>
-                <a href="../services/web-design.html">Website Design</a>
-                <a href="../services/website-questionnaire.html">Website Questionnaire</a>
-                <a href="../services/logo-design.html">Logo Design</a>
-                <a href="../services/logo-questionnaire.html">Logo Questionnaire</a>
+                <a href="../services/web-design">Website Design</a>
+                <a href="../services/website-questionnaire">Website Questionnaire</a>
+                <a href="../services/logo-design">Logo Design</a>
+                <a href="../services/logo-questionnaire">Logo Questionnaire</a>
             </div>
             <div class="grid1 blog-links">
-                <a href="../blog.html">
+                <a href="../our-blog">
                     <h4>Blog</h4>
                 </a>
-                <a href="../blog/benefits-of-hand-coding-your-website.html">The Benefits of Hand-Coding Your Website</a>
-                <a href="../blog/why-acessibility-matters.html">Why Accessibility Matters in Web Design</a>
-                <a href="../blog/the-launch-of-a-new-digital-web-design-agency.html">The Launch of KittyCode Creative</a>
+                <a href="../blog/benefits-of-hand-coding-your-website">The Benefits of Hand-Coding Your Website</a>
+                <a href="../blog/why-acessibility-matters">Why Accessibility Matters in Web Design</a>
+                <a href="../blog/the-launch-of-a-new-digital-web-design-agency">The Launch of KittyCode Creative</a>
             </div>
         </div>
 
@@ -386,7 +410,7 @@
                                 src="../images/icons/twitter.png" alt="Twitter/X"></a></div>
                     <div class="social-box"><a href="https://www.instagram.com/kittycode_creative/" target="_blank"><img
                                 src="../images/icons/instagram.png" alt="Instagram"></a></div>
-            </div>
+                </div>
             </div>
         </div>
 

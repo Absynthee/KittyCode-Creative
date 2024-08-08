@@ -10,9 +10,11 @@
     <meta property="og:description"
         content="Discover KittyCode Creative, your digital web design agency in Eastbourne. Specialising in bespoke web design, development, SEO, and logo services to enhance your online presence. Contact us today!" />
     <meta property="og:image" content="https://kittycodecreative.com/images/kittycode_logo.svg" />
-    <meta property="og:url" content="https://kittycodecreative.com/" />
+    <meta property="og:url" content="https://kittycodecreative.com" />
     <title>Web Design & Digital Services, Eastbourne, East Sussex | KittyCode Creative</title>
-    <link rel="icon" type="image/svg" sizes="32x32" href="images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="favicon-180x180.png">
     <link rel="stylesheet" href="https://use.typekit.net/qqu4sal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,6 +29,18 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/card.css">
+    <link rel="canonical" href="https://www.kittycodecreative.com/">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZSCGN3WZR0');
+    </script>
+    <!-- Google tag end -->
 </head>
 
 <body>
@@ -41,21 +55,21 @@
             <div class="links">
                 <div class="large">
                     <ul id="services-nested">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about-us.html">About</a></li>
-                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="about-us">About</a></li>
+                        <li><a href="our-portfolio">Portfolio</a></li>
                         <li>
                             <a href="/" onclick="return false;">Services</a>
                             <ul class="">
-                                <li class="nested"><a href="services/web-design.html">Website Design</a></li>
-                                <li class="nested"><a href="services/website-questionnaire.html">Website
+                                <li class="nested"><a href="services/web-design">Website Design</a></li>
+                                <li class="nested"><a href="services/website-questionnaire">Website
                                         Questionnaire</a></li>
-                                <li class="nested"><a href="services/logo-design.html">Logo Design</a></li>
-                                <li class="nested"><a href="services/logo-questionnaire.html">Logo Questionnaire</a>
+                                <li class="nested"><a href="services/logo-design">Logo Design</a></li>
+                                <li class="nested"><a href="services/logo-questionnaire">Logo Questionnaire</a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -69,14 +83,14 @@
             </div>
             <div class="mobile-menu">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about-us.html">About</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="services/web-design.html">Website Design</a></li>
-                    <li><a href="services/website-questionnaire.html">Website Questionnaire</a></li>
-                    <li><a href="services/logo-design.html">Logo Design</a></li>
-                    <li><a href="services/logo-questionnaire.html">Logo Questionnaire</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="about-us">About</a></li>
+                    <li><a href="our-portfolio">Portfolio</a></li>
+                    <li><a href="services/web-design">Website Design</a></li>
+                    <li><a href="services/website-questionnaire">Website Questionnaire</a></li>
+                    <li><a href="services/logo-design">Logo Design</a></li>
+                    <li><a href="services/logo-questionnaire">Logo Questionnaire</a></li>
+                    <li><a href="contact">Contact</a></li>
                 </ul>
             </div>
         </div>
@@ -97,20 +111,20 @@
                 <label for="hero">Welcome to</label>
                 <h1>KittyCode Creative</h1>
                 <div class="hero-description fade-content">
-                    <p>KittyCode Creative is a <sparkly-text
-                            style="--sparkly-text-size: 2.5em"><strong>brand-new</strong></sparkly-text> digital
-                        creative agency based in Eastbourne, East Sussex. We specialise in creative beautiful and
+                    <p>KittyCode Creative is a <sparkly-text style="--sparkly-text-size: 2.5em">
+                            <strong>brand-new</strong></sparkly-text> digital
+                        creative agency based in Eastbourne, East Sussex. We specialise in creating beautiful and
                         professional bespoke web design, front-end web development and design solutions.</p>
                 </div>
 
                 <div class="hero-buttons">
-                    <a href="services/web-design.html">
+                    <a href="services/web-design">
                         <button class="" data-effect="throb">
                             <span class="text">web design</span>
                             <span class="shimmer"></span>
                         </button>
                     </a>
-                    <a href="contact.html">
+                    <a href="contact">
                         <button class="secondary" data-effect="none">
                             <span class="text">contact us</span>
                             <span class="shimmer"></span>
@@ -151,8 +165,10 @@
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/5.svg" alt="Responsive">
-                    <h3><sparkly-text style="--sparkly-text-color: orange" role="presentation">Fully
-                            Responsive</sparkly-text></h3>
+                    <h3>
+                        <sparkly-text style="--sparkly-text-color: orange" role="presentation">Fully
+                            Responsive</sparkly-text>
+                    </h3>
                     <p>Your website will fit all mobile screens sizes, tablets, and desktop sizes so new clients can
                         access your site from anywhere.</p>
                 </div>
@@ -160,16 +176,20 @@
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/2.svg" alt="Design">
-                    <h3><sparkly-text style="--sparkly-text-color: orange" role="presentation">Unique
-                            Design</sparkly-text></h3>
+                    <h3>
+                        <sparkly-text style="--sparkly-text-color: orange" role="presentation">Unique
+                            Design</sparkly-text>
+                    </h3>
                     <p>Your website will be 100% handcrafted and totally unique to you. No templates here.</p>
                 </div>
             </div>
             <div class="blurb">
                 <div class="blurb-container">
                     <img src="images/icons/4.svg" alt="Accessible">
-                    <h3><sparkly-text style="--sparkly-text-color: orange"
-                            role="presentation">Accessibility</sparkly-text></h3>
+                    <h3>
+                        <sparkly-text style="--sparkly-text-color: orange" role="presentation">Accessibility
+                        </sparkly-text>
+                    </h3>
                     <p>Making the web accessible benefits individuals, businesses, and society. Your website will be
                         fully perceivable, operable, understandable and robust. </p>
                 </div>
@@ -179,7 +199,7 @@
         <section class="why-choose-us fade-content" id="why-choose-us">
             <div class="section-text fade-content">
                 <label for="why-choose-us">We’re the cat’s paw-jamas.</label>
-                <a href="about-us.html">
+                <a href="about-us">
                     <h1>Why Choose Us</h1>
                 </a>
                 <div class="section-description">
@@ -193,7 +213,7 @@
 
                 <div class="small">
                     <div class="section-buttons centered-button">
-                        <a href="about-us.html">
+                        <a href="about-us">
                             <button class="" data-effect="none">
                                 <span class="text">about us</span>
                                 <span class="shimmer"></span>
@@ -204,7 +224,7 @@
 
                 <div class="large">
                     <div class="section-buttons">
-                        <a href="about-us.html">
+                        <a href="about-us">
                             <button class="" data-effect="none">
                                 <span class="text">about us</span>
                                 <span class="shimmer"></span>
@@ -246,7 +266,7 @@
                                 back to you ASAP.</div>
                             <div class="chat-user-1 phone-element">Here's a link to the form.</div>
                             <div class="chat-user-1 phone-element" style="line-break: normal;"><a
-                                    href="services/website-questionnaire.html">www.kittycodecreative.com&sol;
+                                    href="services/website-questionnaire">www.kittycodecreative.com&sol;
                                     websitequestionnaire</a>
                             </div>
 
@@ -267,14 +287,14 @@
         <section class="our-services fade-content" id="our-services">
             <div class="section-text centered fade-content">
                 <label for="our-services">We offer purrfection.</label>
-                <a href="services/web-design.html">
+                <a href="services/web-design">
                     <h1>Our Services</h1>
                 </a>
                 <div class="section-description centered">
                     <p>We offer a variety of services with limited options to make the selection process easier for you.
                         Our packages come in either monthly contracts which includes hosting, or a straight up
                         purchase of the design which you are able to take away and choose your own hosting.</p>
-                    <p>After a logo design instead? We've got you covered. <a href="services/logo-design.html"
+                    <p>After a logo design instead? We've got you covered. <a href="services/logo-design"
                             style="color: var(--primary-color-1);">Check out out logo page here</a>.</p>
 
                     <div class="services-toggle">
@@ -313,7 +333,7 @@
                                         design fee applies</p>
                                 </div>
                                 <div class="centered-button">
-                                    <a href="services/web-design.html">
+                                    <a href="services/web-design">
                                         <button class="" data-effect="none" id="standard-plan">
                                             <span class="text">get started</span>
                                             <span class="shimmer"></span>
@@ -327,8 +347,8 @@
                     <section class="card primary">
                         <div class="inside">
                             <div class="popular">
-                                <sparkly-text style="--sparkly-text-color: yellow"
-                                    role="presentation">recommended</sparkly-text>
+                                <sparkly-text style="--sparkly-text-color: yellow" role="presentation">recommended
+                                </sparkly-text>
                             </div>
                             <div class="card-plan">
                                 <label for="premium-plan">premium</label>
@@ -352,7 +372,7 @@
                                     fee applies</p>
                             </div>
                             <div class="centered-button">
-                                <a href="services/web-design.html">
+                                <a href="services/web-design">
                                     <button class="" data-effect="spin" id="premium-plan">
                                         <span class="text">get started</span>
                                         <span class="shimmer"></span>
@@ -388,7 +408,7 @@
                                         initial design fee applies</p>
                                 </div>
                                 <div class="centered-button">
-                                    <a href="services/web-design.html">
+                                    <a href="services/web-design">
                                         <button class="" data-effect="none" id="premium-plus-plan">
                                             <span class="text">get started</span>
                                             <span class="shimmer"></span>
@@ -406,7 +426,7 @@
         <section class="our-portfolio fade-content" id="our-portfolio">
             <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
-                <a href="portfolio.html">
+                <a href="portfolio">
                     <h1>Our Portfolio</h1>
                 </a>
                 <div class="section-description centered">
@@ -421,7 +441,7 @@
                         <img src="images/portfolio-austinspillman.jpg" alt="Website Preview">
                     </div>
                     <div class="portfolio-text">
-                        <a href="portfolio/austins-portfolio.html">
+                        <a href="portfolio/austins-portfolio">
                             <h3>Austin's Portfolio</h3>
                         </a>
                         <p>A bespoke and unique portfolio website for the founder of KittyCode Creative. The website was
@@ -437,7 +457,7 @@
                         <img src="images/portfolio-beyondthetavern.jpg" alt="Website Preview">
                     </div>
                     <div class="portfolio-text">
-                        <a href="portfolio/beyond-the-tavern.html">
+                        <a href="portfolio/beyond-the-tavern">
                             <h3>Beyond The Tavern</h3>
                         </a>
                         <p>Rose at Beyond the Tavern wanted a website to showcase the artwork she creates for her Etsy
@@ -449,7 +469,7 @@
             </div>
 
             <div class="section-buttons centered-button">
-                <a href="portfolio.html"><button class="" data-effect="throb">
+                <a href="our-portfolio"><button class="" data-effect="throb">
                         <span class="text">see portfolio</span>
                         <span class="shimmer"></span>
                     </button></a>
@@ -470,11 +490,11 @@
                 <div class="quoteLoop">
                     <blockquote class="quote"> <img src="images/reviews/beyond-the-tavern.jpg"
                             alt="Testimonial Author" />
-                        <p>Austin at KittyCode really impressed me with their attention to detail when designing my new
-                            business website. Every part was so well thought out, and I appreciated the extra mile they
-                            went to when adding in the interactive and animated elements I asked for. To any small
-                            business looking for a responsive, fast and aesthetically pleasing website, I'd definitely
-                            recommend KittyCode Creative!</p>
+                        <p>Austin really impressed me with their attention to detail when designing my new business
+                            website. Every part was so well thought out, and I appreciated them going the extra mile to
+                            add in the interactive and animated elements I asked for. To any startup small business,
+                            entrepreneur, or influencer looking for a responsive, fast and aesthetically pleasing
+                            website, I'd definitely recommend Kitty Code Creative! 😺</p>
                         <h3>Rose Butcher, Beyond the Tavern</h3>
                     </blockquote>
 
@@ -491,7 +511,7 @@
         <section class="our-faqs fade-content" id="our-faqs">
             <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
-                <a href="faq.html">
+                <a href="faq">
                     <h1>FAQs</h1>
                 </a>
                 <div class="section-description">
@@ -535,7 +555,7 @@
         <section class="contact-us fade-content" id="contact-us">
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
-                <a href="contact.html">
+                <a href="contact">
                     <h1>Contact Us</h1>
                 </a>
                 <div class="section-description">
@@ -621,8 +641,8 @@
                                 src="images/icons/instagram.png" alt="Instagram"></a></div>
                 </div>
             </div>
-            <p><a href="privacy/privacy-policy.html">Privacy Policy</a></p>
-            <p><a href="privacy/terms-and-conditions.html">Terms & Conditions</a></p>
+            <p><a href="privacy/privacy-policy">Privacy Policy</a></p>
+            <p><a href="privacy/terms-and-conditions">Terms & Conditions</a></p>
             <div class="large"><br><br></div>
             <p>Company No: #########</p>
             <div class="large"><br><br></div><br>
@@ -632,25 +652,25 @@
         <div class="footer-nav">
             <div class="grid1">
                 <h4>Navigation</h4>
-                <a href="about-us.html">About Us</a>
-                <a href="portfolio.html">Our Portfolio</a>
-                <a href="contact.html">Contact Us</a>
-                <a href="faq.html">FAQ</a>
+                <a href="about-us">About Us</a>
+                <a href="our-portfolio">Our Portfolio</a>
+                <a href="contact">Contact Us</a>
+                <a href="faq">FAQ</a>
             </div>
             <div class="grid1">
                 <h4>Services</h4>
-                <a href="services/web-design.html">Website Design</a>
-                <a href="services/website-questionnaire.html">Website Questionnaire</a>
-                <a href="services/logo-design.html">Logo Design</a>
-                <a href="services/logo-questionnaire.html">Logo Questionnaire</a>
+                <a href="services/web-design">Website Design</a>
+                <a href="services/website-questionnaire">Website Questionnaire</a>
+                <a href="services/logo-design">Logo Design</a>
+                <a href="services/logo-questionnaire">Logo Questionnaire</a>
             </div>
             <div class="grid1 blog-links">
-                <a href="blog.html">
+                <a href="our-blog">
                     <h4>Blog</h4>
                 </a>
-                <a href="./blog/benefits-of-hand-coding-your-website.html">The Benefits of Hand-Coding Your Website</a>
-                <a href="./blog/why-acessibility-matters.html">Why Accessibility Matters in Web Design</a>
-                <a href="./blog/the-launch-of-a-new-digital-web-design-agency.html">The Launch of KittyCode Creative</a>
+                <a href="./blog/benefits-of-hand-coding-your-website">The Benefits of Hand-Coding Your Website</a>
+                <a href="./blog/why-acessibility-matters">Why Accessibility Matters in Web Design</a>
+                <a href="./blog/the-launch-of-a-new-digital-web-design-agency">The Launch of KittyCode Creative</a>
             </div>
         </div>
 

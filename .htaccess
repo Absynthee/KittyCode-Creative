@@ -16,4 +16,4 @@ RewriteRule ^(.*)index\.html?$ /$1 [NC,R,L]
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
 RewriteRule ^ /%1 [NC,L,R]
 
-ErrorDocument 404 404.html
+ErrorDocument 404 kittycodecreative.com/404
