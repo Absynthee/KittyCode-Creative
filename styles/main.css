@@ -1176,7 +1176,6 @@ p.role {
 
 input[type="radio"].toggle {
   display: none;
-  
 
   & + label {
     cursor: pointer;
@@ -1187,7 +1186,7 @@ input[type="radio"].toggle {
     &:focus-visible {
       outline: 2px solid var(--primary-color-1);
     }
-    
+
     &::after {
       content: "";
       background-color: var(--primary-color-2-20);
@@ -1213,7 +1212,7 @@ input[type="radio"].toggle {
   &.toggle-right + label {
     border-left: 0;
     border-radius: 0 10px 10px 0;
-    
+
     &:after {
       left: -100%;
     }
@@ -1864,6 +1863,48 @@ fieldset {
   font-size: 0.8rem;
 }
 
+.blog-quote {
+  padding-inline: 2rem;
+  position: relative;
+  border-left: 4px solid var(--primary-color-2);
+  font-style: italic;
+  font-weight: 500;
+  padding-bottom: 0px !important;
+
+  &::before {
+    content: "“";
+    display: inline-block;
+    font-weight: 700;
+    line-height: 0;
+    color: var(--primary-color-1);
+    padding-inline-end: var(--spacing-2);
+  }
+
+  &::after {
+    content: "”";
+    display: inline-block;
+    font-weight: 700;
+    line-height: 0;
+    color: var(--primary-color-1);
+    padding-inline-start: var(--spacing-2);
+  }
+}
+
+.blog-quote-after {
+  padding-top: var(--spacing-5);
+}
+
+.blog-link {
+  color: var(--primary-color-1);
+  text-decoration: underline; 
+
+  &:hover,
+  &:focus,
+  &:focus-visible {
+    font-weight: 500;
+  }
+}
+
 .wrap {
   flex-wrap: wrap;
   align-items: center;
@@ -1997,7 +2038,7 @@ footer {
   }
 }
 
-.blog-links {
+.short-nav {
   width: 30%;
 }
 
@@ -2192,7 +2233,7 @@ fieldset > .one-column {
   }
 }
 
-/* privacy */ 
+/* privacy */
 
 .privacy-section {
   p {
@@ -2353,7 +2394,7 @@ fieldset > .one-column {
     width: 35%;
   }
 
-  .blog-links {
+  .short-nav {
     width: 30%;
   }
 
@@ -2602,7 +2643,7 @@ fieldset > .one-column {
   }
 
   .grid1,
-  .blog-links {
+  .short-nav {
     width: 33%;
   }
 
