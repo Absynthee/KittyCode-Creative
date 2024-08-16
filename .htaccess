@@ -10,10 +10,25 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f 
 RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
+# Check if the requested URL contains /index.html or /index/
 RewriteCond %{THE_REQUEST} /index\.html? [NC]
-RewriteRule ^(.*)index\.html?$ /$1 [NC,R,L]
+# If the requested URL contains /index.html or /index/, remove it and redirect
+RewriteRule ^(.*)index\.html?$ /$1 [NC,R=301,L]
 
+# Check if the requested URL ends with .html
 RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
-RewriteRule ^ /%1 [NC,L,R]
+# If the requested URL ends with .html, remove the .html extension and redirect
+RewriteRule ^ /%1 [NC,L,R=301]
 
-ErrorDocument 404 kittycodecreative.com/404
+# Force www
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^kittycodecreative.com [NC]
+RewriteRule ^(.*)$ https://www.kittycodecreative.com/$1 [L,R=301]
+
+# Remove trailing slash
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Custom 404 error page
+ErrorDocument 404 /404
+

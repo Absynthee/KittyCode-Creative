@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/card.css">
-    <link rel="canonical" href="https://www.kittycodecreative.com/">
+    <link rel="canonical" href="https://www.kittycodecreative.com">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
     </script>
@@ -41,6 +41,9 @@
         gtag('config', 'G-ZSCGN3WZR0');
     </script>
     <!-- Google tag end -->
+    <!-- Facebook tag -->
+    <meta name="facebook-domain-verification" content="u5px9xlv79fcbyx51ynvlt64qrsjj2" />
+    <!-- Facebook tag end -->
 </head>
 
 <body>
@@ -49,52 +52,33 @@
         <div class="navbar">
             <div class="logo">
                 <img src="images/kittycode_logo.svg" alt="">
-
                 <h4>KittyCode Creative</h4>
             </div>
             <div class="links">
-                <div class="large">
-                    <ul id="services-nested">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="about-us">About</a></li>
-                        <li><a href="our-portfolio">Portfolio</a></li>
-                        <li>
-                            <a href="/" onclick="return false;">Services</a>
-                            <ul class="">
-                                <li class="nested"><a href="services/web-design">Website Design</a></li>
-                                <li class="nested"><a href="services/website-questionnaire">Website
-                                        Questionnaire</a></li>
-                                <li class="nested"><a href="services/logo-design">Logo Design</a></li>
-                                <li class="nested"><a href="services/logo-questionnaire">Logo Questionnaire</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="contact">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="small">
-                <div id="nav-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="mobile-menu">
-                <ul>
+                <ul id="services-nested">
                     <li><a href="/">Home</a></li>
                     <li><a href="about-us">About</a></li>
                     <li><a href="our-portfolio">Portfolio</a></li>
-                    <li><a href="services/web-design">Website Design</a></li>
-                    <li><a href="services/website-questionnaire">Website Questionnaire</a></li>
-                    <li><a href="services/logo-design">Logo Design</a></li>
-                    <li><a href="services/logo-questionnaire">Logo Questionnaire</a></li>
+                    <li class="services-link">
+                        <a href="/" onclick="return false;">Services</a>
+                        <ul class="services-link-inner">
+                            <li class="nested"><a href="services/web-design">Website Design</a></li>
+                            <li class="nested"><a href="services/website-questionnaire">Website Questionnaire</a></li>
+                            <li class="nested"><a href="services/logo-design">Logo Design</a></li>
+                            <li class="nested"><a href="services/logo-questionnaire">Logo Questionnaire</a></li>
+                        </ul>
+                    </li>
                     <li><a href="contact">Contact</a></li>
                 </ul>
             </div>
+            <div id="nav-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </nav>
+        </nav>
 
     <div class="blur1"></div>
     <!-- <div class="blur2"></div> -->
@@ -108,8 +92,8 @@
         <div class="hero fade-content">
 
             <div class="hero-text fade-content" id="hero">
-                <label for="hero">Welcome to</label>
-                <h1>KittyCode Creative</h1>
+                <label for="hero">Welcome to KittyCode Creative.</label>
+                <h1 class="section-title">Eastbourne Web Design</h1>
                 <div class="hero-description fade-content">
                     <p>KittyCode Creative is a <sparkly-text style="--sparkly-text-size: 2.5em">
                             <strong>brand-new</strong></sparkly-text> digital
@@ -143,7 +127,7 @@
         <section class="what-we-do fade-content" id="what-we-do">
             <div class="section-text fade-content">
                 <label for="what-we-do">Unleash your inner cat.</label>
-                <h1>What We Do</h1>
+                <h2 class="section-title">What We Do</h2>
                 <div class="section-description">
                     <p>We offer a unique and personal service to each and every client. All of our websites are built
                         from scratch and are available in monthly packages to keep your costs down.</p>
@@ -200,7 +184,7 @@
             <div class="section-text fade-content">
                 <label for="why-choose-us">We’re the cat’s paw-jamas.</label>
                 <a href="about-us">
-                    <h1>Why Choose Us</h1>
+                    <h2 class="section-title">Why Choose Us</h2>
                 </a>
                 <div class="section-description">
                     <p>The cats behind KittyCode Creative strive to offer excellent, friendly personal service. No job
@@ -288,7 +272,7 @@
             <div class="section-text centered fade-content">
                 <label for="our-services">We offer purrfection.</label>
                 <a href="services/web-design">
-                    <h1>Our Services</h1>
+                    <h2 class="section-title">Our Services</h2>
                 </a>
                 <div class="section-description centered">
                     <p>We offer a variety of services with limited options to make the selection process easier for you.
@@ -427,7 +411,7 @@
             <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
                 <a href="portfolio">
-                    <h1>Our Portfolio</h1>
+                    <h2 class="section-title">Our Portfolio</h2>
                 </a>
                 <div class="section-description centered">
                     <p>These are the projects we have completed for clients.</p>
@@ -479,7 +463,7 @@
         <section class="our-reviews fade-content" id="our-reviews">
             <div class="section-text centered fade-content">
                 <label for="our-reviews">We think you’re pretty paw-some.</label>
-                <h1>Our Reviews</h1>
+                <h2 class="section-title">Our Reviews</h2>
                 <div class="section-description centered">
                     <p>Testimonials from the cool cats who have hired us.</p>
                 </div>
@@ -512,7 +496,7 @@
             <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
                 <a href="faq">
-                    <h1>FAQs</h1>
+                    <h2 class="section-title">FAQs</h2>
                 </a>
                 <div class="section-description">
                     <p>If you can’t find an answer to one of your burning questions, please get in touch. Hopefully
@@ -556,7 +540,7 @@
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
                 <a href="contact">
-                    <h1>Contact Us</h1>
+                    <h2 class="section-title">Contact Us</h2>
                 </a>
                 <div class="section-description">
                     <p>Ready to join the clowder?</p>

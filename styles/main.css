@@ -67,7 +67,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.section-title {
   overflow-wrap: break-word;
   text-wrap: pretty;
 }
@@ -163,7 +164,8 @@ a:hover {
   color: var(--primary-color-2);
 }
 
-h1 {
+h1,
+.section-title {
   font-size: 2.5rem;
   font-weight: 700;
   transition: all 0.5s ease-in-out !important;
@@ -477,11 +479,99 @@ nav {
   transition: transform 0.5s;
   transform: translateY(80px);
   z-index: 99;
+  align-items: center;
 }
 
 .sticky .small {
   align-content: center;
 }
+
+.links ul {
+  display: flex;
+  list-style-type: none;
+}
+
+#nav-icon {
+  display: none;
+}
+
+/* Styles for screens smaller than 800px */
+@media (max-width: 800px) {
+  .links ul {
+      display: none;
+  }
+
+  .links ul.show-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    position: fixed;
+    left: 0;
+    top: 100px;
+    background-color: #fff;
+    min-height: 600px;
+    width: 100vw;
+    transition: transform 0.5s ease-in;
+    transform:translateX(-800px);
+    z-index: 5;
+    border-top: 4px solid var(--primary-color-2);
+    box-shadow: 0px 50px 80px -0px var(--primary-color-2-20);
+    font-weight: 500;
+    font-size: 1.1rem;
+
+    &:nth-child(1) {
+      padding-top: 50px;
+    }
+    &:last-child {
+      padding-bottom: 50px;
+    }
+}
+
+.show {
+  text-align: center;
+}
+
+.services-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  a {
+    cursor: default;
+    display: none;
+  }
+  .services-link-inner {
+    a {
+    cursor: pointer;
+    display: flex;
+    gap: 100px;
+  }}
+}
+
+.navbar {
+  li > ul {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  gap: 50px;
+  box-shadow: unset;
+}
+
+li:hover > ul {
+  display: flex;
+}
+}
+
+  #nav-icon {
+      display: block;
+  }
+
+}
+
 
 /* body styles */
 

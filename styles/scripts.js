@@ -2,17 +2,20 @@
 
 // Hide the element. Doing this here will prevent the elements from disappering if JS is disabled.
 
-$('.fade-content > *').css({'opacity':'0', 'transform': 'translateY(' + 2 + 'em)'});
+$(".fade-content > *").css({
+  opacity: "0",
+  transform: "translateY(" + 2 + "em)",
+});
 
 // Trigger fade in as window scrolls
-$(window).on('scroll load', function(){
-  $('.fade-content > *').each( function(i){
-    var bottom_of_object = $(this).offset().top + $(this).outerHeight()/8;
+$(window).on("scroll load", function () {
+  $(".fade-content > *").each(function (i) {
+    var bottom_of_object = $(this).offset().top + $(this).outerHeight() / 8;
     var bottom_of_window = $(window).scrollTop() + $(window).height();
-    if( bottom_of_window > bottom_of_object ){  
-      $(this).css({'opacity':'1', 'transform': 'translateY(' + 0 + 'em)'});        
+    if (bottom_of_window > bottom_of_object) {
+      $(this).css({ opacity: "1", transform: "translateY(" + 0 + "em)" });
     } else {
-      $(this).css({'opacity':'0', 'transform': 'translateY(' + 2 + 'em)'});
+      $(this).css({ opacity: "0", transform: "translateY(" + 2 + "em)" });
     }
   });
 });
@@ -24,7 +27,8 @@ function isElementInViewport(el) {
   return (
     rect.top >= 0 &&
     rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) &&
     rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 }
@@ -61,23 +65,41 @@ elements.forEach((element) => {
 
 //dropdown nav
 
-const dropdownMenus = document.querySelectorAll('li > ul');
+const dropdownMenus = document.querySelectorAll("li > ul");
 let timeout;
+const mediaQuery = window.matchMedia("(max-width: 800px)");
 
-dropdownMenus.forEach(function(dropdown) {
-    const parentLi = dropdown.parentElement;
-
-    parentLi.addEventListener('mouseenter', function() {
-        clearTimeout(timeout); // Clear any existing timeout
-        dropdown.classList.add('show');
+function toggleDropdownMenu(e) {
+  if (e.matches) {
+    dropdownMenus.forEach(function (dropdown) {
+      dropdown.classList.remove("show");
+      const parentLi = dropdown.parentElement;
+      parentLi.removeEventListener("mouseenter", showDropdown);
+      parentLi.removeEventListener("mouseleave", hideDropdown);
     });
-
-    parentLi.addEventListener('mouseleave', function() {
-        timeout = setTimeout(function() {
-            dropdown.classList.remove('show');
-        }, 700); // 1000 milliseconds = 1 second
+  } else {
+    dropdownMenus.forEach(function (dropdown) {
+      const parentLi = dropdown.parentElement;
+      parentLi.addEventListener("mouseenter", showDropdown);
+      parentLi.addEventListener("mouseleave", hideDropdown);
     });
-});
+  }
+}
+
+function showDropdown() {
+  clearTimeout(timeout);
+  this.querySelector("ul").classList.add("show");
+}
+
+function hideDropdown() {
+  const dropdown = this.querySelector("ul");
+  timeout = setTimeout(function () {
+    dropdown.classList.remove("show");
+  }, 1000); // 1000 milliseconds = 1 second
+}
+
+mediaQuery.addListener(toggleDropdownMenu);
+toggleDropdownMenu(mediaQuery);
 
 
 // sticky nav
@@ -100,22 +122,22 @@ dropdownMenus.forEach(function(dropdown) {
 // });
 
 let prevScrollPos = window.scrollY;
-const navbar = document.querySelector('.navbar');
+const navbar = document.querySelector(".navbar");
 
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const currentScrollPos = window.scrollY;
 
   if (prevScrollPos - currentScrollPos > 40) {
     // Scrolling up more than 40px
-    navbar.classList.add('sticky');
+    navbar.classList.add("sticky");
   } else if (currentScrollPos - prevScrollPos > 40) {
     // Scrolling down more than 40px
-    navbar.classList.remove('sticky');
+    navbar.classList.remove("sticky");
+    navLinks.classList.remove("show-menu");
   }
 
   prevScrollPos = currentScrollPos;
 });
-
 
 // mobile nav icon
 
@@ -128,68 +150,65 @@ $(document).ready(function () {
 // mobile nav toggle
 
 const navIcon = document.getElementById("nav-icon");
-// const navbar = document.querySelector(".navbar"); already called in sticky nav
+const navLinks = document.querySelector(".links ul");
+const menuSlide = document.getElementById("show-menu");
 
 navIcon.addEventListener("click", () => {
-  navbar.classList.toggle("show-menu");
+  navLinks.classList.toggle("show-menu");
+  navLinks.style.transform = "translateX(0px)";
 });
 
-// switch payment type 
+// switch payment type
 
 function translatePaymentTypeMonthly() {
-  const paymentTypes = document.querySelectorAll('.payment-type');
-  const contractTypes = document.querySelectorAll('.card-extras');
+  const paymentTypes = document.querySelectorAll(".payment-type");
+  const contractTypes = document.querySelectorAll(".card-extras");
 
-  paymentTypes.forEach(function(paymentType) {
-    const monthly = paymentType.querySelector('.monthly');
-    const oneOff = paymentType.querySelector('.one-off');
-    monthly.style.transform = 'translateX(0)';
-    oneOff.style.transform = 'translateX(500px)';
+  paymentTypes.forEach(function (paymentType) {
+    const monthly = paymentType.querySelector(".monthly");
+    const oneOff = paymentType.querySelector(".one-off");
+    monthly.style.transform = "translateX(0)";
+    oneOff.style.transform = "translateX(500px)";
   });
 
-  contractTypes.forEach(function(contractType) {
-    const monthlyContracts = contractType.querySelectorAll('.monthly-contract');
-    const oneOffDeposits = contractType.querySelectorAll('.one-off-deposit');
+  contractTypes.forEach(function (contractType) {
+    const monthlyContracts = contractType.querySelectorAll(".monthly-contract");
+    const oneOffDeposits = contractType.querySelectorAll(".one-off-deposit");
 
-    monthlyContracts.forEach(function(monthlyContract) {
-      monthlyContract.style.display = 'block';
+    monthlyContracts.forEach(function (monthlyContract) {
+      monthlyContract.style.display = "block";
     });
 
-    oneOffDeposits.forEach(function(oneOffDeposit) {
-      oneOffDeposit.style.display = 'none';
+    oneOffDeposits.forEach(function (oneOffDeposit) {
+      oneOffDeposit.style.display = "none";
     });
   });
 }
 
 function translatePaymentTypeOneOff() {
-  const paymentTypes = document.querySelectorAll('.payment-type');
-  const contractTypes = document.querySelectorAll('.card-extras');
+  const paymentTypes = document.querySelectorAll(".payment-type");
+  const contractTypes = document.querySelectorAll(".card-extras");
 
-  paymentTypes.forEach(function(paymentType) {
-    const monthly = paymentType.querySelector('.monthly');
-    const oneOff = paymentType.querySelector('.one-off');
-    monthly.style.transform = 'translateX(-500px)';
-    oneOff.style.transform = 'translateX(-225px)';
+  paymentTypes.forEach(function (paymentType) {
+    const monthly = paymentType.querySelector(".monthly");
+    const oneOff = paymentType.querySelector(".one-off");
+    monthly.style.transform = "translateX(-500px)";
+    oneOff.style.transform = "translateX(-225px)";
   });
 
-  contractTypes.forEach(function(contractType) {
-    const monthlyContracts = contractType.querySelectorAll('.monthly-contract');
-    const oneOffDeposits = contractType.querySelectorAll('.one-off-deposit');
+  contractTypes.forEach(function (contractType) {
+    const monthlyContracts = contractType.querySelectorAll(".monthly-contract");
+    const oneOffDeposits = contractType.querySelectorAll(".one-off-deposit");
 
-    monthlyContracts.forEach(function(monthlyContract) {
-      monthlyContract.style.display = 'none';
+    monthlyContracts.forEach(function (monthlyContract) {
+      monthlyContract.style.display = "none";
     });
 
-    oneOffDeposits.forEach(function(oneOffDeposit) {
-      oneOffDeposit.style.display = 'block';
+    oneOffDeposits.forEach(function (oneOffDeposit) {
+      oneOffDeposit.style.display = "block";
     });
   });
 }
-
-
-
-
-
 
 // services card hover
 // uses too many resources
@@ -352,7 +371,7 @@ fade($(".quoteLoop > .quote").first());
 // contact form
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('Script is running');
+  console.log("Script is running");
 
   const form = document.getElementById("contact");
   const result = document.getElementById("result");
@@ -450,7 +469,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // logo questionnaire form
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('Script is running');
+  console.log("Script is running");
 
   const form = document.getElementById("logo");
   const result = document.getElementById("result");
@@ -481,7 +500,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("business-name-invalid").style.display = "none";
     }
 
-
     // Email validation
     const email = document.getElementById("email").value;
     const confirmemail = document.getElementById("confirm-email").value;
@@ -501,14 +519,21 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Email confirmation is invalid");
     } else {
       document.getElementById("confirm-email-invalid").style.display = "none";
-    }    
-
+    }
 
     // Message validation
-    const businessmessage1 = document.getElementById("what-does-your-business-do").value;
-    const businessmessage2 = document.getElementById("what-does-your-logo-achieve").value;
-    const businessmessage3 = document.getElementById("potential-customers").value;
-    const businessmessage4 = document.getElementById("differ-from-competitors").value;
+    const businessmessage1 = document.getElementById(
+      "what-does-your-business-do"
+    ).value;
+    const businessmessage2 = document.getElementById(
+      "what-does-your-logo-achieve"
+    ).value;
+    const businessmessage3 = document.getElementById(
+      "potential-customers"
+    ).value;
+    const businessmessage4 = document.getElementById(
+      "differ-from-competitors"
+    ).value;
     const businessmessage5 = document.getElementById("main-competitors").value;
     const logomessage1 = document.getElementById("logo-idea").value;
     const logomessage2 = document.getElementById("logo-colours").value;
@@ -614,9 +639,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("logo-7-invalid").style.display = "none";
     }
 
-
-
-
     if (isValid) {
       console.log("Form is valid");
       // Proceed with form submission
@@ -662,7 +684,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // website questionnaire form
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log('Script is running');
+  console.log("Script is running");
 
   const form = document.getElementById("website");
   const result = document.getElementById("result");
@@ -693,7 +715,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("business-name-invalid").style.display = "none";
     }
 
-
     // Email validation
     const email = document.getElementById("email").value;
     const confirmemail = document.getElementById("confirm-email").value;
@@ -713,14 +734,21 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Email confirmation is invalid");
     } else {
       document.getElementById("confirm-email-invalid").style.display = "none";
-    }    
-
+    }
 
     // Message validation
-    const businessmessage1 = document.getElementById("what-does-your-business-do").value;
-    const businessmessage2 = document.getElementById("do-you-have-a-website").value;
-    const businessmessage3 = document.getElementById("potential-customers").value;
-    const businessmessage4 = document.getElementById("differ-from-competitors").value;
+    const businessmessage1 = document.getElementById(
+      "what-does-your-business-do"
+    ).value;
+    const businessmessage2 = document.getElementById(
+      "do-you-have-a-website"
+    ).value;
+    const businessmessage3 = document.getElementById(
+      "potential-customers"
+    ).value;
+    const businessmessage4 = document.getElementById(
+      "differ-from-competitors"
+    ).value;
     const businessmessage5 = document.getElementById("main-competitors").value;
     const websitemessage1 = document.getElementById("website-purpose").value;
     const websitemessage2 = document.getElementById("website-logo").value;
@@ -733,7 +761,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const websitemessage9 = document.getElementById("seo-ranking").value;
     const websitemessage10 = document.getElementById("launch-date").value;
     const websitemessage11 = document.getElementById("website-budget").value;
-
 
     if (!businessmessage1) {
       document.getElementById("business-1-invalid").style.display = "block";
@@ -863,7 +890,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("website-11-invalid").style.display = "none";
     }
 
-
     if (isValid) {
       console.log("Form is valid");
       // Proceed with form submission
@@ -906,11 +932,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
 // button enabler
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("contact");
   const messageField = form.querySelector("fieldset textarea");
   const submitButton = form.querySelector("button[type='submit']");
@@ -933,30 +957,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function isMobileDevice() {
   return (
-    typeof window.orientation !== 'undefined' ||
-    navigator.userAgent.indexOf('IEMobile') !== -1
+    typeof window.orientation !== "undefined" ||
+    navigator.userAgent.indexOf("IEMobile") !== -1
   );
 }
 
 // Function to remove 'data-tilt' attribute from divs
 function removeTiltFromDivs() {
-  const divs = document.querySelectorAll('div[data-tilt]');
+  const divs = document.querySelectorAll("div[data-tilt]");
   divs.forEach((div) => {
-    div.removeAttribute('data-tilt');
+    div.removeAttribute("data-tilt");
   });
 }
 
 // Check if the device is a mobile device on page load
-window.addEventListener('load', () => {
+window.addEventListener("load", () => {
   if (isMobileDevice()) {
     removeTiltFromDivs();
   }
 });
 
 // Check if the device orientation changes (for mobile devices)
-window.addEventListener('orientationchange', () => {
+window.addEventListener("orientationchange", () => {
   if (isMobileDevice()) {
     removeTiltFromDivs();
   }
 });
-
