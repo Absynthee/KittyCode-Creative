@@ -1372,6 +1372,8 @@ input[type="radio"].toggle {
   display: block;
   position: relative;
   width: 225px;
+  font-size: 1.2rem;
+  font-weight: 500;
   transition: all 0.5s ease-in-out;
   transform: translateX(0);
 }
@@ -1379,6 +1381,8 @@ input[type="radio"].toggle {
 .one-off {
   position: relative;
   width: 225px;
+  font-size: 1.2rem;
+  font-weight: 500;
   transition: all 0.5s ease-in-out;
   transform: translateX(500px);
   overflow: hidden;
@@ -1412,9 +1416,11 @@ input[type="radio"].toggle {
     font-size: 0.9rem;
   }
 
-  h3 {
-    font-size: 1.2rem;
-  }
+}
+
+.span-title {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .portfolio-image {
