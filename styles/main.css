@@ -499,6 +499,7 @@ nav {
 @media (max-width: 800px) {
   .links ul {
       display: none;
+      padding: 0;
   }
 
   .links ul.show-menu {
@@ -810,6 +811,7 @@ main {
 }
 
 .centered {
+  display: flex;
   align-items: center;
   text-align: center;
 }
@@ -2514,7 +2516,8 @@ fieldset > .one-column {
     display: none;
   }
 
-  h1 {
+  h1,
+  .section-title {
     margin: auto;
   }
 
