@@ -1084,10 +1084,7 @@ p.name {
 }
 
 p.role {
-  font-size: 8px;
-  font-size: 12.6px;
   font-size: clamp(8px, calc(8px + (100vw - 1440px) * 0.005349), 12.6px);
-
   line-height: 1;
   color: var(--white);
 }
