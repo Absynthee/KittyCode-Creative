@@ -1387,10 +1387,15 @@ input[type="radio"].toggle {
 
 .monthly-contract {
   display: block;
+  color: var(--primary-color-1);
+  font-weight: 600;
 }
 
 .one-off-deposit {
   display: none;
+  color: var(--primary-color-1);
+  font-weight: 600;
+
 }
 
 /* portfolio */
@@ -1893,6 +1898,13 @@ fieldset {
   }
 }
 
+.img-description {
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--neutral-color-1);
+}
+
 .latest-post-image {
   width: 100%;
 }
@@ -2089,9 +2101,9 @@ footer {
   padding-inline: var(--spacing-4);
   color: var(--white);
 
-  h3,
   a,
-  p {
+  p,
+  .footer-title {
     overflow-wrap: unset;
   }
 
@@ -2100,6 +2112,11 @@ footer {
     color: var(--white);
     font-size: 0.9rem;
     line-height: 2;
+  }
+
+  .footer-title {
+    font-size: 1.5rem;
+    font-weight: 600;
   }
 
   h4 {
@@ -2142,7 +2159,7 @@ footer {
   width: 100%;
   gap: var(--spacing-3);
   padding-block-start: var(--spacing-4);
-  padding-block-end: var(--spacing-10);
+  padding-block-end: var(--spacing-4);
 }
 
 .social-box {
