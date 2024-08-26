@@ -3,7 +3,7 @@
 <footer class="fade-content">
         <div class="grid2">
             <div class="large">
-                <h3>KittyCode&nbsp;Creative</h3>
+                <span class="footer-title">KittyCode&nbsp;Creative</span>
                 <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
                 <div class="socials">
                     <div class="social-box"><a href="https://www.facebook.com/KittyCodeCreative" target="_blank">
@@ -40,16 +40,16 @@
                 <a href="<?php echo BASE_URL . '/our-blog' ?>">
                     <h4>Blog</h4>
                 </a>
+                <a href="<?php echo BASE_URL . '/blog/the-power-of-modern-css' ?>">The Power of Modern CSS</a>
                 <a href="<?php echo BASE_URL . '/blog/the-human-behind-kittycode-creative' ?>">The Human Behind KittyCode Creative</a>
                 <a href="<?php echo BASE_URL . '/blog/the-launch-of-a-new-digital-web-design-agency' ?>">The Launch of KittyCode Creative</a>
                 <a href="<?php echo BASE_URL . '/blog/benefits-of-hand-coding-your-website' ?>">The Benefits of Hand-Coding Your Website</a>
-                <a href="<?php echo BASE_URL . '/blog/why-acessibility-matters' ?>">Why Accessibility Matters in Web Design</a>
             </div>
         </div>
 
         <div class="small">
             <div class="grid2">
-                <h3>KittyCode&nbsp;Creative</h3>
+                <span class="footer-title">KittyCode&nbsp;Creative</span>
                 <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
                 <div class="socials">
                     <div class="social-box"><a href="https://www.facebook.com/KittyCodeCreative" target="_blank"
