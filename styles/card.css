@@ -1,24 +1,7 @@
---bgrotate {
-  initial-value: 120deg;
-  inherits: false;
-  syntax: "<angle>";
-}
---bgrotate2 {
-  initial-value: 255deg;
-  inherits: false;
-  syntax: "<angle>";
-}
---text {
-  initial-value: 220deg;
-  inherits: false;
-  syntax: "<angle>";
-}
-
 :root {
   --ar: 1/1.1;
   --br: 4.55% / 3.5%;
   --hl: 0;
-  /*   --bg: white; */
   --t: all 0.66s
     linear(
       0,
@@ -55,9 +38,7 @@
   grid-template-rows: minmax(0, 1fr);
   position: relative;
   background-size: 100% 100%;
-  /* background-position: 0px 0px, 0px 0px, 0px 0px, 50% 50%, 0px 0px, 0px 0px; */
-  /* transform: translate3d(0, 0, 0.1px); */
-  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2);
+  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2-40);
   cursor: pointer;
   transition: opacity 1s;
   z-index: 1;
@@ -99,6 +80,7 @@
   z-index: 2;
   height: calc(510px + 3vw);
   margin-inline: calc(2px + 2vw);
+  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2-80);
   animation: float 3s ease-in-out infinite;
 
   &:hover {

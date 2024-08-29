@@ -1430,6 +1430,8 @@ input[type="radio"].toggle {
   width: 100%;
   overflow: hidden;
   border-radius: 25px 25px 0 0;
+  box-shadow: 0 12px 48px 2px var(--primary-color-2-20);
+
   transition: all 1s;
 
   img {
@@ -1442,7 +1444,7 @@ input[type="radio"].toggle {
   }
 
   &:hover {
-    box-shadow: 0 12px 48px 2px var(--primary-color-1-40);
+    box-shadow: 0 12px 48px 2px var(--primary-color-2-60);
   }
 }
 
@@ -1454,6 +1456,8 @@ input[type="radio"].toggle {
   overflow: hidden;
   border-radius: 25px;
   transition: all 1s;
+  box-shadow: 0 12px 48px 2px var(--primary-color-2-20);
+
 
   img {
     width: 100%;
@@ -1465,7 +1469,7 @@ input[type="radio"].toggle {
   }
 
   &:hover {
-    box-shadow: 0 12px 48px 2px var(--primary-color-1-20);
+    box-shadow: 0 12px 48px 2px var(--primary-color-1-60);
   }
 }
 
@@ -1504,7 +1508,7 @@ input[type="radio"].toggle {
 
 .portfolio-image-small:hover img,
 .blog-image-small:hover img {
-  transform: scale(150%);
+  transform: scale(125%);
 }
 
 .portfolio-image-small:hover::before,
