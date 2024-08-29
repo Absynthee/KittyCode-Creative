@@ -56,40 +56,8 @@
   position: relative;
   background-size: 100% 100%;
   /* background-position: 0px 0px, 0px 0px, 0px 0px, 50% 50%, 0px 0px, 0px 0px; */
-  background-image: radial-gradient(
-      farthest-side circle at var(--pointer-x, 50%) var(--pointer-y, 50%),
-      hsla(222, 100%, 94%, var(--hl)) 8%,
-      hsla(222, 100%, 80%, var(--hl)) 22%,
-      hsla(222, 100%, 70%, 0) 66%
-    ),
-    radial-gradient(40% 51% at 7% 32%, #d1af49 0%, #073aff00 100%),
-    radial-gradient(40% 52% at 85% 67%, #ff7800c4 0%, #073aff00 100%),
-    radial-gradient(
-      80% 80% at 50% 50%,
-      var(--primary-color-1) 27%,
-      #073aff00 58%
-    ),
-    conic-gradient(
-      /* from var(--bgrotate) at 50% 50%, */
-      var(--primary-color-1) 5%,
-      var(--primary-color-1) 17%,
-      var(--primary-color-1) 40%,
-      #ffb300 48%,
-      #ff8300 51%,
-      #07c6ff00 59%,
-      #07c6ff00 83%,
-      var(--primary-color-1) 95%
-    ),
-    conic-gradient(
-      /* from var(--bgrotate2) at 50% 50%, */
-      #ff985a 0%,
-      #fff078 34%,
-      #ff7878 64%,
-      #000 100%
-    );
-  background-blend-mode: color-dodge, normal, normal, normal, normal;
-  animation: glow-bg 4s linear infinite;
   /* transform: translate3d(0, 0, 0.1px); */
+  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2);
   cursor: pointer;
   transition: opacity 1s;
   z-index: 1;
@@ -131,7 +99,7 @@
   z-index: 2;
   height: calc(510px + 3vw);
   margin-inline: calc(2px + 2vw);
-  animation: glow-bg 4s linear infinite, float 3s ease-in-out infinite;
+  animation: float 3s ease-in-out infinite;
 
   &:hover {
     animation-play-state: paused;
@@ -252,25 +220,6 @@
   z-index: 1;
 }
 
-/* @keyframes glow-bg {
-  0% {
-    --bgrotate: 0deg;
-    --bgrotate2: 0deg;
-    --text: 90deg;
-  }
-  25% {
-    --bgrotate2: 360deg;
-    --text: 260deg;
-  }
-  50% {
-    --bgrotate2: 720deg;
-  }
-  100% {
-    --bgrotate: 720deg;
-    --bgrotate2: 0deg;
-    --text: 90deg;
-  }
-} */
 
 @media screen and (min-width: 1825px) {
   .card {
