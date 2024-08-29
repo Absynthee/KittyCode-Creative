@@ -70,7 +70,7 @@
       #073aff00 58%
     ),
     conic-gradient(
-      from var(--bgrotate) at 50% 50%,
+      /* from var(--bgrotate) at 50% 50%, */
       var(--primary-color-1) 5%,
       var(--primary-color-1) 17%,
       var(--primary-color-1) 40%,
@@ -81,7 +81,7 @@
       var(--primary-color-1) 95%
     ),
     conic-gradient(
-      from var(--bgrotate2) at 50% 50%,
+      /* from var(--bgrotate2) at 50% 50%, */
       #ff985a 0%,
       #fff078 34%,
       #ff7878 64%,
@@ -89,7 +89,7 @@
     );
   background-blend-mode: color-dodge, normal, normal, normal, normal;
   animation: glow-bg 4s linear infinite;
-  transform: translate3d(0, 0, 0.1px);
+  /* transform: translate3d(0, 0, 0.1px); */
   cursor: pointer;
   transition: opacity 1s;
   z-index: 1;
@@ -252,7 +252,7 @@
   z-index: 1;
 }
 
-@keyframes glow-bg {
+/* @keyframes glow-bg {
   0% {
     --bgrotate: 0deg;
     --bgrotate2: 0deg;
@@ -270,7 +270,7 @@
     --bgrotate2: 0deg;
     --text: 90deg;
   }
-}
+} */
 
 @media screen and (min-width: 1825px) {
   .card {
@@ -317,7 +317,7 @@
   } */
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1305px) {
   .card {
     width: 350px;
     min-width: 350px;
@@ -338,7 +338,7 @@
   }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1110px) {
   .card {
     width: 320px;
     min-width: 320px;
