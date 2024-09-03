@@ -38,7 +38,7 @@
   grid-template-rows: minmax(0, 1fr);
   position: relative;
   background-size: 100% 100%;
-  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2-40);
+  box-shadow: 0rem 0rem 1.5rem 0.5rem var(--primary-color-2-40);
   cursor: pointer;
   transition: opacity 1s;
   z-index: 1;
@@ -80,7 +80,7 @@
   z-index: 2;
   height: calc(510px + 3vw);
   margin-inline: calc(2px + 2vw);
-  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2-80);
+  box-shadow: 0rem 0rem 1.5rem 0.5rem var(--primary-color-2-80);
   animation: float 3s ease-in-out infinite;
 
   &:hover {
@@ -116,12 +116,12 @@
   flex-direction: column;
   align-items: center;
   border-radius: inherit;
-  color: black;
+  color: light-dark(var(--black), var(--white));
   overflow: hidden;
   padding-block: var(--spacing-6);
   padding-inline: var(--spacing-2);
   justify-content: space-around;
-  background: hsl(28, 55%, 100%);
+  background-color: light-dark(var(--white), var(--black));
   z-index: 2;
 }
 
