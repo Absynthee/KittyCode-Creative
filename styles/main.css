@@ -120,8 +120,10 @@ a:hover {
   --accent-color-3: #4686c2;
   --neutral-color-1: #262626;
   --neutral-color-2: #eeeeee;
+  --neutral-color-3: #d1d1d1;
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);
+  --transparent: hsla(0, 0%, 0%, 0);
 
   --gradient1: hsl(19, 80%, 56%);
   --gradient2: hsl(22, 100%, 63%);
@@ -150,6 +152,19 @@ a:hover {
 /* Override for dark theme */
 :root.dark-theme {
   color-scheme: dark;
+  --neutral-color-1: #141414;
+
+  .footer-top {
+    background-image: url(../images/footer-top-white.png);
+  }
+
+  .social-box {
+    filter: brightness(0%);
+
+    &:hover {
+      filter: brightness(40%);
+    }
+  }
 }
 
 /* custom end */
@@ -200,7 +215,6 @@ h3 {
   font-size: 1.5rem;
   font-weight: 600;
   color: light-dark(var(--black), var(--white));
-
 }
 
 h4 {
@@ -219,7 +233,7 @@ button,
 .text {
   font-size: 1rem;
   line-height: 1.6;
-  color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
+  color: light-dark(var(--neutral-color-1), var(--neutral-color-3));
 }
 
 strong {
@@ -272,6 +286,7 @@ html {
   background-color: light-dark(var(--white), var(--black));
   font-family: var(--body);
   font-size: var(--responsive-text);
+  transition: all 0.5s ease-out;
 }
 
 /* navigation */
@@ -298,7 +313,6 @@ nav {
   margin: auto;
   z-index: 4;
   transition: all 0.5s;
-
 
   .logo {
     display: flex;
@@ -348,7 +362,10 @@ nav {
     a:hover::after,
     a.disabled:hover::after {
       content: "";
-      background-color: light-dark(var(--primary-color-1), var(--primary-color-2));
+      background-color: light-dark(
+        var(--primary-color-1),
+        var(--primary-color-2)
+      );
       position: absolute;
       left: 0;
       bottom: -4px;
@@ -540,7 +557,8 @@ nav {
     transition: transform 0.5s ease-in;
     transform: translateX(-800px);
     z-index: 5;
-    border-top: 4px solid light-dark(var(--primary-color-2), var(--primary-color-1));
+    border-top: 4px solid
+      light-dark(var(--primary-color-2), var(--primary-color-1));
     box-shadow: 0px 50px 80px -0px var(--primary-color-2-20);
     font-weight: 500;
     font-size: 1rem;
@@ -627,7 +645,7 @@ body {
   background-image: linear-gradient(
     0deg,
     light-dark(var(--accent-color-3), var(--primary-color-1)),
-    light-dark(var(--accent-color-2), var(--primary-color-2)),
+    light-dark(var(--accent-color-2), var(--primary-color-2))
   );
   top: -5%;
   left: -5%;
@@ -640,7 +658,7 @@ body {
   background-image: linear-gradient(
     45deg,
     light-dark(var(--primary-color-2), var(--primary-color-1)),
-    light-dark(var(--accent-color-1), var(--primary-color-2)),
+    light-dark(var(--accent-color-1), var(--primary-color-2))
   );
   opacity: 20%;
   top: 20.5%;
@@ -666,7 +684,7 @@ body {
   background-image: linear-gradient(
     to left,
     light-dark(var(--accent-color-3), var(--primary-color-1)),
-    light-dark(var(--accent-color-2), var(--primary-color-2)),
+    light-dark(var(--accent-color-2), var(--primary-color-2))
   );
   top: 48.5%;
   right: calc(30% + 10vw);
@@ -1148,7 +1166,10 @@ p.role {
   padding-block: var(--spacing-1);
   padding-inline: 8px;
   border-radius: 12px 12px 12px 2px;
-  background-color: light-dark(var(--primary-color-2-20), var(--primary-color-2));
+  background-color: light-dark(
+    var(--primary-color-2-20),
+    var(--primary-color-2)
+  );
   color: light-dark(var(--white), var(--white));
   max-width: 65%;
   box-shadow: 0px 5px 4px -5px rgba(0, 0, 0, 0.2);
@@ -1302,7 +1323,10 @@ input[type="radio"].toggle {
 
     &::after {
       content: "";
-      background-color: light-dark(var(--primary-color-2-20), var(--primary-color-1-20));
+      background-color: light-dark(
+        var(--primary-color-2-20),
+        var(--primary-color-1-20)
+      );
       position: absolute;
       top: 0;
       height: 100%;
@@ -1557,7 +1581,6 @@ input[type="radio"].toggle {
 
   &:hover {
     box-shadow: 0 24px 48px -12px var(--primary-color-1-40);
-
   }
 
   p {
@@ -1690,7 +1713,8 @@ input[type="radio"].toggle {
 }
 
 .faq.open {
-  border-top: 4px solid light-dark(var(--primary-color-2), var(--primary-color-1));
+  border-top: 4px solid
+    light-dark(var(--primary-color-2), var(--primary-color-1));
 }
 
 .open,
@@ -2001,7 +2025,8 @@ fieldset {
 .blog-quote {
   padding-inline: 2rem;
   position: relative;
-  border-left: 4px solid light-dark(var(--primary-color-2), var(--primary-color-1));
+  border-left: 4px solid
+    light-dark(var(--primary-color-2), var(--primary-color-1));
   font-style: italic;
   font-weight: 500;
   padding-block-end: 0px !important;
@@ -2080,7 +2105,10 @@ fieldset {
 }
 
 .tag {
-  background-color: light-dark(var(--primary-color-2-60), var(--primary-color-2-80));
+  background-color: light-dark(
+    var(--primary-color-2-60),
+    var(--primary-color-2-80)
+  );
   color: light-dark(var(--black), var(--white));
   padding: var(--spacing-2);
   border-radius: 10px;
@@ -2145,6 +2173,7 @@ footer {
   .footer-title {
     font-size: 1.5rem;
     font-weight: 600;
+    color: light-dark(var(--white), var(--black));
   }
 
   h4 {
@@ -2284,14 +2313,20 @@ h4.questionnaire-title {
   /* min-width: 96px; */
 
   label {
-    background-color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
+    background-color: light-dark(
+      var(--neutral-color-1),
+      var(--neutral-color-2)
+    );
     font-weight: 500;
 
     &:hover,
     &:focus,
     &:focus-visible,
     &:active {
-      background-color: light-dark(var(--primary-color-1), var(--primary-color-2));
+      background-color: light-dark(
+        var(--primary-color-1),
+        var(--primary-color-2)
+      );
       accent-color: light-dark(var(--primary-color-1), var(--primary-color-2));
     }
   }
@@ -2571,7 +2606,8 @@ fieldset > .one-column {
     width: 100%;
     background-color: light-dark(var(--white), var(--black));
     /* box-shadow: 0 15px 20px -5px var(--primary-color-1-40); */
-    border-top: 4px solid light-dark(var(--primary-color-1), var(--primary-color-2));
+    border-top: 4px solid
+      light-dark(var(--primary-color-1), var(--primary-color-2));
     transform: translateX(-100%);
     transition: transform 0.5s ease-in-out;
     z-index: 1;
