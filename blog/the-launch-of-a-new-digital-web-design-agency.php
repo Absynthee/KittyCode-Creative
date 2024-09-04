@@ -141,7 +141,7 @@
         <section class="contact-us fade-content">
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
-                <a href="..contact">
+                <a href="../contact">
                     <h1>Contact Us</h1>
                 </a>
                 <div class="section-description">
@@ -210,7 +210,7 @@
         <section class="our-blog fade-content">
             <div class="section-text centered fade-content">
                 <label for="our-blog">Want moar?</label>
-                <a href="../blog">
+                <a href="../our-blog">
                     <h1>More Blog Posts</h1>
                 </a>
                 <div class="section-description centered">

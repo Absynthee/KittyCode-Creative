@@ -5,7 +5,7 @@
         <div class="logo">
             <div id="theme-toggle">
                 <div id="theme-icon">
-                    <img src="images/kittycode_logo.svg"
+                    <img src="../images/kittycode_logo.svg"
                         alt="KittyCode Creative is a new web design agency based in Eastbourne, East Sussex">
                 </div>
             </div>
