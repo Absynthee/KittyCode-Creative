@@ -227,7 +227,7 @@
                             </div>
                         </div>
                         <div class="send-message-container">
-                            <div class="send-message">Type a message…</div>
+                            <input class="send-message" type="text" placeholder="Type a message...">
                             <div class="send-arrow" aria-label="send message" role="button">
                                 &gt;
                             </div>
