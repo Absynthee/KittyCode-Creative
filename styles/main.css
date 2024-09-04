@@ -1184,12 +1184,14 @@ p.name {
   font-weight: 700;
   line-height: clamp(130%, 0.9vw, 140%);
   color: var(--white);
+  text-align: left;
 }
 
 p.role {
   font-size: clamp(8px, calc(8px + (100vw - 1440px) * 0.005349), 12.6px);
   line-height: 1;
   color: var(--white);
+  text-align: left;
 }
 
 .menu-more {
@@ -1321,11 +1323,25 @@ p.role {
 
     &:hover {
       background: linear-gradient(
-        270deg in oklab,
+        180deg in oklab,
         var(--primary-color-2),
-        var(--accent-color-1)
+        var(--primary-color-1)
       );
     }
+  }
+}
+
+.send-message {
+  outline: none;
+  background: none;
+  width: 100%;
+  color: black;
+
+  &::placeholder,
+  ::-webkit-input-placeholder,
+  :-moz-placeholder {
+    color: black;
+    opacity: 1;
   }
 }
 
