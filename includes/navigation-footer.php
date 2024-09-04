@@ -40,6 +40,7 @@
                 <a href="<?php echo BASE_URL . '/our-blog' ?>">
                     <h4>Blog</h4>
                 </a>
+                <a href="<?php echo BASE_URL . '/blog/the-role-of-ai-in-web-design' ?>">The Role of AI in Web Design</a>
                 <a href="<?php echo BASE_URL . '/blog/the-power-of-modern-css' ?>">The Power of Modern CSS</a>
                 <a href="<?php echo BASE_URL . '/blog/the-human-behind-kittycode-creative' ?>">The Human Behind KittyCode Creative</a>
                 <a href="<?php echo BASE_URL . '/blog/the-launch-of-a-new-digital-web-design-agency' ?>">The Launch of KittyCode Creative</a>

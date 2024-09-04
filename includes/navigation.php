@@ -3,8 +3,12 @@
 <nav>
     <div class="navbar">
         <div class="logo">
-            <img src="<?php echo BASE_URL . '/images/kittycode_logo.svg' ?>"
-                alt="KittyCode Creative is a new web design agency based in Eastbourne, East Sussex">
+            <div id="theme-toggle">
+                <div id="theme-icon">
+                    <img src="images/kittycode_logo.svg"
+                        alt="KittyCode Creative is a new web design agency based in Eastbourne, East Sussex">
+                </div>
+            </div>
             <h4>KittyCode Creative</h4>
         </div>
         <div class="links">
@@ -26,6 +30,7 @@
                     </ul>
                 </li>
                 <li><a href="<?php echo BASE_URL . '/contact'; ?>">Contact</a></li>
+                <li><a href="<?php echo BASE_URL . '/our-blog'; ?>">Blog</a></li>
             </ul>
         </div>
         <div id="nav-icon">

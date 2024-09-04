@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="We are a web design agency based in Eastbourne specialising in designing bespoke websites. We ensure accessible and user-friendly sites for everyone.">
-    <meta property="og:title" content="KittyCode Creative - Bespoke Web Design & Development Agency" />
+    <meta property="og:title" content="KittyCode Creative - Web Design & Development Agency" />
     <meta property="og:description"
-        content="Discover KittyCode Creative, your digital web design agency in Eastbourne. Specialising in bespoke web design, development, SEO, and logo services to enhance your online presence. Contact us today!" />
-    <meta property="og:image" content="https://kittycodecreative.com/images/kittycode_logo.svg" />
+        content="KittyCode Creative, a bespoke web design agency in Eastbourne. Specialising in personalised web design and development, SEO, as well as logo services to enhance your online presence. Contact us today!" />
+    <meta property="og:image" content="https://kittycodecreative.com/images/favicon-192x192.png" />
     <meta property="og:url" content="https://kittycodecreative.com" />
     <title>Web Design in Eastbourne, East Sussex | KittyCode Creative</title>
     <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
@@ -20,7 +20,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="styles/scripts.js" defer></script>
     <script src="styles/vanilla-tilt.js" defer></script>
@@ -46,23 +45,27 @@
 
 <body>
 
-<?php include 'includes/navigation.php' ?>
+    <?php include 'includes/navigation.php' ?>
 
-    <div class="blur1"></div>
-    <div class="blur4"></div>
+    <div class="blur-container">
+        <div class="blur1"></div>
+        <div class="blur2"></div>
+        <div class="blur2"></div>
+    </div>
 
     <main>
 
         <div class="hero fade-content">
-
             <div class="hero-text fade-content" id="hero">
                 <label for="hero">Welcome to KittyCode Creative.</label>
                 <h1 class="section-title">Eastbourne Web Design</h1>
                 <div class="hero-description fade-content">
-                    <p>KittyCode Creative is a <sparkly-text style="--sparkly-text-size: 2.5em">
-                            <strong>brand-new</strong></sparkly-text> digital
+                    <p>KittyCode Creative is a <sparkly-text
+                            style="--sparkly-text-size: 2.5em"><strong>brand-new</strong></sparkly-text> digital
                         creative agency based in Eastbourne, East Sussex. We specialise in creating beautiful and
-                        professional bespoke web design, front-end web development and design solutions.</p>
+                        professional bespoke web design, front-end web development and design solutions. Contact us
+                        today to get your own website designed and hosted from as little as <strong
+                            class="nobreak">£40/month</strong>.</p>
                 </div>
 
                 <div class="hero-buttons">
@@ -85,29 +88,7 @@
             <div class="hero-img">
                 <div class="hero-cat"></div>
             </div>
-
         </div>
-
-        <section class="what-we-do fade-content" id="what-we-do">
-            <div class="section-text fade-content">
-                <label for="what-we-do">Unleash your inner cat.</label>
-                <h2 class="section-title">What We Do</h2>
-                <div class="section-description">
-                    <p>We offer a unique and personal service to each and every client. All of our websites are built
-                        from scratch and are available in monthly packages to keep your costs down.</p>
-
-                    <p>Our web design solutions include an SEO service which helps your website rank well in search
-                        engines. If your aim is to raise visibility and gain traction on your website, we can help.</p>
-
-                    <p>As well as web design and development, we provide a logo design service that is sure to improve
-                        your brand image.</p>
-                </div>
-            </div>
-
-            <div class="section-img">
-                <img src="images/what-we-do.png" alt="About KittyCode Creative">
-            </div>
-        </section>
 
         <section class="blurbs fade-content">
             <div class="blurb">
@@ -141,6 +122,29 @@
                     <p>Making the web accessible benefits individuals, businesses, and society. Your website will be
                         fully perceivable, operable, understandable and robust. </p>
                 </div>
+            </div>
+        </section>
+
+        <section class="what-we-do fade-content" id="what-we-do">
+            <div class="blur3"></div>
+            <div class="blur3"></div>
+            <div class="section-text fade-content">
+                <label for="what-we-do">Unleash your inner cat.</label>
+                <h2 class="section-title">What We Do</h2>
+                <div class="section-description">
+                    <p>We offer a unique and personal service to each and every client. All of our websites are built
+                        from scratch and are available in monthly packages to keep your costs down.</p>
+
+                    <p>Our web design solutions include an SEO service which helps your website rank well in search
+                        engines. If your aim is to raise visibility and gain traction on your website, we can help.</p>
+
+                    <p>As well as web design and development, we provide a logo design service that is sure to improve
+                        your brand image.</p>
+                </div>
+            </div>
+
+            <div class="section-img">
+                <img src="images/what-we-do.png" alt="About KittyCode Creative">
             </div>
         </section>
 
@@ -244,8 +248,8 @@
                         Our packages come in either monthly contracts which includes hosting, or a straight up
                         purchase of the design which you are able to take away and choose your own hosting.</p>
                     <p>After a logo design instead? We've got you covered. <a href="services/logo-design"
-                            style="color: var(--primary-color-1);">Check out out logo page here</a>.</p>
-
+                            class="blog-link">Check out out
+                            logo page here</a>.</p>
                     <div class="services-toggle">
                         <input id="toggle-on" onclick="translatePaymentTypeMonthly()" class="toggle toggle-left"
                             name="toggle" value="false" type="radio" checked>
@@ -259,7 +263,7 @@
                 <div class="packages fade-content">
 
                     <!-- include card.php -->
-                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt-axis="x">
+                    <div>
                         <section class="card">
                             <div class="inside">
                                 <div class="card-plan">
@@ -334,7 +338,7 @@
                         </div>
                     </section>
 
-                    <div class="data-tilt tilt-disable-mobile" data-tilt data-tilt-reverse="true" data-tilt-axis="x">
+                    <div>
                         <section class="card">
                             <div class="inside">
                                 <div class="card-plan">
@@ -375,6 +379,8 @@
         </section>
 
         <section class="our-portfolio fade-content" id="our-portfolio">
+            <div class="blur4"></div>
+            <div class="blur4"></div>
             <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
                 <a href="portfolio">
@@ -460,6 +466,8 @@
         </section>
 
         <section class="our-faqs fade-content" id="our-faqs">
+            <div class="blur5"></div>
+            <div class="blur5"></div>
             <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
                 <a href="faq" class="centered">
@@ -505,6 +513,8 @@
         </section>
 
         <section class="contact-us fade-content" id="contact-us">
+            <div class="blur6"></div>
+            <div class="blur6"></div>
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
                 <a href="contact">
@@ -578,7 +588,7 @@
 
     <div class="footer-top"></div>
 
-<?php include 'includes/navigation-footer.php' ?>
+    <?php include 'includes/navigation-footer.php' ?>
 </body>
 
 </html>

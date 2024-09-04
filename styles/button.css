@@ -152,10 +152,10 @@ button {
   background-image: none;
   background-color: unset;
   border: 1px solid orange;
-  color: orange;
+  color: light-dark(var(--primary-color-1), var(--primary-color-2));
 
   .text {
-    color: var(--primary-color-1);
+    color: light-dark(var(--primary-color-1), var(--primary-color-2));
     /* background-clip:unset; */
     background-color:unset;
   }

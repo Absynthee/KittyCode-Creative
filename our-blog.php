@@ -80,6 +80,7 @@
             <div class="tag">web design</div>
             <div class="tag">accessibility</div>
             <div class="tag">coding</div>
+            <div class="tag">ai</div>
         </div>
 
         <!-- Latest Post -->
@@ -89,19 +90,17 @@
             <div class="grid-images fade-content">
                 <div class="grid-item blog-container latest-post">
                     <div class="latest-post-image">
-                        <a href="blog/the-power-of-modern-css">
-                            <img class="blog-image" src="./images/blog/css.jpg"
+                        <a href="blog/the-role-of-ai-in-web-design">
+                            <img class="blog-image" src="./images/blog/ai-web-design.jpg"
                                 alt="Modern CSS in Web Design"></a>
                     </div>
                     <div class="blog-details">
-                        <h3 class="blog-title">The Power of Modern CSS: A Game-Changer for Web Design</h3>
+                        <h3 class="blog-title">The Role of AI in Web Design and Development: A Game Changer or Just a Tool?</h3>
                         <div class="blog-tags">
                             <div class="tag">web design</div>
-                            <div class="tag">coding</div>
+                            <div class="tag">ai</div>
                         </div>
-                        <p class="blog-description">If you've ever wondered how websites get their beautiful layouts, fonts, colours, and interactive
-                            features, the answer lies in CSS. But what exactly is CSS, and why is it such a big deal in
-                            today’s web design world? Let’s break it down.</p>
+                        <p class="blog-description">Artificial Intelligence (AI) has been making waves in almost every industry, and web design and development is no exception. From automating repetitive tasks to enhancing user experiences, AI is changing how websites are built and maintained. But is it the next big thing, or just a helpful tool? Let’s take a closer look at how AI is shaping the web design landscape.</p>
                     </div>
                 </div>
             </div>
@@ -129,6 +128,22 @@
                 </div>
             </div> -->
                 <!-- card end -->
+
+                <div class="grid-item blog-container">
+                    <a href="blog/the-role-of-ai-in-web-design">
+                        <img class="blog-image" src="./images/blog/ai-web-design.jpg"
+                            alt="img alt">
+                        <div class="blog-details">
+                            <h3 class="blog-title">The Role of AI in Web Design and Development</h3>
+                    </a>
+                    <div class="blog-tags">
+                        <div class="tag">web design</div>
+                        <div class="tag">ai</div>
+                    </div>
+
+                    <p class="blog-description">Artificial Intelligence (AI) has been making waves in almost every industry, and web design and development is no exception. From automating repetitive tasks to enhancing user experiences, AI is changing how websites are built and maintained. But is it the next big thing, or just a helpful tool? Let’s take a closer look at how AI is shaping the web design landscape.</p>
+                </div>
+            </div>
 
         <div class="grid-item blog-container">
             <a href="blog/the-power-of-modern-css">
