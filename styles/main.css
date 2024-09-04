@@ -1265,8 +1265,8 @@ p.role {
   margin-block-end: var(--spacing-2);
   padding-block: var(--spacing-1);
   padding-inline: 8px;
-  background-color: var(--neutral-color-2);
-  color: var(--neutral-color-1);
+  background-color: light-dark(var(--neutral-color-2), var(--neutral-color-1));
+  color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
   border-radius: 12px 12px 2px 12px;
   max-width: 60%;
   box-shadow: 01px 5px 10px -5px rgba(0, 0, 0, 0.2);
@@ -1296,7 +1296,8 @@ p.role {
   display: flex;
   padding-inline-start: 15px;
   padding-inline-end: 5px;
-  background-color: var(--neutral-color-2);
+  background-color: light-dark(var(--neutral-color-2), var(--neutral-color-1));
+  color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
   margin: auto;
   width: 90%;
   height: 6.5%;
@@ -1305,7 +1306,6 @@ p.role {
   left: 5%;
   border-radius: 25px;
   justify-content: space-between;
-  color: var(--neutral-color-1);
 
   .send-arrow {
     display: flex;
@@ -1335,12 +1335,12 @@ p.role {
   outline: none;
   background: none;
   width: 100%;
-  color: black;
+  color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
 
   &::placeholder,
   ::-webkit-input-placeholder,
   :-moz-placeholder {
-    color: black;
+    color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
     opacity: 1;
   }
 }
