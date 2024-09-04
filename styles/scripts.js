@@ -210,7 +210,6 @@ function translatePaymentTypeOneOff() {
   });
 }
 
-
 // FAQ
 
 // Get all elements with the class "closed" or "open"
@@ -917,7 +916,6 @@ window.addEventListener("orientationchange", () => {
     removeTiltFromDivs();
   }
 });
-
 
 // Toggle theme between light & dark
 const themeToggle = document.getElementById("theme-toggle");
