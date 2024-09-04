@@ -120,6 +120,7 @@ a:hover {
   --accent-color-2: #2fad9f;
   --accent-color-2-10: #2fad9f17;
   --accent-color-3: #4686c2;
+  --accent-color-3-20: #4686c23b;
   --accent-color-3-10: #4686c217;
   --neutral-color-1: #262626;
   --neutral-color-1-10: #26262617;
@@ -556,7 +557,7 @@ nav {
   height: 100px;
   background-color: light-dark(var(--white), var(--black));
   /* border-bottom: 2px solid var(--primary-color-2); */
-  box-shadow: 0px 20px 80px 20px var(--accent-color-3-10);
+  box-shadow: 0px 20px 80px 20px light-dark(var(--accent-color-3-20), var(--primary-color-1-20));
   transition: transform 0.5s;
   transform: translateY(80px);
   z-index: 99;
