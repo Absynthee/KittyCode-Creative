@@ -22,6 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="styles/scripts.js" defer></script>
+    <script src="styles/cookies.js"></script>
     <script src="styles/vanilla-tilt.js" defer></script>
     <script type="module" src="styles/sparkly-text.js"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
@@ -589,6 +590,8 @@
     <div class="footer-top"></div>
 
     <?php include 'includes/navigation-footer.php' ?>
+    <?php include 'includes/cookie-banner.php' ?>
+
 </body>
 
 </html>

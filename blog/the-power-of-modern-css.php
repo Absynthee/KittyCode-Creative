@@ -21,10 +21,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <script src="../styles/scripts.js" defer></script>
+    <script src="../styles/cookies.js"></script>
     <script src="../styles/vanilla-tilt.js" defer></script>
     <script type="module" src="../styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="../styles/main.css">
@@ -45,7 +43,7 @@
 
 <body>
 
-<?php include '../includes/navigation.php' ?>
+    <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
     <main>
@@ -87,61 +85,97 @@
                         polished and professional. Think of HTML as the building blocks of your website—creating the
                         headings, paragraphs, and links. CSS, on the other hand, is like the artist who comes in and
                         paints the walls, arranges the furniture, and chooses the décor.</p>
-<p>
+                    <p>
                         With CSS, developers can dictate the layout of a page, adjust the spacing between elements,
                         choose colour schemes, and even create animations. Everything from the size of your fonts to how
                         buttons change when you hover over them is controlled by CSS.
                     </p>
                     <h4 class="blog-subtitle">Why CSS is Crucial for Web Design</h4>
-                    <p>CSS is crucial to modern web development because it enables consistent, responsive, and user-friendly designs. Gone are the days when websites only had to look good on desktops. With people now accessing the web on a variety of devices, from smartphones to large-screen TVs, ensuring your website looks great and functions well on all screen sizes is vital.</p>
+                    <p>CSS is crucial to modern web development because it enables consistent, responsive, and
+                        user-friendly designs. Gone are the days when websites only had to look good on desktops. With
+                        people now accessing the web on a variety of devices, from smartphones to large-screen TVs,
+                        ensuring your website looks great and functions well on all screen sizes is vital.</p>
 
-                    <p>This is where modern CSS shines. Tools such as Flexbox and Grid Layout allow for flexible and efficient designs that automatically adapt to any screen size. With these features, KittyCode Creative is able to build websites that feel seamless, whether you're viewing them on a mobile phone or a widescreen monitor.                    <br><br>
-                        <video src="../images/resizing_screen.mp4" autoplay loop></video><span class="img-description">Example of flexibility on this page</span></p>
-                        <h4 class="blog-subtitle">The Evolution of CSS: Flexibility & Control</h4>
+                    <p>This is where modern CSS shines. Tools such as Flexbox and Grid Layout allow for flexible and
+                        efficient designs that automatically adapt to any screen size. With these features, KittyCode
+                        Creative is able to build websites that feel seamless, whether you're viewing them on a mobile
+                        phone or a widescreen monitor. <br><br>
+                        <video src="../images/resizing_screen.mp4" autoplay loop></video><span
+                            class="img-description">Example of flexibility on this page</span>
+                    </p>
+                    <h4 class="blog-subtitle">The Evolution of CSS: Flexibility & Control</h4>
 
-                        <p>
-                            CSS has evolved a lot since its early days. Today, modern CSS introduces powerful features that make
-                            web design even more dynamic and efficient. Some of these new tools include:
-                        </p>
-                        <ul class="blog-list">
+                    <p>
+                        CSS has evolved a lot since its early days. Today, modern CSS introduces powerful features that
+                        make
+                        web design even more dynamic and efficient. Some of these new tools include:
+                    </p>
+                    <ul class="blog-list">
                         <li>
-                            <strong>Flexbox and Grid Layouts</strong>: These are two advanced layout models that allow designers to easily create
-                            responsive, multi-dimensional designs. Flexbox is great for one-dimensional layouts, while Grid
-                            excels at creating two-dimensional designs (rows and columns). Both make it much easier to build
+                            <strong>Flexbox and Grid Layouts</strong>: These are two advanced layout models that allow
+                            designers to easily create
+                            responsive, multi-dimensional designs. Flexbox is great for one-dimensional layouts, while
+                            Grid
+                            excels at creating two-dimensional designs (rows and columns). Both make it much easier to
+                            build
                             layouts that adapt to different screen sizes.
                         </li>
                         <li>
-                            <strong>Custom Properties (CSS Variables)</strong>: CSS variables allow designers to define values once and reuse
-                            them throughout the stylesheet. This makes managing styles across large projects more efficient and
+                            <strong>Custom Properties (CSS Variables)</strong>: CSS variables allow designers to define
+                            values once and reuse
+                            them throughout the stylesheet. This makes managing styles across large projects more
+                            efficient and
                             reduces the chances of errors when making updates.
                         </li>
                         <li>
-                            <strong>Animations and Transitions</strong>: CSS now includes built-in features for creating smooth animations and
+                            <strong>Animations and Transitions</strong>: CSS now includes built-in features for creating
+                            smooth animations and
                             transitions without relying on JavaScript. From fading buttons to sliding navigation panels,
                             animations can add personality to a website and improve user engagement.
                         </li>
                         <li>
-                            <strong>Media Queries</strong>: While not new, media queries have become a cornerstone of responsive design. They
+                            <strong>Media Queries</strong>: While not new, media queries have become a cornerstone of
+                            responsive design. They
                             allow developers to apply different styles based on the device’s screen size or orientation,
                             ensuring that websites look good on everything from smartphones to widescreen monitors.
                         </li>
-                        <li><strong>Continued Development</strong>: New systems, tools and functions are being added all the time to make code more readable, dynamic or to allow developers to do new things. Browser support is growing continuously as technologies are adapted. </li>
+                        <li><strong>Continued Development</strong>: New systems, tools and functions are being added all
+                            the time to make code more readable, dynamic or to allow developers to do new things.
+                            Browser support is growing continuously as technologies are adapted. </li>
                     </ul>
 
                     <h4 class="blog-subtitle">Why It Matters for Businesses</h4>
 
-                    <p>The benefits of modern CSS go beyond visual appeal. Faster load times lead to better user experiences, lower bounce rates, and improved SEO rankings. With web performance being a critical factor for search engines like Google, optimising your website’s CSS can significantly impact your online visibility.</p>
+                    <p>The benefits of modern CSS go beyond visual appeal. Faster load times lead to better user
+                        experiences, lower bounce rates, and improved SEO rankings. With web performance being a
+                        critical factor for search engines like Google, optimising your website’s CSS can significantly
+                        impact your online visibility.</p>
 
-                    <p>Moreover, modern CSS allows websites to be more accessible. KittyCode Creative builds websites with accessibility in mind, ensuring that every user can interact with the site, regardless of their physical abilities or the device they are using. Whether it’s through dynamic layouts or scalable typography with variable fonts, we strive to make the web a more inclusive place.</p>
+                    <p>Moreover, modern CSS allows websites to be more accessible. KittyCode Creative builds websites
+                        with accessibility in mind, ensuring that every user can interact with the site, regardless of
+                        their physical abilities or the device they are using. Whether it’s through dynamic layouts or
+                        scalable typography with variable fonts, we strive to make the web a more inclusive place.</p>
                     <h4 class="blog-subtitle">How KittyCode Creative Uses Modern CSS</h4>
 
-                    <p>At KittyCode Creative, we believe in leveraging the latest CSS technologies to ensure that our clients' websites are not only visually stunning but also highly functional and accessible. We take a minimalist approach, using hand-coded CSS that is free from unnecessary bloat and ensures optimal performance.</p>
+                    <p>At KittyCode Creative, we believe in leveraging the latest CSS technologies to ensure that our
+                        clients' websites are not only visually stunning but also highly functional and accessible. We
+                        take a minimalist approach, using hand-coded CSS that is free from unnecessary bloat and ensures
+                        optimal performance.</p>
 
-                    <p>Our use of CSS Grid and Flexbox allows us to create fluid layouts that adapt effortlessly to different screen sizes, providing a responsive experience across devices. And with CSS Variables, we can efficiently manage styles across a project, ensuring consistency in branding and design.</p>
+                    <p>Our use of CSS Grid and Flexbox allows us to create fluid layouts that adapt effortlessly to
+                        different screen sizes, providing a responsive experience across devices. And with CSS
+                        Variables, we can efficiently manage styles across a project, ensuring consistency in branding
+                        and design.</p>
 
-                    <p>When it comes to typography, we take advantage of variable fonts to make sure that the text is legible and visually appealing no matter the device. By allowing font sizes and weights to dynamically adjust, we create a smooth, scalable experience that enhances readability for users on smaller screens and offers bold, striking text on larger displays.</p>
+                    <p>When it comes to typography, we take advantage of variable fonts to make sure that the text is
+                        legible and visually appealing no matter the device. By allowing font sizes and weights to
+                        dynamically adjust, we create a smooth, scalable experience that enhances readability for users
+                        on smaller screens and offers bold, striking text on larger displays.</p>
 
-                    <p>As web standards continue to evolve, embracing these modern CSS techniques is key to staying ahead in a competitive digital landscape. For businesses, this translates into better performance, improved user experience, and ultimately, more success online. This is what we strive to accomplish.</p>
+                    <p>As web standards continue to evolve, embracing these modern CSS techniques is key to staying
+                        ahead in a competitive digital landscape. For businesses, this translates into better
+                        performance, improved user experience, and ultimately, more success online. This is what we
+                        strive to accomplish.</p>
                     <p class="further-reading"><b>Further Reading</b><br>
                         <a
                             href="https://daily.dev/blog/css-in-2024-emerging-trends">https://daily.dev/blog/css-in-2024-emerging-trends</a>
@@ -207,6 +241,7 @@
     <div class="footer-top"></div>
 
     <?php include '../includes/navigation-footer.php' ?>
+    <?php include '../includes/cookie-banner.php' ?>
 
 </body>
 

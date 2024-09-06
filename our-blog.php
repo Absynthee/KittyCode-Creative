@@ -20,10 +20,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <script src="./styles/scripts.js" defer></script>
+    <script src="./styles/cookies.js"></script>
     <script src="./styles/vanilla-tilt.js" defer></script>
     <script type="module" src="./styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="./styles/main.css">
@@ -44,7 +42,7 @@
 
 <body>
 
-<?php include 'includes/navigation.php' ?>
+    <?php include 'includes/navigation.php' ?>
 
     <div class="blur1"></div>
 
@@ -100,13 +98,16 @@
                             <div class="tag">web design</div>
                             <div class="tag">accessibility</div>
                         </div>
-                        <p class="blog-description">At KittyCode Creative, user experience and accessibility is always at the forefront of our design
+                        <p class="blog-description">At KittyCode Creative, user experience and accessibility is always
+                            at the forefront of our design
                             decisions, and we're excited to unveil a brand-new feature—<strong>dark mode</strong>! With
-                            a simple switch, you can now adjust your browsing experience to suit your personal preference or
+                            a simple switch, you can now adjust your browsing experience to suit your personal
+                            preference or
                             the time of day. Our website will now automatically adapts to your device's theme
                             settings, offering seamless transitions between light and dark modes using the
                             <code>lightdark()</code> CSS function. Click on our mascot Code up in the top left and try
-                            switching for yourself!</p>
+                            switching for yourself!
+                        </p>
                     </div>
                 </div>
             </div>
@@ -136,8 +137,7 @@
                 <!-- card end -->
                 <div class="grid-item blog-container">
                     <a href="blog/lights-out-dark-theme">
-                        <img class="blog-image" src="./images/blog/lights-out.jpg"
-                            alt="img alt">
+                        <img class="blog-image" src="./images/blog/lights-out.jpg" alt="img alt">
                         <div class="blog-details">
                             <h3 class="blog-title">Lights Out: Introducing Our New Dark Theme</h3>
                     </a>
@@ -146,65 +146,68 @@
                         <div class="tag">accessibility</div>
                     </div>
 
-                    <p class="blog-description">At KittyCode Creative, user experience and accessibility is always at the forefront of our design
+                    <p class="blog-description">At KittyCode Creative, user experience and accessibility is always at
+                        the forefront of our design
                         decisions, and we're excited to unveil a brand-new feature—<strong>dark mode</strong>! With
                         a simple switch, you can now adjust your browsing experience to suit your personal preference or
                         the time of day. Our website will now automatically adapts to your device's theme
                         settings, offering seamless transitions between light and dark modes using the
                         <code>lightdark()</code> CSS function. Click on our mascot Code up in the top left and try
-                        switching for yourself!</p>
+                        switching for yourself!
+                    </p>
                 </div>
             </div>
 
-                <div class="grid-item blog-container">
-                    <a href="blog/the-role-of-ai-in-web-design">
-                        <img class="blog-image" src="./images/blog/ai-web-design.jpg"
-                            alt="img alt">
-                        <div class="blog-details">
-                            <h3 class="blog-title">The Role of AI in Web Design and Development</h3>
-                    </a>
-                    <div class="blog-tags">
-                        <div class="tag">web design</div>
-                        <div class="tag">ai</div>
-                    </div>
-
-                    <p class="blog-description">Artificial Intelligence (AI) has been making waves in almost every industry, and web design and development is no exception. From automating repetitive tasks to enhancing user experiences, AI is changing how websites are built and maintained. But is it the next big thing, or just a helpful tool? Let’s take a closer look at how AI is shaping the web design landscape.</p>
+            <div class="grid-item blog-container">
+                <a href="blog/the-role-of-ai-in-web-design">
+                    <img class="blog-image" src="./images/blog/ai-web-design.jpg" alt="img alt">
+                    <div class="blog-details">
+                        <h3 class="blog-title">The Role of AI in Web Design and Development</h3>
+                </a>
+                <div class="blog-tags">
+                    <div class="tag">web design</div>
+                    <div class="tag">ai</div>
                 </div>
+
+                <p class="blog-description">Artificial Intelligence (AI) has been making waves in almost every industry,
+                    and web design and development is no exception. From automating repetitive tasks to enhancing user
+                    experiences, AI is changing how websites are built and maintained. But is it the next big thing, or
+                    just a helpful tool? Let’s take a closer look at how AI is shaping the web design landscape.</p>
+            </div>
             </div>
 
-        <div class="grid-item blog-container">
-            <a href="blog/the-power-of-modern-css">
-                <img class="blog-image" src="./images/blog/css.jpg"
-                    alt="The Power of Modern CSS">
-                <div class="blog-details">
-                    <h3 class="blog-title">The Power of Modern CSS: A Game-Changer for Web Design</h3>
-            </a>
-            <div class="blog-tags">
-                <div class="tag">web design</div>
-                <div class="tag">coding</div>
+            <div class="grid-item blog-container">
+                <a href="blog/the-power-of-modern-css">
+                    <img class="blog-image" src="./images/blog/css.jpg" alt="The Power of Modern CSS">
+                    <div class="blog-details">
+                        <h3 class="blog-title">The Power of Modern CSS: A Game-Changer for Web Design</h3>
+                </a>
+                <div class="blog-tags">
+                    <div class="tag">web design</div>
+                    <div class="tag">coding</div>
+                </div>
+
+                <p class="blog-description">If you've ever wondered how websites get their beautiful layouts, fonts,
+                    colours, and interactive
+                    features, the answer lies in CSS. But what exactly is CSS, and why is it such a big deal in
+                    today’s web design world? Let’s break it down.</p>
+            </div>
             </div>
 
-            <p class="blog-description">If you've ever wondered how websites get their beautiful layouts, fonts, colours, and interactive
-                features, the answer lies in CSS. But what exactly is CSS, and why is it such a big deal in
-                today’s web design world? Let’s break it down.</p>
-        </div>
-    </div>
-
-                <div class="grid-item blog-container">
-                    <a href="blog/the-human-behind-kittycode-creative">
-                        <img class="blog-image" src="./images/blog/austin.jpg"
-                            alt="The Human Behind KittyCode Creative">
-                        <div class="blog-details">
-                            <h3 class="blog-title">The Human Behind KittyCode Creative (Not a Cat?)</h3>
-                    </a>
-                    <div class="blog-tags">
-                        <div class="tag">business</div>
-                        <div class="tag">web design agency</div>
-                    </div>
-
-                    <p class="blog-description">KittyCode Creative isn't run by cats alone. Meet Austin Spillman,
-                        the human and sole developer behind the new web design agency KittyCode Creative.</p>
+            <div class="grid-item blog-container">
+                <a href="blog/the-human-behind-kittycode-creative">
+                    <img class="blog-image" src="./images/blog/austin.jpg" alt="The Human Behind KittyCode Creative">
+                    <div class="blog-details">
+                        <h3 class="blog-title">The Human Behind KittyCode Creative (Not a Cat?)</h3>
+                </a>
+                <div class="blog-tags">
+                    <div class="tag">business</div>
+                    <div class="tag">web design agency</div>
                 </div>
+
+                <p class="blog-description">KittyCode Creative isn't run by cats alone. Meet Austin Spillman,
+                    the human and sole developer behind the new web design agency KittyCode Creative.</p>
+            </div>
             </div>
             <div class="grid-item blog-container">
                 <a href="blog/the-launch-of-a-new-digital-web-design-agency">
@@ -267,7 +270,8 @@
 
     <div class="footer-top"></div>
 
-<?php include 'includes/navigation-footer.php' ?>
+    <?php include 'includes/navigation-footer.php' ?>
+    <?php include 'includes/cookie-banner.php' ?>
 
 </body>
 
