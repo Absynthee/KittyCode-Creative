@@ -2502,6 +2502,34 @@ fieldset > .one-column {
   margin-block-end: var(--spacing-2);
 }
 
+/* cookies */
+
+.cookie-policy {
+ display: inline-flex;
+ justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  position: fixed;
+  bottom: 0;
+  height: fit-content;
+  padding: 10px;
+  width: 100%;
+  background-color: light-dark(var(--white), var(--black));
+  
+  p,
+  a {
+    font-size: 0.7rem;
+  }
+
+  a {
+    color: var(--primary-color-2);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
 /* breakpoints */
 
 @media screen and (max-width: 1300px) {
