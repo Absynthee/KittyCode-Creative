@@ -22,7 +22,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./styles/scripts.js" defer></script>
     <script src="./styles/cookies.js"></script>
-    <script src="./styles/vanilla-tilt.js" defer></script>
     <script type="module" src="./styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/button.css">
@@ -88,25 +87,22 @@
             <div class="grid-images fade-content">
                 <div class="grid-item blog-container latest-post">
                     <div class="latest-post-image">
-                        <a href="blog/lights-out-dark-theme">
-                            <img class="blog-image" src="./images/blog/lights-out.jpg"
+                        <a href="blog/why-every-business-needs-a-website">
+                            <img class="blog-image" src="./images/blog/every-business-website.jpg"
                                 alt="Modern CSS in Web Design"></a>
                     </div>
                     <div class="blog-details">
-                        <h3 class="blog-title">Lights Out: Introducing Our New Dark Theme</h3>
+                        <h3 class="blog-title">Why Every Business Needs a Website: The Modern Key to Success</h3>
                         <div class="blog-tags">
-                            <div class="tag">web design</div>
-                            <div class="tag">accessibility</div>
+                            <div class="tag">business</div>
+                            <div class="tag">web design agency</div>
                         </div>
-                        <p class="blog-description">At KittyCode Creative, user experience and accessibility is always
-                            at the forefront of our design
-                            decisions, and we're excited to unveil a brand-new feature—<strong>dark mode</strong>! With
-                            a simple switch, you can now adjust your browsing experience to suit your personal
-                            preference or
-                            the time of day. Our website will now automatically adapts to your device's theme
-                            settings, offering seamless transitions between light and dark modes using the
-                            <code>lightdark()</code> CSS function. Click on our mascot Code up in the top left and try
-                            switching for yourself!
+                        <p class="blog-description">In today's digital landscape, having a website is no longer a luxury;
+                        it’s a necessity. Whether you're a small local business, a startup, or an established company,
+                        your online presence plays a crucial role in your success. While social media can be a valuable
+                        tool for customer engagement, relying solely on it could mean missing out on many benefits that
+                        a professional website offers. Let’s dive into why every business, no matter the size, should
+                        have a website.
                         </p>
                     </div>
                 </div>
@@ -136,26 +132,45 @@
             </div> -->
                 <!-- card end -->
                 <div class="grid-item blog-container">
-                    <a href="blog/lights-out-dark-theme">
-                        <img class="blog-image" src="./images/blog/lights-out.jpg" alt="img alt">
+                    <a href="blog/why-every-business-needs-a-website">
+                        <img class="blog-image" src="./images/blog/every-business-website.jpg" alt="img alt">
                         <div class="blog-details">
-                            <h3 class="blog-title">Lights Out: Introducing Our New Dark Theme</h3>
+                            <h3 class="blog-title">Why Every Business Needs a Website: The Modern Key to Success</h3>
                     </a>
                     <div class="blog-tags">
-                        <div class="tag">web design</div>
-                        <div class="tag">accessibility</div>
+                        <div class="tag">business</div>
+                        <div class="tag">web design agency</div>
                     </div>
 
-                    <p class="blog-description">At KittyCode Creative, user experience and accessibility is always at
-                        the forefront of our design
-                        decisions, and we're excited to unveil a brand-new feature—<strong>dark mode</strong>! With
-                        a simple switch, you can now adjust your browsing experience to suit your personal preference or
-                        the time of day. Our website will now automatically adapts to your device's theme
-                        settings, offering seamless transitions between light and dark modes using the
-                        <code>lightdark()</code> CSS function. Click on our mascot Code up in the top left and try
-                        switching for yourself!
-                    </p>
+                    <p class="blog-description">In today's digital landscape, having a website is no longer a luxury;
+                        it’s a necessity. Whether you're a small local business, a startup, or an established company,
+                        your online presence plays a crucial role in your success. While social media can be a valuable
+                        tool for customer engagement, relying solely on it could mean missing out on many benefits that
+                        a professional website offers. Let’s dive into why every business, no matter the size, should
+                        have a website.</p>
                 </div>
+            </div>
+            <div class="grid-item blog-container">
+                <a href="blog/lights-out-dark-theme">
+                    <img class="blog-image" src="./images/blog/lights-out.jpg" alt="img alt">
+                    <div class="blog-details">
+                        <h3 class="blog-title">Lights Out: Introducing Our New Dark Theme</h3>
+                </a>
+                <div class="blog-tags">
+                    <div class="tag">web design</div>
+                    <div class="tag">accessibility</div>
+                </div>
+
+                <p class="blog-description">At KittyCode Creative, user experience and accessibility is always at
+                    the forefront of our design
+                    decisions, and we're excited to unveil a brand-new feature—<strong>dark mode</strong>! With
+                    a simple switch, you can now adjust your browsing experience to suit your personal preference or
+                    the time of day. Our website will now automatically adapts to your device's theme
+                    settings, offering seamless transitions between light and dark modes using the
+                    <code>lightdark()</code> CSS function. Click on our mascot Code up in the top left and try
+                    switching for yourself!
+                </p>
+            </div>
             </div>
 
             <div class="grid-item blog-container">

@@ -28,12 +28,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../styles/scripts.js" defer></script>
     <script src="../styles/cookies.js"></script>
-    <script src="../styles/vanilla-tilt.js" defer></script>
     <script type="module" src="../styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/button.css">
     <link rel="stylesheet" href="../styles/card.css">
-    <link rel="canonical" href="https://www.kittycodecreative.com/blog/why-accessibility-matters">
+    <link rel="canonical" href="https://www.kittycodecreative.com/blog/light-out-dark-theme">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
     </script>

@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./styles/scripts.js" defer></script>
     <script src="./styles/cookies.js"></script>
-    <script src="./styles/vanilla-tilt.js" defer></script>
+    <script src="./styles/form-contact.js"></script>
     <script type="module" src="./styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/button.css">
@@ -60,15 +60,14 @@
 
                     <div class="contact-us-links">
 
-                        <a href="https://www.facebook.com/KittyCodeCreative"><img src="images/icons/facebook_black.png"
+                        <a href="https://www.facebook.com/KittyCodeCreative" target="_blank"><img src="images/icons/facebook_black.png"
                                 style="width: 12px;" alt="">Facebook</a>
-                        <a href="https://www.linkedin.com/company/kittycode-creative"><img
+                        <a href="https://www.linkedin.com/company/kittycode-creative" target="_blank"><img
                                 src="images/icons/linkedin_black.png" style="width: 18px;" alt="">LinkedIn</a>
-                        <a href="https://www.instagram.com/kittycode_creative/"><img
+                        <a href="https://www.instagram.com/kittycode_creative/" target="_blank"><img
                                 src="images/icons/instagram_black.png" style="width: 18px;" alt="">Instagram</a>
-                        <a href="https://x.com/KittyCodeCreate"><img src="images/icons/twitter_black.png"
-                                style="width: 18px;" alt="">X
-                            (Twitter)</a>
+                        <a href="https://x.com/KittyCodeCreate" target="_blank"><img src="images/icons/twitter_black.png"
+                                style="width: 18px;" alt="">X (Twitter)</a>
 
                     </div>
 

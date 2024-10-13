@@ -23,6 +23,7 @@
     <script src="./styles/scripts.js" defer></script>
     <script src="./styles/cookies.js"></script>
     <script src="./styles/vanilla-tilt.js" defer></script>
+    <script src="./styles/form-contact.js"></script>
     <script type="module" src="./styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="./styles/main.css">
     <link rel="stylesheet" href="./styles/button.css">

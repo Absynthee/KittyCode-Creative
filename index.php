@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="We are a web design agency based in Eastbourne specialising in designing bespoke websites. We ensure accessible and user-friendly sites for everyone.">
+    <meta property="og:site_name" content="KittyCode Creative" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
     <meta property="og:title" content="KittyCode Creative - Web Design & Development Agency" />
     <meta property="og:description"
         content="KittyCode Creative, a bespoke web design agency in Eastbourne. Specialising in personalised web design and development, SEO, as well as logo services to enhance your online presence. Contact us today!" />
-    <meta property="og:image" content="https://kittycodecreative.com/images/favicon-192x192.png" />
+    <meta property="og:image" content="https://kittycodecreative.com/images/og.png" />
     <meta property="og:url" content="https://kittycodecreative.com" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@kittycodecreate">
+    <meta name="twitter:title" content="Eastbourne Web Design Agency | KittyCode Creative">
+    <meta name="twitter:description"
+        content="We are a web design agency based in Eastbourne specialising in designing bespoke websites. We ensure accessible and user-friendly sites for everyone.">
+    <meta name="twitter:image" content="https://kittycodecreative.com/images/og.png">
+
     <title>Web Design in Eastbourne, East Sussex | KittyCode Creative</title>
     <link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
@@ -21,11 +32,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <script src="styles/scripts.js" defer></script>
     <script src="styles/cookies.js"></script>
     <script src="styles/vanilla-tilt.js" defer></script>
+    <script src="styles/form-contact.js"></script>
     <script type="module" src="styles/sparkly-text.js"></script>
-    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/card.css">
@@ -48,12 +60,17 @@
 
     <?php include 'includes/navigation.php' ?>
 
+    <div class="top-banner">
+        <div class="top-banner-content">
+            <a href="https://www.instagram.com/p/DBCGTN3sqww/" target="_blank"><span>Website Giveaway is over! Check out the results on Instagram.</span></a>
+        </div>
+    </div>
+
     <div class="blur-container">
         <div class="blur1"></div>
         <div class="blur2"></div>
         <div class="blur2"></div>
     </div>
-
     <main>
 
         <div class="hero fade-content">
@@ -249,7 +266,7 @@
                         Our packages come in either monthly contracts which includes hosting, or a straight up
                         purchase of the design which you are able to take away and choose your own hosting.</p>
                     <p>After a logo design instead? We've got you covered. <a href="services/logo-design"
-                            class="blog-link">Check out out
+                            class="blog-link">Check out our
                             logo page here</a>.</p>
                     <div class="services-toggle">
                         <input id="toggle-on" onclick="translatePaymentTypeMonthly()" class="toggle toggle-left"

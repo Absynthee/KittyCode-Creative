@@ -1869,10 +1869,14 @@ fieldset {
 
 .invalid {
   display: none;
-  color: light-dark(var(--primary-color-1), var(--primary-color-2));
+  color: light-dark(#ce1010 , red);
   font-style: italic;
   font-variant-caps: all-petite-caps;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.error-border {
+  border: 2px solid light-dark(#ce1010 , red) !important;
 }
 
 .contact-img {
@@ -1944,7 +1948,7 @@ fieldset {
 ::-webkit-input-placeholder,
 :-moz-placeholder {
   color: light-dark(var(--neutral-color-1), var(--neutral-color-2));
-  opacity: 0.8;
+  opacity: 0.4;
 }
 
 .contact-page {
@@ -2546,6 +2550,37 @@ fieldset > .one-column {
       text-decoration: underline;
     }
   }
+}
+
+.top-banner {
+  position: relative;
+  margin-top: -50px;
+  padding-block: var(--spacing-4);
+  height: 25px;
+  width: 100%;
+  background-color: var(--primary-color-2);
+  overflow: hidden;
+}
+
+.top-banner-content {
+  display: inline-block;
+  white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.top-banner-content span {
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 250px; /* Space between repeated elements */
+}
+
+.top-banner-content a:hover {
+  color: unset;
+  text-decoration: underline;
 }
 
 /* breakpoints */

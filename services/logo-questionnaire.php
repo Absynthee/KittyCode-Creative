@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../styles/scripts.js" defer></script>
     <script src="../styles/cookies.js"></script>
-    <script src="../styles/vanilla-tilt.js" defer></script>
+    <script src="../styles/form-logo-questionnaire.js"></script>
     <script type="module" src="../styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/button.css">
@@ -91,15 +91,15 @@
                                 <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
                                     autocomplete="email" required>
                                 <div class="invalid" id="email-invalid">
-                                    Please provide your email address.
+                                    Please provide a valid email address.
                                 </div>
                             </div>
                             <div class="one-column">
                                 <legend><label for="confirm-email">Confirm Email</label></legend>
-                                <input placeholder="meow@kittycodecreative.com" name="Email Confirmation"
-                                    id="confirm-email" autocomplete="email" type="email" required>
+                                <input placeholder="meow@kittycodecreative.com" name="email_confirmation"
+                                    id="confirm-email" type="email" autocomplete="email" required>
                                 <div class="invalid" id="confirm-email-invalid">
-                                    Please confirm your email address.
+                                    Email addresses do not match.
                                 </div>
                             </div>
                         </fieldset>
@@ -219,31 +219,33 @@
                         </h4>
                         <fieldset>
                             <div id="form-row" class="row-wrap">
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="wordmark">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="wordmark" id="wordmark">
                                     <label for="wordmark">Wordmark</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="lettermark">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="lettermark" id="lettermark">
                                     <label for="lettermark">Lettermark</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="symbol">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="symbol" id="symbol">
                                     <label for="symbol">Symbol</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="abstract">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="abstract" id="abstract">
                                     <label for="abstract">Abstract</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="emblem">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="emblem" id="emblem">
                                     <label for="emblem">Emblem</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="mascot">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="mascot" id="mascot">
                                     <label for="mascot">Mascot</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="combination">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="combination" id="combination">
                                     <label for="combination">Combination</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="Logo Type" id="dynamic">
+                                <div class="checkbox"><input type="checkbox" class="logo-style-checkbox" value="dynamic" id="dynamic">
                                     <label for="dynamic">Dynamic</label>
                                 </div>
                             </div>
+                            <input type="hidden" name="logo-style" id="logo-style-hidden">
+
                             <div class="invalid" id="logo-5-invalid">
                                 Required field.
                             </div>

@@ -22,7 +22,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../styles/scripts.js" defer></script>
     <script src="../styles/cookies.js"></script>
-    <script src="../styles/vanilla-tilt.js" defer></script>
+    <script src="../styles/form-website-questionnaire.js"></script>
     <script type="module" src="../styles/sparkly-text.js"></script>
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/button.css">
@@ -90,15 +90,15 @@
                                 <input placeholder="meow@kittycodecreative.com" name="email" id="email" type="email"
                                     autocomplete="email" required>
                                 <div class="invalid" id="email-invalid">
-                                    Please provide your email address.
+                                    Please provide a valid email address.
                                 </div>
                             </div>
                             <div class="one-column">
                                 <legend><label for="confirm-email">Confirm Email</label></legend>
-                                <input placeholder="meow@kittycodecreative.com" name="Email Confirmation"
+                                <input placeholder="meow@kittycodecreative.com" name="email_confirmation"
                                     id="confirm-email" type="email" autocomplete="email" required>
                                 <div class="invalid" id="confirm-email-invalid">
-                                    Please confirm your email address.
+                                    Email addresses do not match.
                                 </div>
                             </div>
                         </fieldset>
@@ -246,22 +246,23 @@
                         <fieldset>
                             <div id="form-row" class="row-wrap">
                                 <div class="checkbox">
-                                    <input type="checkbox" name="website-extras" id="blog">
+                                    <input type="checkbox" class="website-extras-checkbox" value="blog" id="blog">
                                     <label for="blog">Blog</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="website-extras" id="testimonials">
+                                    <input type="checkbox" class="website-extras-checkbox" value="testimonials" id="testimonials">
                                     <label for="testimonials">Google/Facebook Testimonials</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="website-extras" id="e-commerce">
+                                    <input type="checkbox" class="website-extras-checkbox" value="e-commerce" id="e-commerce">
                                     <label for="e-commerce">E-commerce</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="website-extras" id="contact-form">
+                                    <input type="checkbox" class="website-extras-checkbox" value="contact-form" id="contact-form">
                                     <label for="contact-form">Contact Form</label>
                                 </div>
                             </div>
+                            <input type="hidden" name="website-extras" id="website-extras-hidden">
                         </fieldset>
 
                         <h4 class="questionnaire-title">What kind of style/feel would you like your website to
@@ -269,28 +270,29 @@
 
                         <fieldset>
                             <div id="form-row" class="row-wrap">
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="corporate">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="corporate" id="corporate">
                                     <label for="corporate">Corporate</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="professional">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="professional" id="professional">
                                     <label for="professional">Professional</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="approachable">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="approachable" id="approachable">
                                     <label for="approachable">Approachable</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="calm">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="calm" id="calm">
                                     <label for="calm">Calm</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="friendly">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="friendly" id="friendly">
                                     <label for="friendly">Friendly</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="playful">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="playful" id="playful">
                                     <label for="playful">Playful</label>
                                 </div>
-                                <div class="checkbox"><input type="checkbox" name="website-style" id="stylish">
+                                <div class="checkbox"><input type="checkbox" class="website-style-checkbox" value="stylish" id="stylish">
                                     <label for="stylish">Stylish</label>
                                 </div>
                             </div>
+                            <input type="hidden" name="website-style" id="website-style-hidden">
                         </fieldset>
 
                         <h4 class="questionnaire-title">How many pages do you think your website will need:</h4>
@@ -298,19 +300,19 @@
                         <fieldset>
                             <div id="form-row" class="row-wrap">
                                 <div class="checkbox">
-                                    <input type="radio" name="website pages" id="1-3">
+                                    <input type="radio" name="website-pages" id="1-3" value="1-3" checked>
                                     <label for="1-3">1-3</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="radio" name="website pages" id="4-10">
+                                    <input type="radio" name="website-pages" id="4-10" value="4-10">
                                     <label for="4-10">4-10</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="radio" name="website pages" id="11-50">
+                                    <input type="radio" name="website-pages" id="11-50" value="11-50">
                                     <label for="11-50">11-50</label>
                                 </div>
                                 <div class="checkbox">
-                                    <input type="radio" name="website pages" id="50+">
+                                    <input type="radio" name="website-pages" id="50+" value="50+">
                                     <label for="50+">50+</label>
                                 </div>
                             </div>

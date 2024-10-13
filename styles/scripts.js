@@ -1,7 +1,6 @@
 // progressing loading with fade-content
 
 // Hide the element. Doing this here will prevent the elements from disappering if JS is disabled.
-
 $(".fade-content > *").css({
   opacity: "0",
   transform: "translateY(" + 2 + "em)",
@@ -21,7 +20,6 @@ $(window).on("scroll load", function () {
 });
 
 // loads the phone conversation
-
 function isElementInViewport(el) {
   const rect = el.getBoundingClientRect();
   return (
@@ -51,7 +49,6 @@ function handleIntersection(entries) {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       animateElements();
-      // observer.unobserve(entry.target); // Stop observing the element after animation
     }
   });
 }
@@ -63,8 +60,7 @@ elements.forEach((element) => {
   observer.observe(element);
 });
 
-//dropdown nav
-
+// dropdown nav
 const dropdownMenus = document.querySelectorAll("li > ul");
 let timeout;
 const mediaQuery = window.matchMedia("(max-width: 800px)");
@@ -103,24 +99,6 @@ toggleDropdownMenu(mediaQuery);
 
 
 // sticky nav
-
-// let prevScrollPos = window.scrollY;
-// const navbar = document.querySelector('.navbar');
-
-// window.addEventListener('scroll', () => {
-//   const currentScrollPos = window.scrollY;
-
-//   if (prevScrollPos > currentScrollPos && currentScrollPos >= 100) {
-//     // Scrolling up and scrolled at least 15px
-//     navbar.classList.add('sticky');
-//   } else {
-//     // Scrolling down or scrolled less than 15px
-//     navbar.classList.remove('sticky');
-//   }
-
-//   prevScrollPos = currentScrollPos;
-// });
-
 let prevScrollPos = window.scrollY;
 const navbar = document.querySelector(".navbar");
 
@@ -140,7 +118,6 @@ window.addEventListener("scroll", () => {
 });
 
 // mobile nav icon
-
 $(document).ready(function () {
   $("#nav-icon").click(function () {
     $(this).toggleClass("open");
@@ -148,7 +125,6 @@ $(document).ready(function () {
 });
 
 // mobile nav toggle
-
 const navIcon = document.getElementById("nav-icon");
 const navLinks = document.querySelector(".links ul");
 const menuSlide = document.getElementById("show-menu");
@@ -159,7 +135,6 @@ navIcon.addEventListener("click", () => {
 });
 
 // switch payment type
-
 function translatePaymentTypeMonthly() {
   const paymentTypes = document.querySelectorAll(".payment-type");
   const contractTypes = document.querySelectorAll(".card-extras");
@@ -233,7 +208,6 @@ faqElements.forEach((element) => {
 });
 
 // portfolio hover
-
 const portfolioContainers = document.querySelectorAll(".portfolio-image");
 
 portfolioContainers.forEach((container) => {
@@ -269,7 +243,6 @@ portfolioContainers.forEach((container) => {
 });
 
 //portfolio image hover
-
 const portfolioImages = document.querySelectorAll(".portfolio-image");
 
 portfolioImages.forEach((img) => {
@@ -289,7 +262,6 @@ portfolioImages.forEach((img) => {
 });
 
 // testimonials
-
 function fade($ele) {
   $ele
     .fadeIn(1000)
@@ -301,593 +273,7 @@ function fade($ele) {
 }
 fade($(".quoteLoop > .quote").first());
 
-// contact form
-
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("Script is running");
-
-  const form = document.getElementById("contact");
-  const result = document.getElementById("result");
-
-  form.addEventListener("submit", function (event) {
-    console.log("Form submit event triggered");
-    event.preventDefault(); // Prevent form submission for testing
-
-    // Validation logic
-    let isValid = true;
-
-    // Name validation
-    const name = document.getElementById("name").value;
-    if (!name) {
-      document.getElementById("name-invalid").style.display = "block";
-      isValid = false;
-      console.log("Name is invalid");
-    } else {
-      document.getElementById("name-invalid").style.display = "none";
-    }
-
-    // Email validation
-    const email = document.getElementById("email").value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || !emailPattern.test(email)) {
-      document.getElementById("email-invalid").style.display = "block";
-      isValid = false;
-      console.log("Email is invalid");
-    } else {
-      document.getElementById("email-invalid").style.display = "none";
-    }
-
-    // Subject validation
-    const subject = document.getElementById("subject").value;
-    if (!subject) {
-      document.getElementById("subject-invalid").style.display = "block";
-      isValid = false;
-      console.log("Subject is invalid");
-    } else {
-      document.getElementById("subject-invalid").style.display = "none";
-    }
-
-    // Message validation
-    const message = document.getElementById("message").value;
-    if (!message) {
-      document.getElementById("message-invalid").style.display = "block";
-      isValid = false;
-      console.log("Message is invalid");
-    } else {
-      document.getElementById("message-invalid").style.display = "none";
-    }
-
-    if (isValid) {
-      console.log("Form is valid");
-      // Proceed with form submission
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-      result.innerHTML = "Please wait...";
-
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      })
-        .then(async (response) => {
-          let json = await response.json();
-          if (response.status == 200) {
-            result.innerHTML =
-              "Thanks, your message has been submitted! We'll get back to you as soon as possible.";
-          } else {
-            console.log(response);
-            result.innerHTML = json.message;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          result.innerHTML = "Something went wrong!";
-        })
-        .then(function () {
-          form.reset();
-          setTimeout(() => {
-            result.style.display = "none";
-          }, 10000);
-        });
-    } else {
-      console.log("Form is invalid");
-    }
-  });
-});
-
-// logo questionnaire form
-
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("Script is running");
-
-  const form = document.getElementById("logo");
-  const result = document.getElementById("result");
-
-  form.addEventListener("submit", function (event) {
-    console.log("Form submit event triggered");
-    event.preventDefault(); // Prevent form submission for testing
-
-    // Validation logic
-    let isValid = true;
-
-    // Name validation
-    const name = document.getElementById("name").value;
-    if (!name) {
-      document.getElementById("name-invalid").style.display = "block";
-      isValid = false;
-      console.log("Name is invalid");
-    } else {
-      document.getElementById("name-invalid").style.display = "none";
-    }
-
-    const businessname = document.getElementById("business-name").value;
-    if (!businessname) {
-      document.getElementById("business-name-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business name is invalid");
-    } else {
-      document.getElementById("business-name-invalid").style.display = "none";
-    }
-
-    // Email validation
-    const email = document.getElementById("email").value;
-    const confirmemail = document.getElementById("confirm-email").value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!email || !emailPattern.test(email)) {
-      document.getElementById("email-invalid").style.display = "block";
-      isValid = false;
-      console.log("Email is invalid");
-    } else {
-      document.getElementById("email-invalid").style.display = "none";
-    }
-
-    if (email.value !== confirmemail.value) {
-      document.getElementById("confirm-email-invalid").style.display = "block";
-      isValid = false;
-      console.log("Email confirmation is invalid");
-    } else {
-      document.getElementById("confirm-email-invalid").style.display = "none";
-    }
-
-    // Message validation
-    const businessmessage1 = document.getElementById(
-      "what-does-your-business-do"
-    ).value;
-    const businessmessage2 = document.getElementById(
-      "what-does-your-logo-achieve"
-    ).value;
-    const businessmessage3 = document.getElementById(
-      "potential-customers"
-    ).value;
-    const businessmessage4 = document.getElementById(
-      "differ-from-competitors"
-    ).value;
-    const businessmessage5 = document.getElementById("main-competitors").value;
-    const logomessage1 = document.getElementById("logo-idea").value;
-    const logomessage2 = document.getElementById("logo-colours").value;
-    const logomessage3 = document.getElementById("logo-tagline").value;
-    const logomessage4 = document.getElementById("logo-emotions").value;
-    // const logomessage5 = document.getElementById("logo-type").value;
-    const logomessage6 = document.getElementById("logo-appeal").value;
-    const logomessage7 = document.getElementById("logo-budget").value;
-
-    if (!businessmessage1) {
-      document.getElementById("business-1-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 1 is invalid");
-    } else {
-      document.getElementById("business-1-invalid").style.display = "none";
-    }
-
-    if (!businessmessage2) {
-      document.getElementById("business-2-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 2 is invalid");
-    } else {
-      document.getElementById("business-2-invalid").style.display = "none";
-    }
-
-    if (!businessmessage3) {
-      document.getElementById("business-3-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 3 is invalid");
-    } else {
-      document.getElementById("business-3-invalid").style.display = "none";
-    }
-
-    if (!businessmessage4) {
-      document.getElementById("business-4-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 4 is invalid");
-    } else {
-      document.getElementById("business-4-invalid").style.display = "none";
-    }
-
-    if (!businessmessage5) {
-      document.getElementById("business-5-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 5 is invalid");
-    } else {
-      document.getElementById("business-5-invalid").style.display = "none";
-    }
-
-    if (!logomessage1) {
-      document.getElementById("logo-1-invalid").style.display = "block";
-      isValid = false;
-      console.log("Logo Message 1 is invalid");
-    } else {
-      document.getElementById("logo-1-invalid").style.display = "none";
-    }
-
-    if (!logomessage2) {
-      document.getElementById("logo-2-invalid").style.display = "block";
-      isValid = false;
-      console.log("Logo Message 2 is invalid");
-    } else {
-      document.getElementById("logo-2-invalid").style.display = "none";
-    }
-
-    if (!logomessage3) {
-      document.getElementById("logo-3-invalid").style.display = "block";
-      isValid = false;
-      console.log("Logo Message 3 is invalid");
-    } else {
-      document.getElementById("logo-3-invalid").style.display = "none";
-    }
-
-    if (!logomessage4) {
-      document.getElementById("logo-4-invalid").style.display = "block";
-      isValid = false;
-      console.log("Logo Message 4 is invalid");
-    } else {
-      document.getElementById("logo-4-invalid").style.display = "none";
-    }
-
-    // if (!logomessage5) {
-    //   document.getElementById("logo-5-invalid").style.display = "block";
-    //   isValid = false;
-    //   console.log("Logo Message 5 is invalid");
-    // } else {
-    //   document.getElementById("logo-5-invalid").style.display = "none";
-    // }
-
-    if (!logomessage6) {
-      document.getElementById("logo-6-invalid").style.display = "block";
-      isValid = false;
-      console.log("Logo Message 6 is invalid");
-    } else {
-      document.getElementById("logo-6-invalid").style.display = "none";
-    }
-
-    if (!logomessage7) {
-      document.getElementById("logo-7-invalid").style.display = "block";
-      isValid = false;
-      console.log("Logo Message 7 is invalid");
-    } else {
-      document.getElementById("logo-7-invalid").style.display = "none";
-    }
-
-    if (isValid) {
-      console.log("Form is valid");
-      // Proceed with form submission
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-      result.innerHTML = "Please wait...";
-
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      })
-        .then(async (response) => {
-          let json = await response.json();
-          if (response.status == 200) {
-            result.innerHTML =
-              "Thanks, your message has been submitted! We'll get back to you as soon as possible.";
-          } else {
-            console.log(response);
-            result.innerHTML = json.message;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          result.innerHTML = "Something went wrong!";
-        })
-        .then(function () {
-          form.reset();
-          setTimeout(() => {
-            result.style.display = "none";
-          }, 10000);
-        });
-    } else {
-      console.log("Form is invalid. Make sure to fill out all fields.");
-    }
-  });
-});
-
-// website questionnaire form
-
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("Script is running");
-
-  const form = document.getElementById("website");
-  const result = document.getElementById("result");
-
-  form.addEventListener("submit", function (event) {
-    console.log("Form submit event triggered");
-    event.preventDefault(); // Prevent form submission for testing
-
-    // Validation logic
-    let isValid = true;
-
-    // Name validation
-    const name = document.getElementById("name").value;
-    if (!name) {
-      document.getElementById("name-invalid").style.display = "block";
-      isValid = false;
-      console.log("Name is invalid");
-    } else {
-      document.getElementById("name-invalid").style.display = "none";
-    }
-
-    const businessname = document.getElementById("business-name").value;
-    if (!businessname) {
-      document.getElementById("business-name-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business name is invalid");
-    } else {
-      document.getElementById("business-name-invalid").style.display = "none";
-    }
-
-    // Email validation
-    const email = document.getElementById("email").value;
-    const confirmemail = document.getElementById("confirm-email").value;
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!email || !emailPattern.test(email)) {
-      document.getElementById("email-invalid").style.display = "block";
-      isValid = false;
-      console.log("Email is invalid");
-    } else {
-      document.getElementById("email-invalid").style.display = "none";
-    }
-
-    if (email.value !== confirmemail.value) {
-      document.getElementById("confirm-email-invalid").style.display = "block";
-      isValid = false;
-      console.log("Email confirmation is invalid");
-    } else {
-      document.getElementById("confirm-email-invalid").style.display = "none";
-    }
-
-    // Message validation
-    const businessmessage1 = document.getElementById(
-      "what-does-your-business-do"
-    ).value;
-    const businessmessage2 = document.getElementById(
-      "do-you-have-a-website"
-    ).value;
-    const businessmessage3 = document.getElementById(
-      "potential-customers"
-    ).value;
-    const businessmessage4 = document.getElementById(
-      "differ-from-competitors"
-    ).value;
-    const businessmessage5 = document.getElementById("main-competitors").value;
-    const websitemessage1 = document.getElementById("website-purpose").value;
-    const websitemessage2 = document.getElementById("website-logo").value;
-    const websitemessage3 = document.getElementById("website-content").value;
-    const websitemessage4 = document.getElementById("website-hosting").value;
-    const websitemessage5 = document.getElementById("website-likes-1").value;
-    const websitemessage6 = document.getElementById("website-likes-2").value;
-    const websitemessage7 = document.getElementById("website-likes-3").value;
-    const websitemessage8 = document.getElementById("brand-guide").value;
-    const websitemessage9 = document.getElementById("seo-ranking").value;
-    const websitemessage10 = document.getElementById("launch-date").value;
-    const websitemessage11 = document.getElementById("website-budget").value;
-
-    if (!businessmessage1) {
-      document.getElementById("business-1-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 1 is invalid");
-    } else {
-      document.getElementById("business-1-invalid").style.display = "none";
-    }
-
-    if (!businessmessage2) {
-      document.getElementById("business-2-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 2 is invalid");
-    } else {
-      document.getElementById("business-2-invalid").style.display = "none";
-    }
-
-    if (!businessmessage3) {
-      document.getElementById("business-3-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 3 is invalid");
-    } else {
-      document.getElementById("business-3-invalid").style.display = "none";
-    }
-
-    if (!businessmessage4) {
-      document.getElementById("business-4-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 4 is invalid");
-    } else {
-      document.getElementById("business-4-invalid").style.display = "none";
-    }
-
-    if (!businessmessage5) {
-      document.getElementById("business-5-invalid").style.display = "block";
-      isValid = false;
-      console.log("Business Message 5 is invalid");
-    } else {
-      document.getElementById("business-5-invalid").style.display = "none";
-    }
-
-    if (!websitemessage1) {
-      document.getElementById("website-1-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 1 is invalid");
-    } else {
-      document.getElementById("website-1-invalid").style.display = "none";
-    }
-
-    if (!websitemessage2) {
-      document.getElementById("website-2-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 2 is invalid");
-    } else {
-      document.getElementById("website-2-invalid").style.display = "none";
-    }
-
-    if (!websitemessage3) {
-      document.getElementById("website-3-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 3 is invalid");
-    } else {
-      document.getElementById("website-3-invalid").style.display = "none";
-    }
-
-    if (!websitemessage4) {
-      document.getElementById("website-4-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 4 is invalid");
-    } else {
-      document.getElementById("website-4-invalid").style.display = "none";
-    }
-
-    if (!websitemessage5) {
-      document.getElementById("website-5-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 5 is invalid");
-    } else {
-      document.getElementById("website-5-invalid").style.display = "none";
-    }
-
-    if (!websitemessage6) {
-      document.getElementById("website-6-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 6 is invalid");
-    } else {
-      document.getElementById("website-6-invalid").style.display = "none";
-    }
-
-    if (!websitemessage7) {
-      document.getElementById("website-7-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 7 is invalid");
-    } else {
-      document.getElementById("website-7-invalid").style.display = "none";
-    }
-
-    if (!websitemessage8) {
-      document.getElementById("website-8-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 8 is invalid");
-    } else {
-      document.getElementById("website-8-invalid").style.display = "none";
-    }
-
-    if (!websitemessage9) {
-      document.getElementById("website-9-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 9 is invalid");
-    } else {
-      document.getElementById("website-9-invalid").style.display = "none";
-    }
-
-    if (!websitemessage10) {
-      document.getElementById("website-10-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 10 is invalid");
-    } else {
-      document.getElementById("website-10-invalid").style.display = "none";
-    }
-
-    if (!websitemessage11) {
-      document.getElementById("website-11-invalid").style.display = "block";
-      isValid = false;
-      console.log("website Message 11 is invalid");
-    } else {
-      document.getElementById("website-11-invalid").style.display = "none";
-    }
-
-    if (isValid) {
-      console.log("Form is valid");
-      // Proceed with form submission
-      const formData = new FormData(form);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-      result.innerHTML = "Please wait...";
-
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      })
-        .then(async (response) => {
-          let json = await response.json();
-          if (response.status == 200) {
-            result.innerHTML =
-              "Thanks, your message has been submitted! We'll get back to you as soon as possible.";
-          } else {
-            console.log(response);
-            result.innerHTML = json.message;
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          result.innerHTML = "Something went wrong!";
-        })
-        .then(function () {
-          form.reset();
-          setTimeout(() => {
-            result.style.display = "none";
-          }, 10000);
-        });
-    } else {
-      console.log("Form is invalid. Make sure to fill out all fields.");
-    }
-  });
-});
-
-// button enabler
-
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("contact");
-  const messageField = form.querySelector("fieldset textarea");
-  const submitButton = form.querySelector("button[type='submit']");
-
-  function validateMessageLength() {
-    const messageValue = messageField.value.trim();
-    const wordCount = messageValue.split(/\s+/).length;
-
-    if (wordCount >= 5) {
-      submitButton.disabled = false;
-    } else {
-      submitButton.disabled = true;
-    }
-  }
-
-  messageField.addEventListener("input", validateMessageLength);
-});
-
 // remove tilt on mobile devices
-
 function isMobileDevice() {
   return (
     typeof window.orientation !== "undefined" ||
@@ -937,4 +323,42 @@ themeToggle.addEventListener("click", () => {
     : "light";
   localStorage.setItem("theme", newTheme);
 
+});
+
+// top-banner
+document.addEventListener('DOMContentLoaded', function() {
+  const banner = document.querySelector('.top-banner');
+  const content = document.querySelector('.top-banner-content');
+  let isPaused = false;
+
+  // Clone the content to ensure a seamless loop
+  function duplicateContent() {
+      const contentWidth = content.offsetWidth;
+      const bannerWidth = banner.offsetWidth;
+      
+      while (content.offsetWidth < bannerWidth * 2) {
+          content.appendChild(content.firstElementChild.cloneNode(true));
+      }
+  }
+
+  // Animate the banner
+  function animateBanner() {
+      if (!isPaused) {
+          if (content.offsetLeft <= -content.offsetWidth / 2) {
+              content.style.left = '0px';
+          }
+          content.style.left = (content.offsetLeft - 1) + 'px';
+      }
+      requestAnimationFrame(animateBanner);
+  }
+
+  // Pause animation on hover/touch
+  banner.addEventListener('mouseenter', () => isPaused = true);
+  banner.addEventListener('mouseleave', () => isPaused = false);
+  banner.addEventListener('touchstart', () => isPaused = true, {passive: true});
+  banner.addEventListener('touchend', () => isPaused = false);
+
+  // Initialize
+  duplicateContent();
+  animateBanner();
 });
