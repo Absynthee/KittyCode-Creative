@@ -3,7 +3,7 @@
 <footer class="fade-content">
         <div class="grid2">
             <div class="large">
-                <h3>KittyCode&nbsp;Creative</h3>
+                <span class="footer-title">KittyCode&nbsp;Creative</span>
                 <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
                 <div class="socials">
                     <div class="social-box"><a href="https://www.facebook.com/KittyCodeCreative" target="_blank">
@@ -49,7 +49,7 @@
 
         <div class="small">
             <div class="grid2">
-                <h3>KittyCode&nbsp;Creative</h3>
+                <span class="footer-title">KittyCode&nbsp;Creative</span>
                 <p><a href="mailto:meow@kittycodecreative.com">meow@kittycodecreative.com</a></p>
                 <div class="socials">
                     <div class="social-box"><a href="https://www.facebook.com/KittyCodeCreative" target="_blank"
