@@ -323,6 +323,7 @@ html {
   font-family: var(--body);
   font-size: var(--responsive-text);
   transition: all 0.5s ease-out;
+  overflow-x: hidden;
 }
 
 /* navigation */
@@ -345,6 +346,7 @@ nav {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   padding-inline: var(--spacing-7);
   margin: auto;
   z-index: 4;
