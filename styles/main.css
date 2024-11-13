@@ -206,6 +206,15 @@ a:hover {
   color: light-dark(var(--primary-color-2), var(--primary-color-1));
 }
 
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
 h1,
 .section-title {
   font-size: 2.5rem;
@@ -322,7 +331,8 @@ html {
   background-color: light-dark(var(--white), var(--black));
   font-family: var(--body);
   font-size: var(--responsive-text);
-  transition: all 0.5s ease-out;
+  /* transition: all 0.5s ease-out; */
+  overflow-x: hidden;
 }
 
 /* navigation */
@@ -337,7 +347,7 @@ nav {
   height: 100px;
   align-content: center;
   margin-block-end: 50px;
-  transition: all 0.5s;
+  /* transition: all 0.5s; */
   user-select: none;
 }
 
@@ -345,6 +355,7 @@ nav {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   padding-inline: var(--spacing-7);
   margin: auto;
   z-index: 4;
@@ -379,10 +390,12 @@ nav {
     align-items: center;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: all 0.5s;
+    /* transition: all 0.5s; */
 
     a {
       position: relative;
+      color: light-dark(var(--black), var(--white));
+
       transition: all 0.5s;
       width: fit-content;
     }
@@ -1566,11 +1579,11 @@ input[type="radio"].toggle {
 
 .portfolio-image {
   position: relative;
-  height: 700px;
+  height: inherit;
   width: 100%;
   overflow: hidden;
   border-radius: 25px 25px 0 0;
-  box-shadow: 0 12px 48px 2px var(--primary-color-2-20);
+  box-shadow: 0 0px 24px 2px var(--primary-color-2-20);
   transition: all 1s;
 
   img {
@@ -1578,7 +1591,7 @@ input[type="radio"].toggle {
     transition: transform 1s;
 
     &:hover {
-      transform: scale(125%);
+      transform: scale(110%);
     }
   }
 
@@ -1590,7 +1603,7 @@ input[type="radio"].toggle {
 .portfolio-image-small,
 .blog-image-small {
   position: relative;
-  height: 400px;
+  height: inherit;
   width: 100%;
   overflow: hidden;
   border-radius: 25px;
@@ -1646,7 +1659,7 @@ input[type="radio"].toggle {
 
 .portfolio-image-small:hover img,
 .blog-image-small:hover img {
-  transform: scale(125%);
+  transform: scale(110%);
 }
 
 .portfolio-image-small:hover::before,
@@ -2096,6 +2109,7 @@ fieldset {
   list-style: none;
   margin-block-start: -1rem;
   margin-block-end: 1rem;
+  color: light-dark(var(--neutral-color-1), var(--neutral-color-3));
 
   li {
     position: relative;
@@ -2107,7 +2121,7 @@ fieldset {
       position: absolute;
       content: url(../images/icons/tick.svg);
       margin-inline-end: var(--spacing-2);
-      top: -21px;
+      top: -19px;
       left: -36px;
     }
   }
@@ -2626,8 +2640,12 @@ fieldset > .one-column {
     padding-block-start: 0;
   }
 
+  .website-portfolios {
+    flex-wrap: wrap;
+  }
+
   .portfolio-image {
-    height: 650px;
+    height: inherit;
   }
 
   .contact-page {
@@ -3071,5 +3089,11 @@ fieldset > .one-column {
 
   .grid1 {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .portfolio-image {
+    height: 400px;
   }
 }

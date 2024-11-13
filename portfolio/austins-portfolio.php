@@ -98,9 +98,9 @@
             <div class="website-portfolios fade-content">
 
                 <div class="portfolio-container">
-                    <a href="austins-portfolio">
-                        <div class="portfolio-image-small" data-text="Austin's Portfolio">
-                            <img src="../images/portfolio-austinspillman.jpg" alt="Austin's Portfolio Website Preview">
+                    <a href="ctrlaltcookie">
+                        <div class="portfolio-image-small" data-text="CtrlAltCookie">
+                            <img src="../images/portfolio-ctrlaltcookie_small.jpg" alt="Cookie's Website Preview">
                         </div>
                     </a>
                 </div>
@@ -108,7 +108,7 @@
                 <div class="portfolio-container">
                     <a href="beyond-the-tavern">
                         <div class="portfolio-image-small" data-text="Beyond the Tavern">
-                            <img src="../images/portfolio-beyondthetavern.jpg" alt="Beyond the Tavern Website Preview">
+                            <img src="../images/portfolio-beyondthetavern_small.jpg" alt="Beyond the Tavern Website Preview">
                         </div>
                     </a>
                 </div>

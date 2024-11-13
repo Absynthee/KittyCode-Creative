@@ -60,7 +60,7 @@
 
     <?php include 'includes/navigation.php' ?>
 
-    <div class="top-banner">
+    <div class="top-banner visually-hidden">
         <div class="top-banner-content">
             <a href="https://www.instagram.com/p/DBCGTN3sqww/" target="_blank"><span>Website Giveaway is over! Check out the results on Instagram.</span></a>
         </div>
@@ -413,7 +413,20 @@
 
                 <div class="portfolio-container">
                     <div class="portfolio-image">
-                        <img src="images/portfolio-austinspillman.jpg" alt="Website Preview">
+                        <img src="images/portfolio-ctrlaltcookie_small.jpg" alt="Cookie's website preview">
+                    </div>
+                    <div class="portfolio-text">
+                        <a href="portfolio/ctrlaltcookie">
+                            <span class="span-title">CtrlAltCookie</span>
+            </a>
+            <p>This website for Cookie is a hub for all of her content, social media and contact information. It shows stats and links from all of the platforms she is on, as well as a banner which appears when she is live on Twitch. There's also a page dedicated to fan art, which is pulled directly from Bluesky.</p>
+        </div>
+        </div>
+
+
+                <div class="portfolio-container">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-austinspillman_small.jpg" alt="Website Preview">
                     </div>
                     <div class="portfolio-text">
                         <a href="portfolio/austins-portfolio">
@@ -429,7 +442,7 @@
 
                 <div class="portfolio-container">
                     <div class="portfolio-image">
-                        <img src="images/portfolio-beyondthetavern.jpg" alt="Website Preview">
+                        <img src="images/portfolio-beyondthetavern_small.jpg" alt="Website Preview">
                     </div>
                     <div class="portfolio-text">
                         <a href="portfolio/beyond-the-tavern">
@@ -469,15 +482,14 @@
                             website. Every part was so well thought out, and I appreciated them going the extra mile to
                             add in the interactive and animated elements I asked for. To any startup small business,
                             entrepreneur, or influencer looking for a responsive, fast and aesthetically pleasing
-                            website, I'd definitely recommend Kitty Code Creative! 😺</p>
+                            website, I'd definitely recommend KittyCode Creative! 😺</p>
                         <span class="span-title">Rose Butcher, Beyond the Tavern</span>
                     </blockquote>
 
-                    <!-- <blockquote class="quote"> <img src="images/logo_2.png" alt="Testimonial Author" />
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                            laudantium, totam rem aperiam.</p>
-                        <span class="span-title">Author, Site</span>
-                    </blockquote> -->
+                    <blockquote class="quote"> <img src="images/reviews/ctrlaltcookie.jpg" alt="Testimonial Author" />
+                        <p>Working with KittyCode Creative on my website was easy and fluid, they responded to my requests the same day and pitched in a lot of ideas that ended up being better than what I'd come up with anyway. The website they've made me is now my landing pad for everyone on the internet to get to know me as a brand so I'm beyond thrilled with how it's all turned out.</p>
+                        <span class="span-title">Cookie, CtrlAltCookie</span>
+                    </blockquote>
                 </div>
             </div>
 

@@ -278,7 +278,7 @@
     /* flex-wrap: wrap; */
     justify-content: center;
     gap: var(--spacing-3);
-    margin-bottom: calc(var(--spacing-10) * 2);
+    margin-bottom: calc(var(--spacing-6) * 2);
   }
 }
 
@@ -292,7 +292,7 @@
     flex-wrap: wrap;
     gap: var(--spacing-4);
     justify-content: center;
-    margin-bottom: calc(var(--spacing-10) * 2);
+    margin-bottom: calc(var(--spacing-6) * 2);
   }
 }
 

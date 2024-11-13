@@ -78,6 +78,8 @@
             <div class="tag">accessibility</div>
             <div class="tag">coding</div>
             <div class="tag">ai</div>
+            <div class="tag">social media</div>
+
         </div>
 
         <!-- Latest Post -->
@@ -87,22 +89,17 @@
             <div class="grid-images fade-content">
                 <div class="grid-item blog-container latest-post">
                     <div class="latest-post-image">
-                        <a href="blog/why-every-business-needs-a-website">
-                            <img class="blog-image" src="./images/blog/every-business-website.jpg"
+                        <a href="blog/website-giveaway-reflection">
+                            <img class="blog-image" src="./images/blog/website-giveaway-reflection.jpg"
                                 alt="Modern CSS in Web Design"></a>
                     </div>
                     <div class="blog-details">
-                        <h3 class="blog-title">Why Every Business Needs a Website: The Modern Key to Success</h3>
+                        <h3 class="blog-title">Reflecting on Our Website Giveaway</h3>
                         <div class="blog-tags">
+                            <div class="tag">social media</div>
                             <div class="tag">business</div>
-                            <div class="tag">web design agency</div>
                         </div>
-                        <p class="blog-description">In today's digital landscape, having a website is no longer a luxury;
-                        it’s a necessity. Whether you're a small local business, a startup, or an established company,
-                        your online presence plays a crucial role in your success. While social media can be a valuable
-                        tool for customer engagement, relying solely on it could mean missing out on many benefits that
-                        a professional website offers. Let’s dive into why every business, no matter the size, should
-                        have a website.
+                        <p class="blog-description">A little while ago, we hosted our first website giveaway! The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, and give someone the opportunity to win a professionally crafted website, valued close to £1000. While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled with the diversity and uniqueness of those entries.
                         </p>
                     </div>
                 </div>
@@ -131,6 +128,23 @@
                 </div>
             </div> -->
                 <!-- card end -->
+
+                   <div class="grid-item blog-container">
+                    <a href="blog/website-giveaway-reflection">
+                        <img class="blog-image" src="./images/blog/website-giveaway-reflection.jpg"
+                            alt="img alt">
+                        <div class="blog-details">
+                            <h3 class="blog-title">Reflecting on Our Website Giveaway 🎉</h3>
+                    </a>
+                    <div class="blog-tags">
+                        <div class="tag">social media</div>
+                        <div class="tag">business</div>
+                    </div>
+
+                    <p class="blog-description">A little while ago, we hosted our first website giveaway! The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, and give someone the opportunity to win a professionally crafted website, valued close to £1000. While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled with the diversity and uniqueness of those entries..</p>
+                </div>
+            </div>
+
                 <div class="grid-item blog-container">
                     <a href="blog/why-every-business-needs-a-website">
                         <img class="blog-image" src="./images/blog/every-business-website.jpg" alt="img alt">

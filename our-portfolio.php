@@ -79,32 +79,39 @@
         <section class="our-portfolio fade-content">
             <div class="website-portfolios fade-content">
 
-                <a href="portfolio/austins-portfolio">
-                    <div class="portfolio-container">
+                <div class="portfolio-container">
+                        <a href="portfolio/ctrlaltcookie">
                         <div class="portfolio-image">
-                            <img src="images/portfolio-austinspillman.jpg" alt="Austin's Portfolio website preview">
+                            <img src="images/portfolio-ctrlaltcookie_small.jpg" alt="Cookie's website preview">
+                        </div>
+                        <div class="portfolio-text">
+                            <h3>CtrlAltCookie</h3>
+                </a>
+                <p>This website for Cookie is a hub for all of her content, social media and contact information. It shows stats and links from all of the platforms she is on, as well as a banner which appears when she is live on Twitch. There's also a page dedicated to fan art, which is pulled directly from Bluesky.</p>
+            </div>
+            </div>
+
+                    <div class="portfolio-container">
+                        <a href="portfolio/austins-portfolio">
+                        <div class="portfolio-image">
+                            <img src="images/portfolio-austinspillman_small.jpg" alt="Austin's Portfolio website preview">
                         </div>
                         <div class="portfolio-text">
                             <h3>Austin's Portfolio</h3>
                 </a>
-                <p>A bespoke and unique portfolio website for the founder of KittyCode Creative. The website was
-                    designed to show off Austin's creative and front-end development expertise. The brief was to
-                    create a sleek, modern, dark website that was easy on the eyes and a perfect viewing experience
-                    for oled displays.</p>
+                <p>A bespoke and unique portfolio website for the founder of KittyCode Creative. The website was  designed to show off Austin's creative and front-end development expertise. The brief was to create a sleek, modern, dark website that was easy on the eyes and a perfect viewing experience for oled displays.</p>
             </div>
             </div>
 
-            <a href="portfolio/beyond-the-tavern">
                 <div class="portfolio-container">
+                    <a href="portfolio/beyond-the-tavern">
                     <div class="portfolio-image">
-                        <img src="images/portfolio-beyondthetavern.jpg" alt="Beyond the Tavern website preview">
+                        <img src="images/portfolio-beyondthetavern_small.jpg" alt="Beyond the Tavern website preview">
                     </div>
                     <div class="portfolio-text">
                         <h3>Beyond The Tavern</h3>
             </a>
-            <p>Rose at Beyond the Tavern wanted a website to showcase the artwork she creates for her Etsy shop
-                of the same name. The website was designed to be one page layout plus a blog page so that all of
-                the information was easily reachable in one place!</p>
+            <p>Rose at Beyond the Tavern wanted a website to showcase the artwork she creates for her Etsy shop of the same name. The website was designed to be one page layout plus a blog page so that all of the information was easily reachable in one place!</p>
             </div>
             </div>
 

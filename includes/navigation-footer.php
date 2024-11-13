@@ -40,12 +40,13 @@
                 <a href="<?php echo BASE_URL . '/our-blog' ?>">
                     <h4>Blog</h4>
                 </a>
+                <a href="<?php echo BASE_URL . '/blog/website-giveaway-reflection' ?>">Reflecting On Our Website Giveaway</a>
                 <a href="<?php echo BASE_URL . '/blog/why-every-business-needs-a-website' ?>">Why Every Business Needs a Website</a>
                 <a href="<?php echo BASE_URL . '/blog/lights-out-dark-theme' ?>">Introducing Our New Dark Mode</a>
                 <a href="<?php echo BASE_URL . '/blog/the-role-of-ai-in-web-design' ?>">The Role of AI in Web Design</a>
                 <a href="<?php echo BASE_URL . '/blog/the-power-of-modern-css' ?>">The Power of Modern CSS</a>
                 <a href="<?php echo BASE_URL . '/blog/the-human-behind-kittycode-creative' ?>">The Human Behind KittyCode Creative</a>
-                <a href="<?php echo BASE_URL . '/blog/the-launch-of-a-new-digital-web-design-agency' ?>">The Launch of KittyCode Creative</a>
+                <!-- <a href="<?php echo BASE_URL . '/blog/the-launch-of-a-new-digital-web-design-agency' ?>">The Launch of KittyCode Creative</a> -->
                 <!-- <a href="<?php echo BASE_URL . '/blog/benefits-of-hand-coding-your-website' ?>">The Benefits of Hand-Coding Your Website</a> -->
             </div>
         </div>
