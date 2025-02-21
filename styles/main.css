@@ -2187,8 +2187,13 @@ fieldset {
 }
 
 main.blog-post {
+  padding-inline: var(--spacing-3);
+  transition: all 0.3s ease;
+
   .hero {
+    padding: 0;
     padding-block-end: var(--spacing-4);
+    margin: 0;
   }
 
   .hero-text {
@@ -3116,6 +3121,10 @@ fieldset > .one-column {
         }
       }
     }
+  }
+
+  main.blog-post {
+    padding-inline: var(--spacing-2);
   }
 
   .footer-nav {
