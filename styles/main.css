@@ -899,7 +899,7 @@ main {
   display: flex;
   width: 100%;
   max-width: 1920px;
-  min-height: 700px;
+  min-height: 640px;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-4);
@@ -1716,7 +1716,7 @@ input[type="radio"].toggle {
 .testimonial-container {
   position: relative;
   max-width: 1000px;
-  padding: var(--spacing-10) 0 var(--spacing-5) 0;
+  padding: var(--spacing-2) 0 var(--spacing-2) 0;
 }
 
 .testimonial-blur {

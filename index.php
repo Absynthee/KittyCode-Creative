@@ -78,12 +78,9 @@
                 <label for="hero">Welcome to KittyCode Creative.</label>
                 <h1 class="section-title">Eastbourne Web Design</h1>
                 <div class="hero-description fade-content">
-                    <p>KittyCode Creative is a <sparkly-text
-                            style="--sparkly-text-size: 2.5em"><strong>brand-new</strong></sparkly-text> digital
-                        creative agency based in Eastbourne, East Sussex. We specialise in creating beautiful and
-                        professional bespoke web design, front-end web development and design solutions. Contact us
-                        today to get your own website designed and hosted from as little as <strong
-                            class="nobreak">£40/month</strong>.</p>
+                    <p>KittyCode Creative is a modern<sparkly-text style="--sparkly-text-color: yellow"><strong>web design</strong></sparkly-text> 
+                    agency based in Eastbourne, East Sussex. We specialise in creating beautiful and professional bespoke web design, 
+                    front-end web development and design solutions. Check out our portfolio below, or contact us for more information.</p>
                 </div>
 
                 <div class="hero-buttons">
