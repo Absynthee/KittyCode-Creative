@@ -45,32 +45,22 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>The Role of AI in Web Design and Development: A Game Changer or Just a Tool?</h1>
+                <p class="date-type">28 August 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">28 August 2024</p>
-                    <div class="tags">
-                        <div class="tag">web design</div>
-                        <div class="tag">ai</div>
-                    </div>
-
                     <p>Artificial Intelligence (AI) has been making waves in almost every industry, and web design and
                         development is no exception. From automating repetitive tasks to enhancing user experiences, AI
                         is changing how websites are built and maintained. But is it the next big thing, or just a
                         helpful tool? Let’s take a closer look at how AI is shaping the web design landscape.</p>
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/blog/ai-web-design-secondary.jpg" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">

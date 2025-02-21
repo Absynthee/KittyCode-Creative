@@ -62,21 +62,15 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>Why Every Business Needs a Website: The Modern Key to Success</h1>
+                <p class="date-type">18 September 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">18 September 2024</p>
-                    <div class="tags">
-                        <div class="tag">business</div>
-                        <div class="tag">web design agency</div>
-                    </div>
-
                     <p>In today's digital landscape, having a website is no longer a luxury; it’s a necessity. Whether
                         you're a small local business, a startup, or an established company, your online presence plays
                         a crucial role in your success. While social media can be a valuable tool for customer
@@ -84,12 +78,8 @@
                         website offers. Let’s dive into these 8 reasons why every business, no matter the size, should have a website.
                     </p>
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/blog/every-business-website-secondary.png" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">

@@ -45,31 +45,20 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>The Human Behind KittyCode Creative (Not a Cat?)</h1>
+                <p class="date-type">14 August 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">14 August 2024</p>
-                    <div class="tags">
-                        <div class="tag">business</div>
-                        <div class="tag">web design agency</div>
-                    </div>
-
                     <p>KittyCode Creative isn't run by cats alone. Meet Austin Spillman, the human and sole developer
                         behind the new web design agency KittyCode Creative.</p>
-
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/blog/austin-secondary.png" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">

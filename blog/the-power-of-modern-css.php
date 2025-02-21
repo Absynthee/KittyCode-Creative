@@ -45,31 +45,21 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>The Power of Modern CSS: A Game-Changer for Web Design</h1>
+                <p class="date-type">21 August 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">21 August 2024</p>
-                    <div class="tags">
-                        <div class="tag">web design</div>
-                        <div class="tag">coding</div>
-                    </div>
-
                     <p>If you've ever wondered how websites get their beautiful layouts, fonts, colours, and interactive
                         features, the answer lies in CSS. But what exactly is CSS, and why is it such a big deal in
                         today’s web design world? Let’s break it down.</p>
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/blog/css-secondary.jpg" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">

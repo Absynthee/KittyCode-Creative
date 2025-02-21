@@ -45,32 +45,22 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>Why Accessibility Matters in Web Design: A Personal Perspective from KittyCode Creative</h1>
+                <p class="date-type">02 August 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">02 August 2024</p>
-                    <div class="tags">
-                        <div class="tag">web design</div>
-                        <div class="tag">accessibility</div>
-                    </div>
-
                     <p>At KittyCode Creative, we’re passionate about making the web a place where everyone feels welcome
                         and included. As a digital web design agency, we’re committed to creating websites that are not
                         only visually stunning but also accessible to all. Here’s why accessibility in web design is so
                         important to us and how it can benefit your business.</p>
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/blog/web-accessibility-secondary.jpg" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">

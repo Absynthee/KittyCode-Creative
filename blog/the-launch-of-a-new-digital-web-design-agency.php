@@ -47,31 +47,21 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>Announcing the Launch of a New Digital Web Design Agency</h1>
+                <p class="date-type">05 August 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">05 August 2024</p>
-                    <div class="tags">
-                        <div class="tag">web design agency</div>
-                        <div class="tag">business</div>
-                    </div>
-
                     <p>We are excited to announce the launch of a new digital web design agency based in Eastbourne,
                         East Sussex, dedicated to delivering bespoke web design, front-end development, and creative
                         solutions tailored to your needs.</p>
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/kittycode_logo.svg" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">

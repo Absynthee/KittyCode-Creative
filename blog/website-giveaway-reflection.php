@@ -50,30 +50,20 @@
     <?php include '../includes/navigation.php' ?>
     <div class="blur1"></div>
 
-    <main>
-
+    <main class="blog-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
                 <h1>Reflecting on Our Website Giveaway 🎉</h1>
+                <p class="date-type">05 November 2024</p>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">05 November 2024</p>
-                    <div class="tags">
-                        <div class="tag">social media</div>
-                        <div class="tag">business</div>
-                    </div>
-
                     <p>A little while ago, we hosted our first website giveaway! The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, and give someone the opportunity to win a professionally crafted website, valued close to £1000. While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled with the diversity and uniqueness of those entries.
                     </p>
                 </div>
+                <hr>
             </div>
-
-            <div class="hero-img full-width">
-                <img src="../images/blog/website-giveaway-reflection-secondary.jpg" alt="">
-            </div>
-
         </div>
 
         <section class="full-text">
