@@ -189,7 +189,7 @@
                 <div class="portfolio-container">
                     <a href="the-human-behind-kittycode-creative">
                         <div class="portfolio-image-small" data-text="The Human Behind KittyCode Creative">
-                            <img src="../images/blog/austin-secondary.jpg" alt="">
+                            <img src="../images/blog/austin-secondary.png" alt="">
                             <p>The Launch of KittyCode Creative</p>
                         </div>
                     </a>

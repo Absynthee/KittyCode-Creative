@@ -9,7 +9,7 @@
     <meta property="og:title" content="The Human Behind KittyCode Creative | KittyCode Creative" />
     <meta property="og:description"
         content="KittyCode Creative isn't run by cats alone. Meet Austin Spillman, the human behind the new web design agency." />
-    <meta property="og:image" content="https://kittycodecreative.com/images/blog/austin-secondary.jpg" />
+    <meta property="og:image" content="https://kittycodecreative.com/images/blog/austin-secondary.png" />
     <meta property="og:url" content="https://kittycodecreative.com/blog/the-human-behind-kittycode-creative" />
     <meta property="og:type" content="article" />
     <title>The Human Behind KittyCode Creative - Blog | KittyCode Creative</title>
