@@ -42,23 +42,12 @@
     <link rel="stylesheet" href="styles/button.css">
     <link rel="stylesheet" href="styles/card.css">
     <link rel="canonical" href="https://www.kittycodecreative.com">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-ZSCGN3WZR0');
-    </script>
-    <!-- Google tag end -->
-    <!-- Facebook tag -->
-    <meta name="facebook-domain-verification" content="u5px9xlv79fcbyx51ynvlt64qrsjj2" />
-    <!-- Facebook tag end -->
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/analytics.php'; ?>
 </head>
 
-<body>
+<body style="display: block;">
 
-    <?php include 'includes/navigation.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
 
     <div class="top-banner visually-hidden">
         <div class="top-banner-content">
@@ -66,11 +55,12 @@
         </div>
     </div>
 
-    <div class="blur-container">
+    <!-- <div class="blur-container">
         <div class="blur1"></div>
         <div class="blur2"></div>
         <div class="blur2"></div>
-    </div>
+    </div> -->
+
     <main>
 
         <div class="hero fade-content">
@@ -78,7 +68,7 @@
                 <label for="hero">Welcome to KittyCode Creative.</label>
                 <h1 class="section-title">Eastbourne Web Design</h1>
                 <div class="hero-description fade-content">
-                    <p>KittyCode Creative is a modern<sparkly-text style="--sparkly-text-color: yellow"><strong>web design</strong></sparkly-text> 
+                    <p>KittyCode Creative is a modern <sparkly-text style="--sparkly-text-color: yellow"><strong>web design</strong></sparkly-text> 
                     agency based in Eastbourne, East Sussex. We specialise in creating beautiful and professional bespoke web design, 
                     front-end web development and design solutions. Check out our portfolio below, or contact us for more information.</p>
                 </div>
@@ -141,8 +131,8 @@
         </section>
 
         <section class="what-we-do fade-content" id="what-we-do">
-            <div class="blur3"></div>
-            <div class="blur3"></div>
+            <!-- <div class="blur3"></div>
+            <div class="blur3"></div> -->
             <div class="section-text fade-content">
                 <label for="what-we-do">Unleash your inner cat.</label>
                 <h2 class="section-title">What We Do</h2>
@@ -394,8 +384,8 @@
         </section>
 
         <section class="our-portfolio fade-content" id="our-portfolio">
-            <div class="blur4"></div>
-            <div class="blur4"></div>
+            <!-- <div class="blur4"></div>
+            <div class="blur4"></div> -->
             <div class="section-text centered fade-content">
                 <label for="our-portfolio">How do you like us meow?</label>
                 <a href="portfolio">
@@ -471,7 +461,7 @@
             </div>
 
             <div class="testimonial-container">
-                <div class="testimonial-blur"></div>
+                <!-- <div class="testimonial-blur"></div> -->
                 <div class="quoteLoop">
                     <blockquote class="quote"> <img src="images/reviews/beyond-the-tavern.jpg"
                             alt="Testimonial Author" />
@@ -493,8 +483,8 @@
         </section>
 
         <section class="our-faqs fade-content" id="our-faqs">
-            <div class="blur5"></div>
-            <div class="blur5"></div>
+            <!-- <div class="blur5"></div>
+            <div class="blur5"></div> -->
             <div class="section-text fade-content">
                 <label for="our-faqs">These look fur-miliar...</label>
                 <a href="faq" class="centered">
@@ -540,8 +530,8 @@
         </section>
 
         <section class="contact-us fade-content" id="contact-us">
-            <div class="blur6"></div>
-            <div class="blur6"></div>
+            <!-- <div class="blur6"></div>
+            <div class="blur6"></div> -->
             <div class="section-text fade-content">
                 <label for="contact-us">Whisker me away.</label>
                 <a href="contact">
@@ -582,7 +572,7 @@
 
                         <fieldset>
                             <legend><label for="message">Your Message</label></legend>
-                            <textarea placeholder="Type your Message Here..." name="message" id="message"
+                            <textarea placeholder="Leave a message. The button will be active after you type 5 words!" name="message" id="message"
                                 required></textarea>
                             <div class="invalid" id="message-invalid">
                                 Leave us a nice message. Let us know what you're after.
@@ -615,8 +605,8 @@
 
     <div class="footer-top"></div>
 
-    <?php include 'includes/navigation-footer.php' ?>
-    <?php include 'includes/cookie-banner.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation-footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cookie-banner.php'; ?>
 
 </body>
 

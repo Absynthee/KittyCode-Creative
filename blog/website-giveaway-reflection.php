@@ -17,7 +17,7 @@
     <meta name="twitter:description"
         content="We hosted our first website giveaway! Read our blog post to find out our thoughts on the outcome and find out who won.">
     <meta name="twitter:image" content="https://www.kittycodecreative.com/images/blog/website-giveaway-reflection.jpg">
-    <title>Reflecting on Our Website Giveaway 🎉 - Blog | KittyCode Creative</title>
+    <title>Reflecting on Our Website Giveaway - Blog | KittyCode Creative</title>
     <link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
     <link rel="icon" type="image/png" sizes="192x192" href="../favicon-192x192.png">
     <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../favicon-180x180.png">
@@ -33,22 +33,13 @@
     <link rel="stylesheet" href="../styles/button.css">
     <link rel="stylesheet" href="../styles/card.css">
     <link rel="canonical" href="https://www.kittycodecreative.com/blog/website-giveaway-reflection">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZSCGN3WZR0');
-    </script>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/analytics.php'; ?>
 </head>
 
 <body>
 
-    <?php include '../includes/navigation.php' ?>
-    <div class="blur1"></div>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
+    <!-- <div class="blur1"></div> -->
 
     <main class="blog-post">
 
@@ -56,7 +47,7 @@
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="../our-blog">&mapstoleft; back to blogs</a></div>
                 <label hidden for="hero">Blog Post</label>
-                <h1>Reflecting on Our Website Giveaway 🎉</h1>
+                <h1>Reflecting on Our Website Giveaway</h1>
                 <p class="date-type">05 November 2024</p>
                 <div class="hero-description gap fade-content">
                     <p>A little while ago, we hosted our first website giveaway! The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, and give someone the opportunity to win a professionally crafted website, valued close to £1000. While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled with the diversity and uniqueness of those entries.
@@ -141,8 +132,8 @@
 
     <div class="footer-top"></div>
 
-    <?php include '../includes/navigation-footer.php' ?>
-    <?php include '../includes/cookie-banner.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation-footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cookie-banner.php'; ?>
 
 </body>
 

@@ -27,23 +27,14 @@
     <link rel="stylesheet" href="./styles/button.css">
     <link rel="stylesheet" href="./styles/card.css">
     <link rel="canonical" href="https://www.kittycodecreative.com/our-blog">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZSCGN3WZR0');
-    </script>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/analytics.php'; ?>
 </head>
 
 <body>
 
-    <?php include 'includes/navigation.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
 
-    <div class="blur1"></div>
+    <!-- <div class="blur1"></div> -->
 
     <main>
 
@@ -71,7 +62,7 @@
             </div>
         </div>
 
-        <div class="tags wrap">
+        <!-- <div class="tags wrap">
             <div class="tag">web design agency</div>
             <div class="tag">business</div>
             <div class="tag">web design</div>
@@ -80,7 +71,7 @@
             <div class="tag">ai</div>
             <div class="tag">social media</div>
 
-        </div>
+        </div> -->
 
         <!-- Latest Post -->
 
@@ -299,8 +290,8 @@
 
     <div class="footer-top"></div>
 
-    <?php include 'includes/navigation-footer.php' ?>
-    <?php include 'includes/cookie-banner.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation-footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cookie-banner.php'; ?>
 
 </body>
 

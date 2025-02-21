@@ -28,22 +28,13 @@
     <link rel="stylesheet" href="../styles/button.css">
     <link rel="stylesheet" href="../styles/card.css">
     <link rel="canonical" href="https://www.kittycodecreative.com/blog/the-power-of-modern-css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-ZSCGN3WZR0');
-    </script>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/analytics.php'; ?>
 </head>
 
 <body>
 
-    <?php include '../includes/navigation.php' ?>
-    <div class="blur1"></div>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
+    <!-- <div class="blur1"></div> -->
 
     <main class="blog-post">
 
@@ -229,8 +220,8 @@
 
     <div class="footer-top"></div>
 
-    <?php include '../includes/navigation-footer.php' ?>
-    <?php include '../includes/cookie-banner.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation-footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cookie-banner.php'; ?>
 
 </body>
 

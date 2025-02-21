@@ -346,7 +346,7 @@ nav {
   left: 0;
   height: 100px;
   align-content: center;
-  margin-block-end: 50px;
+  margin-block-end: var(--spacing-6);
   /* transition: all 0.5s; */
   user-select: none;
 }
@@ -692,6 +692,9 @@ nav {
 
 body {
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* background blurs */
@@ -804,7 +807,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
+  margin: 0 auto auto auto;
 }
 
 /* hero & generic */
@@ -881,7 +884,7 @@ main {
 
 @media screen and (max-width: 800px) {
   .hero-cat {
-    height: 80vw;
+    /* height: 80vw; */
     max-height: 600px;
   }
 }
@@ -1041,7 +1044,7 @@ main {
 .blurbs {
   display: flex;
   justify-content: center;
-  width: 98%;
+  width: 100%;
   max-width: 1880px;
   gap: var(--spacing-4);
   border-radius: 2rem;
@@ -1086,6 +1089,15 @@ main {
 }
 
 /* why us  */
+
+.why-choose-us,
+.our-portfolio {
+  background-color: light-dark(
+    var(--accent-color-3-10),
+    var(--primary-color-1-10)
+  );
+  border-radius: 2rem;
+}
 
 .phone-container {
   position: relative;
@@ -1788,6 +1800,10 @@ input[type="radio"].toggle {
 
 /* faqs */
 
+.our-faqs {
+  flex-direction: row-reverse;
+}
+
 .faq {
   display: flex;
   flex-direction: column;
@@ -2284,10 +2300,10 @@ main.blog-post {
 
 .footer-top {
   background-image: url(../images/footer-top.png);
-  background-position: center;
+  background-position: bottom;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: bottom;
+  margin-top: auto;
   width: 100%;
   height: 200px;
 }
@@ -2822,6 +2838,10 @@ fieldset > .one-column {
     margin: auto;
   }
 
+  nav {
+    margin-block-end: var(--spacing-5);
+  }
+
   .mobile-menu {
     display: block;
     position: absolute;
@@ -2892,7 +2912,7 @@ fieldset > .one-column {
 
   .section-img {
     margin-block: var(--spacing-5);
-    min-width: 75%;
+    min-width: 200px;
     margin-inline-start: 0%;
     margin-inline-end: 0%;
     justify-content: center;
@@ -2939,6 +2959,11 @@ fieldset > .one-column {
   .blurbs {
     flex-direction: column;
     justify-content: center;
+    width: 90%;
+  }
+
+  .why-choose-us,
+  .our-portfolio {
     width: 90%;
   }
 
@@ -3117,6 +3142,17 @@ fieldset > .one-column {
           justify-content: center;
         }
       }
+    }
+  }
+
+  .blurbs {
+    gap: var(--spacing-2);
+  }
+
+  .blurb-container,
+  .about-blurb {
+    img {
+      width: 40px;
     }
   }
 

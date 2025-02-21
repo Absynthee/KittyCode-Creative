@@ -103,8 +103,8 @@
 
 <body>
 
-    <?php include 'includes/navigation.php' ?>
-    <div class="blur1"></div>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
+    <!-- <div class="blur1"></div> -->
 
     <main>
 
@@ -131,8 +131,8 @@
 
     <div class="footer-top"></div>
 
-    <?php include 'includes/navigation-footer.php' ?>
-    <?php include 'includes/cookie-banner.php' ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation-footer.php'; ?>
+    <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/cookie-banner.php'; ?>
 
 </body>
 
