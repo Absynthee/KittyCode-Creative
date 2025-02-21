@@ -1882,14 +1882,14 @@ fieldset {
 
 .invalid {
   display: none;
-  color: light-dark(#ce1010 , red);
+  color: light-dark(#ce1010, red);
   font-style: italic;
   font-variant-caps: all-petite-caps;
   font-weight: 600;
 }
 
 .error-border {
-  border: 2px solid light-dark(#ce1010 , red) !important;
+  border: 2px solid light-dark(#ce1010, red) !important;
 }
 
 .contact-img {
@@ -2183,6 +2183,41 @@ fieldset {
   .tag {
     gap: 16px;
     margin-block-end: var(--spacing-3);
+  }
+}
+
+main.blog-post {
+  .hero {
+    padding-block-end: var(--spacing-4);
+  }
+
+  .hero-text {
+    max-width: 82ch;
+    width: 100%;
+  }
+
+  .date-type {
+    margin-block-start: unset;
+    font-size: 0.8rem;
+  }
+
+  .hero-description {
+    max-width: 100%;
+    padding-block: var(--spacing-4);
+  }
+
+  .full-text {
+    width: unset;
+    padding-top: 0;
+    max-width: 82ch;
+    padding: 0;
+  }
+
+  .section-text {
+  }
+
+  .section-description {
+    max-width: 100%;
   }
 }
 
