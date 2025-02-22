@@ -38,7 +38,7 @@
 
     <main>
 
-        <div class="hero fade-content">
+        <div class="hero fade-content" style="padding-block-end: 0;">
 
             <div class="hero-text fade-content" id="hero">
                 <label for="hero">Welcome to</label>
@@ -62,20 +62,9 @@
             </div>
         </div>
 
-        <!-- <div class="tags wrap">
-            <div class="tag">web design agency</div>
-            <div class="tag">business</div>
-            <div class="tag">web design</div>
-            <div class="tag">accessibility</div>
-            <div class="tag">coding</div>
-            <div class="tag">ai</div>
-            <div class="tag">social media</div>
-
-        </div> -->
-
         <!-- Latest Post -->
 
-        <section class="full-text fade-content">
+        <!-- <section class="full-text fade-content">
             <h3><sparkly-text style="--sparkly-text-color: orange">Latest Post</sparkly-text></h3>
             <div class="grid-images fade-content">
                 <div class="grid-item blog-container latest-post">
@@ -86,39 +75,18 @@
                     </div>
                     <div class="blog-details">
                         <h3 class="blog-title">Reflecting on Our Website Giveaway</h3>
-                        <div class="blog-tags">
-                            <div class="tag">social media</div>
-                            <div class="tag">business</div>
-                        </div>
                         <p class="blog-description">A little while ago, we hosted our first website giveaway! The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, and give someone the opportunity to win a professionally crafted website, valued close to £1000. While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled with the diversity and uniqueness of those entries.
                         </p>
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- All Posts -->
 
         <section class="full-text fade-content">
             <h3>All Posts</h3>
             <div class="grid-images fade-content">
-                <!-- card start -->
-                <!-- <div class="grid-item blog-container">
-                    <a href="blog/the-human-behind-kittycode-creative">
-                        <img class="blog-image" src="./images/blog/austin.jpg"
-                            alt="img alt">
-                        <div class="blog-details">
-                            <h3 class="blog-title">Title</h3>
-                    </a>
-                    <div class="blog-tags">
-                        <div class="tag">tag</div>
-                        <div class="tag">tag</div>
-                    </div>
-
-                    <p class="blog-description">description.</p>
-                </div>
-            </div> -->
-                <!-- card end -->
 
                    <div class="grid-item blog-container">
                     <a href="blog/website-giveaway-reflection">
@@ -127,12 +95,11 @@
                         <div class="blog-details">
                             <h3 class="blog-title">Reflecting on Our Website Giveaway 🎉</h3>
                     </a>
-                    <div class="blog-tags">
-                        <div class="tag">social media</div>
-                        <div class="tag">business</div>
-                    </div>
-
-                    <p class="blog-description">A little while ago, we hosted our first website giveaway! The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, and give someone the opportunity to win a professionally crafted website, valued close to £1000. While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled with the diversity and uniqueness of those entries..</p>
+                    <p class="blog-description">A little while ago, we hosted our first website giveaway! 
+                        The goal was simple: connect with more people, bring some fresh eyes to KittyCode Creative, 
+                        and give someone the opportunity to win a professionally crafted website, valued close to £1000. 
+                        While we didn’t receive as many entries as we’d hoped—only three participants—we were thrilled 
+                        with the diversity and uniqueness of those entries..</p>
                 </div>
             </div>
 
@@ -142,11 +109,6 @@
                         <div class="blog-details">
                             <h3 class="blog-title">Why Every Business Needs a Website: The Modern Key to Success</h3>
                     </a>
-                    <div class="blog-tags">
-                        <div class="tag">business</div>
-                        <div class="tag">web design agency</div>
-                    </div>
-
                     <p class="blog-description">In today's digital landscape, having a website is no longer a luxury;
                         it’s a necessity. Whether you're a small local business, a startup, or an established company,
                         your online presence plays a crucial role in your success. While social media can be a valuable
@@ -161,11 +123,6 @@
                     <div class="blog-details">
                         <h3 class="blog-title">Lights Out: Introducing Our New Dark Theme</h3>
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">web design</div>
-                    <div class="tag">accessibility</div>
-                </div>
-
                 <p class="blog-description">At KittyCode Creative, user experience and accessibility is always at
                     the forefront of our design
                     decisions, and we're excited to unveil a brand-new feature—<strong>dark mode</strong>! With
@@ -184,11 +141,6 @@
                     <div class="blog-details">
                         <h3 class="blog-title">The Role of AI in Web Design and Development</h3>
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">web design</div>
-                    <div class="tag">ai</div>
-                </div>
-
                 <p class="blog-description">Artificial Intelligence (AI) has been making waves in almost every industry,
                     and web design and development is no exception. From automating repetitive tasks to enhancing user
                     experiences, AI is changing how websites are built and maintained. But is it the next big thing, or
@@ -202,11 +154,6 @@
                     <div class="blog-details">
                         <h3 class="blog-title">The Power of Modern CSS: A Game-Changer for Web Design</h3>
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">web design</div>
-                    <div class="tag">coding</div>
-                </div>
-
                 <p class="blog-description">If you've ever wondered how websites get their beautiful layouts, fonts,
                     colours, and interactive
                     features, the answer lies in CSS. But what exactly is CSS, and why is it such a big deal in
@@ -220,11 +167,6 @@
                     <div class="blog-details">
                         <h3 class="blog-title">The Human Behind KittyCode Creative (Not a Cat?)</h3>
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">business</div>
-                    <div class="tag">web design agency</div>
-                </div>
-
                 <p class="blog-description">KittyCode Creative isn't run by cats alone. Meet Austin Spillman,
                     the human and sole developer behind the new web design agency KittyCode Creative.</p>
             </div>
@@ -235,11 +177,6 @@
                     <div class="blog-details">
                         <h3 class="blog-title">Announcing the Launch of a New Digital Web Design Agency</h3>
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">web design agency</div>
-                    <div class="tag">business</div>
-                </div>
-
                 <p class="blog-description">We are excited to announce the launch of KittyCode Creative, a new
                     digital
                     web design agency based in Eastbourne, East Sussex, dedicated to delivering bespoke web design,
@@ -252,10 +189,6 @@
                     <div class="blog-details">
                         <h3 class="blog-title">Why Accessibility Matters in Web Design: A Personal Perspective</h3>
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">web design</div>
-                    <div class="tag">accessibility</div>
-                </div>
                 <p class="blog-description">At KittyCode Creative, we’re passionate about making the web a place
                     where everyone feels welcome and included. As a digital web design agency, we’re committed
                     to creating websites that are not only visually stunning but also accessible to all. Here’s
@@ -271,11 +204,6 @@
                         <h3 class="blog-title">The Benefits of Hand-Coding Your Website Over Using Site Builders</h3>
 
                 </a>
-                <div class="blog-tags">
-                    <div class="tag">web design</div>
-                    <div class="tag">coding</div>
-                </div>
-
                 <p class="blog-description">We often get asked why we prefer hand-coding
                     websites over using popular site builders. While site builders like Wix, Squarespace, and
                     WordPress offer convenience and speed, hand-coding your website can provide significant

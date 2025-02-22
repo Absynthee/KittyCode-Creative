@@ -58,6 +58,7 @@
         </div>
 
         <section class="full-text">
+        <img src="../images/blog/website-giveaway-reflection-banner.jpg" alt="">
             <div class="section-text">
                 <div class="section-description">
 

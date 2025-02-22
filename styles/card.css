@@ -38,7 +38,7 @@
   grid-template-rows: minmax(0, 1fr);
   position: relative;
   background-size: 100% 100%;
-  box-shadow: 0rem 0rem 1.5rem 0.5rem var(--primary-color-2-40);
+  box-shadow: 0rem 0rem 1.5rem 0rem var(--primary-color-2-40);
   cursor: pointer;
   transition: opacity 1s;
   z-index: 1;
@@ -80,8 +80,8 @@
   z-index: 2;
   height: calc(510px + 3vw);
   margin-inline: calc(2px + 2vw);
-  box-shadow: 0rem 0rem 1.5rem 0.5rem var(--primary-color-2-80);
-  animation: float 3s ease-in-out infinite;
+  box-shadow: 0rem 0rem 1.5rem 0.5rem var(--primary-color-2-60);
+  animation: float 5s ease-in-out infinite;
 
   &:hover {
     animation-play-state: paused;

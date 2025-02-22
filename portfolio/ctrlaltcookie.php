@@ -27,22 +27,18 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
     <!-- <div class="blur1"></div> -->
 
-    <main>
+    <main class="portfolio-post">
 
-
-        <div class="hero align-items-normal fade-content" id="hero">
+        <div class="hero align-items-normal fade-content" id="hero" style="padding-block-end: 0;">
             <div class="hero-text fade-content">
                 <div class="backlink"><a href="/our-portfolio">&mapstoleft; back to portfolio page</a></div>
                 <label for="hero">We designed...</label>
                 <h1>CtrlAltCookie</h1>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">April 2024 | Portfolio</p>
-                    <div class="tags">
-                        <div class="tag">content creator</div>
-                        <div class="tag">landing page</div>
-                    </div>
-
-                    <p>This website for Cookie is a hub for all of her content, social media and contact information. It shows stats and links from all of the platforms she is on, as well as a banner which appears when she is live on Twitch. There's also a page dedicated to fan art, which is pulled directly from Bluesky.</p>
+                    <!-- <p class="date-type">April 2024 | Portfolio</p> -->
+                    <p>This website for Cookie is a hub for all of her content, social media and contact information. 
+                        It shows stats and links from all of the platforms she is on, as well as a banner which appears when she is live on Twitch. 
+                        There's also a page dedicated to fan art, which is pulled directly from Bluesky.</p>
                 </div>
 
                 <div class="hero-buttons">
@@ -57,7 +53,7 @@
             </div>
 
             <div class="hero-img full-width">
-                <img src="../images/portfolio/ctrlaltcookie/main_1.png" alt="">
+                <img src="../images/portfolio/ctrlaltcookie/ctrlaltcookie.png" alt="">
             </div>
 
         </div>

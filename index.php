@@ -222,7 +222,7 @@
                             <div class="chat-user-1 phone-element">Just complete our website questionnaire and we'll
                                 back to you ASAP.</div>
                             <div class="chat-user-1 phone-element">Here's a link to the form.</div>
-                            <div class="chat-user-1 phone-element" style="line-break: normal;"><a
+                            <div class="chat-user-1 phone-element" style="line-break: normal;"><a class="phone-link"
                                     href="services/website-questionnaire">www.kittycodecreative.com&sol;
                                     websitequestionnaire</a>
                             </div>
@@ -406,7 +406,9 @@
                         <a href="portfolio/ctrlaltcookie">
                             <span class="span-title">CtrlAltCookie</span>
             </a>
-            <p>This website for Cookie is a hub for all of her content, social media and contact information. It shows stats and links from all of the platforms she is on, as well as a banner which appears when she is live on Twitch. There's also a page dedicated to fan art, which is pulled directly from Bluesky.</p>
+            <!-- <p>This website for Cookie is a hub for all of her content, social media and contact information. 
+                It shows stats and links from all of the platforms she is on, as well as a banner which appears when she is live on Twitch. 
+                There's also a page dedicated to fan art, which is pulled directly from Bluesky.</p> -->
         </div>
         </div>
 
@@ -419,11 +421,10 @@
                         <a href="portfolio/austins-portfolio">
                             <span class="span-title">Austin's Portfolio</span>
                         </a>
-                        <p>A bespoke and unique portfolio website for the founder of KittyCode Creative. The website was
+                        <!-- <p>A bespoke and unique portfolio website for the founder of KittyCode Creative. The website was
                             designed to show off Austin's creative and front-end development expertise. The brief was to
                             create a sleek, modern, dark website that was easy on the eyes and a perfect viewing
-                            experience
-                            for oled displays.</p>
+                            experience for oled displays.</p> -->
                     </div>
                 </div>
 
@@ -435,9 +436,9 @@
                         <a href="portfolio/beyond-the-tavern">
                             <span class="span-title">Beyond The Tavern</span>
                         </a>
-                        <p>Rose at Beyond the Tavern wanted a website to showcase the artwork she creates for her Etsy
+                        <!-- <p>Rose at Beyond the Tavern wanted a website to showcase the artwork she creates for her Etsy
                             shop of the same name. The website was designed to be one page layout plus a blog page so
-                            that all of the information was easily reachable in one place.</p>
+                            that all of the information was easily reachable in one place.</p> -->
                     </div>
                 </div>
 

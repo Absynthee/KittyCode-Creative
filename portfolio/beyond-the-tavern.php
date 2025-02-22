@@ -27,8 +27,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
     <!-- <div class="blur1"></div> -->
 
-    <main>
-
+    <main class="portfolio-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
@@ -36,13 +35,7 @@
                 <label for="hero">We designed...</label>
                 <h1>Beyond the Tavern</h1>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">June 2024 | Portfolio</p>
-                    <div class="tags">
-                        <div class="tag">etsy</div>
-                        <div class="tag">landing page</div>
-                        <div class="tag">blog</div>
-                    </div>
-
+                    <!-- <p class="date-type">June 2024 | Portfolio</p> -->
                     <p>Rose at Beyond the Tavern wanted a website to showcase the artwork she creates for her Etsy shop
                         of the same name. The website was designed to be one page layout plus a blog page so that all of
                         the information was easily reachable in one place.</p>
@@ -60,7 +53,7 @@
             </div>
 
             <div class="hero-img full-width">
-                <img src="../images/portfolio/beyond-the-tavern/main.jpg" alt="">
+                <img src="../images/portfolio/beyond-the-tavern/beyondthetavern.png" alt="">
             </div>
 
         </div>

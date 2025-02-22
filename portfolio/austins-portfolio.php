@@ -27,8 +27,7 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/navigation.php'; ?>
     <!-- <div class="blur1"></div> -->
 
-    <main>
-
+    <main class="portfolio-post">
 
         <div class="hero align-items-normal fade-content" id="hero">
             <div class="hero-text fade-content">
@@ -36,12 +35,7 @@
                 <label for="hero">We designed...</label>
                 <h1>Austin's Portfolio</h1>
                 <div class="hero-description gap fade-content">
-                    <p class="date-type">April 2024 | Portfolio</p>
-                    <div class="tags">
-                        <div class="tag">portfolio</div>
-                        <div class="tag">dark theme</div>
-                    </div>
-
+                    <!-- <p class="date-type">April 2024 | Portfolio</p> -->
                     <p>A bespoke and unique portfolio website for the founder of KittyCode Creative. The website was
                         designed to show off Austin's creative and front-end development expertise. The brief was to
                         create a sleek, modern, dark website that was easy on the eyes and a perfect viewing experience
@@ -60,7 +54,7 @@
             </div>
 
             <div class="hero-img full-width">
-                <img src="../images/portfolio/austins-portfolio/main.jpg" alt="">
+                <img src="../images/portfolio/austins-portfolio/austinspillman.png" alt="">
             </div>
 
         </div>
