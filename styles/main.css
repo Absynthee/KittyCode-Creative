@@ -1068,7 +1068,7 @@ main {
 .about-blurb {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  max-width: 400px;
   text-align: center;
   padding: var(--spacing-4);
   gap: var(--spacing-3);
