@@ -1,0 +1,79 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`select-content ${className}`} role="listbox" data-state="closed">
+  <slot />
+</div>
+
+<style>
+  .select-content {
+    position: absolute;
+    z-index: 50;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.25rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px hsl(from var(--foreground) h s l / 0.15);
+    backdrop-filter: blur(8px);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 0.25rem;
+
+    /* Animation properties */
+    opacity: 0;
+    transform: scale(0.95) translateY(-0.5rem);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+
+    /* Initially hidden */
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .select-content[data-state="open"] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Scrollbar styling */
+  .select-content::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .select-content::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .select-content::-webkit-scrollbar-thumb {
+    background: hsl(from var(--border) h s l / 0.3);
+    border-radius: 3px;
+  }
+
+  .select-content::-webkit-scrollbar-thumb:hover {
+    background: hsl(from var(--border) h s l / 0.5);
+  }
+
+  /* Dark mode adjustments */
+  :global(.dark) .select-content {
+    background: hsl(from var(--background) h s calc(l + 5%));
+    box-shadow: 0 4px 12px hsl(from var(--background) h s l / 0.4);
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .select-content {
+      max-height: 150px;
+    }
+  }
+</style>

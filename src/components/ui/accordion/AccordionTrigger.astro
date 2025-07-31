@@ -1,0 +1,82 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<button
+  class={`accordion-trigger ${className}`}
+  aria-expanded="false"
+  type="button"
+>
+  <span class="accordion-trigger-text">
+    <slot />
+  </span>
+  <svg
+    class="accordion-chevron"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path d="M6 9l6 6 6-6"></path>
+  </svg>
+</button>
+
+<style>
+  .accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--foreground);
+    text-align: left;
+    transition: all 0.2s ease;
+  }
+
+  .accordion-trigger:hover {
+    background: hsl(from var(--card) h s l / 0.1);
+  }
+
+  .accordion-trigger:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  .accordion-trigger-text {
+    flex: 1;
+    margin-right: 1rem;
+  }
+
+  .accordion-chevron {
+    flex-shrink: 0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    color: hsl(from var(--foreground) h s l / 0.6);
+  }
+
+  .accordion-trigger:hover .accordion-chevron {
+    color: var(--foreground);
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .accordion-trigger {
+      padding: 0.875rem 1rem;
+      font-size: var(--step--2);
+    }
+
+    .accordion-trigger-text {
+      margin-right: 0.75rem;
+    }
+  }
+</style>

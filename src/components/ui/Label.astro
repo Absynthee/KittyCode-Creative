@@ -1,0 +1,166 @@
+---
+export interface Props {
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+  align?: "left" | "center" | "right";
+  htmlFor?: string;
+  required?: boolean;
+  class?: string;
+  id?: string;
+}
+
+const {
+  variant = "default",
+  size = "medium",
+  align = "left",
+  htmlFor,
+  required = false,
+  class: className = "",
+  id,
+  ...rest
+} = Astro.props;
+
+const baseClasses = "label";
+const variantClass = `label--${variant}`;
+const sizeClass = `label--${size}`;
+const alignClass = `label--${align}`;
+const requiredClass = required ? "label--required" : "";
+
+const classes = [
+  baseClasses,
+  variantClass,
+  sizeClass,
+  alignClass,
+  requiredClass,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<label id={id} for={htmlFor} class={classes} {...rest}>
+  <slot />
+  {
+    required && (
+      <span class="required-indicator" aria-label="required">
+        *
+      </span>
+    )
+  }
+</label>
+
+<style>
+  /* Base Label Styles */
+  .label {
+    display: inline-block;
+    font-weight: 500;
+    color: var(--foreground);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    /* margin-bottom: var(--space-3xs); */
+    line-height: var(--space-s);
+  }
+
+  .label:hover {
+    color: hsl(from var(--foreground) h s l / 0.8);
+  }
+
+  .required-indicator {
+    color: var(--Red);
+    margin-left: 0.25rem;
+    font-weight: 600;
+  }
+
+  /* Size Variants */
+  .label--small {
+    font-size: var(--step--2);
+  }
+
+  .label--medium {
+    font-size: var(--step--1);
+  }
+
+  .label--large {
+    font-size: var(--step-0);
+  }
+
+  /* Alignment Variants */
+  .label--left {
+    text-align: left;
+  }
+
+  .label--center {
+    text-align: center;
+  }
+
+  .label--right {
+    text-align: right;
+  }
+
+  /* Style Variants */
+  .label--default {
+    color: var(--foreground);
+  }
+
+  .label--primary {
+    color: var(--primary);
+  }
+
+  .label--primary:hover {
+    color: hsl(from var(--primary) h s l / 0.8);
+  }
+
+  .label--secondary {
+    color: var(--secondary-foreground);
+  }
+
+  .label--secondary:hover {
+    color: hsl(from var(--secondary-foreground) h s l / 0.8);
+  }
+
+  .label--info {
+    color: var(--info);
+  }
+
+  .label--info:hover {
+    color: hsl(from var(--info) h s l / 0.8);
+  }
+
+  .label--success {
+    color: var(--success);
+  }
+
+  .label--success:hover {
+    color: hsl(from var(--success) h s l / 0.8);
+  }
+
+  .label--warning {
+    color: var(--warning);
+  }
+
+  .label--warning:hover {
+    color: hsl(from var(--warning) h s l / 0.8);
+  }
+
+  .label--error {
+    color: var(--error);
+  }
+
+  .label--error:hover {
+    color: hsl(from var(--error) h s l / 0.8);
+  }
+
+  /* Focus states for accessibility */
+  .label:focus-visible {
+    outline: 1px solid var(--Red);
+    outline-offset: 1px;
+    border-radius: var(--radius);
+  }
+</style>

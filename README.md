@@ -1,14 +1,27 @@
-# ![](/images/favicon-48x48.png) KittyCode Creative 
-### [kittycodecreative.com](https://www.kittycodecreative.com)
+# blank template instructions
 
-KittyCode Creative is a digital web design agency based in Eastbourne, East Sussex. We specialise in creating beautiful and professional bespoke websites, front-end web development, and design solutions.
+personal instructions for duplicating new astro project.
 
-We offer a unique and personal service to each and every client. All our websites are built from scratch and are available in monthly packages to help keep your costs down.
+1. run 'npx @astrojs/upgrade'
 
-Our web design solutions include an SEO service which helps your website rank well in search engines. If your aim is to raise visibility and gain traction on your website, we can help.
+2. update project-name in the following files:
 
-As well as web design and development, we provide a logo design service that is sure to improve your brand image.
+   - package.json
+   - package-lock.json (x2)
+   - layout.astro
+   - head component
 
-Contact us at hello@kittycodecreative.com for any questions. 😸
+3. update site url in the following files:
 
-![](/images/why-us.png)
+   - astro.config.mjs
+   - robots.txt
+
+4. update content of site.webmanifest
+
+5. update assets in /public (favicon, chrome-icons, og-image)
+
+6. update navigation links in navigation.ts
+
+7. update global styles
+
+8. update components and layout as needed

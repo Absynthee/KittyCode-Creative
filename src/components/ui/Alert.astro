@@ -1,0 +1,462 @@
+---
+import {
+  Info,
+  CheckCircle,
+  AlertTriangle,
+  XCircle,
+  Bell,
+  Clock,
+  ArrowDown,
+  X,
+} from "@lucide/astro";
+
+export interface Props {
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+  title?: string;
+  description?: string;
+  dismissible?: boolean;
+  autoClose?: number; // Auto close after X milliseconds
+  showIcon?: boolean;
+  role?: "alert" | "status" | "none";
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size = "medium",
+  title,
+  description,
+  dismissible = false,
+  autoClose,
+  showIcon = true,
+  role = "alert",
+  class: className = "",
+} = Astro.props;
+
+const baseClasses = "alert";
+const variantClass = `alert--${variant}`;
+const sizeClass = `alert--${size}`;
+const dismissibleClass = dismissible ? "alert--dismissible" : "";
+
+const classes = [
+  baseClasses,
+  variantClass,
+  sizeClass,
+  dismissibleClass,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const alertId = `alert-${Math.random().toString(36).substr(2, 9)}`;
+
+// Icon mapping for variants using Lucide components
+const getVariantIcon = (variant: string) => {
+  const iconProps = {
+    size: size === "small" ? 16 : size === "large" ? 24 : 20,
+    "aria-hidden": "true",
+  };
+
+  switch (variant) {
+    case "info":
+      return Info;
+    case "success":
+      return CheckCircle;
+    case "warning":
+      return AlertTriangle;
+    case "error":
+      return XCircle;
+    case "primary":
+      return Clock;
+    case "secondary":
+      return ArrowDown;
+    default:
+      return Bell;
+  }
+};
+
+const IconComponent = getVariantIcon(variant);
+const iconProps = {
+  size: size === "small" ? 16 : size === "large" ? 24 : 20,
+  "aria-hidden": true,
+};
+---
+
+<script>
+  import {
+    getHTMLElements,
+    getHTMLElement,
+    addElementClass,
+    removeElementClass,
+    setElementAttribute,
+    getElementAttribute,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const alerts = getHTMLElements(".alert");
+
+    alerts.forEach((alert) => {
+      const closeButton = getHTMLElement(".alert-close", alert);
+      const autoCloseAttr = getElementAttribute(alert, "data-auto-close");
+      const autoClose = autoCloseAttr ? parseInt(autoCloseAttr) : null;
+
+      // Handle close button click
+      if (closeButton) {
+        closeButton.addEventListener("click", () => {
+          dismissAlert(alert);
+        });
+      }
+
+      // Handle auto close
+      if (autoClose && autoClose > 0) {
+        setTimeout(() => {
+          if (alert.parentNode) {
+            // Check if still in DOM
+            dismissAlert(alert);
+          }
+        }, autoClose);
+      }
+
+      // Handle keyboard navigation for close button
+      if (closeButton) {
+        closeButton.addEventListener("keydown", (event: KeyboardEvent) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            dismissAlert(alert);
+          }
+        });
+      }
+
+      function dismissAlert(alertElement: HTMLElement) {
+        // Add dismissing animation class
+        addElementClass(alertElement, "alert--dismissing");
+
+        // Set ARIA attributes for screen readers
+        setElementAttribute(alertElement, "aria-hidden", "true");
+
+        // Remove after animation completes
+        setTimeout(() => {
+          // Dispatch custom dismiss event
+          const dismissEvent = new CustomEvent("alert:dismiss", {
+            detail: { alert: alertElement },
+            bubbles: true,
+          });
+          alertElement.dispatchEvent(dismissEvent);
+
+          // Remove from DOM
+          if (alertElement.parentNode) {
+            alertElement.parentNode.removeChild(alertElement);
+          }
+        }, 300); // Match CSS transition duration
+      }
+    });
+  });
+</script>
+
+<div
+  class={classes}
+  id={alertId}
+  role={role !== "none" ? role : undefined}
+  aria-live={role === "status" ? "polite" : "assertive"}
+  data-auto-close={autoClose}
+>
+  <div class="alert-content">
+    {
+      showIcon && (
+        <div class="alert-icon" aria-hidden="true">
+          <IconComponent {...iconProps} />
+        </div>
+      )
+    }
+
+    <div class="alert-message">
+      {title && <div class="alert-title">{title}</div>}
+      {description && <div class="alert-description">{description}</div>}
+      {
+        !title && !description && (
+          <div class="alert-description">
+            <slot />
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  {
+    dismissible && (
+      <button
+        class="alert-close"
+        type="button"
+        aria-label="Dismiss alert"
+        tabindex="0"
+      >
+        <X size={16} />
+      </button>
+    )
+  }
+</div>
+
+<style>
+  /* Base Alert Styles */
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+    margin-block: var(--space-3xs);
+  }
+
+  .alert-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .alert-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.125rem;
+  }
+
+  .alert-message {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .alert-title {
+    font-weight: 600;
+    font-size: var(--step--1);
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+    color: var(--foreground);
+  }
+
+  .alert-description {
+    font-size: var(--step--1);
+    line-height: 1.5;
+    color: hsl(from var(--foreground) h s l / 0.8);
+  }
+
+  .alert-close {
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: calc(var(--radius) / 2);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    transition: all 0.2s ease;
+    margin-left: 0.5rem;
+    margin-top: -0.125rem;
+  }
+
+  .alert-close:hover {
+    background: hsl(from var(--foreground) h s l / 0.1);
+    color: var(--foreground);
+  }
+
+  .alert-close:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  /* Size Variants */
+  .alert--small {
+    padding: 0.75rem;
+    font-size: var(--step--2);
+  }
+
+  .alert--small .alert-content {
+    gap: 0.5rem;
+  }
+
+  .alert--small .alert-title {
+    font-size: var(--step--2);
+  }
+
+  .alert--small .alert-description {
+    font-size: var(--step--2);
+  }
+
+  .alert--small .alert-icon {
+    margin-top: 0.0625rem;
+  }
+
+  .alert--medium {
+    padding: 1rem;
+  }
+
+  .alert--large {
+    padding: 1.25rem;
+    font-size: var(--step-0);
+  }
+
+  .alert--large .alert-content {
+    gap: 1rem;
+  }
+
+  .alert--large .alert-title {
+    font-size: var(--step-0);
+  }
+
+  .alert--large .alert-description {
+    font-size: var(--step-0);
+  }
+
+  /* Style Variants */
+  .alert--default {
+    background: hsl(from var(--card) h s l / 0.1);
+    border-color: hsl(from var(--border) h s l / 0.3);
+    color: var(--foreground);
+  }
+
+  .alert--primary {
+    background: hsl(from var(--primary) h s l / 0.1);
+    border-color: hsl(from var(--primary) h s l / 0.3);
+    color: var(--primary);
+  }
+
+  .alert--primary .alert-icon {
+    color: var(--primary);
+  }
+
+  .alert--secondary {
+    background: hsl(from var(--secondary) h s l / 0.1);
+    border-color: hsl(from var(--secondary) h s l / 0.3);
+    color: var(--secondary-foreground);
+  }
+
+  .alert--secondary .alert-icon {
+    color: var(--secondary-foreground);
+  }
+
+  .alert--info {
+    background: hsl(from var(--info) h s l / 0.1);
+    border-color: hsl(from var(--info) h s l / 0.3);
+    color: var(--info);
+  }
+
+  .alert--info .alert-icon {
+    color: var(--info);
+  }
+
+  .alert--success {
+    background: hsl(from var(--success) h s l / 0.1);
+    border-color: hsl(from var(--success) h s l / 0.3);
+    color: var(--success);
+  }
+
+  .alert--success .alert-icon {
+    color: var(--success);
+  }
+
+  .alert--warning {
+    background: hsl(from var(--warning) h s l / 0.1);
+    border-color: hsl(from var(--warning) h s l / 0.3);
+    color: var(--warning);
+  }
+
+  .alert--warning .alert-icon {
+    color: var(--warning);
+  }
+
+  .alert--error {
+    background: hsl(from var(--error) h s l / 0.1);
+    border-color: hsl(from var(--error) h s l / 0.3);
+    color: var(--error);
+  }
+
+  .alert--error .alert-icon {
+    color: var(--error);
+  }
+
+  /* Dismissible Animation */
+  .alert--dismissing {
+    opacity: 0;
+    transform: translateY(-0.5rem) scale(0.95);
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-width: 0;
+    overflow: hidden;
+  }
+
+  /* Before element for accent border */
+  .alert::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: transparent;
+    transition: background 0.2s ease;
+  }
+
+  .alert--primary::before {
+    background: var(--primary);
+  }
+
+  .alert--secondary::before {
+    background: var(--secondary);
+  }
+
+  .alert--info::before {
+    background: var(--info);
+  }
+
+  .alert--success::before {
+    background: var(--success);
+  }
+
+  .alert--warning::before {
+    background: var(--warning);
+  }
+
+  .alert--error::before {
+    background: var(--error);
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .alert {
+      padding: 0.75rem;
+    }
+
+    .alert--large {
+      padding: 1rem;
+    }
+
+    .alert-content {
+      gap: 0.5rem;
+    }
+
+    .alert-title {
+      font-size: var(--step--2);
+    }
+
+    .alert-description {
+      font-size: var(--step--2);
+    }
+  }
+</style>

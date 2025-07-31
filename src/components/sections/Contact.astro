@@ -1,0 +1,547 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Input from "@/components/ui/Input.astro";
+import Label from "@/components/ui/Label.astro";
+import Textarea from "@/components/ui/Textarea.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+  action?: string;
+  method?: "GET" | "POST";
+  class?: string;
+}
+
+const {
+  title = "Get In Touch",
+  description = "Send me a message and I'll get back to you as soon as possible.",
+  variant = "primary",
+  size = "medium",
+  action = "/contact",
+  method = "POST",
+} = Astro.props;
+
+const formId = `contact-form-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  import {
+    getHTMLElements,
+    getHTMLElement,
+    findElements,
+    addElementClass,
+    removeElementClass,
+    isInputElement,
+    isTextAreaElement,
+    getFormValue,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const contactForms = getHTMLElements(".contact-form");
+
+    contactForms.forEach((form) => {
+      const formElement = getHTMLElement("form", form);
+      const inputs = findElements("input[required], textarea[required]", form);
+
+      if (!formElement) return;
+
+      // Real-time validation
+      inputs.forEach((input) => {
+        input.addEventListener("blur", validateField);
+        input.addEventListener("input", clearErrorOnInput);
+      });
+
+      // Form submission validation
+      formElement.addEventListener("submit", handleSubmit);
+
+      function validateField(event: Event) {
+        const input = event.target;
+        if (!isInputElement(input) && !isTextAreaElement(input)) return;
+
+        const fieldContainer = input.closest(".contact-field") as HTMLElement;
+        if (!fieldContainer) return;
+
+        clearErrors(fieldContainer);
+
+        const error = getFieldError(input);
+        if (error) {
+          showError(fieldContainer, input, error);
+        } else {
+          showSuccess(fieldContainer, input);
+        }
+      }
+
+      function clearErrorOnInput(event: Event) {
+        const input = event.target;
+        if (!isInputElement(input) && !isTextAreaElement(input)) return;
+
+        const fieldContainer = input.closest(".contact-field") as HTMLElement;
+        if (!fieldContainer) return;
+
+        if (
+          getFormValue(input).trim() &&
+          fieldContainer.classList.contains("field--error")
+        ) {
+          clearErrors(fieldContainer);
+        }
+      }
+
+      function getFieldError(
+        input: HTMLInputElement | HTMLTextAreaElement
+      ): string | null {
+        const inputValue = getFormValue(input);
+
+        if (input.required && !inputValue.trim()) {
+          return `${getLabelText(input)} is required`;
+        }
+
+        if (inputValue.trim()) {
+          switch (input.type) {
+            case "email":
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(inputValue)) {
+                return "Please enter a valid email address";
+              }
+              break;
+          }
+        }
+
+        return null;
+      }
+
+      function getLabelText(
+        input: HTMLInputElement | HTMLTextAreaElement
+      ): string {
+        const label = getHTMLElement(`label[for="${input.id}"]`, form);
+        return label
+          ? label.textContent?.replace("*", "").trim() || "Field"
+          : "Field";
+      }
+
+      function showError(
+        fieldContainer: HTMLElement,
+        input: HTMLInputElement | HTMLTextAreaElement,
+        message: string
+      ) {
+        addElementClass(fieldContainer, "field--error");
+        removeElementClass(fieldContainer, "field--success");
+
+        // Update input variant
+        if (isInputElement(input)) {
+          input.className = input.className.replace(
+            /input--\w+/,
+            "input--error"
+          );
+        } else if (isTextAreaElement(input)) {
+          input.className = input.className.replace(
+            /textarea--\w+/,
+            "textarea--error"
+          );
+        }
+
+        // Update label variant
+        const label = getHTMLElement("label", fieldContainer);
+        if (label) {
+          label.className = label.className.replace(
+            /label--\w+/,
+            "label--error"
+          );
+        }
+
+        // Show error message
+        let errorElement = getHTMLElement(".error-message", fieldContainer);
+        if (!errorElement) {
+          errorElement = document.createElement("span");
+          addElementClass(errorElement, "error-message");
+          fieldContainer.appendChild(errorElement);
+        }
+        errorElement.textContent = message;
+      }
+
+      function showSuccess(
+        fieldContainer: HTMLElement,
+        input: HTMLInputElement | HTMLTextAreaElement
+      ) {
+        if (input.required) {
+          addElementClass(fieldContainer, "field--success");
+          removeElementClass(fieldContainer, "field--error");
+
+          // Update input variant
+          if (isInputElement(input)) {
+            input.className = input.className.replace(
+              /input--\w+/,
+              "input--success"
+            );
+          } else if (isTextAreaElement(input)) {
+            input.className = input.className.replace(
+              /textarea--\w+/,
+              "textarea--success"
+            );
+          }
+
+          // Update label variant
+          const label = getHTMLElement("label", fieldContainer);
+          if (label) {
+            label.className = label.className.replace(
+              /label--\w+/,
+              "label--success"
+            );
+          }
+        }
+
+        // Remove error message
+        const errorElement = getHTMLElement(".error-message", fieldContainer);
+        if (errorElement) {
+          errorElement.remove();
+        }
+      }
+
+      function clearErrors(fieldContainer: HTMLElement) {
+        removeElementClass(fieldContainer, "field--error", "field--success");
+
+        const errorElement = getHTMLElement(".error-message", fieldContainer);
+        if (errorElement) {
+          errorElement.remove();
+        }
+      }
+
+      function handleSubmit(event: Event) {
+        let hasErrors = false;
+
+        inputs.forEach((input) => {
+          if (!isInputElement(input) && !isTextAreaElement(input)) return;
+
+          const fieldContainer = input.closest(".contact-field") as HTMLElement;
+          if (!fieldContainer) return;
+
+          clearErrors(fieldContainer);
+
+          const error = getFieldError(input);
+          if (error) {
+            showError(fieldContainer, input, error);
+            hasErrors = true;
+          }
+        });
+
+        if (hasErrors) {
+          event.preventDefault();
+
+          // Focus first error field
+          const firstError = form.querySelector(
+            ".field--error input, .field--error textarea"
+          ) as HTMLElement;
+          if (firstError) {
+            firstError.focus();
+          }
+        }
+      }
+    });
+  });
+</script>
+
+<section id="contact" class="contact-section" aria-labelledby="contact-title">
+  <h2 class="contact-heading" id="contact-title">contact</h2>
+  <div class="contact-form">
+    <form {action} {method} class="contact-form-inner" id={formId}>
+      {
+        (title || description) && (
+          <div class="contact-header">
+            {title && <h2>{title}</h2>}
+            {description && <p>{description}</p>}
+          </div>
+        )
+      }
+
+      <div class="contact-fields">
+        <fieldset class="contact-field">
+          <Label htmlFor="contact-name" variant={variant} size={size} required>
+            Full Name
+          </Label>
+          <Input
+            id="contact-name"
+            name="name"
+            type="text"
+            placeholder="Enter your full name"
+            variant={variant}
+            size={size}
+            required
+          />
+        </fieldset>
+
+        <fieldset class="contact-field">
+          <Label htmlFor="contact-email" variant={variant} size={size} required>
+            Email Address
+          </Label>
+          <Input
+            id="contact-email"
+            name="email"
+            type="email"
+            placeholder="Enter your email address"
+            variant={variant}
+            size={size}
+            required
+          />
+        </fieldset>
+
+        <fieldset class="contact-field">
+          <Label htmlFor="contact-subject" variant={variant} size={size}>
+            Subject
+          </Label>
+          <Input
+            id="contact-subject"
+            name="subject"
+            type="text"
+            placeholder="What's this about? (optional)"
+            variant={variant}
+            size={size}
+          />
+        </fieldset>
+
+        <fieldset class="contact-field">
+          <Label
+            htmlFor="contact-message"
+            variant={variant}
+            size={size}
+            required
+          >
+            Message
+          </Label>
+          <Textarea
+            id="contact-message"
+            name="message"
+            placeholder="Tell me about your project, questions, or just say hello."
+            variant={variant}
+            size={size}
+            rows={6}
+            required
+            maxLength={1000}
+            showCharCount={true}
+            autoResize={true}
+          />
+        </fieldset>
+      </div>
+
+      <div class="contact-actions">
+        <Button type="submit" variant={variant} size={size}>
+          Send Message
+        </Button>
+
+        <Button type="reset" variant="outline" size={size}> Clear Form </Button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  #contact {
+    padding: 3rem 0;
+    background: var(--background);
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .contact-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .contact-heading {
+    text-align: center;
+    position: relative;
+    transform: translateX(calc(-46px / 2));
+  }
+
+  lord-icon {
+    padding-top: 7px;
+    padding-right: 55px;
+    height: 45px !important;
+    width: 45px !important;
+  }
+
+  /* Contact Form Layout Styles */
+  .contact-form {
+    max-width: calc(800px + 2rem);
+    margin: 0 auto;
+    width: 100%;
+    padding-inline: 2rem;
+  }
+
+  .contact-form-inner {
+    padding: 2rem;
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+    transition: all ease-in-out 0.5s;
+  }
+
+  .contact-form-inner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--primary),
+      var(--Red),
+      var(--info),
+      var(--success),
+      var(--primary)
+    );
+    background-size: 200% 100%;
+    background-position: top;
+    animation: shimmer 30s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      background-position: -200% 0;
+    }
+    50% {
+      background-position: 200% 0;
+    }
+  }
+
+  .contact-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-header h2 {
+    font-size: var(--step-2);
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-header p {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    line-height: 1.5;
+    max-width: 50ch;
+    margin: 0 auto;
+  }
+
+  .contact-fields {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-field {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .contact-field:focus-within {
+    transform: translateY(-1px);
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .error-message {
+    font-size: var(--step--2);
+    color: var(--error);
+    margin-top: 0.25rem;
+    display: block;
+    font-weight: 500;
+    animation: slideInDown 0.3s ease;
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Success state animations */
+  .field--success {
+    animation: successPulse 0.3s ease;
+  }
+
+  @keyframes successPulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Hover effects */
+  .contact-form-inner:hover {
+    border-color: hsl(from var(--primary) h s l / 0.3);
+    box-shadow: 0 4px 20px hsl(from var(--Red) h s l / 0.1);
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .contact-form {
+      margin: 0rem;
+      padding-inline: 1rem;
+    }
+
+    .contact-section {
+      gap: var(--space-l);
+    }
+
+    .contact-form-inner {
+      padding: 1.5rem 1rem;
+    }
+
+    .contact-form-inner::before {
+      animation: none;
+    }
+
+    .contact-fields {
+      gap: 1.25rem;
+    }
+
+    .contact-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .contact-actions :global(.btn) {
+      width: 100%;
+    }
+  }
+</style>

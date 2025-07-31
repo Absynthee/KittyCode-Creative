@@ -1,0 +1,36 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class={`accordion-content ${className}`}>
+  <div class="accordion-content-inner">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .accordion-content-inner {
+    padding: 0 1.5rem 1rem 1.5rem;
+    color: hsl(from var(--foreground) h s l / 0.8);
+    font-size: var(--step--1);
+    line-height: 1.6;
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .accordion-content-inner {
+      padding: 0 1rem 0.875rem 1rem;
+      font-size: var(--step--2);
+    }
+  }
+</style>

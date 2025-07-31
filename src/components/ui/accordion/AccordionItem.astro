@@ -1,0 +1,26 @@
+---
+interface Props {
+  value: string;
+  class?: string;
+}
+
+const { value, class: className = "" } = Astro.props;
+---
+
+<div class={`accordion-item ${className}`} data-value={value}>
+  <slot />
+</div>
+
+<style>
+  .accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-item[data-open] {
+    /* Could add open state styles if needed */
+  }
+</style>

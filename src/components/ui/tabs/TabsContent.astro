@@ -1,0 +1,109 @@
+---
+interface Props {
+  value: string;
+  class?: string;
+}
+
+const { value, class: className = "" } = Astro.props;
+
+const panelId = `tabs-content-${value}`;
+const triggerId = `tabs-trigger-${value}`;
+---
+
+<div
+  class={`tabs-content ${className}`}
+  data-value={value}
+  role="tabpanel"
+  aria-labelledby={triggerId}
+  id={panelId}
+  hidden
+>
+  <slot />
+</div>
+
+<style>
+  .tabs-content {
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--background);
+    padding: 1.5rem;
+    font-size: var(--step--1);
+    line-height: 1.6;
+    color: var(--foreground);
+
+    /* Animation properties */
+    opacity: 0;
+    transform: translateY(0.5rem);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .tabs-content[hidden] {
+    display: none;
+  }
+
+  .tabs-content.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Focus styles for content */
+  .tabs-content:focus {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  /* Content styling */
+  .tabs-content :global(h1),
+  .tabs-content :global(h2),
+  .tabs-content :global(h3),
+  .tabs-content :global(h4),
+  .tabs-content :global(h5),
+  .tabs-content :global(h6) {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--foreground);
+  }
+
+  .tabs-content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .tabs-content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .tabs-content :global(code) {
+    background: hsl(from var(--card) h s l / 0.1);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .tabs-content :global(pre) {
+    background: hsl(from var(--card) h s l / 0.1);
+    padding: 1rem;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    margin-bottom: 1rem;
+  }
+
+  .tabs-content :global(ul),
+  .tabs-content :global(ol) {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .tabs-content :global(li) {
+    margin-bottom: 0.25rem;
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .tabs-content {
+      padding: 1rem;
+      font-size: var(--step--2);
+    }
+  }
+</style>

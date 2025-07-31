@@ -1,0 +1,148 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  author?: string;
+  keywords?: string[];
+}
+
+const {
+  title,
+  description = "KittyCode Creative is a web design agency based in Eastbourne, UK. We specialise in bespoke websites while ensuring accessibility and user-friendly designs.",
+  image = "/og-image.png",
+  canonical,
+  noindex = false,
+  author = "KittyCode Creative",
+  keywords = [
+    "KittyCode Creative",
+    "Web Development",
+    "Web Design",
+    "Eastbourne Web Development",
+    "Eastbourne Web Design",
+    "Web Development Eastbourne",
+    "Web Design Eastbourne",
+    "Web Development Sussex",
+    "Web Design Sussex",
+    "Astro Web Development",
+    "Astro Web Design",
+    "Astro",
+    "Modern Web Development",
+    "Accessible Web Design",
+    "Responsive Web Design",
+    "Performance Optimization",
+    "SEO KittyCode Creative",
+  ],
+} = Astro.props;
+
+const siteName = "KittyCode Creative";
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+const currentUrl = canonical || Astro.url.href;
+const imageUrl = new URL(image, Astro.url.origin).href;
+---
+
+<head>
+  <!-- Basic Meta Tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+
+  <!-- Title and Description -->
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+
+  <!-- Keywords -->
+  {
+    keywords.length > 0 && (
+      <meta name="keywords" content={keywords.join(", ")} />
+    )
+  }
+
+  <!-- Author -->
+  <meta name="author" content={author} />
+
+  <!-- Canonical URL -->
+  {canonical && <link rel="canonical" href={canonical} />}
+
+  <!-- Robots -->
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+  <!-- Sitemap -->
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={currentUrl} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={imageUrl} />
+  <meta property="og:site_name" content={siteName} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={currentUrl} />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageUrl} />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+
+  <!-- Manifest -->
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Theme Color -->
+  <meta name="theme-color" content="#d94713" />
+  <meta name="msapplication-TileColor" content="#000" />
+
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Theme initialization script (prevents flash) -->
+  <script is:inline>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia?.(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      const isDark = savedTheme ? savedTheme === "dark" : prefersDark;
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+      }
+      window.__INITIAL_THEME__ = isDark;
+    })();
+  </script>
+
+  <!-- External Scripts -->
+  <script src="@/lib/prism.js"></script>
+
+  <!-- Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0"
+  ></script>
+  <script lang="js">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-ZSCGN3WZR0");
+  </script>
+  <meta
+    name="facebook-domain-verification"
+    content="u5px9xlv79fcbyx51ynvlt64qrsjj2"
+  />
+  <script
+    defer
+    src="https://cloud.umami.is/script.js"
+    data-website-id="fd4e5c7b-e631-45b1-beef-6c040075417d"></script>
+</head>

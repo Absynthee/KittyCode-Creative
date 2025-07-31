@@ -1,0 +1,42 @@
+---
+import "../styles/global.css";
+import "../lib/navigation.ts";
+import Navigation from "../components/react/Navigation.tsx";
+import Head from "@/components/sections/Head.astro";
+import Footer from "@/components/sections/Footer.astro";
+import ScrollToTop from "../components/ui/ScrollToTop.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+}
+
+const {
+  title = "KittyCode Creative",
+  description,
+  image,
+  canonical,
+  noindex = false,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <Head {title} {description} {image} {canonical} {noindex} />
+  <body>
+    <header>
+      <!-- <Navigation /> -->
+      <Navigation currentPath={Astro.url.pathname} client:load />
+    </header>
+
+    <slot />
+    <!-- Main content slot, where pages are inserted -->
+
+    <ScrollToTop />
+
+    <Footer />
+  </body>
+</html>

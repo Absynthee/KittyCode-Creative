@@ -1,0 +1,910 @@
+---
+import Button from "@/components/ui/Button.astro";
+
+interface Props {
+  name: string;
+  role?: string;
+  tagline?: string;
+  bio?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+    variant?:
+      | "default"
+      | "primary"
+      | "secondary"
+      | "outline"
+      | "ghost"
+      | "info"
+      | "success"
+      | "warning"
+      | "error";
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+    variant?:
+      | "default"
+      | "primary"
+      | "secondary"
+      | "outline"
+      | "ghost"
+      | "info"
+      | "success"
+      | "warning"
+      | "error";
+  };
+  backgroundImage?: string;
+  class?: string;
+}
+
+const {
+  name,
+  role = "Eastbourne Web Design",
+  tagline,
+  bio,
+  primaryCTA,
+  secondaryCTA,
+  backgroundImage,
+} = Astro.props;
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    import("@/lib/sparkly-text.js");
+  });
+</script>
+
+<script>
+  const words = [
+    "beautiful",
+    "accessible",
+    "modern",
+    "responsive",
+    "user-friendly",
+  ];
+  const animatedWord = document.getElementById(
+    "animated-word"
+  ) as HTMLElement | null;
+  const wordDisplay = document.querySelector(
+    "#animated-word .word-display"
+  ) as HTMLElement | null;
+  let currentIndex = 0;
+
+  // Create hidden element to measure text width
+  const measurer = document.createElement("span");
+  measurer.style.visibility = "hidden";
+  measurer.style.position = "absolute";
+  if (wordDisplay) {
+    measurer.style.fontSize = getComputedStyle(wordDisplay).fontSize;
+    measurer.style.fontFamily = getComputedStyle(wordDisplay).fontFamily;
+  }
+  document.body.appendChild(measurer);
+
+  if (wordDisplay && words.length > 1) {
+    function getTextWidth(text: string) {
+      measurer.textContent = text;
+      return measurer.offsetWidth + 12; // word padding
+    }
+
+    function changeWord() {
+      const nextIndex = (currentIndex + 1) % words.length;
+      const nextWord = words[nextIndex];
+
+      // Slide out current word first
+      wordDisplay!.style.transform = "translateX(-50%) translateY(-300%)";
+
+      // Delay width transition until after slide out
+      setTimeout(() => {
+        animatedWord!.style.width = `${getTextWidth(nextWord)}px`;
+
+        currentIndex = nextIndex;
+        wordDisplay!.textContent = nextWord;
+        wordDisplay!.style.transform = "translateX(-50%) translateY(300%)";
+
+        setTimeout(() => {
+          wordDisplay!.style.transform = "translateX(-50%) translateY(0)";
+        }, 50);
+      }, 550);
+    }
+
+    setInterval(changeWord, 5000);
+  }
+</script>
+
+<section id="hero" class="hero hero--fullwidth" aria-labelledby="hero-title">
+  {
+    backgroundImage && (
+      <div class="hero-background">
+        <img src={backgroundImage} alt="" />
+      </div>
+    )
+  }
+
+  <div class="hero-container">
+    <div class="hero-content">
+      <div class="hero-intro">
+        <div class="role-container">
+          <sparkly-text
+            number-of-sparkles="5"
+            style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--Red) 100%);"
+          >
+            <span class="hero-role">{role}</span>
+          </sparkly-text>
+        </div>
+
+        <h1 class="hero-name" id="hero-title">{name}</h1>
+
+        <p class="hero-tagline">{tagline}</p>
+
+        <p class="hero-bio">{bio}</p>
+      </div>
+
+      {
+        (primaryCTA || secondaryCTA) && (
+          <div class="hero-actions">
+            {primaryCTA && (
+              <Button
+                disabled
+                href={primaryCTA.href}
+                variant={primaryCTA.variant || "primary"}
+                size="large"
+              >
+                {primaryCTA.text}
+              </Button>
+            )}
+
+            {secondaryCTA && (
+              <Button
+                href={secondaryCTA.href}
+                variant={secondaryCTA.variant || "outline"}
+                size="large"
+              >
+                {secondaryCTA.text}
+              </Button>
+            )}
+          </div>
+        )
+      }
+
+      <!-- <div class="cards">
+        <Card
+          variant="secondary"
+          title="9+"
+          description="years experience"
+          size="medium"
+        />
+        <Card
+          variant="secondary"
+          title="15+"
+          description="projects completed"
+          size="medium"
+        />
+        <Card
+          variant="secondary"
+          title="100%"
+          description="client satisfaction"
+          size="medium"
+        />
+      </div> -->
+    </div>
+  </div>
+
+  <style>
+    .hero {
+      position: relative;
+      overflow: hidden;
+      /* max-width: 1200px; */
+    }
+
+    .hero--fullwidth {
+      width: 100%;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(
+          ellipse at top,
+          hsla(0, 98.9%, 65.3%, 0.1) 0%,
+          transparent 60%
+        ),
+        radial-gradient(
+          ellipse at bottom right,
+          hsl(from var(--black) h s l / 0.03) 0%,
+          transparent 60%
+        );
+    }
+
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .hero-background img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.05;
+    }
+
+    .geometric-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(transparent 50%, var(--background));
+    }
+
+    .grid-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+          hsl(from var(--border) h s l / 0.05) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          hsl(from var(--border) h s l / 0.05) 1px,
+          transparent 1px
+        );
+      background-size: 50px 50px;
+    }
+
+    .geo-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(
+        135deg,
+        hsl(from var(--primary) h s l / 0.08),
+        hsl(from var(--Red) h s l / 0.04)
+      );
+      border: 1px solid hsl(from var(--border) h s l / 0.1);
+      backdrop-filter: blur(1px);
+    }
+
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      top: 10%;
+      left: 5%;
+      animation: float1 12s ease-in-out infinite;
+    }
+
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      top: 60%;
+      right: 8%;
+      animation: float2 15s ease-in-out infinite 3s;
+    }
+
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      bottom: 15%;
+      left: 15%;
+      animation: float3 18s ease-in-out infinite 6s;
+    }
+
+    .hero-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      padding-block: 3rem;
+    }
+
+    .hero-intro {
+      display: flex;
+      flex-direction: column;
+      /* gap: 2rem; */
+    }
+
+    .role-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      animation: slideInDown 0.8s ease-out;
+    }
+
+    .hero-role {
+      display: inline-block;
+      font-size: var(--step--1);
+      font-weight: 500;
+      color: var(--foreground);
+      background: linear-gradient(
+        5deg,
+        hsl(from var(--primary) h s l / 0.1),
+        hsl(from var(--Red) h s l / 0.05)
+      );
+      padding: 0.4rem 2rem;
+      border-radius: var(--radius);
+      border: 1px solid hsl(from var(--border) h s l / 0.2);
+      border-top: 1px solid hsl(from var(--Red) h s l / 0.2);
+      backdrop-filter: blur(4px);
+      letter-spacing: 0.04em;
+    }
+
+    .specialty {
+      font-size: var(--step--2);
+      font-weight: 500;
+      color: hsl(from var(--foreground) h s l / 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      animation: slideInDown 0.8s ease-out 1s both;
+    }
+
+    .hero-name {
+      color: var(--foreground);
+      font-size: calc(var(--step-4) * 2);
+      letter-spacing: 0.04em;
+      background: linear-gradient(
+        135deg,
+        var(--foreground) 0%,
+        var(--primary) 30%,
+        var(--Red) 60%,
+        var(--foreground) 100%
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 300% 300%;
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+
+      animation:
+        gradientShift 20s ease-in-out infinite,
+        slideInUp 0.8s ease-out 0.3s both;
+    }
+
+    .hero-tagline {
+      font-size: var(--step-1);
+      font-weight: 500;
+      color: hsl(from var(--foreground) h s l / 0.8);
+      line-height: 1.4;
+      max-width: 50ch;
+      text-wrap: balance;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+      padding-bottom: 2rem;
+    }
+
+    .animated-word {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      height: 1.4em;
+      width: 7ch; /* Adjust based on longest word */
+      vertical-align: top;
+    }
+
+    .word-display {
+      display: block;
+      font-weight: 700;
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        hsl(from var(--Red) h s l / 0.9)
+      );
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: transform 0.5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      white-space: nowrap;
+    }
+
+    .hero-bio {
+      font-size: var(--step-0);
+      color: hsl(from var(--foreground) h s l / 0.7);
+      line-height: 1.6;
+      max-width: 50ch;
+      margin: 0 auto;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+
+    .skills-section {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .skill-badge {
+      font-size: var(--step--1);
+      font-weight: 600;
+      color: var(--foreground);
+      background: hsl(from var(--card) h s l / 0.4);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      border: 1px solid hsl(from var(--border) h s l / 0.2);
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      animation: scaleIn 0.6s ease-out var(--delay) both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-badge::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        hsl(from var(--primary) h s l / 0.1),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+
+    .skill-badge:hover {
+      transform: translateY(-2px);
+      background: hsl(from var(--card) h s l / 0.6);
+      border-color: hsl(from var(--primary) h s l / 0.3);
+    }
+
+    .skill-badge:hover::before {
+      left: 100%;
+    }
+
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      animation: scaleIn 0.6s ease-out var(--delay) both;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-icon:hover {
+      transform: scale(1.1);
+    }
+
+    .skill-icon i {
+      width: 100%;
+      height: 100%;
+    }
+
+    .availability-section {
+      animation: slideInRight 0.8s ease-out 1.2s both;
+    }
+
+    .status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: var(--step--1);
+      font-weight: 500;
+      color: var(--success);
+      background: hsl(from var(--success) h s l / 0.08);
+      padding: 1rem 2rem;
+      border-radius: 3rem;
+      border: 1px solid hsl(from var(--success) h s l / 0.2);
+      backdrop-filter: blur(8px);
+    }
+
+    .status-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--success);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 10px hsl(from var(--success) h s l / 0.4);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 1.4s both;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      text-transform: uppercase;
+      justify-content: center;
+
+      .card {
+        --delay: 2s;
+        width: 250px;
+        animation: scaleIn 0.6s ease-out var(--delay) both;
+        transition: all 0.4s ease;
+
+        &:nth-child(2) {
+          --delay: 2.5s;
+        }
+        &:nth-child(3) {
+          --delay: 3s;
+        }
+
+        &:hover {
+          border-color: hsl(from var(--Red) h s l / 0.2);
+        }
+
+        h4 {
+          font-family: "Inter";
+          font-size: var(--step-2);
+          font-weight: 800;
+          color: hsl(from var(--Red) h s l / 0.9);
+          line-height: 1;
+        }
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          hsl(from var(--Red) h s l / 0.4),
+          transparent
+        );
+        animation: shimmer 4s ease-in-out infinite;
+      }
+
+      .card p {
+        font-size: var(--step--2);
+        color: hsl(from var(--foreground) h s l / 0.6);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 0rem;
+      /* left: 50%; */
+      transform: translateX(-50%);
+      z-index: 10;
+      animation: fadeInUp 0.8s ease-out 1.6s both;
+    }
+
+    .scroll-button {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: hsl(from var(--foreground) h s l / 0.6);
+      font-size: var(--step--2);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.3s ease;
+      padding: 1rem;
+    }
+
+    .scroll-button:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .scroll-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid hsl(from var(--border) h s l / 0.3);
+      border-radius: 50%;
+      background: hsl(from var(--card) h s l / 0.2);
+      backdrop-filter: blur(8px);
+      animation: bounce 2s ease-in-out infinite;
+
+      &:hover {
+        animation: pause;
+      }
+    }
+
+    /* Animations */
+    @keyframes gradientShift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes pulse {
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shimmer {
+      0%,
+      100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes float1 {
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translate(-20px, -30px) rotate(180deg);
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes float2 {
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.4;
+      }
+      50% {
+        transform: translate(15px, -25px) rotate(-90deg);
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes float3 {
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translate(-10px, 20px) rotate(45deg);
+        opacity: 0.5;
+      }
+    }
+
+    /* Responsive design */
+    @media screen and (max-width: 1200px) {
+      .hero-container {
+        padding: 4rem 2rem;
+      }
+
+      .hero-content {
+        max-width: 900px;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .hero-container {
+        padding: 2rem 1rem 8rem 1rem;
+      }
+
+      .hero-content {
+        gap: 2.5rem;
+      }
+
+      .hero-name {
+        font-size: var(--step-6);
+      }
+
+      .role-container {
+        gap: 0.5rem;
+      }
+
+      .hero-role {
+        font-size: var(--step--1);
+        padding: 0.4rem 1rem;
+      }
+
+      .hero-actions {
+        gap: var(--space-2xs);
+      }
+
+      .specialty {
+        font-size: var(--step--3);
+      }
+
+      .hero-tagline {
+        font-size: var(--step-0);
+      }
+
+      .skills-grid {
+        gap: 0.75rem;
+      }
+
+      .skill-badge {
+        font-size: var(--step--2);
+        padding: 0.5rem 1rem;
+      }
+
+      .skill-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+
+      .hero-actions {
+        /* flex-direction: column; */
+        align-items: center;
+      }
+
+      .hero-actions :global(.btn) {
+        /* width: 100%; */
+        max-width: 300px;
+      }
+
+      .cards {
+        align-items: center;
+        gap: var(--space-3xs);
+      }
+
+      .cards {
+        .card {
+          min-width: 205px;
+          width: unset;
+          padding: 1.5rem 1rem;
+          margin: var(--space-3xs);
+        }
+
+        .card::before {
+          animation: none;
+        }
+      }
+
+      .geo-shape {
+        display: none;
+        animation: none;
+      }
+
+      .scroll-indicator {
+        bottom: 2rem;
+      }
+
+      .scroll-arrow {
+        animation: none;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .hero-container {
+        padding: 2rem 1rem;
+      }
+
+      .hero-content {
+        padding-bottom: 10rem;
+      }
+
+      .hero-bio {
+        line-height: 1.4;
+      }
+
+      .skill-icon {
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .cards {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .cards {
+        .card {
+          min-width: 200px;
+          padding: 1rem 0.75rem;
+        }
+      }
+    }
+  </style>
+</section>

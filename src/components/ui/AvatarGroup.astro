@@ -1,0 +1,206 @@
+---
+interface Props {
+  max?: number;
+  size?: "small" | "medium" | "large" | "xl";
+  spacing?: "tight" | "normal" | "loose";
+  class?: string;
+}
+
+const {
+  max = 5,
+  size = "medium",
+  spacing = "normal",
+  class: className = "",
+} = Astro.props;
+
+const baseClasses = "avatar-group";
+const sizeClass = `avatar-group--${size}`;
+const spacingClass = `avatar-group--spacing-${spacing}`;
+
+const classes = [baseClasses, sizeClass, spacingClass, className]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<script>
+  import {
+    getHTMLElements,
+    getElementAttribute,
+    filterHTMLElements,
+    setElementStyle,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const avatarGroups = getHTMLElements(".avatar-group");
+
+    avatarGroups.forEach((group) => {
+      const maxAttr = getElementAttribute(group, "data-max");
+      const max = parseInt(maxAttr || "5");
+      const allChildren = Array.from(group.children);
+      const avatars = filterHTMLElements(allChildren).filter((child) =>
+        child.classList.contains("avatar")
+      );
+
+      if (avatars.length > max) {
+        // Hide excess avatars
+        avatars.slice(max - 1).forEach((avatar) => {
+          setElementStyle(avatar, "display", "none");
+        });
+
+        // Get size class from group
+        const groupSize = group.classList.contains("avatar-group--small")
+          ? "small"
+          : group.classList.contains("avatar-group--large")
+            ? "large"
+            : group.classList.contains("avatar-group--xl")
+              ? "xl"
+              : "medium";
+
+        // Create overflow indicator
+        const overflow = avatars.length - (max - 1);
+        const overflowAvatar = document.createElement("div");
+
+        // Use more specific classes to avoid conflicts
+        overflowAvatar.className = `avatar avatar--${groupSize} avatar--overflow avatar-group__overflow`;
+        overflowAvatar.innerHTML = `<div class="avatar-fallback"><span>+${overflow}</span></div>`;
+        overflowAvatar.setAttribute("title", `${overflow} more avatars`);
+        overflowAvatar.setAttribute("role", "img");
+        overflowAvatar.setAttribute("aria-label", `${overflow} more avatars`);
+
+        group.appendChild(overflowAvatar);
+      }
+    });
+  });
+</script>
+
+<div class={classes} data-max={max} role="group" aria-label="Avatar group">
+  <slot />
+</div>
+
+<style>
+  .avatar-group {
+    display: flex;
+    align-items: center;
+    gap: 0; /* Remove default gap since we use negative margins */
+  }
+
+  .avatar-group :global(.avatar) {
+    border: 2px solid var(--background);
+    position: relative;
+    transition:
+      transform 0.2s ease,
+      z-index 0.2s ease;
+    flex-shrink: 0; /* Prevent avatars from shrinking */
+  }
+
+  .avatar-group :global(.avatar:hover) {
+    transform: scale(1.1);
+    z-index: 10;
+  }
+
+  /* Spacing variants */
+  .avatar-group--spacing-tight :global(.avatar:not(:first-child)) {
+    margin-left: -0.75rem;
+  }
+
+  .avatar-group--spacing-normal :global(.avatar:not(:first-child)) {
+    margin-left: -0.45rem;
+  }
+
+  .avatar-group--spacing-loose :global(.avatar:not(:first-child)) {
+    margin-left: -0.25rem;
+  }
+
+  /* Overflow avatar styles - using :global() for dynamically created elements */
+  .avatar-group :global(.avatar-group__overflow) {
+    background: hsl(from var(--muted) h s l / 0.8);
+    color: hsl(from var(--foreground) h s l / 0.8);
+    font-weight: 600;
+    border: 2px solid var(--background);
+    cursor: default;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius);
+    background-color: var(--card);
+  }
+
+  .avatar-group :global(.avatar-group__overflow .avatar-fallback) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-size: 0.75em;
+    font-weight: inherit;
+    color: inherit;
+  }
+
+  .avatar-group :global(.avatar-group__overflow .avatar-fallback span) {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: 1;
+  }
+
+  .avatar-group :global(.avatar-group__overflow:hover) {
+    background: hsl(from var(--muted) h s l / 0.9);
+    transform: scale(1.05); /* Slightly less dramatic than regular avatars */
+  }
+
+  /* Size-specific overflow styles */
+  .avatar-group--small :global(.avatar-group__overflow .avatar-fallback) {
+    font-size: 0.6em;
+  }
+
+  .avatar-group--medium :global(.avatar-group__overflow .avatar-fallback) {
+    font-size: 0.7em;
+  }
+
+  .avatar-group--large :global(.avatar-group__overflow .avatar-fallback) {
+    font-size: 0.75em;
+  }
+
+  .avatar-group--xl :global(.avatar-group__overflow .avatar-fallback) {
+    font-size: 0.8em;
+  }
+
+  /* Ensure overflow avatar follows same spacing rules */
+  .avatar-group--spacing-tight :global(.avatar-group__overflow) {
+    margin-left: -0.75rem;
+  }
+
+  .avatar-group--spacing-normal :global(.avatar-group__overflow) {
+    margin-left: -0.45rem;
+  }
+
+  .avatar-group--spacing-loose :global(.avatar-group__overflow) {
+    margin-left: -0.25rem;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .avatar-group--spacing-normal :global(.avatar:not(:first-child)),
+    .avatar-group--spacing-normal :global(.avatar-group__overflow) {
+      margin-left: -0.5rem;
+    }
+
+    .avatar-group--spacing-loose :global(.avatar:not(:first-child)),
+    .avatar-group--spacing-loose :global(.avatar-group__overflow) {
+      margin-left: -0.125rem;
+    }
+
+    .avatar-group :global(.avatar:hover) {
+      transform: none; /* Reduce hover effects on mobile */
+    }
+
+    .avatar-group :global(.avatar-group__overflow:hover) {
+      transform: none;
+    }
+  }
+
+  /* Focus styles for accessibility */
+  .avatar-group :global(.avatar:focus-visible) {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+    z-index: 10;
+  }
+</style>

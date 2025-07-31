@@ -1,0 +1,82 @@
+---
+import { ChevronUp } from "@lucide/astro";
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const scrollButton = document.querySelector(".scroll-to-top");
+
+    if (scrollButton) {
+      const handleScroll = () => {
+        const isVisible = window.scrollY > 300;
+        scrollButton.classList.toggle("visible", isVisible);
+      };
+
+      const scrollToTop = () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      scrollButton.addEventListener("click", scrollToTop);
+    }
+  });
+</script>
+
+<button class="scroll-to-top" aria-label="Scroll to top">
+  <!-- <svg
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path d="m18 15-6-6-6 6"></path>
+  </svg> -->
+
+  <ChevronUp />
+</button>
+
+<style>
+  .scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 44px;
+    height: 44px;
+    background: hsl(from var(--card) h s l / 0.15);
+    backdrop-filter: blur(8px);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--foreground);
+    transform: translateY(100px);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .scroll-to-top.visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .scroll-to-top:hover {
+    transform: translateY(0) scale(1.05);
+  }
+
+  @media screen and (max-width: 768px) {
+    .scroll-to-top {
+      bottom: 1rem;
+      right: 1rem;
+    }
+  }
+</style>

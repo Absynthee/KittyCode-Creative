@@ -1,0 +1,244 @@
+---
+import { navigation, isActive } from "../../lib/navigation";
+import type { FooterNavItem, SocialItem } from "../../lib/navigation";
+import { Linkedin, Github, Paintbrush, Mail } from "@lucide/astro";
+
+// Get current path for active state
+const currentPath = Astro.url.pathname;
+
+const footerNavLinks = navigation.footer;
+const footerSocialLinks = navigation.social;
+---
+
+<footer>
+  <div class="geometric-bg">
+    <div class="grid-pattern"></div>
+  </div>
+
+  <div class="footer-content">
+    <nav class="footer-nav" aria-label="Footer navigation">
+      {
+        footerNavLinks.map((item: FooterNavItem) => (
+          <a
+            href={item.path}
+            class={`nav-link ${isActive(item.path, currentPath) ? "active" : ""}`}
+            aria-label={item.ariaLabel}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="footer-social" aria-label="Social media links">
+      {
+        footerSocialLinks.map((item: SocialItem) => (
+          <a
+            href={item.path}
+            class="social-link"
+            aria-label={item.ariaLabel}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {item.icon === "linkedin" && <Linkedin size={20} />}
+            {item.icon === "github" && <Github size={20} />}
+            {item.icon === "behance" && <Paintbrush size={20} />}
+            {item.icon === "email" && <Mail size={20} />}
+
+            <span class="sr-only">{item.label}</span>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="copyright">
+      &copy; {new Date().getFullYear()}
+      <a href="/#">Austin Spillman</a> &
+      <a href="https://www.kittycodecreative.com/">KittyCode Creative</a>. All
+      rights reserved.
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    position: relative;
+    outline: 1px solid hsl(from var(--border) h s l / 0.1);
+    padding-block: var(--space-xl);
+    text-align: center;
+    background: linear-gradient(
+      var(--background) 1%,
+      var(--background) 60%,
+      hsl(from var(--Red) h s l / 0.1)
+    );
+    overflow: hidden;
+  }
+
+  .geometric-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .grid-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+        hsl(from var(--border) h s l / 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        hsl(from var(--border) h s l / 0.05) 1px,
+        transparent 1px
+      );
+    background-size: 50px 50px;
+  }
+
+  .footer-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    padding: 0 var(--space-m);
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-m);
+    margin-bottom: var(--space-s);
+  }
+
+  .nav-link {
+    color: hsl(from var(--foreground) h s l / 0.7);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius);
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: var(--Red);
+    background: hsl(from var(--Red) h s l / 0.1);
+  }
+
+  .nav-link.active {
+    color: var(--Red);
+    font-weight: 600;
+  }
+
+  .nav-link:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-s);
+    margin-bottom: var(--space-s);
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: hsl(from var(--foreground) h s l / 0.7);
+    background: hsl(from var(--card) h s l / 0.1);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+  }
+
+  .social-link:hover {
+    color: var(--Red);
+    background: hsl(from var(--Red) h s l / 0.1);
+    border-color: var(--Red);
+    transform: translateY(-2px);
+  }
+
+  .social-link:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  .copyright {
+    color: hsl(from var(--foreground) h s l / 0.6);
+  }
+
+  .copyright a {
+    color: hsl(from var(--Red) h s l / 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .copyright a:hover {
+    color: var(--Red);
+    text-decoration: underline;
+  }
+
+  .copyright a:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .footer-nav {
+      gap: var(--space-s);
+    }
+
+    .nav-link {
+      font-size: var(--step--1);
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .footer-nav {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .nav-link {
+      padding: 0.25rem 2rem;
+    }
+  }
+</style>

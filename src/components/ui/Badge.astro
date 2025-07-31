@@ -1,0 +1,160 @@
+---
+export interface Props {
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "outline"
+    | "ghost"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+  href?: string;
+  type?: "badge";
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size = "medium",
+  href,
+  type = "badge",
+  disabled = false,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+// Generate class names
+const baseClasses = "badge";
+const variantClass = `badge--${variant}`;
+const sizeClass = `badge--${size}`;
+const disabledClass = disabled ? "badge--disabled" : "";
+
+const classes = [baseClasses, variantClass, sizeClass, disabledClass, className]
+  .filter(Boolean)
+  .join(" ");
+
+// Choose element type
+const Element = href ? "a" : "div";
+const elementProps = href ? { href, ...rest } : { type, disabled, ...rest };
+---
+
+<Element class={classes} {...elementProps}>
+  <slot />
+</Element>
+
+<style>
+  /* Base Badge Styles */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--step--2);
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+    width: fit-content;
+    margin-block: var(--space-3xs);
+  }
+
+  .badge:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  .badge--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Size Variants */
+  .badge--small {
+    padding: 0.1rem 0.75em;
+    font-size: var(--step--2);
+    line-height: var(--space-xs);
+    min-width: fit-content;
+  }
+
+  .badge--medium {
+    padding: 0.2rem 0.75rem;
+    font-size: var(--step--2);
+    line-height: var(--space-s);
+    min-width: fit-content;
+  }
+
+  .badge--large {
+    padding: 0.4rem 1rem;
+    font-size: var(--step--1);
+    line-height: var(--space-s);
+    min-width: fit-content;
+  }
+
+  /* Style Variants */
+
+  a.badge:hover {
+    background: hsl(from var(--primary) h s l / 0.2);
+  }
+
+  /* default unused, fallback to primary */
+  .badge--default {
+    background: hsl(from var(--primary) h s l / 0.15);
+    color: var(--foreground);
+    border-color: hsl(from var(--border) h s l / 0.2);
+    backdrop-filter: blur(12px);
+  }
+
+  .badge--default,
+  .badge--primary {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-color: hsl(from var(--border) h s l / 0.2);
+  }
+
+  .badge--secondary {
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    border-color: hsl(from var(--border) h s l / 0.2);
+  }
+
+  .badge--outline {
+    background: transparent;
+    color: var(--foreground);
+    border-color: var(--border);
+  }
+
+  .badge--ghost {
+    background: transparent;
+    color: var(--foreground);
+    border-color: transparent;
+  }
+
+  .badge--info {
+    background: var(--info);
+    color: var(--white);
+  }
+
+  .badge--success {
+    background: var(--success);
+    color: var(--white);
+  }
+
+  .badge--warning {
+    background: var(--warning);
+    color: var(--black);
+  }
+
+  .badge--error {
+    background: var(--error);
+    color: var(--white);
+  }
+</style>

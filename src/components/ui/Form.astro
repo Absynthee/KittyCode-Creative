@@ -1,0 +1,421 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Input from "@/components/ui/Input.astro";
+import Label from "@/components/ui/Label.astro";
+
+export interface FormField {
+  id: string;
+  label: string;
+  type: "text" | "email" | "password" | "number" | "tel" | "url";
+  placeholder?: string;
+  required?: boolean;
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+}
+
+export interface FormButton {
+  label: string;
+  type?: "submit" | "button" | "reset";
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "outline"
+    | "ghost"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+}
+
+interface Props {
+  fields: FormField[];
+  buttons?: FormButton[];
+  size?: "small" | "medium" | "large";
+  title?: string;
+  description?: string;
+  action?: string;
+  method?: "GET" | "POST";
+  class?: string;
+}
+
+const {
+  fields,
+  buttons,
+  size = "medium",
+  title,
+  description,
+  action,
+  method = "POST",
+  class: className = "",
+} = Astro.props;
+
+// Default buttons if none provided
+const defaultButtons: FormButton[] = [
+  {
+    label: "Submit",
+    type: "submit",
+    variant: "primary",
+    size: size,
+  },
+  {
+    label: "Reset",
+    type: "reset",
+    variant: "outline",
+    size: size,
+  },
+];
+
+const formButtons = buttons || defaultButtons;
+
+const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
+  return field.size || size;
+};
+---
+
+<script>
+  import {
+    getHTMLElements,
+    getHTMLElement,
+    findElements,
+    addElementClass,
+    removeElementClass,
+    isInputElement,
+    getFormValue,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const forms = getHTMLElements(".form-container");
+
+    forms.forEach((form) => {
+      const formElement = getHTMLElement("form", form);
+      const inputs = findElements("input[required]", form, HTMLInputElement);
+
+      if (!formElement) return;
+
+      // Real-time validation
+      inputs.forEach((input) => {
+        input.addEventListener("blur", validateField);
+        input.addEventListener("input", clearErrorOnInput);
+      });
+
+      // Form submission validation
+      formElement.addEventListener("submit", handleSubmit);
+
+      function validateField(event: Event) {
+        const input = event.target;
+        if (!isInputElement(input)) return;
+
+        const fieldContainer = input.closest(".field") as HTMLElement;
+        if (!fieldContainer) return;
+
+        clearErrors(fieldContainer);
+
+        const error = getFieldError(input);
+        if (error) {
+          showError(fieldContainer, input, error);
+        } else {
+          showSuccess(fieldContainer, input);
+        }
+      }
+
+      function clearErrorOnInput(event: Event) {
+        const input = event.target;
+        if (!isInputElement(input)) return;
+
+        const fieldContainer = input.closest(".field") as HTMLElement;
+        if (!fieldContainer) return;
+
+        if (
+          getFormValue(input).trim() &&
+          fieldContainer.classList.contains("field--error")
+        ) {
+          clearErrors(fieldContainer);
+        }
+      }
+
+      function getFieldError(input: HTMLInputElement): string | null {
+        const inputValue = getFormValue(input);
+
+        if (input.required && !inputValue.trim()) {
+          return `${getLabelText(input)} is required`;
+        }
+
+        if (inputValue.trim()) {
+          switch (input.type) {
+            case "email":
+              const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              if (!emailRegex.test(inputValue)) {
+                return "Please enter a valid email address";
+              }
+              break;
+            case "tel":
+              const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+              if (!phoneRegex.test(inputValue.replace(/[\s\-\(\)]/g, ""))) {
+                return "Please enter a valid phone number";
+              }
+              break;
+            case "url":
+              try {
+                new URL(inputValue);
+              } catch {
+                return "Please enter a valid URL";
+              }
+              break;
+          }
+        }
+
+        return null;
+      }
+
+      function getLabelText(input: HTMLInputElement): string {
+        const label = getHTMLElement(`label[for="${input.id}"]`, form);
+        return label
+          ? label.textContent?.replace("*", "").trim() || "Field"
+          : "Field";
+      }
+
+      function showError(
+        fieldContainer: HTMLElement,
+        input: HTMLInputElement,
+        message: string
+      ) {
+        addElementClass(fieldContainer, "field--error");
+        removeElementClass(fieldContainer, "field--success");
+
+        // Update input variant
+        input.className = input.className.replace(/input--\w+/, "input--error");
+
+        // Update label variant
+        const label = getHTMLElement("label", fieldContainer);
+        if (label) {
+          label.className = label.className.replace(
+            /label--\w+/,
+            "label--error"
+          );
+        }
+
+        // Show error message
+        let errorElement = getHTMLElement(".error-message", fieldContainer);
+        if (!errorElement) {
+          errorElement = document.createElement("span");
+          addElementClass(errorElement, "error-message");
+          fieldContainer.appendChild(errorElement);
+        }
+        errorElement.textContent = message;
+      }
+
+      function showSuccess(
+        fieldContainer: HTMLElement,
+        input: HTMLInputElement
+      ) {
+        if (input.required) {
+          addElementClass(fieldContainer, "field--success");
+          removeElementClass(fieldContainer, "field--error");
+
+          // Update input variant
+          input.className = input.className.replace(
+            /input--\w+/,
+            "input--success"
+          );
+
+          // Update label variant
+          const label = getHTMLElement("label", fieldContainer);
+          if (label) {
+            label.className = label.className.replace(
+              /label--\w+/,
+              "label--success"
+            );
+          }
+        }
+
+        // Remove error message
+        const errorElement = getHTMLElement(".error-message", fieldContainer);
+        if (errorElement) {
+          errorElement.remove();
+        }
+      }
+
+      function clearErrors(fieldContainer: HTMLElement) {
+        removeElementClass(fieldContainer, "field--error", "field--success");
+
+        const errorElement = getHTMLElement(".error-message", fieldContainer);
+        if (errorElement) {
+          errorElement.remove();
+        }
+      }
+
+      function handleSubmit(event: Event) {
+        let hasErrors = false;
+
+        inputs.forEach((input) => {
+          const fieldContainer = input.closest(".field") as HTMLElement;
+          if (!fieldContainer) return;
+
+          clearErrors(fieldContainer);
+
+          const error = getFieldError(input);
+          if (error) {
+            showError(fieldContainer, input, error);
+            hasErrors = true;
+          }
+        });
+
+        if (hasErrors) {
+          event.preventDefault();
+          console.log("Form has validation errors");
+        }
+      }
+    });
+  });
+</script>
+
+<div class={`form-container ${className}`}>
+  <form {action} {method} class="form">
+    {
+      (title || description) && (
+        <div class="form-header">
+          {title && <h2>{title}</h2>}
+          {description && <p>{description}</p>}
+        </div>
+      )
+    }
+
+    <div class="form-fields">
+      {
+        fields.map((field) => (
+          <fieldset class="field">
+            <Label
+              htmlFor={field.id}
+              variant={field.variant || "default"}
+              size={getFieldSize(field)}
+              required={field.required}
+            >
+              {field.label}
+            </Label>
+
+            <Input
+              id={field.id}
+              type={field.type}
+              placeholder={field.placeholder}
+              variant={field.variant || "default"}
+              size={getFieldSize(field)}
+              required={field.required}
+            />
+          </fieldset>
+        ))
+      }
+    </div>
+
+    <div class="form-actions">
+      {
+        formButtons.map((button) => (
+          <Button
+            type={button.type || "button"}
+            variant={button.variant || "default"}
+            size={button.size || (size as "small" | "medium" | "large")}
+          >
+            {button.label}
+          </Button>
+        ))
+      }
+    </div>
+  </form>
+</div>
+
+<style>
+  /* Form Layout Styles Only */
+  .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .form {
+    padding: 2rem;
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .form-header h2 {
+    font-size: var(--step-2);
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-header p {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    line-height: 1.5;
+  }
+
+  .form-fields {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .field {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .field:focus-within {
+    transform: translateY(-1px);
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .error-message {
+    font-size: var(--step--2);
+    color: var(--error);
+    margin-top: 0.25rem;
+    display: block;
+    font-weight: 500;
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .form {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+
+    .form-fields {
+      gap: 1.25rem;
+    }
+
+    .form-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .form-actions :global(.btn) {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,315 @@
+---
+interface Props {
+  defaultValue?: string;
+  placeholder?: string;
+  disabled?: boolean;
+  required?: boolean;
+  name?: string;
+  class?: string;
+}
+
+const {
+  defaultValue,
+  placeholder = "Select an option",
+  disabled = false,
+  required = false,
+  name,
+  class: className = "",
+} = Astro.props;
+
+const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  import {
+    getHTMLElements,
+    getHTMLElement,
+    getInputElement,
+    getElementAttribute,
+    setElementAttribute,
+    removeElementAttribute,
+    addElementClass,
+    removeElementClass,
+    focusElement,
+    isHTMLElement,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const selects = getHTMLElements(".select");
+
+    selects.forEach((select) => {
+      const trigger = getHTMLElement(".select-trigger", select);
+      const content = getHTMLElement(".select-content", select);
+      const items = getHTMLElements(".select-item", select);
+      const valueElement = getHTMLElement(".select-value", select);
+      const hiddenInput = getInputElement(".select-hidden-input", select);
+
+      if (!trigger || !content || !valueElement) return;
+
+      // At this point, we know trigger, content, and valueElement are not null
+      // TypeScript assertion for clarity
+      const safeContent = content!;
+      const safeValueElement = valueElement!;
+      const safeTrigger = trigger!;
+
+      const defaultValue = getElementAttribute(select, "data-default-value");
+      const placeholder =
+        getElementAttribute(select, "data-placeholder") || "Select an option";
+
+      let selectedValue = defaultValue || "";
+      let isOpen = false;
+
+      // Initialize
+      if (selectedValue) {
+        setSelectedValue(selectedValue);
+      } else {
+        safeValueElement.textContent = placeholder;
+        addElementClass(safeValueElement, "placeholder");
+      }
+
+      // Toggle dropdown
+      safeTrigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (safeTrigger.hasAttribute("disabled")) return;
+
+        if (isOpen) {
+          closeDropdown();
+        } else {
+          openDropdown();
+        }
+      });
+
+      // Handle item selection
+      items.forEach((item) => {
+        item.addEventListener("click", () => {
+          // Don't allow selection of disabled items
+          if (
+            item.hasAttribute("disabled") ||
+            item.classList.contains("select-item--disabled")
+          ) {
+            return;
+          }
+
+          const value = getElementAttribute(item, "data-value");
+          const text = item.textContent?.trim();
+
+          if (value && text) {
+            setSelectedValue(value, text);
+            closeDropdown();
+          }
+        });
+      });
+
+      // Keyboard navigation
+      safeTrigger.addEventListener("keydown", handleTriggerKeyDown);
+      safeContent.addEventListener("keydown", handleContentKeyDown);
+
+      // Prevent disabled items from receiving focus
+      items.forEach((item) => {
+        item.addEventListener("focus", (e) => {
+          if (
+            item.hasAttribute("disabled") ||
+            item.classList.contains("select-item--disabled")
+          ) {
+            e.preventDefault();
+            // Focus next enabled item instead
+            const enabledItems = items.filter(
+              (item) =>
+                !item.hasAttribute("disabled") &&
+                !item.classList.contains("select-item--disabled")
+            );
+
+            if (enabledItems.length > 0) {
+              focusElement(enabledItems[0]);
+            }
+          }
+        });
+      });
+
+      // Close on outside click
+      document.addEventListener("click", (e) => {
+        if (!select.contains(e.target as Node) && isOpen) {
+          closeDropdown();
+        }
+      });
+
+      function openDropdown() {
+        isOpen = true;
+        setElementAttribute(safeContent, "data-state", "open");
+        setElementAttribute(safeTrigger, "aria-expanded", "true");
+
+        // Focus first enabled item or selected item
+        const selectedItem = safeContent.querySelector(
+          ".select-item[data-selected]:not([disabled]):not(.select-item--disabled)"
+        ) as HTMLElement;
+        const firstEnabledItem = safeContent.querySelector(
+          ".select-item:not([disabled]):not(.select-item--disabled)"
+        ) as HTMLElement;
+
+        setTimeout(() => {
+          if (selectedItem) {
+            focusElement(selectedItem);
+          } else if (firstEnabledItem) {
+            focusElement(firstEnabledItem);
+          }
+        }, 50);
+      }
+
+      function closeDropdown() {
+        isOpen = false;
+        setElementAttribute(safeContent, "data-state", "closed");
+        setElementAttribute(safeTrigger, "aria-expanded", "false");
+        focusElement(safeTrigger);
+      }
+
+      function setSelectedValue(value: string, text?: string) {
+        // Check if the item being selected is disabled
+        const selectedItem = safeContent.querySelector(
+          `[data-value="${value}"]`
+        ) as HTMLElement;
+        if (
+          selectedItem &&
+          (selectedItem.hasAttribute("disabled") ||
+            selectedItem.classList.contains("select-item--disabled"))
+        ) {
+          return; // Don't allow setting disabled values
+        }
+
+        selectedValue = value;
+
+        // Update display
+        const displayText = text || selectedItem?.textContent?.trim() || value;
+
+        safeValueElement.textContent = displayText;
+        removeElementClass(safeValueElement, "placeholder");
+
+        // Update selected states
+        items.forEach((item) => {
+          if (getElementAttribute(item, "data-value") === value) {
+            setElementAttribute(item, "data-selected", "");
+            setElementAttribute(item, "aria-selected", "true");
+          } else {
+            removeElementAttribute(item, "data-selected");
+            setElementAttribute(item, "aria-selected", "false");
+          }
+        });
+
+        // Update hidden input
+        if (hiddenInput) {
+          hiddenInput.value = value;
+        }
+
+        // Dispatch change event
+        const changeEvent = new CustomEvent("change", {
+          detail: { value, text: displayText },
+          bubbles: true,
+        });
+        select.dispatchEvent(changeEvent);
+      }
+
+      function handleTriggerKeyDown(event: KeyboardEvent) {
+        switch (event.key) {
+          case "Enter":
+          case " ":
+          case "ArrowDown":
+          case "ArrowUp":
+            event.preventDefault();
+            openDropdown();
+            break;
+          case "Escape":
+            closeDropdown();
+            break;
+        }
+      }
+
+      function handleContentKeyDown(event: KeyboardEvent) {
+        const focusedItem = document.activeElement as HTMLElement;
+
+        // Only include enabled items for navigation
+        const enabledItems = items.filter(
+          (item) =>
+            !item.hasAttribute("disabled") &&
+            !item.classList.contains("select-item--disabled")
+        );
+
+        const currentIndex = enabledItems.indexOf(focusedItem);
+
+        switch (event.key) {
+          case "Enter":
+          case " ":
+            event.preventDefault();
+            // Only allow selection if item is enabled and is a select item
+            if (
+              focusedItem &&
+              focusedItem.classList.contains("select-item") &&
+              !focusedItem.hasAttribute("disabled") &&
+              !focusedItem.classList.contains("select-item--disabled")
+            ) {
+              focusedItem.click();
+            }
+            break;
+          case "ArrowDown":
+            event.preventDefault();
+            if (enabledItems.length > 0) {
+              const nextIndex =
+                currentIndex < enabledItems.length - 1 ? currentIndex + 1 : 0;
+              focusElement(enabledItems[nextIndex]);
+            }
+            break;
+          case "ArrowUp":
+            event.preventDefault();
+            if (enabledItems.length > 0) {
+              const prevIndex =
+                currentIndex > 0 ? currentIndex - 1 : enabledItems.length - 1;
+              focusElement(enabledItems[prevIndex]);
+            }
+            break;
+          case "Escape":
+            event.preventDefault();
+            closeDropdown();
+            break;
+          case "Home":
+            event.preventDefault();
+            if (enabledItems.length > 0) {
+              focusElement(enabledItems[0]);
+            }
+            break;
+          case "End":
+            event.preventDefault();
+            if (enabledItems.length > 0) {
+              focusElement(enabledItems[enabledItems.length - 1]);
+            }
+            break;
+        }
+      }
+    });
+  });
+</script>
+
+<div
+  class={`select ${className}`}
+  data-default-value={defaultValue}
+  data-placeholder={placeholder}
+  id={selectId}
+>
+  {
+    name && (
+      <input
+        type="hidden"
+        name={name}
+        value={defaultValue || ""}
+        required={required}
+        class="select-hidden-input"
+      />
+    )
+  }
+  <slot />
+</div>
+
+<style>
+  .select {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+</style>

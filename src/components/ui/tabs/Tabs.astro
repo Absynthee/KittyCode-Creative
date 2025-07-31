@@ -1,0 +1,134 @@
+---
+interface Props {
+  defaultValue?: string;
+  class?: string;
+}
+
+const { defaultValue, class: className = "" } = Astro.props;
+
+const tabsId = `tabs-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabsContainers = document.querySelectorAll(".tabs");
+
+    tabsContainers.forEach((tabs) => {
+      const defaultValue = tabs.getAttribute("data-default-value");
+      const triggers = tabs.querySelectorAll(".tabs-trigger");
+      const contents = tabs.querySelectorAll(".tabs-content");
+      const tabsList = tabs.querySelector(".tabs-list");
+
+      let activeTab =
+        defaultValue ||
+        (triggers[0] ? triggers[0].getAttribute("data-value") : null);
+
+      // Initialize tabs
+      if (activeTab) {
+        setActiveTab(activeTab);
+      }
+
+      // Add click listeners to triggers
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const value = trigger.getAttribute("data-value");
+          if (value) {
+            setActiveTab(value);
+          }
+        });
+      });
+
+      // Keyboard navigation
+      if (tabsList) {
+        tabsList.addEventListener("keydown", handleKeyDown as EventListener);
+      }
+
+      function setActiveTab(value: string) {
+        activeTab = value;
+
+        // Update triggers
+        triggers.forEach((trigger) => {
+          const triggerValue = trigger.getAttribute("data-value");
+          const isActive = triggerValue === value;
+
+          trigger.setAttribute("aria-selected", isActive.toString());
+          trigger.setAttribute("tabindex", isActive ? "0" : "-1");
+
+          if (isActive) {
+            trigger.classList.add("active");
+            // Remove automatic focus to prevent auto-scroll on page load
+          } else {
+            trigger.classList.remove("active");
+          }
+        });
+
+        // Update content panels
+        contents.forEach((content) => {
+          const contentValue = content.getAttribute("data-value");
+          const isActive = contentValue === value;
+
+          if (isActive) {
+            content.classList.add("active");
+            content.removeAttribute("hidden");
+          } else {
+            content.classList.remove("active");
+            content.setAttribute("hidden", "");
+          }
+        });
+      }
+
+      function handleKeyDown(event: KeyboardEvent) {
+        const triggerArray = Array.from(triggers).filter(
+          (trigger) => !trigger.hasAttribute("disabled")
+        ) as HTMLElement[];
+        const currentIndex = triggerArray.findIndex((trigger) =>
+          trigger.classList.contains("active")
+        );
+
+        let newIndex = currentIndex;
+
+        switch (event.key) {
+          case "ArrowLeft":
+            event.preventDefault();
+            newIndex =
+              currentIndex > 0 ? currentIndex - 1 : triggerArray.length - 1;
+            break;
+          case "ArrowRight":
+            event.preventDefault();
+            newIndex =
+              currentIndex < triggerArray.length - 1 ? currentIndex + 1 : 0;
+            break;
+          case "Home":
+            event.preventDefault();
+            newIndex = 0;
+            break;
+          case "End":
+            event.preventDefault();
+            newIndex = triggerArray.length - 1;
+            break;
+          default:
+            return;
+        }
+
+        const newTrigger = triggerArray[newIndex];
+        const newValue = newTrigger?.getAttribute("data-value");
+        if (newValue) {
+          setActiveTab(newValue);
+          newTrigger.focus(); // Only focus when user navigates with keyboard
+        }
+      }
+    });
+  });
+</script>
+
+<div class={`tabs ${className}`} data-default-value={defaultValue} id={tabsId}>
+  <slot />
+</div>
+
+<style>
+  .tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+</style>

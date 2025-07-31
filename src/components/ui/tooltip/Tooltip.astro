@@ -1,0 +1,247 @@
+---
+interface Props {
+  openDelay?: number;
+  closeDelay?: number;
+  disableHoverableContent?: boolean;
+  class?: string;
+}
+
+const {
+  openDelay = 200,
+  closeDelay = 200,
+  disableHoverableContent = false,
+  class: className = "",
+} = Astro.props;
+
+const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tooltips = document.querySelectorAll(".tooltip");
+
+    tooltips.forEach((tooltip) => {
+      const openDelay = parseInt(
+        tooltip.getAttribute("data-open-delay") || "200"
+      );
+      const closeDelay = parseInt(
+        tooltip.getAttribute("data-close-delay") || "200"
+      );
+      const disableHoverableContent =
+        tooltip.getAttribute("data-disable-hoverable") === "true";
+
+      const trigger = tooltip.querySelector(".tooltip-trigger");
+      const content = tooltip.querySelector(".tooltip-content");
+
+      if (!trigger || !content) return;
+
+      let openTimeout: number;
+      let closeTimeout: number;
+      let isOpen = false;
+
+      // Show tooltip
+      function showTooltip() {
+        clearTimeout(closeTimeout);
+        openTimeout = window.setTimeout(() => {
+          isOpen = true;
+          positionTooltip();
+          content.setAttribute("data-state", "open");
+          trigger.setAttribute("aria-describedby", content.id || "");
+        }, openDelay);
+      }
+
+      // Hide tooltip
+      function hideTooltip() {
+        clearTimeout(openTimeout);
+        closeTimeout = window.setTimeout(() => {
+          isOpen = false;
+          content.setAttribute("data-state", "closed");
+          trigger.removeAttribute("aria-describedby");
+        }, closeDelay);
+      }
+
+      // Position tooltip based on side and align props
+      function positionTooltip() {
+        const side = content.getAttribute("data-side") || "top";
+        const align = content.getAttribute("data-align") || "center";
+        const sideOffset = parseInt(
+          content.getAttribute("data-side-offset") || "4"
+        );
+        const avoidCollisions =
+          content.getAttribute("data-avoid-collisions") !== "false";
+
+        const triggerRect = trigger.getBoundingClientRect();
+        const contentRect = content.getBoundingClientRect();
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        let top = 0;
+        let left = 0;
+        let actualSide = side;
+
+        // Calculate position based on side
+        switch (side) {
+          case "top":
+            top = triggerRect.top - contentRect.height - sideOffset;
+            left = getAlignedPosition(
+              triggerRect,
+              contentRect,
+              align,
+              "horizontal"
+            );
+            break;
+          case "bottom":
+            top = triggerRect.bottom + sideOffset;
+            left = getAlignedPosition(
+              triggerRect,
+              contentRect,
+              align,
+              "horizontal"
+            );
+            break;
+          case "left":
+            top = getAlignedPosition(
+              triggerRect,
+              contentRect,
+              align,
+              "vertical"
+            );
+            left = triggerRect.left - contentRect.width - sideOffset;
+            break;
+          case "right":
+            top = getAlignedPosition(
+              triggerRect,
+              contentRect,
+              align,
+              "vertical"
+            );
+            left = triggerRect.right + sideOffset;
+            break;
+        }
+
+        // Collision detection and adjustment
+        if (avoidCollisions) {
+          // Check if tooltip goes outside viewport and flip if needed
+          if (side === "top" && top < 0) {
+            actualSide = "bottom";
+            top = triggerRect.bottom + sideOffset;
+          } else if (
+            side === "bottom" &&
+            top + contentRect.height > viewportHeight
+          ) {
+            actualSide = "top";
+            top = triggerRect.top - contentRect.height - sideOffset;
+          } else if (side === "left" && left < 0) {
+            actualSide = "right";
+            left = triggerRect.right + sideOffset;
+          } else if (
+            side === "right" &&
+            left + contentRect.width > viewportWidth
+          ) {
+            actualSide = "left";
+            left = triggerRect.left - contentRect.width - sideOffset;
+          }
+
+          // Ensure tooltip stays within viewport bounds
+          left = Math.max(
+            8,
+            Math.min(left, viewportWidth - contentRect.width - 8)
+          );
+          top = Math.max(
+            8,
+            Math.min(top, viewportHeight - contentRect.height - 8)
+          );
+        }
+
+        content.style.position = "fixed";
+        content.style.top = `${top}px`;
+        content.style.left = `${left}px`;
+        content.setAttribute("data-actual-side", actualSide);
+      }
+
+      function getAlignedPosition(
+        triggerRect: DOMRect,
+        contentRect: DOMRect,
+        align: string,
+        direction: "horizontal" | "vertical"
+      ) {
+        if (direction === "horizontal") {
+          switch (align) {
+            case "start":
+              return triggerRect.left;
+            case "end":
+              return triggerRect.right - contentRect.width;
+            default: // center
+              return (
+                triggerRect.left + (triggerRect.width - contentRect.width) / 2
+              );
+          }
+        } else {
+          switch (align) {
+            case "start":
+              return triggerRect.top;
+            case "end":
+              return triggerRect.bottom - contentRect.height;
+            default: // center
+              return (
+                triggerRect.top + (triggerRect.height - contentRect.height) / 2
+              );
+          }
+        }
+      }
+
+      // Event listeners for trigger
+      trigger.addEventListener("mouseenter", showTooltip);
+      trigger.addEventListener("mouseleave", hideTooltip);
+      trigger.addEventListener("focus", showTooltip);
+      trigger.addEventListener("blur", hideTooltip);
+
+      // Event listeners for content (if hoverable content is enabled)
+      if (!disableHoverableContent) {
+        content.addEventListener("mouseenter", () => {
+          clearTimeout(closeTimeout);
+        });
+        content.addEventListener("mouseleave", hideTooltip);
+      }
+
+      // Handle window resize
+      window.addEventListener("resize", () => {
+        if (isOpen) {
+          positionTooltip();
+        }
+      });
+
+      // Handle scroll
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (isOpen) {
+            positionTooltip();
+          }
+        },
+        { passive: true }
+      );
+
+      console.log("Tooltip found:", tooltip);
+      console.log("Trigger found:", trigger);
+      console.log("Content found:", content);
+    });
+  });
+</script>
+
+<div
+  class={`tooltip ${className}`}
+  data-open-delay={openDelay}
+  data-close-delay={closeDelay}
+  data-disable-hoverable={disableHoverableContent}
+  id={tooltipId}
+>
+  <slot />
+</div>
+
+<style>
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+</style>

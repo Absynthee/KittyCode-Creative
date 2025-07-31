@@ -1,0 +1,81 @@
+---
+interface Props {
+  value: string;
+  disabled?: boolean;
+  class?: string;
+}
+
+const { value, disabled = false, class: className = "" } = Astro.props;
+
+const baseClasses = "select-item";
+const disabledClass = disabled ? "select-item--disabled" : "";
+
+const classes = [baseClasses, disabledClass, className]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<div
+  class={classes}
+  data-value={value}
+  role="option"
+  aria-selected="false"
+  tabindex={disabled ? -1 : 0}
+>
+  <slot />
+</div>
+
+<style>
+  .select-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    font-size: var(--step--1);
+    border-radius: calc(var(--radius) - 0.125rem);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+    position: relative;
+  }
+
+  .select-item:hover:not(.select-item--disabled) {
+    background: hsl(from var(--card) h s l / 0.2);
+  }
+
+  .select-item:focus {
+    background: hsl(from var(--primary) h s l / 0.1);
+    outline: none;
+  }
+
+  .select-item[data-selected] {
+    background: hsl(from var(--primary) h s l / 0.1);
+    color: var(--primary);
+    font-weight: 500;
+  }
+
+  .select-item[data-selected]::after {
+    content: "✓";
+    position: absolute;
+    right: 0.75rem;
+    color: var(--primary);
+    font-weight: bold;
+  }
+
+  .select-item--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .select-item {
+      padding: 0.375rem 0.5rem;
+      font-size: var(--step--2);
+    }
+
+    .select-item[data-selected]::after {
+      right: 0.5rem;
+    }
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div
+  class={`tabs-list ${className}`}
+  role="tablist"
+  aria-orientation="horizontal"
+>
+  <slot />
+</div>
+
+<style>
+  .tabs-list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: var(--radius);
+    background: hsl(from var(--card) h s l / 0.1);
+    border: 1px solid var(--border);
+    padding: 0.25rem;
+    gap: 0.125rem;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .tabs-list {
+      width: 100%;
+      justify-content: stretch;
+    }
+
+    .tabs-list :global(.tabs-trigger) {
+      flex: 1;
+    }
+  }
+</style>

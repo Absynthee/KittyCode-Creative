@@ -1,0 +1,317 @@
+---
+import { User } from "@lucide/astro";
+
+export interface Props {
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large" | "xl";
+  shape?: "circle" | "square" | "rounded";
+  status?: "online" | "offline" | "away" | "busy" | "none";
+  src?: string;
+  alt?: string;
+  fallback?: string;
+  class?: string;
+}
+
+const {
+  variant = "default",
+  size = "medium",
+  shape = "circle",
+  status = "none",
+  src,
+  alt = "",
+  fallback,
+  class: className = "",
+} = Astro.props;
+
+const baseClasses = "avatar";
+const variantClass = `avatar--${variant}`;
+const sizeClass = `avatar--${size}`;
+const shapeClass = `avatar--${shape}`;
+const statusClass = status !== "none" ? `avatar--status-${status}` : "";
+
+const classes = [
+  baseClasses,
+  variantClass,
+  sizeClass,
+  shapeClass,
+  statusClass,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const avatarId = `avatar-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  import {
+    getHTMLElements,
+    getImageElement,
+    getHTMLElement,
+    setElementStyle,
+    isImageLoaded,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const avatars = getHTMLElements(".avatar");
+
+    avatars.forEach((avatar) => {
+      const image = getImageElement(".avatar-image", avatar);
+      const fallbackElement = getHTMLElement(".avatar-fallback", avatar);
+
+      if (!image || !fallbackElement) return;
+
+      // Initially show fallback, hide image
+      setElementStyle(image, "opacity", "0");
+      setElementStyle(fallbackElement, "opacity", "1");
+
+      // Show image if it loads successfully
+      image.addEventListener("load", () => {
+        if (isImageLoaded(image)) {
+          setElementStyle(image, "opacity", "1");
+          setElementStyle(fallbackElement, "opacity", "0");
+        }
+      });
+
+      // Keep fallback visible if image fails
+      image.addEventListener("error", () => {
+        setElementStyle(image, "opacity", "0");
+        setElementStyle(fallbackElement, "opacity", "1");
+      });
+
+      // Check if image is already loaded (for cached images)
+      if (isImageLoaded(image)) {
+        setElementStyle(image, "opacity", "1");
+        setElementStyle(fallbackElement, "opacity", "0");
+      }
+    });
+  });
+</script>
+
+<div class={classes} id={avatarId}>
+  {src && <img src={src} alt={alt} class="avatar-image" />}
+
+  <div class="avatar-fallback">
+    {
+      fallback ? (
+        <span>{fallback}</span>
+      ) : (
+        <slot>
+          <User />
+        </slot>
+      )
+    }
+  </div>
+
+  {status !== "none" && <div class="avatar-status" aria-hidden="true" />}
+</div>
+
+<style>
+  /* Base Avatar Styles */
+  .avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: hsl(from var(--card) h s l / 0.2);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+    user-select: none;
+    transition: transform 0.2s ease;
+    overflow: visible;
+  }
+
+  .avatar:hover {
+    transform: scale(1.05);
+  }
+
+  .avatar:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  /* Image and Fallback */
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.2s ease;
+    opacity: 0;
+    border-radius: inherit;
+  }
+
+  .avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    color: inherit;
+    transition: opacity 0.2s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+
+  /* Shape Variants */
+  .avatar--circle {
+    border-radius: 50%;
+  }
+
+  .avatar--square {
+    border-radius: 0;
+  }
+
+  .avatar--rounded {
+    border-radius: var(--radius);
+  }
+
+  /* Size Variants */
+  .avatar--small {
+    width: 2rem;
+    height: 2rem;
+    font-size: var(--step--2);
+  }
+
+  .avatar--medium {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: var(--step--1);
+  }
+
+  .avatar--large {
+    width: 3rem;
+    height: 3rem;
+    font-size: var(--step-0);
+  }
+
+  .avatar--xl {
+    width: 4rem;
+    height: 4rem;
+    font-size: var(--step-1);
+  }
+
+  /* Style Variants */
+  .avatar--default {
+    background: hsl(from var(--card) h s l / 0.2);
+    border-color: var(--border);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    /* outline: 1px solid hsl(from currentColor h s l / 0.8); */
+  }
+
+  .avatar--primary {
+    background: hsl(from var(--primary) h s l / 0.2);
+    border-color: hsl(from var(--primary) h s l / 0.2);
+    outline: 1px solid hsl(from currentColor h s l / 0.8);
+    color: var(--primary);
+  }
+
+  .avatar--secondary {
+    background: hsl(from var(--secondary) h s l / 0.2);
+    border-color: hsl(from var(--secondary) h s l / 0.2);
+    outline: 1px solid hsl(from currentColor h s l / 0.8);
+    color: var(--secondary-foreground);
+  }
+
+  .avatar--info {
+    background: hsl(from var(--info) h s l / 0.2);
+    border-color: hsl(from var(--info) h s l / 0.2);
+    outline: 1px solid hsl(from currentColor h s l / 0.8);
+    color: var(--info);
+  }
+
+  .avatar--success {
+    background: hsl(from var(--success) h s l / 0.2);
+    border-color: hsl(from var(--success) h s l / 0.2);
+    outline: 1px solid hsl(from currentColor h s l / 0.8);
+    color: var(--success);
+  }
+
+  .avatar--warning {
+    background: hsl(from var(--warning) h s l / 0.2);
+    border-color: hsl(from var(--warning) h s l / 0.2);
+    outline: 1px solid hsl(from currentColor h s l / 0.8);
+    color: var(--warning);
+  }
+
+  .avatar--error {
+    background: hsl(from var(--error) h s l / 0.2);
+    border-color: hsl(from var(--error) h s l / 0.2);
+    outline: 1px solid hsl(from currentColor h s l / 0.8);
+    color: var(--error);
+  }
+
+  /* Status Indicator */
+  .avatar-status {
+    position: absolute;
+    border: 2px solid var(--background);
+    border-radius: 50%;
+    z-index: 10;
+  }
+
+  /* Status positioning for different sizes */
+  .avatar--small .avatar-status {
+    width: 0.5rem;
+    height: 0.5rem;
+    bottom: -1px;
+    right: -1px;
+  }
+
+  .avatar--medium .avatar-status {
+    width: 0.75rem;
+    height: 0.75rem;
+    bottom: -3px;
+    right: -3px;
+  }
+
+  .avatar--large .avatar-status {
+    width: 1rem;
+    height: 1rem;
+    bottom: -0.125rem;
+    right: -0.125rem;
+  }
+
+  .avatar--xl .avatar-status {
+    width: 1rem;
+    height: 1rem;
+    bottom: -0.25rem;
+    right: -0.25rem;
+  }
+
+  /* Status Colors */
+  .avatar--status-online .avatar-status {
+    background: var(--success);
+  }
+
+  .avatar--status-offline .avatar-status {
+    background: hsl(from var(--foreground) h s l / 0.4);
+  }
+
+  .avatar--status-away .avatar-status {
+    background: var(--warning);
+  }
+
+  .avatar--status-busy .avatar-status {
+    background: var(--error);
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .avatar:hover {
+      transform: none; /* Reduce hover effects on mobile */
+    }
+  }
+</style>

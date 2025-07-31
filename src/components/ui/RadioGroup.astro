@@ -1,0 +1,474 @@
+---
+export interface Props {
+  name: string;
+  defaultValue?: string;
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+  orientation?: "horizontal" | "vertical";
+  required?: boolean;
+  disabled?: boolean;
+  class?: string;
+  id?: string;
+  labelledBy?: string;
+}
+
+const {
+  name,
+  defaultValue,
+  variant = "default",
+  size = "medium",
+  orientation = "vertical",
+  required = false,
+  disabled = false,
+  class: className = "",
+  id,
+  labelledBy,
+  ...rest
+} = Astro.props;
+
+const baseClasses = "radio-group";
+const orientationClass = `radio-group--${orientation}`;
+const variantClass = `radio-group--${variant}`;
+const sizeClass = `radio-group--${size}`;
+const disabledClass = disabled ? "radio-group--disabled" : "";
+
+const classes = [
+  baseClasses,
+  orientationClass,
+  variantClass,
+  sizeClass,
+  disabledClass,
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const groupId = id || `radio-group-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  import {
+    getHTMLElements,
+    isInputElement,
+    focusElement,
+    getElementAttribute,
+    setElementAttribute,
+  } from "@/lib/utils";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const radioGroups = getHTMLElements(".radio-group");
+
+    radioGroups.forEach((group) => {
+      const name = getElementAttribute(group, "data-name");
+      const defaultValue = getElementAttribute(group, "data-default-value");
+      const disabled = group.classList.contains("radio-group--disabled");
+
+      if (!name) return;
+
+      // Find all radio inputs within this group and set their name attribute
+      const inputs = getHTMLElements("input[type='radio']", group);
+
+      if (inputs.length === 0) return;
+
+      // Set the name attribute on all inputs in this group
+      inputs.forEach((input) => {
+        if (isInputElement(input)) {
+          setElementAttribute(input, "name", name);
+
+          if (disabled) {
+            input.disabled = true;
+          }
+        }
+      });
+
+      // Set default value
+      if (defaultValue) {
+        const defaultInput = inputs.find(
+          (input) =>
+            isInputElement(input) &&
+            input.value === defaultValue &&
+            !input.disabled
+        );
+        if (defaultInput && isInputElement(defaultInput)) {
+          defaultInput.checked = true;
+        }
+      }
+
+      // Set up keyboard navigation
+      inputs.forEach((input, index) => {
+        if (!isInputElement(input)) return;
+
+        input.addEventListener("keydown", (event: KeyboardEvent) => {
+          handleKeyDown(event, inputs as HTMLInputElement[], index);
+        });
+
+        // Set initial tabindex
+        input.tabIndex =
+          input.checked || (!hasCheckedInput() && index === 0) ? 0 : -1;
+      });
+
+      // Update tabindex when selection changes
+      inputs.forEach((input) => {
+        if (isInputElement(input)) {
+          input.addEventListener("change", () => {
+            updateTabIndex();
+          });
+        }
+      });
+
+      function hasCheckedInput(): boolean {
+        return inputs.some((input) => isInputElement(input) && input.checked);
+      }
+
+      function updateTabIndex() {
+        inputs.forEach((input) => {
+          if (isInputElement(input)) {
+            input.tabIndex = input.checked ? 0 : -1;
+          }
+        });
+
+        // If nothing is checked, make first enabled input focusable
+        if (!hasCheckedInput()) {
+          const firstEnabled = inputs.find(
+            (input) => isInputElement(input) && !input.disabled
+          );
+          if (firstEnabled && isInputElement(firstEnabled)) {
+            firstEnabled.tabIndex = 0;
+          }
+        }
+      }
+
+      function handleKeyDown(
+        event: KeyboardEvent,
+        allInputs: HTMLInputElement[],
+        currentIndex: number
+      ) {
+        const enabledInputs = allInputs.filter((input) => !input.disabled);
+        const currentInput = allInputs[currentIndex];
+        const enabledIndex = enabledInputs.indexOf(currentInput);
+
+        if (enabledIndex === -1) return;
+
+        let newIndex = enabledIndex;
+        let shouldSelect = false;
+
+        switch (event.key) {
+          case "ArrowDown":
+          case "ArrowRight":
+            event.preventDefault();
+            newIndex =
+              enabledIndex < enabledInputs.length - 1 ? enabledIndex + 1 : 0;
+            break;
+          case "ArrowUp":
+          case "ArrowLeft":
+            event.preventDefault();
+            newIndex =
+              enabledIndex > 0 ? enabledIndex - 1 : enabledInputs.length - 1;
+            break;
+          case "Home":
+            event.preventDefault();
+            newIndex = 0;
+            break;
+          case "End":
+            event.preventDefault();
+            newIndex = enabledInputs.length - 1;
+            break;
+          case "Enter":
+          case " ":
+            event.preventDefault();
+            shouldSelect = true;
+            break;
+          default:
+            return;
+        }
+
+        const targetInput = enabledInputs[newIndex];
+        if (targetInput) {
+          // Update tabindex for focus management
+          allInputs.forEach((input) => (input.tabIndex = -1));
+          targetInput.tabIndex = 0;
+          focusElement(targetInput);
+
+          // Only select on Enter/Space, not on arrow navigation
+          if (shouldSelect) {
+            // For single selection radio buttons
+            if (targetInput.checked) {
+              // Allow unselecting by unchecking the currently selected option
+              targetInput.checked = false;
+            } else {
+              // Select the new option (browser handles unchecking others)
+              targetInput.checked = true;
+            }
+
+            // Trigger change event
+            targetInput.dispatchEvent(new Event("change", { bubbles: true }));
+            updateTabIndex();
+          }
+        }
+      }
+
+      // Initialize tabindex
+      updateTabIndex();
+    });
+  });
+</script>
+
+<div
+  class={classes}
+  role="radiogroup"
+  aria-labelledby={labelledBy}
+  aria-required={required}
+  data-name={name}
+  data-default-value={defaultValue}
+  id={groupId}
+  {...rest}
+>
+  <slot />
+</div>
+
+<style>
+  /* Base RadioGroup Styles */
+  .radio-group {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .radio-group--vertical {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .radio-group--horizontal {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .radio-group--disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* Size Variants - Pass down to children - Higher specificity */
+  .radio-group--small :global(.radio-wrapper) {
+    font-size: var(--step--2);
+    gap: 0.375rem;
+  }
+
+  .radio-group--small :global(.radio-wrapper .radio-input) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .radio-group--small :global(.radio-wrapper .radio-input::before) {
+    width: 0.375rem;
+    height: 0.375rem;
+  }
+
+  .radio-group--medium :global(.radio-wrapper) {
+    font-size: var(--step--1);
+    gap: 0.5rem;
+  }
+
+  .radio-group--medium :global(.radio-wrapper .radio-input) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .radio-group--medium :global(.radio-wrapper .radio-input::before) {
+    width: 0.5rem;
+    height: 0.5rem;
+  }
+
+  .radio-group--large :global(.radio-wrapper) {
+    font-size: var(--step-0);
+    gap: 0.5rem;
+  }
+
+  .radio-group--large :global(.radio-wrapper .radio-input) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .radio-group--large :global(.radio-wrapper .radio-input::before) {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  /* Variant Styles - Pass down to children - Higher specificity */
+  .radio-group--default :global(.radio-wrapper .radio-input) {
+    border-color: hsl(from var(--primary) h s l / 0.4);
+  }
+
+  .radio-group--default :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--primary);
+    background: hsl(from var(--primary) h s l / 0.1);
+  }
+
+  .radio-group--default :global(.radio-wrapper .radio-input::before) {
+    background: var(--primary);
+  }
+
+  .radio-group--primary :global(.radio-wrapper .radio-input) {
+    border-color: var(--primary);
+  }
+
+  .radio-group--primary :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--primary);
+    background: var(--primary);
+  }
+
+  .radio-group--primary :global(.radio-wrapper .radio-input::before) {
+    background: var(--primary-foreground);
+  }
+
+  .radio-group--secondary :global(.radio-wrapper .radio-input) {
+    border-color: var(--secondary-foreground);
+  }
+
+  .radio-group--secondary :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--secondary-foreground);
+    background: var(--secondary);
+  }
+
+  .radio-group--secondary :global(.radio-wrapper .radio-input::before) {
+    background: var(--secondary-foreground);
+  }
+
+  .radio-group--info :global(.radio-wrapper .radio-input) {
+    border-color: var(--info);
+  }
+
+  .radio-group--info :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--info);
+    background: var(--info);
+  }
+
+  .radio-group--info :global(.radio-wrapper .radio-input::before) {
+    background: var(--white);
+  }
+
+  .radio-group--success :global(.radio-wrapper .radio-input) {
+    border-color: var(--success);
+  }
+
+  .radio-group--success :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--success);
+    background: var(--success);
+  }
+
+  .radio-group--success :global(.radio-wrapper .radio-input::before) {
+    background: var(--white);
+  }
+
+  .radio-group--warning :global(.radio-wrapper .radio-input) {
+    border-color: var(--warning);
+  }
+
+  .radio-group--warning :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--warning);
+    background: var(--warning);
+  }
+
+  .radio-group--warning :global(.radio-wrapper .radio-input::before) {
+    background: var(--black);
+  }
+
+  .radio-group--error :global(.radio-wrapper .radio-input) {
+    border-color: var(--error);
+  }
+
+  .radio-group--error :global(.radio-wrapper .radio-input:checked) {
+    border-color: var(--error);
+    background: var(--error);
+  }
+
+  .radio-group--error :global(.radio-wrapper .radio-input::before) {
+    background: var(--white);
+  }
+
+  /* Hover effects - Higher specificity */
+  .radio-group--default
+    :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--primary) h s l / 0.8);
+  }
+
+  .radio-group--primary
+    :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--primary) h s l / 0.8);
+  }
+
+  .radio-group--secondary
+    :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--secondary-foreground) h s l / 0.8);
+  }
+
+  .radio-group--info :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--info) h s l / 0.8);
+  }
+
+  .radio-group--success
+    :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--success) h s l / 0.8);
+  }
+
+  .radio-group--warning
+    :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--warning) h s l / 0.8);
+  }
+
+  .radio-group--error
+    :global(.radio-wrapper .radio-input:hover:not(:disabled)) {
+    border-color: hsl(from var(--error) h s l / 0.8);
+  }
+
+  .radio-group--secondary :global(.radio-input:hover:not(:disabled)) {
+    border-color: var(--secondary-foreground);
+  }
+
+  .radio-group--info :global(.radio-input:hover:not(:disabled)) {
+    border-color: var(--info);
+  }
+
+  .radio-group--success :global(.radio-input:hover:not(:disabled)) {
+    border-color: var(--success);
+  }
+
+  .radio-group--warning :global(.radio-input:hover:not(:disabled)) {
+    border-color: var(--warning);
+  }
+
+  .radio-group--error :global(.radio-input:hover:not(:disabled)) {
+    border-color: var(--error);
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .radio-group--horizontal {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .radio-group--large.radio-group--horizontal {
+      gap: 1rem;
+    }
+
+    .radio-group--large :global(.radio-wrapper .radio-input) {
+      width: 1.375rem;
+      height: 1.375rem;
+    }
+
+    .radio-group--large :global(.radio-wrapper .radio-input::before) {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+  }
+</style>

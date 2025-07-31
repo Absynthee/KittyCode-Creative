@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kittycodecreative.com/sitemap-index.xml

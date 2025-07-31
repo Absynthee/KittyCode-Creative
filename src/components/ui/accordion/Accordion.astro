@@ -1,0 +1,128 @@
+---
+type AccordionItem = {
+  value: string;
+  trigger: string;
+  content: string;
+  disabled?: boolean;
+};
+
+interface Props {
+  type?: "single" | "multiple";
+  defaultValue?: string | string[];
+  class?: string;
+  items?: AccordionItem[];
+}
+
+const { type = "single", defaultValue, class: className = "" } = Astro.props;
+
+const accordionId = `accordion-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const accordions = document.querySelectorAll(".accordion");
+
+    accordions.forEach((accordion) => {
+      const type = accordion.getAttribute("data-type");
+      const defaultValue = accordion.getAttribute("data-default-value");
+      const items = accordion.querySelectorAll(".accordion-item");
+      const triggers = accordion.querySelectorAll(".accordion-trigger");
+
+      // Initialize default open items
+      if (defaultValue) {
+        const defaultValues =
+          type === "multiple" ? defaultValue.split(",") : [defaultValue];
+        defaultValues.forEach((value) => {
+          const item = accordion.querySelector(
+            `[data-value="${value.trim()}"]`
+          );
+          if (item) {
+            openItem(item);
+          }
+        });
+      }
+
+      // Add click listeners to triggers
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const item = trigger.closest(".accordion-item");
+          if (!item) return;
+          const isOpen = item.hasAttribute("data-open");
+
+          if (type === "single") {
+            // Close all other items in single mode
+            items.forEach((otherItem) => {
+              if (otherItem !== item) {
+                closeItem(otherItem);
+              }
+            });
+          }
+
+          // Toggle current item
+          if (isOpen) {
+            closeItem(item);
+          } else {
+            openItem(item);
+          }
+        });
+      });
+
+      function openItem(item: Element) {
+        const content = item.querySelector(".accordion-content") as HTMLElement;
+        const trigger = item.querySelector(".accordion-trigger") as HTMLElement;
+        const chevron = trigger?.querySelector(
+          ".accordion-chevron"
+        ) as HTMLElement | null;
+
+        item.setAttribute("data-open", "");
+        trigger.setAttribute("aria-expanded", "true");
+        if (content) {
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+
+        if (chevron) {
+          chevron.style.transform = "rotate(180deg)";
+        }
+      }
+
+      function closeItem(item: Element) {
+        const content = item.querySelector(".accordion-content") as HTMLElement;
+        const trigger = item.querySelector(".accordion-trigger") as HTMLElement;
+        const chevron = trigger?.querySelector(
+          ".accordion-chevron"
+        ) as HTMLElement | null;
+
+        item.removeAttribute("data-open");
+        trigger.setAttribute("aria-expanded", "false");
+        if (content) {
+          content.style.maxHeight = "0";
+        }
+
+        if (chevron) {
+          chevron.style.transform = "rotate(0deg)";
+        }
+      }
+    });
+  });
+</script>
+
+<div
+  class={`accordion ${className}`}
+  data-type={type}
+  data-default-value={Array.isArray(defaultValue)
+    ? defaultValue.join(",")
+    : defaultValue}
+  id={accordionId}
+>
+  <slot />
+</div>
+
+<style>
+  .accordion {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    overflow: hidden;
+    text-align: left;
+  }
+</style>

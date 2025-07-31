@@ -1,0 +1,94 @@
+---
+interface Props {
+  value: string;
+  disabled?: boolean;
+  class?: string;
+}
+
+const { value, disabled = false, class: className = "" } = Astro.props;
+
+const triggerId = `tabs-trigger-${value}`;
+const panelId = `tabs-content-${value}`;
+---
+
+<button
+  class={`tabs-trigger ${className}`}
+  data-value={value}
+  role="tab"
+  aria-selected="false"
+  aria-controls={panelId}
+  tabindex="-1"
+  type="button"
+  {disabled}
+  id={triggerId}
+>
+  <slot />
+</button>
+
+<style>
+  .tabs-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: calc(var(--radius) - 0.125rem);
+    padding: 0.5rem 1rem;
+    font-size: var(--step--1);
+    font-weight: 500;
+    background: transparent;
+    border: none;
+    color: hsl(from var(--foreground) h s l / 0.7);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    min-height: 2.25rem;
+  }
+
+  .tabs-trigger:hover:not(:disabled) {
+    background: hsl(from var(--card) h s l / 0.2);
+    color: var(--foreground);
+  }
+
+  .tabs-trigger:focus-visible {
+    outline: 2px solid var(--Red);
+    outline-offset: 2px;
+  }
+
+  .tabs-trigger:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .tabs-trigger.active {
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: 0 1px 3px hsl(from var(--foreground) h s l / 0.1);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+  }
+
+  .tabs-trigger.active:hover {
+    background: var(--background);
+  }
+
+  /* Add a subtle active indicator */
+  .tabs-trigger.active::after {
+    content: "";
+    position: absolute;
+    bottom: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 1px;
+  }
+
+  /* Responsive design */
+  @media screen and (max-width: 768px) {
+    .tabs-trigger {
+      padding: 0.375rem 0.75rem;
+      font-size: var(--step--2);
+      min-height: 2rem;
+    }
+  }
+</style>
