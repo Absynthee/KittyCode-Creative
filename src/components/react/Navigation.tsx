@@ -409,17 +409,17 @@ function Navigation({ currentPath }: NavigationProps) {
         }
 
   .nav-link:hover {
-    color: var(--Red);
-    background: hsl(from var(--Red) h s l / 0.1);
+    color: var(--primary);
+    background: hsl(from var(--primary) h s l / 0.1);
   }
 
   .nav-link.active {
-    color: var(--Red);
+    color: var(--primary);
     font-weight: 600;
   }
 
   .nav-link:focus-visible {
-    outline: 2px solid var(--Red);
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 
@@ -520,7 +520,7 @@ function Navigation({ currentPath }: NavigationProps) {
         }
 
         .toggle input:checked + div, .mobile-toggle input:checked + div {
-          box-shadow: inset 32px -32px 0 0 var(--background-color);
+          box-shadow: inset 32px -32px 0 0 var(--primary);
           transform: scale(0.5) rotate(0deg);
           transition: transform 0.3s ease 0.1s, box-shadow 0.2s ease 0s;
         }
@@ -536,17 +536,17 @@ function Navigation({ currentPath }: NavigationProps) {
         }
 
         .nav-link:focus-visible {
-          outline: 2px solid var(--Red);
+          outline: 2px solid var(--primary);
           outline-offset: 2px;
 }
 
         .hamburger:focus-visible {
-          outline: 2px solid var(--Red);
+          outline: 2px solid var(--primary);
           outline-offset: 2px;
 }
 
         .social-link:focus-visible {
-          outline: 2px solid var(--Red);
+          outline: 2px solid var(--primary);
           outline-offset: 2px;
 }
 
@@ -627,7 +627,7 @@ function Navigation({ currentPath }: NavigationProps) {
           }
 
           .nav-link:hover {
-            border-bottom-color: var(--Red);
+            border-bottom-color: var(--primary);
           }
 
           .nav-link.active::before {
@@ -638,7 +638,7 @@ function Navigation({ currentPath }: NavigationProps) {
             transform: translateY(-50%);
             width: 4px;
             height: 2rem;
-            background: var(--Red);
+            background: var(--primary);
             border-radius: 2px;
           }
 

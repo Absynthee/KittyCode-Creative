@@ -30,21 +30,31 @@ const mainLinks: NavItem[] = [
     path: "/#",
     ariaLabel: "Go to Home",
   },
-  // {
-  //   label: "Projects",
-  //   path: "/#projects",
-  //   ariaLabel: "View all projects",
-  // },
-  // {
-  //   label: "About",
-  //   path: "/#about",
-  //   ariaLabel: "Learn more about me",
-  // },
-  // {
-  //   label: "Contact",
-  //   path: "/#contact",
-  //   ariaLabel: "Contact me",
-  // },
+  {
+    label: "Portfolio",
+    path: "/#portfolio",
+    ariaLabel: "View all projects",
+  },
+  {
+    label: "About",
+    path: "/#about",
+    ariaLabel: "Learn more about KittyCode Creative",
+  },
+  {
+    label: "Services",
+    path: "/#services",
+    ariaLabel: "Explore our services",
+  },
+  {
+    label: "Contact",
+    path: "/#contact",
+    ariaLabel: "Contact KittyCode Creative",
+  },
+  {
+    label: "Blog",
+    path: "/blog",
+    ariaLabel: "Read our blog",
+  },
 ];
 
 // Footer navigation links
@@ -54,53 +64,64 @@ const footerLinks: FooterNavItem[] = [
     path: "/#",
     ariaLabel: "Go to Home",
   },
-  // {
-  //   label: "Projects",
-  //   path: "/#projects",
-  //   ariaLabel: "View all projects",
-  // },
-  // {
-  //   label: "About",
-  //   path: "/#about",
-  //   ariaLabel: "Learn more about me",
-  // },
-  // {
-  //   label: "Contact",
-  //   path: "/#contact",
-  //   ariaLabel: "Contact me",
-  // },
-  // {
-  //   label: "Components",
-  //   path: "/components",
-  //   ariaLabel: "View reusable components",
-  // },
+  {
+    label: "Portfolio",
+    path: "/#portfolio",
+    ariaLabel: "View all projects",
+  },
+  {
+    label: "About",
+    path: "/#about",
+    ariaLabel: "Learn more about KittyCode Creative",
+  },
+  {
+    label: "Services",
+    path: "/#services",
+    ariaLabel: "Explore our services",
+  },
+  {
+    label: "Contact",
+    path: "/#contact",
+    ariaLabel: "Contact KittyCode Creative",
+  },
+  {
+    label: "Blog",
+    path: "/blog",
+    ariaLabel: "Read our blog",
+  },
 ];
 
 // Footer social links (@lucide/astro icons)
 const socialLinks: SocialItem[] = [
   {
-    label: "GitHub",
-    path: "https://github.com/absynthee",
-    icon: "github",
-    ariaLabel: "View my GitHub profile",
+    label: "Facebook",
+    path: "https://www.facebook.com/KittyCodeCreative",
+    icon: "facebook",
+    ariaLabel: "Connect with us on Facebook",
   },
   {
     label: "LinkedIn",
-    path: "https://linkedin.com/in/ASpillman",
+    path: "https://www.linkedin.com/company/kittycode-creative",
     icon: "linkedin",
-    ariaLabel: "Connect with me on LinkedIn",
+    ariaLabel: "Connect with us on LinkedIn",
   },
   {
-    label: "Behance",
-    path: "https://behance.net/austinspillman",
-    icon: "behance",
-    ariaLabel: "View my work on Behance",
+    label: "X",
+    path: "https://x.com/KittyCodeCreate",
+    icon: "twitter",
+    ariaLabel: "Follow us on X",
+  },
+  {
+    label: "Instagram",
+    path: "https://www.instagram.com/kittycode_creative",
+    icon: "instagram",
+    ariaLabel: "Follow us on Instagram",
   },
   {
     label: "Email",
-    path: "mailto:austinspillman@gmail.com",
+    path: "mailto:hello@kittycodecreative.com",
     icon: "email",
-    ariaLabel: "Send me an email",
+    ariaLabel: "Send us an email",
   },
 ];
 

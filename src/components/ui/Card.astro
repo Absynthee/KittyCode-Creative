@@ -84,7 +84,6 @@ const elementProps = href ? { href, ...rest } : { ...rest };
 <style>
   /* Base card Styles */
   * {
-    --background-color: var(--background);
     --text-color: hsl(from var(--primary) h s l / 0.8);
 
     --card-background-color: rgba(255, 255, 255, 0.015);
@@ -106,7 +105,7 @@ const elementProps = href ? { href, ...rest } : { ...rest };
       radial-gradient(142% 91% at -6% 74%, #ff0049ff 1%, #ff000000 99%),
       radial-gradient(142% 91% at 111% 84%, #ff7000ff 0%, #ff0000ff 100%);
     --card-line-color: hsl(from var(--secondary) h s l / 0.5);
-    --card-tile-color: hsl(from var(--Red) h s l / 0.05);
+    --card-tile-color: hsl(from var(--primary) h s l / 0.05);
 
     --card-hover-border-color: rgba(255, 255, 255, 0.2);
     --card-hover-box-shadow-1: rgba(0, 0, 0, 0.04);
@@ -119,7 +118,7 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: var(--background-color);
+    background-color: var(--background);
     padding: 1rem;
     border: 1px solid;
     border-radius: var(--radius);
@@ -432,7 +431,7 @@ const elementProps = href ? { href, ...rest } : { ...rest };
   }
 
   .card:focus-visible {
-    outline: 2px solid var(--Red);
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 

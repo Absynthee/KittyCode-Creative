@@ -109,7 +109,7 @@ const { name, title, bio, image, experience } = Astro.props;
     background: linear-gradient(
       135deg,
       hsl(from var(--primary) h s l / 0.1),
-      hsl(from var(--Red) h s l / 0.05)
+      hsl(from var(--primary) h s l / 0.05)
     );
     border: 1px solid hsl(from var(--border) h s l / 0.2);
   }
@@ -192,7 +192,7 @@ const { name, title, bio, image, experience } = Astro.props;
     top: 0.5rem;
     width: 14px;
     height: 14px;
-    background: var(--Red);
+    background: var(--primary);
     border-radius: 50%;
     border: 3px solid var(--background);
     box-shadow: 0 0 0 2px var(--primary);
@@ -215,7 +215,7 @@ const { name, title, bio, image, experience } = Astro.props;
   }
 
   .experience-company {
-    color: hsl(from var(--Red) h s l / 0.9);
+    color: hsl(from var(--primary) h s l / 0.9);
 
     margin-bottom: var(--space-s);
   }
