@@ -1,25 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { navigation, isActive } from "../../lib/navigation";
-import type { NavItem, SocialItem } from "../../lib/navigation";
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      "lord-icon": React.DetailedHTMLProps<
-        React.HTMLAttributes<HTMLElement>,
-        HTMLElement
-      > & {
-        id?: string;
-        src?: string;
-        trigger?: string;
-        stroke?: string;
-        colors?: string;
-        state?: string;
-        loading?: string;
-      };
-    }
-  }
-}
+import type { NavItem } from "../../lib/navigation";
 
 interface NavigationProps {
   currentPath: string;
@@ -145,63 +126,6 @@ function Navigation({ currentPath }: NavigationProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Icon animations setup
-  useEffect(() => {
-    const setupIconAnimations = () => {
-      const githubIcon = document.getElementById("icon-github");
-      const linkedinIcon = document.getElementById("icon-linkedin");
-      const iconCollection = [githubIcon, linkedinIcon];
-
-      iconCollection.forEach((icon) => {
-        if (icon) {
-          let isReady = false;
-          let hasRevealed = false;
-
-          const revealObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting && !hasRevealed) {
-                  hasRevealed = true;
-                  if (isReady) {
-                    triggerRevealAnimation();
-                  }
-                  revealObserver.unobserve(icon);
-                }
-              });
-            },
-            { threshold: 0.1, rootMargin: "50px" }
-          );
-
-          revealObserver.observe(icon);
-
-          icon.addEventListener("ready", () => {
-            isReady = true;
-            if (hasRevealed) {
-              triggerRevealAnimation();
-            }
-          });
-
-          icon.addEventListener("mouseenter", () => {
-            if (isReady) {
-              (icon as any).playerInstance.state = "hover-pinch";
-              (icon as any).playerInstance.playFromBeginning();
-            }
-          });
-
-          function triggerRevealAnimation() {
-            if (icon && (icon as any).playerInstance) {
-              (icon as any).playerInstance.state = "in-reveal";
-              (icon as any).playerInstance.playFromBeginning();
-            }
-          }
-        }
-      });
-    };
-
-    const timer = setTimeout(setupIconAnimations, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   const applyTheme = (dark: boolean) => {
     const root = document.documentElement;
     if (dark) {
@@ -216,22 +140,7 @@ function Navigation({ currentPath }: NavigationProps) {
     setIsDark(newIsDark);
     localStorage.setItem("theme", newIsDark ? "dark" : "light");
 
-    if (!document.startViewTransition) {
-      applyTheme(newIsDark);
-      return;
-    }
-
-    const x = window.innerWidth / 2;
-    const y = window.innerHeight / 2;
-
-    const transition = document.startViewTransition(() => {
-      applyTheme(newIsDark);
-    });
-
-    transition.ready.then(() => {
-      document.documentElement.style.setProperty("--x", `${x}px`);
-      document.documentElement.style.setProperty("--y", `${y}px`);
-    });
+    applyTheme(newIsDark);
   };
 
   const checkIsActive = (path: string) => {
@@ -268,6 +177,10 @@ function Navigation({ currentPath }: NavigationProps) {
         className="nav-content"
         style={{ visibility: isVisible ? "visible" : "hidden" }}
       >
+        <div className="title">
+          <img src="favicon.png" alt="" />
+          KittyCode Creative
+        </div>
         <div className="main-nav">
           {navigation.main.map((item: NavItem) => (
             <a
@@ -280,21 +193,6 @@ function Navigation({ currentPath }: NavigationProps) {
               {item.label}
             </a>
           ))}
-        </div>
-
-        <div className="social-nav">
-          {/* {navigation.social.map((item: SocialItem) => (
-            <a
-              key={item.path}
-              href={item.path}
-              className="social-link"
-              aria-label={item.ariaLabel}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="sr-only">{item.label}</span>
-            </a>
-          ))} */}
 
           <label htmlFor="theme-toggle" className="toggle">
             <input
@@ -325,17 +223,13 @@ function Navigation({ currentPath }: NavigationProps) {
         /* Base Navigation */
         .navigation {
           position: fixed;
-          top: 2rem;
-          left: 50%;
-          transform: translateX(-50%);
           z-index: 1000;
           transition: transform 0.3s ease;
-          // max-width: 720px;
           margin: 0 auto;
         }
 
         .navigation.hidden {
-          transform: translateX(-50%) translateY(-100px);
+          transform: translateY(-100px);
         }
 
         /* Hamburger (hidden on desktop) */
@@ -382,35 +276,46 @@ function Navigation({ currentPath }: NavigationProps) {
         .nav-content {
           display: flex;
           justify-content: space-between;
+          width: 100vw;
           align-items: center;
-          padding: 0.5rem 1rem;
-          border: 1px solid hsl(from var(--border) h s l / 0.1);
-          border-radius: 2rem;
-          background: hsl(from var(--card) h s l / 0.5);
-          backdrop-filter: blur(12px);
-          box-shadow: 0 0 100px -10px rgb(226, 40, 40, 0.5);
+          padding: 1rem;
+          background: var(--background);
           gap: var(--space-3xl);
+        }
+
+        .title {
+        margin-inline-start: var(--space-m);
+        display: flex;
+        align-items: center;
+        gap: var(--space-s);
+        font-size: var(--step-1);
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        img {
+          width: 60px;
+          }
         }
 
         .main-nav {
           display: flex;
           gap: var(--space-m);
-          margin-inline: var(--space-s);
+          margin-inline-end: var(--space-s);
         }
 
         .nav-link {
           color: hsl(from var(--foreground) h s l / 0.7);
           text-decoration: none;
           font-weight: 500;
-          transition: all 0.2s ease;
-          padding: 0.25rem 1rem;
-          border-radius: var(--radius);
+          transition: all 0.3s ease;
+          padding: 0.25rem 0.5rem;
           position: relative;
         }
 
   .nav-link:hover {
     color: var(--primary);
-    background: hsl(from var(--primary) h s l / 0.1);
+    border-bottom: 2px solid var(--primary);
+    margin-bottom: -2px;
   }
 
   .nav-link.active {
@@ -422,18 +327,6 @@ function Navigation({ currentPath }: NavigationProps) {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
-
-        .social-nav {
-          display: flex;
-          gap: var(--space-s);
-          margin-inline: var(--space-3xs);
-        }
-
-        .social-link {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-        }
 
         .mobile-theme-section {
           display: none;
@@ -545,11 +438,6 @@ function Navigation({ currentPath }: NavigationProps) {
           outline-offset: 2px;
 }
 
-        .social-link:focus-visible {
-          outline: 2px solid var(--primary);
-          outline-offset: 2px;
-}
-
     @keyframes reveal-in {
       from {
         clip-path: circle(0% at var(--x) var(--y));
@@ -593,7 +481,6 @@ function Navigation({ currentPath }: NavigationProps) {
             position: fixed;
             top: 0;
             right: 0;
-            width: 300px;
             max-width: 90vw;
             height: 100vh;
             background: hsl(from var(--background) h s l / 0.8);
@@ -640,14 +527,6 @@ function Navigation({ currentPath }: NavigationProps) {
             height: 2rem;
             background: var(--primary);
             border-radius: 2px;
-          }
-
-          .social-nav {
-          display: none;
-          visibility: hidden;
-            flex-direction: row;
-            justify-content: center;
-            gap: 1rem;
           }
 
           .toggle {

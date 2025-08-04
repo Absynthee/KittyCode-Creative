@@ -42,6 +42,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
           alt="Hero Background"
           height={400}
           width={400}
+          loading="eager"
         />
         <!-- <div class="role-container">
           <sparkly-text
@@ -83,7 +84,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
         )
       }
 
-      <div class="cards">
+      <!-- <div class="cards">
         <Card
           variant="secondary"
           title="9+"
@@ -102,7 +103,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
           description="client satisfaction"
           size="medium"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -120,7 +121,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(
+      /* background: radial-gradient(
           ellipse at top,
           hsla(22, 95%, 39%, 0.1) 0%,
           transparent 60%
@@ -129,11 +130,13 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
           ellipse at bottom right,
           hsl(from var(--background) h s l / 0.03) 0%,
           transparent 60%
-        );
+        ); */
     }
 
     .typing-cat {
       place-self: center;
+      animation: slideInDown 0.8s ease-out 0.2s both;
+      user-select: none;
     }
 
     .hero-container {
@@ -199,7 +202,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
     .hero-bio {
       font-size: var(--step-0);
       color: hsl(from var(--foreground) h s l / 0.8);
-      max-width: 70ch;
+      max-width: 75ch;
       margin: 0 auto;
       animation: fadeInUp 0.8s ease-out 0.8s both;
     }
