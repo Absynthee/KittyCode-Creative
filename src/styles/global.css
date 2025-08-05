@@ -3,18 +3,20 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
-  --primary: oklch(0.5666 0.1589 44.03);
+  --primary-absolute: oklch(0.6666 0.2077 37.58);
+
+  --primary: oklch(0.6459 0.1675 46.08);
   --primary-background: oklch(0.6666 0.2077 37.58);
-  --secondary: oklch(0.5702 0.1531 48.94);
+  --secondary: oklch(0.5666 0.1589 44.03);
   --secondary-background: oklch(0.6991 0.1579 54.69);
   --muted: oklch(0.5313 0 0);
   --muted-background: oklch(65.004% 0.00007 271.152);
   --accent-1: oklch(0.5425 0.1072 92.91);
-  --accent-1-background: oklch(0.7453 0.1341 91.88);
+  --accent-1-background: oklch(77.566% 0.13248 92.291);
   --accent-2: oklch(0.5319 0.0898 182.83);
-  --accent-2-background: oklch(0.6775 0.1084 184.02);
+  --accent-2-background: oklch(72.585% 0.11161 183.886);
   --accent-3: oklch(0.5185 0.1106 249.18);
-  --accent-3-background: oklch(0.6045 0.1131 248.84);
+  --accent-3-background: oklch(63.026% 0.11251 248.652);
 
   --card: oklch(1 0 0);
   --border: oklch(48.55% 0.00006 271.152);
