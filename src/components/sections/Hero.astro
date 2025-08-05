@@ -1,9 +1,10 @@
 ---
-import Button from "@/components/ui/Button.astro";
-import Card from "@/components/ui/Card.astro";
 import { Image } from "astro:assets";
+import Button from "@/components/ui/Button.astro";
+import Input from "../ui/Input.astro";
 
 import Kitty from "@/assets/images/kitty.gif";
+import { ChevronLeft, EllipsisVertical } from "@lucide/astro";
 
 interface Props {
   name: string;
@@ -35,32 +36,22 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
 <section id="hero" class="hero hero--fullwidth" aria-labelledby="hero-title">
   <div class="hero-container">
     <div class="hero-content">
-      <div class="hero-intro">
-        <Image
-          class="typing-cat"
-          src={Kitty}
-          alt="Hero Background"
-          height={400}
-          width={400}
-          loading="eager"
-        />
-        <!-- <div class="role-container">
-          <sparkly-text
-            number-of-sparkles="5"
-            style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-          >
-            <span class="hero-role">{role}</span>
-          </sparkly-text>
-        </div> -->
-
-        <h1 class="hero-name" id="hero-title">{name}</h1>
-
-        <p class="hero-bio">{bio}</p>
+      <div class="role-container">
+        <sparkly-text
+          number-of-sparkles="5"
+          style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+        >
+          <span class="hero-role">{role}</span>
+        </sparkly-text>
       </div>
+
+      <h1 class="hero-name" id="hero-title">{name}</h1>
+
+      <p class="hero-bio">{bio}</p>
 
       {
         (primaryCTA || secondaryCTA) && (
-          <div class="hero-actions">
+          <div class="hero-buttons">
             {primaryCTA && (
               <Button
                 href={primaryCTA.href}
@@ -83,27 +74,58 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
           </div>
         )
       }
+    </div>
+    <div class="phone-container">
+      <div class="phone">
+        <div class="phone-menu">
+          <ChevronLeft class="menu-back-icon" size={28} />
+          <div class="contact-info-container">
+            <img src="/favicon.png" class="menu-avatar" />
+            <div class="contact-info">
+              <p class="name">KittyCode Creative</p>
+              <p class="role">Available to Code</p>
+            </div>
+          </div>
+          <EllipsisVertical class="menu-more-icon" size={28} />
+        </div>
+        <div class="chat-container">
+          <div class="chat-user-2">Hey KittyCode, we need a new website!</div>
+          <div class="chat-user-2">Are you available to take us on?</div>
+          <div class="chat-user-1 chat-sticker">
+            <Image
+              class="typing-cat"
+              src={Kitty}
+              alt="Hero Background"
+              height={100}
+              width={100}
+              loading="eager"
+            />
+          </div>
+          <div class="chat-user-1">Hi there!</div>
+          <div class="chat-user-1">
+            Sure thing! We can create a bespoke website tailored to your needs.
+          </div>
+          <div class="chat-user-1">
+            If you'd like to get a head-start, you can fill in our questionnaire
+            form.
+          </div>
+          <div class="chat-user-1 chat-phone-link">
+            Here's a link for you:
+            <a class="phone-link" href="services/website-questionnaire"
+              >kittycodecreative.com&sol; website-questionnaire</a
+            >
+          </div>
 
-      <!-- <div class="cards">
-        <Card
-          variant="secondary"
-          title="9+"
-          description="years experience"
-          size="medium"
+          <div class="chat-user-2">Awesome. Thank you, KittyCode! 😍</div>
+        </div>
+        <Input
+          class="send-message-container"
+          type="text"
+          placeholder="Type your message..."
+          aria-label="Type your message"
+          variant="primary"
         />
-        <Card
-          variant="secondary"
-          title="15+"
-          description="projects completed"
-          size="medium"
-        />
-        <Card
-          variant="secondary"
-          title="100%"
-          description="client satisfaction"
-          size="medium"
-        />
-      </div> -->
+      </div>
     </div>
   </div>
 
@@ -111,26 +133,13 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
     .hero {
       position: relative;
       overflow: hidden;
-      /* max-width: 1200px; */
     }
 
     .hero--fullwidth {
-      width: 100%;
-      margin: 0 auto;
-      min-height: calc(100vh - 332px);
       display: flex;
-      align-items: center;
-      justify-content: center;
-      /* background: radial-gradient(
-          ellipse at top,
-          hsla(22, 95%, 39%, 0.1) 0%,
-          transparent 60%
-        ),
-        radial-gradient(
-          ellipse at bottom right,
-          hsl(from var(--background) h s l / 0.03) 0%,
-          transparent 60%
-        ); */
+      margin: 0 auto;
+      width: 100%;
+      min-height: calc(100vh - 332px);
     }
 
     .typing-cat {
@@ -140,34 +149,27 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
     }
 
     .hero-container {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 2fr 1fr;
       width: 100%;
-      max-width: 1200px;
+      /* max-width: 1200px; */
+      align-items: center;
       margin: 0 auto;
       padding: 6rem 3rem;
-      position: relative;
-      z-index: 10;
     }
 
     .hero-content {
-      text-align: center;
-      max-width: 1000px;
+      display: flex;
+      flex-direction: column;
       margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-      padding-block: 3rem;
-    }
-
-    .hero-intro {
-      display: flex;
-      flex-direction: column;
-      /* gap: 2rem; */
+      max-width: 1000px;
+      padding: 2rem;
     }
 
     .hero-name {
       color: var(--foreground);
       font-size: calc(var(--step-4) * 2);
-      /* letter-spacing: 0.04em; */
       background: linear-gradient(
         135deg,
         var(--secondary) 0%,
@@ -179,7 +181,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-size: 300% 300%;
-      padding-top: 1rem;
+      /* padding-top: 1rem; */
       padding-bottom: 2rem;
 
       animation:
@@ -194,7 +196,6 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       line-height: 1.4;
       max-width: 62ch;
       text-wrap: balance;
-      margin: 0 auto;
       animation: fadeInUp 0.8s ease-out 0.6s both;
       padding-bottom: 2rem;
     }
@@ -203,74 +204,14 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       font-size: var(--step-0);
       color: hsl(from var(--foreground) h s l / 0.8);
       max-width: 75ch;
-      margin: 0 auto;
       animation: fadeInUp 0.8s ease-out 0.8s both;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
       gap: 2rem;
-      justify-content: center;
       flex-wrap: wrap;
       animation: fadeInUp 0.8s ease-out 1.4s both;
-    }
-
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      text-transform: uppercase;
-      justify-content: center;
-
-      .card {
-        --delay: 2s;
-        width: 250px;
-        animation: scaleIn 0.6s ease-out var(--delay) both;
-        transition: all 0.4s ease;
-
-        &:nth-child(2) {
-          --delay: 2.5s;
-        }
-        &:nth-child(3) {
-          --delay: 3s;
-        }
-
-        &:hover {
-          border-color: hsl(from var(--primary) h s l / 0.2);
-        }
-
-        h4 {
-          font-family: "Inter";
-          font-size: var(--step-2);
-          font-weight: 800;
-          color: hsl(from var(--primary) h s l / 0.9);
-          line-height: 1;
-        }
-      }
-
-      .card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          hsl(from var(--primary) h s l / 0.4),
-          transparent
-        );
-        animation: shimmer 4s ease-in-out infinite;
-      }
-
-      .card p {
-        font-size: var(--step--2);
-        color: hsl(from var(--foreground) h s l / 0.6);
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-      }
     }
 
     /* Animations */
@@ -362,7 +303,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
         font-size: var(--step-6);
       }
 
-      .hero-actions {
+      .hero-buttons {
         gap: var(--space-2xs);
       }
 
@@ -370,30 +311,12 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
         font-size: var(--step-0);
       }
 
-      .hero-actions {
+      .hero-buttons {
         align-items: center;
       }
 
-      .hero-actions :global(.btn) {
+      .hero-buttons :global(.btn) {
         max-width: 300px;
-      }
-
-      .cards {
-        align-items: center;
-        gap: var(--space-3xs);
-      }
-
-      .cards {
-        .card {
-          min-width: 205px;
-          width: unset;
-          padding: 1.5rem 1rem;
-          margin: var(--space-3xs);
-        }
-
-        .card::before {
-          animation: none;
-        }
       }
     }
 
@@ -409,19 +332,135 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       .hero-bio {
         line-height: 1.4;
       }
+    }
 
-      .cards {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+    .phone-container {
+      width: 25rem;
+      aspect-ratio: 9 / 18.4;
+      outline: 1rem solid light-dark(var(--foreground), var(--card));
+      border-radius: 2rem;
+      line-height: 1.2;
+      /* transition: all 0.3s ease-in-out; */
+      z-index: 10;
+      scale: 95%;
+    }
 
-      .cards {
-        .card {
-          min-width: 200px;
-          padding: 1rem 0.75rem;
-        }
-      }
+    .phone {
+      display: block;
+      position: relative;
+      background-color: hsl from(var(--border) h s l / 0.5);
+      height: 100%;
+      width: 100%;
+      border-radius: 1rem;
+      z-index: -1;
+    }
+
+    .phone-menu {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: space-evenly;
+      color: var(--white);
+      border-radius: 1rem 1rem 0 0;
+      height: 5rem;
+      width: 100%;
+      background: linear-gradient(-90deg, var(--primary), var(--secondary));
+      z-index: -1;
+      margin-bottom: 1rem;
+    }
+
+    .menu-avatar {
+      height: 40px;
+      width: 40px;
+      aspect-ratio: 1 / 1;
+      margin-inline-end: 1rem;
+    }
+
+    .contact-info-container {
+      display: flex;
+      user-select: none;
+    }
+
+    .contact-info {
+      min-width: 180px;
+    }
+
+    p.name {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: clamp(130%, 0.9vw, 140%);
+      color: var(--background);
+    }
+
+    p.role {
+      font-size: 0.75rem;
+      line-height: 1;
+      color: var(--background);
+    }
+
+    .chat-container {
+      position: relative;
+      display: grid;
+      padding-inline: 1rem;
+    }
+
+    .chat-user-1 {
+      display: flex;
+      justify-content: start;
+      text-align: left;
+      width: fit-content;
+      max-width: 25ch;
+      margin-block-end: var(--space-2xs);
+      padding-block: var(--space-2xs);
+      padding-inline: var(--space-2xs);
+      background-color: var(--secondary);
+      border-radius: 12px 12px 12px 2px;
+      color: var(--foreground);
+    }
+
+    .chat-sticker {
+      background-color: var(--transparent);
+    }
+
+    .chat-phone-link {
+      display: block;
+    }
+
+    .phone-link {
+      font-size: inherit;
+      color: inherit;
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    .chat-user-2 {
+      position: relative;
+      display: flex;
+      text-align: right;
+      width: fit-content;
+      max-width: 25ch;
+      margin-block-end: var(--space-2xs);
+      padding-block: var(--space-2xs);
+      padding-inline: var(--space-2xs);
+      background-color: var(--accent-3-background);
+      color: var(--foreground);
+      border-radius: 12px 12px 2px 12px;
+      place-self: end;
+    }
+
+    .phone-link:hover {
+      color: var(--white);
+    }
+
+    .send-message-container {
+      position: absolute;
+      display: flex;
+      margin: auto;
+      width: 90%;
+      margin-inline: 5%;
+      padding-inline: 1rem;
+      align-items: center;
+      bottom: 1rem;
     }
   </style>
 </section>
