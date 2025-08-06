@@ -1,16 +1,24 @@
 ---
+interface Props {
+  content?: string;
+  link?: string;
+  hidden?: boolean;
+}
 
+const { content } = Astro.props;
 ---
 
 <div class="top-banner">
-  <a href="/#" target="_blank"> hello </a>
+  <a href={Astro.props.link || "/#"} target="_blank">
+    {content}
+  </a>
 </div>
 
 <style>
   .top-banner {
     position: relative;
     margin-top: 92px;
-    padding-block: var(--space-xs);
+    padding-block: var(--space-2xs);
     width: 100%;
     background-color: var(--primary-background);
     overflow: hidden;
@@ -28,10 +36,10 @@
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     visibility: hidden;
-    height: 1px;
-    overflow: hidden;
-    position: absolute;
     white-space: nowrap;
-    width: 1px;
+    /* position: absolute; */
+    /* overflow: hidden; */
+    /* height: 1px; */
+    /* width: 1px; */
   }
 </style>
