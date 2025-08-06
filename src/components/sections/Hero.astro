@@ -24,13 +24,101 @@ interface Props {
   class?: string;
 }
 
-const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
+const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
 ---
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     import("@/lib/sparkly-text.js");
   });
+
+  // Mouse-follow rotation script for phone container
+  function initPhoneRotation(): void {
+    const phone = document.querySelector<HTMLElement>(".phone-container");
+    const heroContainer = document.querySelector<HTMLElement>(".hero");
+
+    if (!phone) {
+      console.warn("Phone container element not found");
+      return;
+    }
+
+    if (!heroContainer) {
+      console.warn("Hero element not found");
+      return;
+    }
+
+    // Remove animation after it completes to prevent interference
+    setTimeout(() => {
+      phone.style.animation = "none";
+      phone.style.opacity = "1";
+    }, 4000);
+
+    // Ensure smooth transitions are enabled
+    phone.style.transition = "transform 0.3s ease-out";
+
+    // Only listen to mousemove when inside hero container
+    heroContainer.addEventListener("mouseenter", () => {
+      document.addEventListener("mousemove", handleMouseMove);
+    });
+
+    // Reset and stop listening when mouse leaves hero container
+    heroContainer.addEventListener("mouseleave", () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      resetPhoneRotation(phone);
+    });
+
+    function handleMouseMove(e: MouseEvent) {
+      if (phone && heroContainer) {
+        rotateElement(e, phone, heroContainer);
+      }
+    }
+  }
+
+  function rotateElement(
+    event: MouseEvent,
+    element: HTMLElement,
+    heroContainer: HTMLElement
+  ): void {
+    // Get mouse position
+    const x = event.clientX;
+    const y = event.clientY;
+
+    const heroRect = heroContainer.getBoundingClientRect();
+
+    // Check if mouse is actually within hero container bounds
+    if (
+      x < heroRect.left ||
+      x > heroRect.right ||
+      y < heroRect.top ||
+      y > heroRect.bottom
+    ) {
+      resetPhoneRotation(element);
+      return;
+    }
+
+    const phoneRect = element.getBoundingClientRect();
+    const middleX = phoneRect.left + phoneRect.width / 2;
+    const middleY = phoneRect.top + phoneRect.height / 2;
+
+    const offsetX = ((x - middleX) / middleX) * 20;
+    const offsetY = ((y - middleY) / middleY) * 10;
+
+    // Set CSS custom properties for rotation
+    element.style.setProperty("--rotateX", `${offsetX}deg`);
+    element.style.setProperty("--rotateY", `${-offsetY}deg`);
+  }
+
+  function resetPhoneRotation(element: HTMLElement): void {
+    // Use requestAnimationFrame to ensure smooth transition
+    requestAnimationFrame(() => {
+      // Reset to center position with smooth transition
+      element.style.setProperty("--rotateX", "0deg");
+      element.style.setProperty("--rotateY", "0deg");
+    });
+  }
+
+  // Initialize when DOM is loaded
+  document.addEventListener("DOMContentLoaded", initPhoneRotation);
 </script>
 
 <section id="hero" class="hero hero--fullwidth" aria-labelledby="hero-title">
@@ -89,9 +177,13 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
           <EllipsisVertical class="menu-more-icon" size={28} />
         </div>
         <div class="chat-container">
-          <div class="chat-user-2">Hey KittyCode, we need a new website!</div>
-          <div class="chat-user-2">Are you available to take us on?</div>
-          <div class="chat-user-1 chat-sticker">
+          <div class="chat-message chat-user-2">
+            Hey KittyCode, we need a new website!
+          </div>
+          <div class="chat-message chat-user-2">
+            Are you available to take us on?
+          </div>
+          <div class="chat-message chat-user-1 chat-sticker">
             <Image
               class="typing-cat"
               src={Kitty}
@@ -101,22 +193,24 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
               loading="eager"
             />
           </div>
-          <div class="chat-user-1">Hi there!</div>
-          <div class="chat-user-1">
+          <div class="chat-message chat-user-1">Hi there!</div>
+          <div class="chat-message chat-user-1">
             Sure thing! We can create a bespoke website tailored to your needs.
           </div>
-          <div class="chat-user-1">
+          <div class="chat-message chat-user-1">
             If you'd like to get a head-start, you can fill in our questionnaire
             form.
           </div>
-          <div class="chat-user-1 chat-phone-link">
+          <div class="chat-message chat-user-1 chat-phone-link">
             Here's a link for you:
             <a class="phone-link" href="services/website-questionnaire"
               >kittycodecreative.com&sol; website-questionnaire</a
             >
           </div>
 
-          <div class="chat-user-2">Awesome. Thank you, KittyCode! 😍</div>
+          <div class="chat-message chat-user-2">
+            Awesome. Thank you, KittyCode! 😍
+          </div>
         </div>
         <Input
           class="send-message-container"
@@ -207,7 +301,8 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       background-size: 300% 300%;
       padding-top: 1rem;
       padding-bottom: 2rem;
-
+      transform: perspective(5000px) rotateY(var(--rotateX))
+        rotateX(var(--rotateY));
       animation:
         gradientShift 20s ease-in-out infinite,
         slideInUp 0.8s ease-out 0.3s both;
@@ -227,112 +322,68 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
     .hero-bio {
       font-size: var(--step-0);
       color: hsl(from var(--foreground) h s l / 0.8);
-      max-width: 75ch;
+      max-width: 78ch;
       padding-bottom: 2rem;
       animation: fadeInUp 0.8s ease-out 0.8s both;
     }
 
     .hero-buttons {
       display: flex;
-      gap: 2rem;
+      /* gap: 2rem; */
       flex-wrap: wrap;
       animation: fadeInUp 0.8s ease-out 1.4s both;
     }
 
-    /* Animations */
-    @keyframes gradientShift {
-      0%,
-      100% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-    }
-
-    @keyframes slideInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes shimmer {
-      0%,
-      100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
+    .btn:nth-child(1) {
+      margin-inline-end: 2rem;
     }
 
     .phone-container {
+      --rotateX: 0deg;
+      --rotateY: 0deg;
+      opacity: 0;
       width: 25rem;
       aspect-ratio: 9 / 18.4;
       outline: 1rem solid light-dark(var(--foreground), var(--card));
       border-radius: 2rem;
       line-height: 1.2;
-      /* transition: all 0.3s ease-in-out; */
       z-index: 10;
       scale: 95%;
       place-self: center;
-      transition: all 0.3s ease-in-out;
-      animation: fadeInLeft 2s ease-out 1.8s both;
+      /* transition: all 0.3s ease-in-out; */
+      transform-style: preserve-3d;
+      transform: perspective(2000px) rotateY(var(--rotateX))
+        rotateX(var(--rotateY));
+      animation: fadeInLeft 2s ease-out 1.8s forwards;
+    }
+
+    .phone-container::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0.75rem;
+      border-radius: inherit;
+      background: var(--background);
+      z-index: -1;
+      transform: translateZ(-50px);
+      filter: blur(15px);
+      opacity: 0.5;
+    }
+
+    .phone-container::after {
+      content: "";
+      position: absolute;
+      z-index: -2;
+      inset: -1rem;
+      border-radius: inherit;
+      background: light-dark(var(--foreground), var(--card));
+      transform: translateZ(-40px);
     }
 
     .phone {
       display: block;
       position: relative;
-      background-color: hsl from(var(--border) h s l / 0.5);
+      background-color: var(--background);
       height: 100%;
       width: 100%;
       border-radius: 1rem;
@@ -392,6 +443,54 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       padding-inline: 1rem;
     }
 
+    .chat-message {
+      animation: fadeIn 0.5s ease-in-out both;
+
+      &:nth-child(1) {
+        animation-delay: 2.5s;
+      }
+      &:nth-child(2) {
+        animation-delay: 3.5s;
+      }
+      &:nth-child(3) {
+        animation-delay: 5s;
+      }
+      &:nth-child(4) {
+        animation-delay: 6s;
+      }
+      &:nth-child(5) {
+        animation-delay: 7s;
+      }
+      &:nth-child(6) {
+        animation-delay: 8s;
+      }
+      &:nth-child(7) {
+        animation-delay: 9s;
+      }
+      &:nth-child(8) {
+        animation-delay: 11s;
+        position: relative;
+
+        &::after {
+          content: "❤";
+          position: absolute;
+          display: grid;
+          bottom: -10px;
+          left: -10px;
+          width: 32px;
+          height: 32px;
+          border-radius: 12px;
+          color: var(--primary-absolute);
+          background-color: var(--background);
+          outline: 1px solid var(--background);
+          place-items: center;
+          font-size: var(--step-0);
+          animation: fadeIn 0.5s ease-in-out both;
+          animation-delay: 13s;
+        }
+      }
+    }
+
     .chat-user-1 {
       display: flex;
       justify-content: start;
@@ -421,6 +520,10 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       font-weight: 600;
     }
 
+    .phone-link:hover {
+      color: var(--white);
+    }
+
     .chat-user-2 {
       position: relative;
       display: flex;
@@ -436,10 +539,6 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       place-self: end;
     }
 
-    .phone-link:hover {
-      color: var(--white);
-    }
-
     .send-message-container {
       position: absolute;
       display: flex;
@@ -451,9 +550,103 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       bottom: 1rem;
     }
 
+    @keyframes gradientShift {
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.1);
+      }
+
+      85% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes shimmer {
+      0%,
+      100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
     @media screen and (max-width: 1100px) {
       .hero-name {
         font-size: var(--step-6);
+      }
+
+      .btn--large {
+        min-width: 10em;
       }
 
       .phone-container {
@@ -461,21 +654,21 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       }
     }
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 910px) {
       .hero-name {
         font-size: var(--step-5);
-      }
-
-      .hero-buttons {
-        gap: var(--space-2xs);
       }
 
       .hero-buttons {
         align-items: center;
       }
 
-      .hero-buttons :global(.btn) {
-        max-width: 300px;
+      .btn:nth-child(1) {
+        margin-inline-end: 1rem;
+      }
+
+      .btn--large {
+        min-width: 12em;
       }
 
       .phone-container {
@@ -483,7 +676,7 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       }
     }
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 840px) {
       .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -492,6 +685,10 @@ const { name, role, tagline, bio, primaryCTA, secondaryCTA } = Astro.props;
       .hero-buttons {
         align-items: center;
         justify-content: center;
+      }
+
+      .btn--large {
+        min-width: 12em;
       }
 
       .phone-container {
