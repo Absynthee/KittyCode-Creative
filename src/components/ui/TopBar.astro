@@ -8,7 +8,7 @@ interface Props {
 const { content } = Astro.props;
 ---
 
-<div class="top-banner">
+<div class={`${Astro.props.hidden ? "visually-hidden" : "top-banner"}`}>
   <a href={Astro.props.link || "/#"} target="_blank">
     {content}
   </a>
@@ -41,5 +41,23 @@ const { content } = Astro.props;
     /* overflow: hidden; */
     /* height: 1px; */
     /* width: 1px; */
+  }
+
+  @media screen and (max-width: 1200px) {
+    .top-banner {
+      margin-top: 80px;
+    }
+  }
+
+  @media screen and (max-width: 950px) {
+    .top-banner {
+      margin-top: 88px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .top-banner {
+      margin-top: 70px;
+    }
   }
 </style>

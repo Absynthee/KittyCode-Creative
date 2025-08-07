@@ -399,11 +399,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       border-radius: 1rem 1rem 0 0;
       height: 5rem;
       width: 100%;
-      background: linear-gradient(
-        -90deg,
-        var(--primary),
-        var(--primary-absolute)
-      );
+      background: linear-gradient(-90deg, var(--primary), var(--secondary));
       z-index: -1;
       margin-bottom: 1rem;
     }
@@ -428,13 +424,13 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       font-size: 1rem;
       font-weight: 700;
       line-height: clamp(130%, 0.9vw, 140%);
-      color: var(--background);
+      color: var(--foreground);
     }
 
     p.role {
       font-size: 0.75rem;
       line-height: 1;
-      color: var(--background);
+      color: var(--foreground);
     }
 
     .chat-container {
