@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
   AccordionItem,
 } from "@/components/ui/accordion/index.ts";
+import Switch from "@/components/ui/Switch.astro";
 ---
 
 <Layout
@@ -37,23 +38,69 @@ import {
     <h2>stats</h2>
   </section>
 
-  <section id="about" class="section">
-    <h2>about</h2>
+  <section id="about" class="section" aria-labelledby="about-title">
+    <mark>we're the cat's paw-jamas</mark>
+    <h2 id="about-title">About</h2>
+    <p>
+      KittyCode Creative is a new, modern web design and development agency
+      based in Eastbourne. Our goal is to provide everyone with unique and
+      accessible websites. With our low price of entry, we cater towards
+      individuals promoting their personal website or portfolio, as well as
+      small businesses improving their digital footprint or updating their
+      online presence.
+    </p>
+    <p>
+      All of our websites are built from scratch using best practices in order
+      to ensure every website is fully WCAG (Web Content Accessibility
+      Guidelines) compliant and responsive on all browsers and devices.
+    </p>
+    <p>
+      As well as web design and development, we offer a <a href="/#"
+        >logo design service</a
+      > that is sure to improve your brand image.
+    </p>
   </section>
 
   <section id="services" class="section">
-    <h2>services</h2>
+    <sparkly-text
+      number-of-sparkles="5"
+      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+    >
+      <mark>we offer purrfection</mark>
+    </sparkly-text>
+
+    <h2>Services</h2>
+    <p>
+      Our services are tailored to make the process easier on our clients.The
+      less hassle, the better. Our packages come in either one-off payments, or
+      monthly contracts to spread the cost.
+    </p>
+    <Switch variant="default" size="large" name="payments">Payments</Switch>
   </section>
 
   <section id="portfolio" class="section">
-    <h2>portfolio</h2>
+    <sparkly-text
+      number-of-sparkles="5"
+      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+    >
+      <mark>how do you like us meow</mark>
+    </sparkly-text>
+
+    <h2>Portfolio</h2>
   </section>
 
   <section id="testimonials" class="section">
-    <h2>testimonials</h2>
+    <h2>Testimonials</h2>
   </section>
 
   <section id="faq" class="section">
+    <sparkly-text
+      number-of-sparkles="5"
+      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+    >
+      <mark>these look fur-miliar</mark>
+    </sparkly-text>
+
     <h2>FAQs</h2>
     <p>
       If you can’t find an answer to one of your burning questions, please get
@@ -99,17 +146,27 @@ import {
         </AccordionContent>
       </AccordionItem>
       <AccordionItem value="maintenance">
-        <AccordionTrigger>Do you offer maintenance services?</AccordionTrigger>
+        <AccordionTrigger
+          >I already have a website, can you manage and update it for me?</AccordionTrigger
+        >
         <AccordionContent>
-          Yes, we offer maintenance services to ensure your website runs
-          smoothly.
+          Absolutely! We have no set pricing for this sort of request, so it
+          will depend on a case-by-case basis. Send us a message and we will
+          gladly manage your website for you.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
   </section>
 
   <section id="contact" class="section">
-    <h2>contact</h2>
+    <sparkly-text
+      number-of-sparkles="5"
+      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+    >
+      <mark>whisker me away</mark>
+    </sparkly-text>
+
+    <h2>Contact</h2>
   </section>
 
   <style>
@@ -117,10 +174,50 @@ import {
       display: grid;
       place-items: center;
       padding: 2rem;
-      height: 80vh;
+      max-width: 1800px;
+      margin: 0 auto;
+      width: 100%;
+
+      & > :nth-child(2) {
+        margin-top: 1rem;
+      }
+
+      & > :nth-child(n + 3) {
+        margin-top: 2rem;
+      }
 
       &:nth-child(even) {
         background-color: hsl(from var(--primary-background) h s l / 0.1);
+      }
+
+      p {
+        max-width: 72ch;
+      }
+
+      a {
+        color: inherit;
+        font-weight: 500;
+        text-decoration: underline 3px solid var(--primary);
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--primary);
+        }
+      }
+
+      mark {
+        background-color: var(--primary-background);
+        color: var(--foreground);
+        font-size: var(--step--1);
+        font-weight: 600;
+        padding: 0.2rem 0.4rem;
+        border-radius: 0.25rem;
+      }
+    }
+
+    #faq {
+      .accordion {
+        margin-top: 2rem;
       }
     }
 
