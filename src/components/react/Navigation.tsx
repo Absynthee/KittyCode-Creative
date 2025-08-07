@@ -279,8 +279,11 @@ function Navigation({ currentPath }: NavigationProps) {
   width: 100vw;
   align-items: center;
   padding: 1rem;
-  background: var(--background);
+  background: hsl(from var(--background) h s l / 0.6);
+  backdrop-filter: blur(0.75rem);
   gap: var(--space-3xl);
+  border-bottom: 1px solid var(--card);
+  transition: all 0.3s ease;
 }
 
 .title {

@@ -33,14 +33,14 @@ const { content } = Astro.props;
   }
 
   .visually-hidden {
+    position: absolute;
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     visibility: hidden;
     white-space: nowrap;
-    /* position: absolute; */
-    /* overflow: hidden; */
+    overflow: hidden;
+    width: 1px;
     /* height: 1px; */
-    /* width: 1px; */
   }
 
   @media screen and (max-width: 1200px) {
