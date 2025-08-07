@@ -2,6 +2,12 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import TopBar from "@/components/ui/TopBar.astro";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionTrigger,
+  AccordionItem,
+} from "@/components/ui/accordion/index.ts";
 ---
 
 <Layout
@@ -48,27 +54,78 @@ import TopBar from "@/components/ui/TopBar.astro";
   </section>
 
   <section id="faq" class="section">
-    <h2>faq</h2>
+    <h2>FAQs</h2>
+    <p>
+      If you can’t find an answer to one of your burning questions, please get
+      in touch. Hopefully though, we already have the answers right here!
+    </p>
+    <Accordion defaultValue="services">
+      <AccordionItem value="services">
+        <AccordionTrigger>What services do you offer?</AccordionTrigger>
+        <AccordionContent>
+          We offer a range of services including web design, web development,
+          SEO, and logo design. We develop websites using the latest
+          technologies and ensure they are responsive, accessible, and optimised
+          for search engines.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="why-us">
+        <AccordionTrigger>Why should we choose you?</AccordionTrigger>
+        <AccordionContent>
+          We're certainly glad you're considering us! Our focus is on building
+          accessible, responsive, and user-friendly websites. We pride ourselves
+          on our attention to detail and our commitment to delivering
+          high-quality work.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="contact">
+        <AccordionTrigger>How can I contact you?</AccordionTrigger>
+        <AccordionContent>
+          The best way to contact us is to fill out our form on our contact
+          page. You can also email us directly at hello@kittycodecreative.com
+          with any enquiries.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="hosting">
+        <AccordionTrigger
+          >Is hosting included in your packages?</AccordionTrigger
+        >
+        <AccordionContent>
+          Yes, all of our monthly packages include hosting charges. This enables
+          us to keep your website up and running. If you stop your monthly
+          payments before your contract expires, your hosting will also stop. If
+          you're not on a monthly package, we can host for you for an additional
+          fee.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="maintenance">
+        <AccordionTrigger>Do you offer maintenance services?</AccordionTrigger>
+        <AccordionContent>
+          Yes, we offer maintenance services to ensure your website runs
+          smoothly.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   </section>
 
   <section id="contact" class="section">
     <h2>contact</h2>
   </section>
-</Layout>
 
-<style>
-  .section {
-    display: grid;
-    place-items: center;
-    padding: 2rem;
-    height: 80vh;
+  <style>
+    .section {
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      height: 80vh;
 
-    &:nth-child(even) {
-      background-color: hsl(from var(--primary-background) h s l / 0.1);
+      &:nth-child(even) {
+        background-color: hsl(from var(--primary-background) h s l / 0.1);
+      }
     }
-  }
 
-  #stats {
-    height: 40vh;
-  }
-</style>
+    #stats {
+      height: 40vh;
+    }
+  </style>
+</Layout>
