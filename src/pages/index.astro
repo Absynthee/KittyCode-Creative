@@ -9,6 +9,7 @@ import {
   AccordionItem,
 } from "@/components/ui/accordion/index.ts";
 import Switch from "@/components/ui/Switch.astro";
+import Review from "@/components/ui/Review.astro";
 ---
 
 <Layout
@@ -40,7 +41,7 @@ import Switch from "@/components/ui/Switch.astro";
 
   <section id="about" class="section" aria-labelledby="about-title">
     <mark>we're the cat's paw-jamas</mark>
-    <h2 id="about-title">About</h2>
+    <h2 id="about-title">About Us</h2>
     <p>
       KittyCode Creative is a new, modern web design and development agency
       based in Eastbourne. Our goal is to provide everyone with unique and
@@ -89,8 +90,20 @@ import Switch from "@/components/ui/Switch.astro";
     <h2>Portfolio</h2>
   </section>
 
-  <section id="testimonials" class="section">
-    <h2>Testimonials</h2>
+  <section
+    id="testimonials"
+    class="section"
+    aria-labelledby="testimonials-title"
+  >
+    <sparkly-text
+      number-of-sparkles="5"
+      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+    >
+      <mark>what our friends say</mark>
+    </sparkly-text>
+
+    <h2 id="testimonials-title">Customer Reviews</h2>
+    <Review />
   </section>
 
   <section id="faq" class="section">
@@ -179,11 +192,11 @@ import Switch from "@/components/ui/Switch.astro";
       width: 100%;
 
       & > :nth-child(2) {
-        margin-top: 1rem;
+        margin-top: var(--space-xs);
       }
 
       & > :nth-child(n + 3) {
-        margin-top: 2rem;
+        margin-top: var(--space-l);
       }
 
       &:nth-child(even) {
@@ -208,8 +221,8 @@ import Switch from "@/components/ui/Switch.astro";
       mark {
         background-color: var(--primary-background);
         color: var(--foreground);
-        font-size: var(--step--1);
-        font-weight: 600;
+        font-size: var(--step--2);
+        font-weight: 500;
         padding: 0.2rem 0.4rem;
         border-radius: 0.25rem;
       }
@@ -217,12 +230,18 @@ import Switch from "@/components/ui/Switch.astro";
 
     #faq {
       .accordion {
-        margin-top: 2rem;
+        margin-top: var(--space-l);
       }
     }
 
     #stats {
       height: 40vh;
+    }
+
+    @media and (max-width: 768px) {
+      .section {
+        padding: 2rem 1rem;
+      }
     }
   </style>
 </Layout>
