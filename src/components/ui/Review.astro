@@ -80,7 +80,7 @@ function truncateText(text: string, maxLength: number = 500) {
                   <h3 class="reviewer-name">{review.author_name}</h3>
                   <time
                     class="review-date"
-                    dateTime={new Date(review.time * 1000).toISOString()}
+                    datetime={new Date(review.time * 1000).toISOString()}
                   >
                     {review.relative_time_description}
                   </time>
@@ -141,8 +141,7 @@ function truncateText(text: string, maxLength: number = 500) {
   }
 
   .review-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px hsl(from var(--foreground) h s l / 0.1);
+    box-shadow: 0 4px 20px hsl(from var(--primary-background) h s l / 0.5);
   }
 
   .review-header {
