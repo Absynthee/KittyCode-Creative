@@ -187,7 +187,9 @@ a:hover {
 /* timing for progressing loading. */
 
 .fade-content > * {
-  transition: ease opacity 0.5s, ease transform 0.5s;
+  transition:
+    ease opacity 0.5s,
+    ease transform 0.5s;
 }
 
 .fade-content > *:nth-child(3n + 2) {
@@ -1112,7 +1114,8 @@ main {
   border-radius: 30px;
   font-size: clamp(10px, calc(8px + (100vw - 1440px) * 0.006849), 15px);
   line-height: 1.3;
-  box-shadow: 0px 0px 50px -20px light-dark(var(--primary-color-1-40), var(--primary-color-2-40));
+  box-shadow: 0px 0px 50px -20px
+    light-dark(var(--primary-color-1-40), var(--primary-color-2-40));
   transition: all 0.3s ease-in-out;
   z-index: 10;
 
@@ -1439,7 +1442,8 @@ input[type="radio"].toggle {
   }
 
   &:checked + label {
-    box-shadow: inset 0px 0px 10px -5px light-dark(var(--primary-color-2), var(--primary-color-1));
+    box-shadow: inset 0px 0px 10px -5px
+      light-dark(var(--primary-color-2), var(--primary-color-1));
     cursor: default;
     transition: all 200ms;
 
@@ -1552,17 +1556,39 @@ main.portfolio-post {
 
 .website-portfolios,
 .blog-posts {
-  display: flex;
-  flex-direction: row;
+  display: grid;
   gap: var(--spacing-4);
   width: 100%;
   justify-content: center;
   padding-block-end: var(--spacing-6);
 }
 
+.website-portfolios {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: start;
+  justify-items: center;
+  max-width: calc((3 * 24rem) + (2 * var(--spacing-4)));
+  margin-inline: auto;
+}
+
+.website-portfolios > * {
+  min-width: 0;
+}
+
+.blog-posts {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
 .portfolio-container {
-  width: 500px;
+  width: 100%;
+  max-width: 24rem;
+  min-width: 0;
   height: fit-content;
+
+  a {
+    display: block;
+    min-width: 0;
+  }
 
   p {
     font-size: 0.9rem;
@@ -2667,10 +2693,6 @@ fieldset > .one-column {
     padding-block-start: 0;
   }
 
-  .website-portfolios {
-    flex-wrap: wrap;
-  }
-
   .portfolio-image {
     height: inherit;
   }
@@ -2963,9 +2985,8 @@ fieldset > .one-column {
     width: 95%;
   }
 
-  .website-portfolios,
   .blog-posts {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
 
   .portfolio-container {

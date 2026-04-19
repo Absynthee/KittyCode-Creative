@@ -97,7 +97,6 @@ function hideDropdown() {
 mediaQuery.addListener(toggleDropdownMenu);
 toggleDropdownMenu(mediaQuery);
 
-
 // sticky nav
 let prevScrollPos = window.scrollY;
 const navbar = document.querySelector(".navbar");
@@ -225,11 +224,11 @@ portfolioContainers.forEach((container) => {
     // Adjust the transform origin based on container dimensions
     const adjustedX = Math.min(
       Math.max(x, -containerWidth / 2),
-      containerWidth / 2
+      containerWidth / 2,
     );
     const adjustedY = Math.min(
       Math.max(y, -containerHeight / 2),
-      containerHeight / 2
+      containerHeight / 2,
     );
 
     img.style.transformOrigin = `${adjustedX + containerWidth / 2}px ${
@@ -259,6 +258,13 @@ portfolioImages.forEach((img) => {
       otherImg.style.filter = "none";
     });
   });
+});
+
+// footer copyright year
+const currentYearElements = document.querySelectorAll(".current-year");
+
+currentYearElements.forEach((element) => {
+  element.textContent = new Date().getFullYear();
 });
 
 // testimonials
@@ -310,7 +316,7 @@ const htmlElement = document.documentElement;
 
 const preferredTheme = localStorage.getItem("theme") || "light";
 htmlElement.classList.add(
-  preferredTheme === "dark" ? "dark-theme" : "light-theme"
+  preferredTheme === "dark" ? "dark-theme" : "light-theme",
 );
 
 themeToggle.addEventListener("click", () => {
@@ -322,41 +328,42 @@ themeToggle.addEventListener("click", () => {
     ? "dark"
     : "light";
   localStorage.setItem("theme", newTheme);
-
 });
 
 // top-banner
-document.addEventListener('DOMContentLoaded', function() {
-  const banner = document.querySelector('.top-banner');
-  const content = document.querySelector('.top-banner-content');
+document.addEventListener("DOMContentLoaded", function () {
+  const banner = document.querySelector(".top-banner");
+  const content = document.querySelector(".top-banner-content");
   let isPaused = false;
 
   // Clone the content to ensure a seamless loop
   function duplicateContent() {
-      const contentWidth = content.offsetWidth;
-      const bannerWidth = banner.offsetWidth;
-      
-      while (content.offsetWidth < bannerWidth * 2) {
-          content.appendChild(content.firstElementChild.cloneNode(true));
-      }
+    const contentWidth = content.offsetWidth;
+    const bannerWidth = banner.offsetWidth;
+
+    while (content.offsetWidth < bannerWidth * 2) {
+      content.appendChild(content.firstElementChild.cloneNode(true));
+    }
   }
 
   // Animate the banner
   function animateBanner() {
-      if (!isPaused) {
-          if (content.offsetLeft <= -content.offsetWidth / 2) {
-              content.style.left = '0px';
-          }
-          content.style.left = (content.offsetLeft - 1) + 'px';
+    if (!isPaused) {
+      if (content.offsetLeft <= -content.offsetWidth / 2) {
+        content.style.left = "0px";
       }
-      requestAnimationFrame(animateBanner);
+      content.style.left = content.offsetLeft - 1 + "px";
+    }
+    requestAnimationFrame(animateBanner);
   }
 
   // Pause animation on hover/touch
-  banner.addEventListener('mouseenter', () => isPaused = true);
-  banner.addEventListener('mouseleave', () => isPaused = false);
-  banner.addEventListener('touchstart', () => isPaused = true, {passive: true});
-  banner.addEventListener('touchend', () => isPaused = false);
+  banner.addEventListener("mouseenter", () => (isPaused = true));
+  banner.addEventListener("mouseleave", () => (isPaused = false));
+  banner.addEventListener("touchstart", () => (isPaused = true), {
+    passive: true,
+  });
+  banner.addEventListener("touchend", () => (isPaused = false));
 
   // Initialize
   duplicateContent();

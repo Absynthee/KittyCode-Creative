@@ -6,11 +6,10 @@ RewriteBase /
 # Redirect index.html to root
 RewriteRule ^index\.html$ / [R=301,L]
 
-# Remove .html and .php extensions
+# Remove .html extension
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f [OR]
 RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.+?)\.(php|html)$ /$1 [L,R=301]
+RewriteRule ^(.+?)\.html$ /$1 [L,R=301]
 
 # Check if the requested URL contains /index.html or /index/
 RewriteCond %{THE_REQUEST} /index\.html? [NC]
@@ -21,19 +20,15 @@ RewriteRule ^(.*)index\.html?$ /$1 [NC,R=301,L]
 RewriteCond %{HTTP_HOST} ^kittycodecreative\.com$ [NC]
 RewriteRule ^(.*)$ https://www.kittycodecreative.com/$1 [L,R=301]
 
-# Add .html and .php extensions (important as files are named without extensions)
+# Add .html extension for extensionless routes
 RewriteCond %{REQUEST_FILENAME} !-d 
 RewriteCond %{REQUEST_FILENAME}\.html -f 
 RewriteRule ^([^\.]+)$ $1.html [NC,L]
-
-RewriteCond %{REQUEST_FILENAME} !-d 
-RewriteCond %{REQUEST_FILENAME}\.php -f 
-RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 # Remove trailing slash
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 # Custom 404 error page
-ErrorDocument 404 /404
+ErrorDocument 404 /404.html
 
