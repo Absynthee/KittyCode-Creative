@@ -1,0 +1,130 @@
+---
+import kittyGif from "@/assets/images/kitty.gif";
+---
+
+<section id="about" class="section" aria-labelledby="about-title">
+  <div class="about-text">
+    <mark>we're the cat's paw-jamas</mark>
+    <h2 id="about-title">About Us</h2>
+    <p>
+      KittyCode Creative is a new, modern web design and development agency
+      based in Eastbourne. Our goal is to provide everyone with unique and
+      accessible websites. With our low price of entry, we cater towards
+      individuals promoting their personal website or portfolio, as well as
+      small businesses improving their digital footprint or updating their
+      online presence.
+    </p>
+    <p>
+      All of our websites are built from scratch using best practices in order
+      to ensure every website is fully WCAG (Web Content Accessibility
+      Guidelines) compliant and responsive on all browsers and devices.
+    </p>
+    <p>
+      Every project includes <a href="/#services">SEO</a> as standard, helping your
+      website rank well in search engines and stay discoverable across the modern
+      web.
+    </p>
+  </div>
+  <div class="about-media">
+    <img
+      src={kittyGif.src}
+      width={kittyGif.width}
+      height={kittyGif.height}
+      alt="Animated KittyCode Creative cat"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>
+
+<style>
+  /* About is a text-led section: rather than fight the centered layout with
+     a centered heading over left-aligned body, align the WHOLE block to the
+     left and place an image alongside it. */
+  #about {
+    grid-template-columns: 1fr auto;
+    justify-items: stretch;
+    align-items: center;
+    gap: var(--space-2xl);
+    text-align: start;
+  }
+
+  /* Neutralise the page-wide vertical rhythm between direct section
+     children (here they're side-by-side grid columns, not stacked). */
+  #about > :global(*) {
+    margin-block-start: 0;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  /* Recreate the page's vertical rhythm inside the text column. The
+     mark / heading / paragraphs are no longer direct children of .section,
+     so the page-wide nth-child spacing no longer reaches them. */
+  .about-text > :nth-child(2) {
+    margin-block-start: var(--space-xs);
+  }
+
+  .about-text > :nth-child(n + 3) {
+    margin-block-start: var(--space-l);
+  }
+
+  #about p {
+    max-inline-size: 68ch;
+    text-align: start;
+    text-wrap: wrap;
+  }
+
+  /* Tighter rhythm between body paragraphs than the page-wide default. */
+  #about p + p {
+    margin-block-start: var(--space-s);
+  }
+
+  /* Re-apply the intro link underline; the link is no longer a direct
+     child of the section, so the page-wide `& > p a` rule won't reach it. */
+  #about p a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--primary);
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  .about-media {
+    justify-self: end;
+  }
+
+  .about-media img {
+    inline-size: clamp(13.75rem, 28vw, 22.5rem);
+    block-size: auto;
+    border-radius: var(--radius, 1rem);
+  }
+
+  @media (max-width: 768px) {
+    #about {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .about-text {
+      align-items: center;
+    }
+
+    #about p {
+      text-align: center;
+    }
+
+    .about-media {
+      justify-self: center;
+      order: -1;
+    }
+  }
+</style>

@@ -1,0 +1,166 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Prose from "@/components/sections/Prose.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const lastUpdated = "10 July 2026";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/terms-and-conditions#webpage`,
+      url: `${siteUrl}/terms-and-conditions`,
+      name: "Terms and Conditions",
+      description:
+        "The terms and conditions that govern the use of KittyCode Creative's website and services.",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      dateModified: "2026-07-10",
+    },
+    breadcrumbs([{ name: "Terms and Conditions", path: "/terms-and-conditions" }]),
+  ],
+};
+---
+
+<Layout
+  title="Terms and Conditions"
+  description="The terms and conditions that govern the use of KittyCode Creative's website and web design services, including payment, revisions, intellectual property and liability."
+>
+  <PageHero
+    eyebrow="terms and kittens?"
+    title="Terms and Conditions"
+    lead="The rules of the road for using our website and services. Please read them before we get started."
+  />
+
+  <Prose>
+    <p class="last-updated">Last updated: {lastUpdated}</p>
+
+    <p>
+      These terms and conditions outline the rules and regulations for the use
+      of KittyCode Creative's website and services.
+    </p>
+
+    <h2>Introduction</h2>
+    <p>
+      By accessing this website, you accept these terms and conditions in full.
+      Do not continue to use KittyCode Creative's website if you do not accept
+      all of the terms and conditions stated on this page.
+    </p>
+
+    <h2>Definitions</h2>
+    <ul>
+      <li><strong>Client:</strong> the individual or entity using our services.</li>
+      <li><strong>We / Us / Our:</strong> refers to KittyCode Creative.</li>
+      <li><strong>Website:</strong> refers to our website, kittycodecreative.com.</li>
+    </ul>
+
+    <h2>Services</h2>
+    <p>
+      KittyCode Creative offers bespoke web design, front-end development and SEO
+      services. Details of these services are provided on our website.
+    </p>
+
+    <h2>Payment Terms</h2>
+    <ul>
+      <li>
+        Payment terms will be agreed upon prior to the commencement of any
+        project.
+      </li>
+      <li>A deposit may be required before work begins.</li>
+      <li>
+        Full payment is due upon completion of the project, unless otherwise
+        agreed.
+      </li>
+    </ul>
+
+    <h2>Client Responsibilities</h2>
+    <ul>
+      <li>
+        Provide all necessary information, content and materials required to
+        complete the project.
+      </li>
+      <li>
+        Ensure all materials supplied are accurate and do not infringe on any
+        third-party rights.
+      </li>
+      <li>Respond to communications promptly to avoid delays.</li>
+    </ul>
+
+    <h2>Revisions and Changes</h2>
+    <ul>
+      <li>Revisions are included as specified in the project agreement.</li>
+      <li>
+        Additional changes beyond the agreed scope may incur additional charges.
+      </li>
+    </ul>
+
+    <h2>Intellectual Property Rights</h2>
+    <ul>
+      <li>
+        Upon full payment, the client will own the rights to the final design,
+        code and materials produced.
+      </li>
+      <li>
+        We retain the right to display the work in our portfolio and on our
+        website.
+      </li>
+    </ul>
+
+    <h2>Confidentiality</h2>
+    <p>
+      We will maintain the confidentiality of any proprietary information shared
+      during the course of the project.
+    </p>
+
+    <h2>Termination</h2>
+    <ul>
+      <li>Either party may terminate the agreement with written notice.</li>
+      <li>
+        In the event of termination, the client will be invoiced for the work
+        completed up to the termination date plus two months, along with the
+        hosting of the client's website ending.
+      </li>
+    </ul>
+
+    <h2>Liability</h2>
+    <ul>
+      <li>
+        We will not be liable for any indirect, special or consequential damages
+        arising out of or in connection with the use of our services.
+      </li>
+      <li>
+        Our liability is limited to the amount paid by the client for the
+        services.
+      </li>
+    </ul>
+
+    <h2>Governing Law</h2>
+    <p>
+      These terms and conditions are governed by and construed in accordance
+      with the laws of England and Wales. Any disputes relating to these terms
+      and conditions will be subject to the exclusive jurisdiction of the courts
+      of England and Wales.
+    </p>
+
+    <h2>Changes to Terms</h2>
+    <p>
+      We reserve the right to revise these terms and conditions at any time. Any
+      changes will be posted on this page, and continued use of the website will
+      signify acceptance of any adjustments.
+    </p>
+
+    <h2>Contact Information</h2>
+    <p>
+      If you have any questions about these terms and conditions, please contact
+      us at <a href="mailto:hello@kittycodecreative.com"
+        >hello@kittycodecreative.com</a
+      >.
+    </p>
+  </Prose>
+
+  <JsonLd data={structuredData} />
+</Layout>

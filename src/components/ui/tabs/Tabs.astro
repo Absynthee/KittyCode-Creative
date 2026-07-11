@@ -10,7 +10,7 @@ const tabsId = `tabs-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const tabsContainers = document.querySelectorAll(".tabs");
 
     tabsContainers.forEach((tabs) => {

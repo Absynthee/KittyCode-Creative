@@ -17,9 +17,9 @@ const { content } = Astro.props;
 <style>
   .top-banner {
     position: relative;
-    margin-top: 92px;
+    margin-block-start: 5.75rem;
     padding-block: var(--space-2xs);
-    width: 100%;
+    inline-size: 100%;
     background-color: var(--primary-background);
     overflow: hidden;
     text-align: center;
@@ -39,25 +39,25 @@ const { content } = Astro.props;
     visibility: hidden;
     white-space: nowrap;
     overflow: hidden;
-    width: 1px;
+    inline-size: 1px;
     /* height: 1px; */
   }
 
   @media screen and (max-width: 1200px) {
     .top-banner {
-      margin-top: 80px;
+      margin-block-start: 5rem;
     }
   }
 
   @media screen and (max-width: 950px) {
     .top-banner {
-      margin-top: 88px;
+      margin-block-start: 5.5rem;
     }
   }
 
   @media screen and (max-width: 768px) {
     .top-banner {
-      margin-top: 70px;
+      margin-block-start: 4.375rem;
     }
   }
 </style>

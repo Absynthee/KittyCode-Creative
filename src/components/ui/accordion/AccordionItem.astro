@@ -13,14 +13,14 @@ const { value, class: className = "" } = Astro.props;
 
 <style>
   .accordion-item {
-    border-bottom: 1px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   .accordion-item:last-child {
-    border-bottom: none;
+    border-block-end: none;
   }
 
   .accordion-item[data-open] {
-    border-left: 2px solid var(--primary-absolute);
+    border-inline-start: 2px solid var(--primary-absolute);
   }
 </style>

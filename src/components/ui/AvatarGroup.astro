@@ -30,7 +30,7 @@ const classes = [baseClasses, sizeClass, spacingClass, className]
     setElementStyle,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const avatarGroups = getHTMLElements(".avatar-group");
 
     avatarGroups.forEach((group) => {
@@ -38,7 +38,7 @@ const classes = [baseClasses, sizeClass, spacingClass, className]
       const max = parseInt(maxAttr || "5");
       const allChildren = Array.from(group.children);
       const avatars = filterHTMLElements(allChildren).filter((child) =>
-        child.classList.contains("avatar")
+        child.classList.contains("avatar"),
       );
 
       if (avatars.length > max) {
@@ -100,15 +100,15 @@ const classes = [baseClasses, sizeClass, spacingClass, className]
 
   /* Spacing variants */
   .avatar-group--spacing-tight :global(.avatar:not(:first-child)) {
-    margin-left: -0.75rem;
+    margin-inline-start: -0.75rem;
   }
 
   .avatar-group--spacing-normal :global(.avatar:not(:first-child)) {
-    margin-left: -0.45rem;
+    margin-inline-start: -0.45rem;
   }
 
   .avatar-group--spacing-loose :global(.avatar:not(:first-child)) {
-    margin-left: -0.25rem;
+    margin-inline-start: -0.25rem;
   }
 
   /* Overflow avatar styles - using :global() for dynamically created elements */
@@ -165,27 +165,26 @@ const classes = [baseClasses, sizeClass, spacingClass, className]
 
   /* Ensure overflow avatar follows same spacing rules */
   .avatar-group--spacing-tight :global(.avatar-group__overflow) {
-    margin-left: -0.75rem;
+    margin-inline-start: -0.75rem;
   }
 
   .avatar-group--spacing-normal :global(.avatar-group__overflow) {
-    margin-left: -0.45rem;
+    margin-inline-start: -0.45rem;
   }
 
   .avatar-group--spacing-loose :global(.avatar-group__overflow) {
-    margin-left: -0.25rem;
+    margin-inline-start: -0.25rem;
   }
 
-  /* Responsive adjustments */
   @media screen and (max-width: 768px) {
     .avatar-group--spacing-normal :global(.avatar:not(:first-child)),
     .avatar-group--spacing-normal :global(.avatar-group__overflow) {
-      margin-left: -0.5rem;
+      margin-inline-start: -0.5rem;
     }
 
     .avatar-group--spacing-loose :global(.avatar:not(:first-child)),
     .avatar-group--spacing-loose :global(.avatar-group__overflow) {
-      margin-left: -0.125rem;
+      margin-inline-start: -0.125rem;
     }
 
     .avatar-group :global(.avatar:hover) {

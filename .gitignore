@@ -20,5 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
+# brainstorm folders
 .idea/
+.claude/
+
+# old folders
+_old/

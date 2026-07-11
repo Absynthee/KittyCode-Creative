@@ -1,0 +1,35 @@
+---
+import IconCardGrid from "@/components/ui/IconCardGrid.astro";
+import { Mail, MapPin, Clock } from "@lucide/astro";
+
+const items = [
+  {
+    icon: Mail,
+    title: "Email us",
+    body: "hello@kittycodecreative.com",
+    href: "mailto:hello@kittycodecreative.com",
+  },
+  {
+    icon: MapPin,
+    title: "Where we are",
+    body: "Eastbourne, East Sussex. Working with clients everywhere.",
+  },
+  {
+    icon: Clock,
+    title: "Response time",
+    body: "We aim to reply to every enquiry within one working day.",
+  },
+];
+---
+
+<section id="contact-methods" class="section" aria-labelledby="methods-title">
+  <mark>whisker me away</mark>
+  <h2 id="methods-title">Let's Work Together</h2>
+  <p>
+    Ready to join the clowder? Whether you have a project in mind or just a few
+    questions, we'd love to hear from you. Prefer to keep it social? Find us on
+    Facebook, LinkedIn, X and Instagram in the footer below.
+  </p>
+
+  <IconCardGrid items={items} columns={3} align="center" />
+</section>

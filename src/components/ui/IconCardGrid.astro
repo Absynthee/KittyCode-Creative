@@ -1,0 +1,161 @@
+---
+// A responsive grid of icon cards: {icon, title, body, optional link}.
+// Shared by Features, ValuesGrid and ContactMethods so the card styling lives
+// in one place. Icons are passed as @lucide/astro components in the items.
+interface CardItem {
+  icon: any;
+  title: string;
+  body: string;
+  href?: string;
+  external?: boolean;
+}
+
+interface Props {
+  items: CardItem[];
+  columns?: 2 | 3 | 4;
+  align?: "left" | "center";
+}
+
+const { items, columns = 3, align = "left" } = Astro.props;
+---
+
+<ul class="card-grid" role="list" data-cols={columns} data-align={align}>
+  {
+    items.map((item, index) => {
+      const Icon = item.icon;
+      return (
+        <li class="icon-card" style={`--delay: ${index * 0.1}s`}>
+          <span class="icon-card-icon" aria-hidden="true">
+            <Icon size={26} />
+          </span>
+          <h3 class="icon-card-title">{item.title}</h3>
+          {item.href ? (
+            <a
+              class="icon-card-link"
+              href={item.href}
+              target={item.external ? "_blank" : undefined}
+              rel={item.external ? "noopener noreferrer" : undefined}
+            >
+              {item.body}
+            </a>
+          ) : (
+            <p class="icon-card-body">{item.body}</p>
+          )}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .card-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    inline-size: 100%;
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .card-grid[data-cols="2"] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-grid[data-cols="3"] {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .card-grid[data-cols="4"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .icon-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding: var(--space-l) var(--space-m);
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .card-grid[data-align="center"] .icon-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .icon-card:hover {
+    border-color: hsl(from var(--primary) h s l / 0.4);
+    box-shadow: 0 4px 20px hsl(from var(--primary) h s l / 0.1);
+  }
+
+  .icon-card-icon {
+    display: grid;
+    place-items: center;
+    inline-size: 3rem;
+    block-size: 3rem;
+    border-radius: var(--radius);
+    color: var(--primary);
+    background: hsl(from var(--primary) h s l / 0.1);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .icon-card-title {
+    font-size: var(--step-1);
+  }
+
+  .icon-card-body {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+  }
+
+  .icon-card-link {
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: none;
+    word-break: break-word;
+  }
+
+  .icon-card-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .card-grid[data-cols="4"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .card-grid[data-cols="3"] {
+      grid-template-columns: 1fr;
+      max-inline-size: 24rem;
+      margin-inline: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .card-grid[data-cols="2"],
+    .card-grid[data-cols="4"] {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

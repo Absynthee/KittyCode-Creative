@@ -1,0 +1,116 @@
+---
+import { Check } from "@lucide/astro";
+
+const included = [
+  "A fully bespoke, hand-coded website",
+  "Hosting and management (monthly plans)",
+  "Search engine optimisation (SEO)",
+  "Design and content updates as required",
+  "Optimised for desktop and mobile",
+  "Fully responsive and WCAG accessible",
+];
+---
+
+<section id="approach" class="section" aria-labelledby="approach-title">
+  <mark>feline creative?</mark>
+  <h2 id="approach-title">Websites Built By Hand</h2>
+  <p>
+    At KittyCode Creative we create unique, beautiful websites to help your
+    business grow. We design a layout best suited to your needs, then code every
+    site by hand.
+  </p>
+
+  <div class="services-detail">
+    <div class="services-copy">
+      <p>
+        Hand-coding gives us far more control over the design and dramatically
+        improves performance, because there's no bloat to slow the site down.
+        Websites built this way out-perform most WordPress sites and drag-and-drop
+        page builders, which can cost up to ten times as much to run.
+      </p>
+      <p>
+        When it comes to the web, the faster and more organised sites win. Every
+        build is responsive, accessible and search-friendly from day one, so your
+        visitors get a great experience and search engines can find you.
+      </p>
+    </div>
+
+    <div class="services-included">
+      <h3 class="included-title">Every package includes</h3>
+      <ul class="included-list" role="list">
+        {
+          included.map((item) => (
+            <li>
+              <Check size={18} aria-hidden="true" />
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-detail {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+    text-align: start;
+  }
+
+  .services-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .services-copy p {
+    max-inline-size: 60ch;
+    text-wrap: pretty;
+  }
+
+  .services-included {
+    padding: var(--space-l) var(--space-m);
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+  }
+
+  .included-title {
+    font-size: var(--step-1);
+    margin-block-end: var(--space-s);
+  }
+
+  .included-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .included-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.85);
+  }
+
+  .included-list :global(svg) {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 860px) {
+    .services-detail {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+    }
+  }
+</style>

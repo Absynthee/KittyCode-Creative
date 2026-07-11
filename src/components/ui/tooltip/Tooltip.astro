@@ -17,7 +17,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const tooltips = document.querySelectorAll(".tooltip");
 
     tooltips.forEach((tooltip) => {

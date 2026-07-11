@@ -3,25 +3,25 @@ import { ChevronUp } from "@lucide/astro";
 ---
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const scrollButton = document.querySelector(".scroll-to-top");
+  // The scroll listener is registered once at module load with a stable handler
+  // that looks up the current button each time, so it survives view-transition
+  // navigations (where the button is swapped for a fresh element) without
+  // accumulating duplicate listeners.
+  const handleScroll = () => {
+    const button = document.querySelector(".scroll-to-top");
+    button?.classList.toggle("visible", window.scrollY > 300);
+  };
 
-    if (scrollButton) {
-      const handleScroll = () => {
-        const isVisible = window.scrollY > 300;
-        scrollButton.classList.toggle("visible", isVisible);
-      };
+  window.addEventListener("scroll", handleScroll, { passive: true });
 
-      const scrollToTop = () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      };
-
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      scrollButton.addEventListener("click", scrollToTop);
-    }
+  // Rebind the click handler after each navigation onto the current button.
+  document.addEventListener("astro:page-load", () => {
+    const button = document.querySelector(".scroll-to-top");
+    if (!button) return;
+    handleScroll();
+    button.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
   });
 </script>
 
@@ -43,14 +43,14 @@ import { ChevronUp } from "@lucide/astro";
 <style>
   .scroll-to-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 44px;
-    height: 44px;
+    inset-block-end: 2rem;
+    inset-inline-end: 2rem;
+    inline-size: 44px;
+    block-size: 44px;
     background: hsl(from var(--card) h s l / 0.15);
     backdrop-filter: blur(8px);
     border: none;
-    border-radius: 12px;
+    border-radius: 0.75rem;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 5;
@@ -75,8 +75,8 @@ import { ChevronUp } from "@lucide/astro";
 
   @media screen and (max-width: 768px) {
     .scroll-to-top {
-      bottom: 1rem;
-      right: 1rem;
+      inset-block-end: 1rem;
+      inset-inline-end: 1rem;
     }
   }
 </style>

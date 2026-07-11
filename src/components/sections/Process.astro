@@ -1,0 +1,177 @@
+---
+import { MessageSquare, PenTool, Code2, Rocket } from "@lucide/astro";
+
+interface Step {
+  title: string;
+  description: string;
+  icon: "brief" | "design" | "build" | "launch";
+}
+
+interface Props {
+  steps?: Step[];
+}
+
+const {
+  steps = [
+    {
+      title: "Brief",
+      description:
+        "Tell us about your goals and ideas. We'll listen, ask the right questions and plan the perfect approach.",
+      icon: "brief",
+    },
+    {
+      title: "Design",
+      description:
+        "We craft a bespoke design tailored to your brand and present it for your feedback and approval.",
+      icon: "design",
+    },
+    {
+      title: "Build",
+      description:
+        "We hand-code your website to be fast, fully accessible and responsive on every device.",
+      icon: "build",
+    },
+    {
+      title: "Launch",
+      description:
+        "We deploy your site, take care of hosting and stay on hand to help you grow.",
+      icon: "launch",
+    },
+  ],
+} = Astro.props;
+
+const icons = {
+  brief: MessageSquare,
+  design: PenTool,
+  build: Code2,
+  launch: Rocket,
+};
+---
+
+<ol class="process-grid" role="list">
+  {
+    steps.map((step, index) => {
+      const Icon = icons[step.icon];
+      return (
+        <li class="process-step" style={`--delay: ${index * 0.1}s`}>
+          <div class="process-marker">
+            <span class="process-icon" aria-hidden="true">
+              <Icon size={24} />
+            </span>
+            <span class="process-number" aria-hidden="true">
+              {index + 1}
+            </span>
+          </div>
+          <h3 class="process-title">{step.title}</h3>
+          <p class="process-description">{step.description}</p>
+        </li>
+      );
+    })
+  }
+</ol>
+
+<style>
+  .process-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    counter-reset: step;
+  }
+
+  .process-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2xs);
+    padding: 0 var(--space-xs);
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  /* Connector line between steps */
+  .process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 1.75rem;
+    inset-inline-start: calc(50% + 2rem);
+    inset-inline-end: calc(-50% + 2rem);
+    block-size: 2px;
+    background: linear-gradient(
+      90deg,
+      hsl(from var(--primary) h s l / 0.4),
+      hsl(from var(--primary) h s l / 0.1)
+    );
+  }
+
+  .process-marker {
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    border-radius: 50%;
+    color: var(--primary);
+    background: hsl(from var(--primary) h s l / 0.1);
+    border: 2px solid hsl(from var(--primary) h s l / 0.3);
+    margin-block-end: var(--space-2xs);
+    z-index: 1;
+  }
+
+  .process-number {
+    position: absolute;
+    inset-block-start: -0.5rem;
+    inset-inline-end: -0.5rem;
+    display: grid;
+    place-items: center;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--primary-foreground, #fff);
+    font-size: var(--step--2);
+    font-weight: 700;
+  }
+
+  .process-title {
+    font-size: var(--step-1);
+  }
+
+  .process-description {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    max-inline-size: 28ch;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 860px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-l) 1.5rem;
+    }
+
+    .process-step:not(:last-child)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

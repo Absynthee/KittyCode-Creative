@@ -1,0 +1,149 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Prose from "@/components/sections/Prose.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const lastUpdated = "10 July 2026";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "PrivacyPolicy",
+      "@id": `${siteUrl}/privacy-policy#webpage`,
+      url: `${siteUrl}/privacy-policy`,
+      name: "Privacy Policy",
+      description:
+        "How KittyCode Creative collects, uses and protects your information when you use our website and services.",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      dateModified: "2026-07-10",
+    },
+    breadcrumbs([{ name: "Privacy Policy", path: "/privacy-policy" }]),
+  ],
+};
+---
+
+<Layout
+  title="Privacy Policy"
+  description="How KittyCode Creative collects, uses and protects your personal information when you visit our website and use our web design services."
+>
+  <PageHero
+    eyebrow="the boring but important bit"
+    title="Privacy Policy"
+    lead="We're committed to protecting and respecting your privacy. Here's exactly how we handle your information."
+  />
+
+  <Prose>
+    <p class="last-updated">Last updated: {lastUpdated}</p>
+
+    <p>
+      KittyCode Creative ("we", "us", "our") is committed to protecting and
+      respecting your privacy. This Privacy Policy explains how we collect, use
+      and disclose information about you when you visit our website,
+      kittycodecreative.com, and use our services.
+    </p>
+
+    <h2>Information We Collect</h2>
+    <ul>
+      <li>
+        <strong>Personal information:</strong> such as your name, email address,
+        phone number and postal address, when you fill out forms on our website
+        or contact us directly.
+      </li>
+      <li>
+        <strong>Usage data:</strong> information about how you interact with our
+        website, including your IP address, browser type, pages visited and time
+        spent on the site.
+      </li>
+    </ul>
+
+    <h2>How We Use Your Information</h2>
+    <p>We use the information we collect to:</p>
+    <ul>
+      <li>Provide and improve our services.</li>
+      <li>Respond to your enquiries and communicate with you.</li>
+      <li>Send you promotional materials or newsletters, if you have opted in.</li>
+      <li>Analyse website usage and enhance the user experience.</li>
+      <li>Comply with our legal obligations.</li>
+    </ul>
+
+    <h2>Sharing Your Information</h2>
+    <p>
+      We do not sell, trade or otherwise transfer your personal information to
+      outside parties, except:
+    </p>
+    <ul>
+      <li>
+        To trusted third parties who help us operate our website, conduct our
+        business or provide our services, provided they agree to keep this
+        information confidential.
+      </li>
+      <li>When required by law or in response to valid legal proceedings.</li>
+      <li>
+        To protect our rights, property or safety, or that of our users or
+        others.
+      </li>
+    </ul>
+
+    <h2>Cookies &amp; Analytics</h2>
+    <p>
+      We use cookies and privacy-friendly analytics to understand how our
+      website is used and to improve it. This includes Google Analytics and
+      Umami for usage statistics, and Web3Forms to process contact form
+      submissions. Cookies are small files placed on your device that help us
+      understand your preferences and improve functionality. You can disable
+      cookies through your browser settings, though this may affect certain
+      features of our site.
+    </p>
+
+    <h2>Data Security</h2>
+    <p>
+      We implement a variety of security measures to help keep your personal
+      information safe. However, no method of transmission over the internet or
+      electronic storage is completely secure, so we cannot guarantee absolute
+      security.
+    </p>
+
+    <h2>Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access the personal information we hold about you.</li>
+      <li>Request correction of inaccurate or incomplete information.</li>
+      <li>Request deletion of your personal information.</li>
+      <li>Object to the processing of your personal information.</li>
+      <li>Request the transfer of your personal information to another party.</li>
+    </ul>
+    <p>
+      To exercise any of these rights, please contact us at <a href="mailto:hello@kittycodecreative.com"
+        >hello@kittycodecreative.com</a
+      >.
+    </p>
+
+    <h2>Third-Party Links</h2>
+    <p>
+      Our website may contain links to third-party websites. We are not
+      responsible for the privacy practices of these sites, and we encourage you
+      to read the privacy policy of any website you visit.
+    </p>
+
+    <h2>Changes to This Privacy Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. Any changes will be
+      posted on this page, and where appropriate we will notify you of
+      significant changes by email or a notice on our website.
+    </p>
+
+    <h2>Contact Us</h2>
+    <p>
+      If you have any questions about this Privacy Policy or our data practices,
+      please contact us at <a href="mailto:hello@kittycodecreative.com"
+        >hello@kittycodecreative.com</a
+      >.
+    </p>
+  </Prose>
+
+  <JsonLd data={structuredData} />
+</Layout>

@@ -7,8 +7,10 @@
 
   --primary: oklch(0.6459 0.1675 46.08);
   --primary-background: oklch(0.6666 0.2077 37.58);
+  --primary-foreground: oklch(0.145 0 0);
   --secondary: oklch(0.5666 0.1589 44.03);
   --secondary-background: oklch(0.6991 0.1579 54.69);
+  --secondary-foreground: oklch(0.145 0 0);
   --muted: oklch(0.5313 0 0);
   --muted-background: oklch(65.004% 0.00007 271.152);
   --accent-1: oklch(0.5425 0.1072 92.91);
@@ -90,10 +92,14 @@
   margin: 0;
 }
 
-@media prefers-reduced-motion {
-  :root {
-    transition: none;
-    animation: none;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -114,7 +120,7 @@ ol[role="list"] {
 
 body {
   -webkit-font-smoothing: antialiased;
-  /* min-height: 100vh; */
+  /* min-block-size: 100dvh; */
   /* line-height: 1.5; */
 }
 
@@ -124,7 +130,8 @@ video,
 canvas,
 svg {
   display: block;
-  max-width: 100%;
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
 input,
@@ -160,10 +167,8 @@ h6,
 
 /* css reset end */
 
-/* REMOVE AND UPDATE AS NEEDED */
-
 body {
-  min-height: 100vh;
+  min-block-size: 100dvh;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -186,7 +191,7 @@ header {
 }
 
 nav {
-  margin-bottom: var(--space-2xl);
+  margin-block-end: var(--space-2xl);
 }
 
 p,
@@ -198,43 +203,43 @@ h1 {
   font-weight: 800;
   line-height: 0.9em;
   font-size: var(--step-6);
-  margin-bottom: var(--space-3xs);
+  margin-block-end: var(--space-3xs);
 }
 
 h2 {
   font-size: var(--step-4);
   font-weight: 700;
   line-height: var(--space-m);
-  margin-bottom: var(--space-3xs);
+  margin-block-end: var(--space-3xs);
 }
 
 h3 {
   font-size: var(--step-2);
   font-weight: 600;
   line-height: var(--space-m);
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 h4 {
   font-size: var(--step-1);
   font-weight: 500;
   line-height: var(--space-m);
-  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 main {
-  /* max-width: 1800px; */
+  /* max-inline-size: 1800px; */
   flex: 1;
   /* margin: auto; */
   /* margin-block: 6rem; */
 
   section {
-    margin-bottom: var(--space-m);
+    margin-block-end: var(--space-m);
   }
 
   a {
     color: hsl(from var(--primary) h s l / 0.9);
-    margin-bottom: var(--space-s);
+    margin-block-end: var(--space-s);
   }
 }
 
@@ -248,4 +253,176 @@ main {
   * {
     --step-0: calc(clamp(1.125rem, 1.098rem + 0.1351vw, 1.25rem) / 1.1);
   }
+}
+
+.section {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-block: var(--space-2xl);
+  padding-inline: 2rem;
+  max-inline-size: 1280px;
+  margin-inline: auto;
+  inline-size: 100%;
+}
+
+/*  divider between sections */
+.section:not(:first-of-type)::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  inline-size: min(100% - 4rem, 1100px);
+  block-size: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(from var(--foreground) h s l / 0.18),
+    transparent
+  );
+}
+
+.section.section > :nth-child(2) {
+  margin-block-start: var(--space-xs);
+}
+
+.section.section > :nth-child(n + 3) {
+  margin-block-start: var(--space-l);
+}
+
+.section > p {
+  max-inline-size: 60ch;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* Underline only inline text links inside intro paragraphs,
+   not buttons, cards or other anchor-based components. */
+.section > p a {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: underline 3px solid var(--primary);
+  text-underline-offset: 2px;
+  transition: color 0.3s ease;
+}
+
+.section > p a:hover {
+  color: var(--primary);
+}
+
+.section mark {
+  background-color: var(--primary-background);
+  color: var(--foreground);
+  font-size: var(--step--2);
+  font-weight: 500;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-block: var(--space-xl);
+    padding-inline: 1rem;
+  }
+}
+
+.tag {
+  font-size: var(--step--2);
+  font-weight: 500;
+  color: hsl(from var(--primary) h s l / 0.9);
+  background: hsl(from var(--primary) h s l / 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+}
+
+.prose {
+  inline-size: 100%;
+  max-inline-size: 74ch;
+  margin-inline: auto;
+  text-align: start;
+  text-wrap: pretty;
+}
+
+.prose .last-updated {
+  font-size: var(--step--1);
+  color: hsl(from var(--foreground) h s l / 0.6);
+  margin-block-end: var(--space-l);
+}
+
+.prose h2 {
+  font-size: var(--step-2);
+  margin-block-start: var(--space-xl);
+  margin-block-end: var(--space-xs);
+  scroll-margin-block-start: 6rem;
+}
+
+.prose h3 {
+  font-size: var(--step-0);
+  font-weight: 600;
+  margin-block-start: var(--space-m);
+  margin-block-end: var(--space-2xs);
+}
+
+.prose p {
+  color: hsl(from var(--foreground) h s l / 0.82);
+  margin-block-start: var(--space-s);
+}
+
+.prose ul,
+.prose ol {
+  margin-block-start: var(--space-s);
+  padding-inline-start: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.prose li {
+  color: hsl(from var(--foreground) h s l / 0.82);
+  padding-inline-start: 0.25em;
+}
+
+.prose li::marker {
+  color: var(--primary);
+}
+
+.prose a {
+  color: var(--primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.3s ease;
+}
+
+.prose a:hover {
+  color: hsl(from var(--primary) h s l / 0.75);
+}
+
+.prose strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.prose blockquote {
+  margin-block-start: var(--space-l);
+  padding-block: var(--space-s);
+  padding-inline: var(--space-m);
+  border-inline-start: 3px solid var(--primary);
+  background: hsl(from var(--card) h s l / 0.05);
+  border-start-start-radius: 0;
+  border-start-end-radius: var(--radius);
+  border-end-end-radius: var(--radius);
+  border-end-start-radius: 0;
+  font-style: italic;
+  color: hsl(from var(--foreground) h s l / 0.85);
+}
+
+.prose img {
+  border-radius: var(--radius);
+  margin-block-start: var(--space-l);
+}
+
+.prose :first-child {
+  margin-block-start: 0;
 }

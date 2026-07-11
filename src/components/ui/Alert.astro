@@ -100,7 +100,7 @@ const iconProps = {
     getElementAttribute,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const alerts = getHTMLElements(".alert");
 
     alerts.forEach((alert) => {
@@ -233,7 +233,7 @@ const iconProps = {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 0.125rem;
+    margin-block-start: 0.125rem;
   }
 
   .alert-message {
@@ -245,7 +245,7 @@ const iconProps = {
     font-weight: 600;
     font-size: var(--step--1);
     line-height: 1.4;
-    margin-bottom: 0.25rem;
+    margin-block-end: 0.25rem;
     color: var(--foreground);
   }
 
@@ -264,8 +264,8 @@ const iconProps = {
     border-radius: calc(var(--radius) / 2);
     color: hsl(from var(--foreground) h s l / 0.7);
     transition: all 0.2s ease;
-    margin-left: 0.5rem;
-    margin-top: -0.125rem;
+    margin-inline-start: 0.5rem;
+    margin-block-start: -0.125rem;
   }
 
   .alert-close:hover {
@@ -297,7 +297,7 @@ const iconProps = {
   }
 
   .alert--small .alert-icon {
-    margin-top: 0.0625rem;
+    margin-block-start: 0.0625rem;
   }
 
   .alert--medium {
@@ -393,10 +393,10 @@ const iconProps = {
     opacity: 0;
     transform: translateY(-0.5rem) scale(0.95);
     max-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-top: 0;
-    margin-bottom: 0;
+    padding-block-start: 0;
+    padding-block-end: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
     border-width: 0;
     overflow: hidden;
   }
@@ -437,7 +437,6 @@ const iconProps = {
     background: var(--error);
   }
 
-  /* Responsive Design */
   @media screen and (max-width: 768px) {
     .alert {
       padding: 0.75rem;

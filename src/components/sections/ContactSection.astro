@@ -1,0 +1,21 @@
+---
+import ContactForm from "@/components/sections/ContactForm.astro";
+---
+
+<section id="contact" class="section">
+  <sparkly-text
+    number-of-sparkles="5"
+    style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+  >
+    <mark>Let's work together</mark>
+  </sparkly-text>
+
+  <h2>Contact</h2>
+  <p>
+    Ready to join the clowder? Tell us about your project and we'll get back to
+    you as soon as we can. Prefer email? Reach us at <a
+      href="mailto:hello@kittycodecreative.com">hello@kittycodecreative.com</a
+    >.
+  </p>
+  <ContactForm />
+</section>

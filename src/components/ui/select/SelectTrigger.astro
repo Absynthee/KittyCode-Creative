@@ -80,7 +80,7 @@ const classes = [baseClasses, variantClass, sizeClass, disabledClass, className]
   }
 
   .select-trigger:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
@@ -188,7 +188,6 @@ const classes = [baseClasses, variantClass, sizeClass, disabledClass, className]
     box-shadow: 0 0 0 2px hsl(from var(--error) h s l / 0.2);
   }
 
-  /* Responsive adjustments */
   @media screen and (max-width: 768px) {
     .select-trigger--large {
       padding: 0.625rem 1.25rem;

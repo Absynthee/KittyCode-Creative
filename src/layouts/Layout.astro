@@ -24,19 +24,55 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
-  <Head {title} {description} {image} {canonical} {noindex} />
+<html lang="en-GB">
+  <Head {title} {description} {image} {canonical} {noindex}>
+    <slot name="head" />
+  </Head>
   <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <header>
-      <!-- <Navigation /> -->
-      <Navigation currentPath={Astro.url.pathname} client:load />
+      <Navigation
+        currentPath={Astro.url.pathname}
+        client:load
+        transition:persist="site-nav"
+      />
     </header>
 
-    <slot />
-    <!-- Main content slot, where pages are inserted -->
+    <main id="main">
+      <slot />
+      <!-- Main content slot, where pages are inserted -->
+    </main>
 
     <ScrollToTop />
 
     <Footer />
+
+    <style>
+      .skip-link {
+        position: fixed;
+        inset-block-start: 0;
+        inset-inline-start: 50%;
+        z-index: 2000;
+        padding-block: 0.75rem;
+        padding-inline: 1.25rem;
+        background: var(--primary);
+        color: var(--primary-foreground, #fff);
+        font-weight: 600;
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
+        border-end-end-radius: var(--radius);
+        border-end-start-radius: var(--radius);
+        box-shadow: 0 4px 16px hsl(from var(--foreground) h s l / 0.2);
+        transform: translate(-50%, -150%);
+        transition: transform 0.2s ease;
+      }
+
+      .skip-link:focus {
+        transform: translate(-50%, 0);
+        outline: 2px solid var(--foreground);
+        outline-offset: 2px;
+      }
+    </style>
   </body>
 </html>

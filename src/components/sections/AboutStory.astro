@@ -1,0 +1,119 @@
+---
+import kittyGif from "@/assets/images/kitty.gif";
+---
+
+<section id="story" class="section" aria-labelledby="story-title">
+  <div class="story-text">
+    <mark>our story</mark>
+    <h2 id="story-title">A small agency with big ambitions</h2>
+    <p>
+      KittyCode Creative is an East Sussex based web design and development
+      agency, established in 2024. We're based in Eastbourne, but we work with
+      clients anywhere in the world. No matter who you are or where you are, we
+      always strive to offer the best possible service.
+    </p>
+    <p>
+      We're led by Austin Spillman, a creative and passionate multi-disciplined
+      digital designer and web developer with almost a decade of experience in
+      the design and tech industry. That means your website is in safe, capable
+      hands from the first conversation right through to launch and beyond.
+    </p>
+    <p>
+      Every site we make is hand-coded from scratch using the latest web
+      technologies, so it's genuinely one of a kind, fully <a href="/services"
+        >accessible</a
+      > and built to grow with you.
+    </p>
+  </div>
+  <div class="story-media">
+    <img
+      src={kittyGif.src}
+      width={kittyGif.width}
+      height={kittyGif.height}
+      alt="Animated KittyCode Creative cat"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>
+
+<style>
+  #story {
+    grid-template-columns: 1fr auto;
+    justify-items: stretch;
+    align-items: center;
+    gap: var(--space-2xl);
+    text-align: start;
+  }
+
+  #story > :global(*) {
+    margin-block-start: 0;
+  }
+
+  .story-text {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .story-text > :nth-child(2) {
+    margin-block-start: var(--space-xs);
+  }
+
+  .story-text > :nth-child(n + 3) {
+    margin-block-start: var(--space-l);
+  }
+
+  #story p {
+    max-inline-size: 68ch;
+    text-align: start;
+    text-wrap: pretty;
+  }
+
+  #story p + p {
+    margin-block-start: var(--space-s);
+  }
+
+  #story p a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--primary);
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+  }
+
+  #story p a:hover {
+    color: var(--primary);
+  }
+
+  .story-media {
+    justify-self: end;
+  }
+
+  .story-media img {
+    inline-size: clamp(13.75rem, 28vw, 22.5rem);
+    block-size: auto;
+    border-radius: var(--radius, 1rem);
+  }
+
+  @media (max-width: 768px) {
+    #story {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .story-text {
+      align-items: center;
+    }
+
+    #story p {
+      text-align: center;
+    }
+
+    .story-media {
+      justify-self: center;
+      order: -1;
+    }
+  }
+</style>

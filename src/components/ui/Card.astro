@@ -95,11 +95,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     --card-box-shadow-2-y: 8px;
     --card-box-shadow-2-blur: 15px;
     --card-shine-opacity: 0.1;
-    --card-shine-gradient: radial-gradient(
-        49% 81% at 45% 47%,
-        #ffe20345 0%,
-        #073aff00 100%
-      ),
+    --card-shine-gradient:
+      radial-gradient(49% 81% at 45% 47%, #ffe20345 0%, #073aff00 100%),
       radial-gradient(113% 91% at 17% -2%, #ff5a00ff 1%, #ff000000 99%),
       radial-gradient(142% 91% at 83% 7%, #ffdb00ff 1%, #ff000000 99%),
       radial-gradient(142% 91% at -6% 74%, #ff0049ff 1%, #ff000000 99%),
@@ -172,7 +169,7 @@ const elementProps = href ? { href, ...rest } : { ...rest };
   .shine::before {
     content: "";
     width: 150%;
-    padding-bottom: 150%;
+    padding-block-end: 150%;
     border-radius: 50%;
     position: absolute;
     left: 50%;
@@ -460,7 +457,7 @@ const elementProps = href ? { href, ...rest } : { ...rest };
 
   /* Alignment */
   .card--left {
-    text-align: left;
+    text-align: start;
   }
 
   .card--center {
@@ -468,7 +465,7 @@ const elementProps = href ? { href, ...rest } : { ...rest };
   }
 
   .card--right {
-    text-align: right;
+    text-align: end;
   }
 
   /* Variant Styles - Adapting to your design system */
@@ -515,11 +512,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     }
 
     .shine {
-      --card-shine-gradient: radial-gradient(
-          49% 81% at 45% 47%,
-          #ffffff0a 0%,
-          #073aff00 100%
-        ),
+      --card-shine-gradient:
+        radial-gradient(49% 81% at 45% 47%, #ffffff0a 0%, #073aff00 100%),
         radial-gradient(
           113% 91% at 17% -2%,
           rgba(0, 132, 255, 0) 1%,
@@ -543,11 +537,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     }
 
     .shine {
-      --card-shine-gradient: radial-gradient(
-          49% 81% at 45% 47%,
-          #ffffff0a 0%,
-          #073aff00 100%
-        ),
+      --card-shine-gradient:
+        radial-gradient(49% 81% at 45% 47%, #ffffff0a 0%, #073aff00 100%),
         radial-gradient(
           113% 91% at 17% -2%,
           rgba(0, 132, 255, 0) 1%,
@@ -565,11 +556,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     }
 
     .shine {
-      --card-shine-gradient: radial-gradient(
-          49% 81% at 45% 47%,
-          #ffffffd2 0%,
-          #073aff00 100%
-        ),
+      --card-shine-gradient:
+        radial-gradient(49% 81% at 45% 47%, #ffffffd2 0%, #073aff00 100%),
         radial-gradient(113% 91% at 17% -2%, rgb(0, 132, 255) 1%, #4400ff00 99%);
     }
   }
@@ -583,11 +571,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     }
 
     .shine {
-      --card-shine-gradient: radial-gradient(
-          49% 81% at 45% 47%,
-          #ddffd9d2 0%,
-          #073aff00 100%
-        ),
+      --card-shine-gradient:
+        radial-gradient(49% 81% at 45% 47%, #ddffd9d2 0%, #073aff00 100%),
         radial-gradient(113% 91% at 17% -2%, rgb(0, 255, 13) 1%, #4400ff00 99%);
     }
   }
@@ -601,11 +586,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     }
 
     .shine {
-      --card-shine-gradient: radial-gradient(
-          49% 81% at 45% 47%,
-          #faf8dfd2 0%,
-          #073aff00 100%
-        ),
+      --card-shine-gradient:
+        radial-gradient(49% 81% at 45% 47%, #faf8dfd2 0%, #073aff00 100%),
         radial-gradient(113% 91% at 17% -2%, rgb(255, 196, 0) 1%, #4400ff00 99%);
     }
   }
@@ -619,11 +601,8 @@ const elementProps = href ? { href, ...rest } : { ...rest };
     }
 
     .shine {
-      --card-shine-gradient: radial-gradient(
-          49% 81% at 45% 47%,
-          #ffcdcdd2 0%,
-          #073aff00 100%
-        ),
+      --card-shine-gradient:
+        radial-gradient(49% 81% at 45% 47%, #ffcdcdd2 0%, #073aff00 100%),
         radial-gradient(113% 91% at 17% -2%, rgb(255, 0, 0) 1%, #4400ff00 99%);
     }
   }

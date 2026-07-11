@@ -132,9 +132,9 @@ pre[class*="language-"]::selection {
     hsla(0, 0%, 33%, 0.1) 70%,
     hsla(0, 0%, 33%, 0)
   );
-  border-bottom: 1px dashed #545454;
-  border-top: 1px dashed #545454;
-  margin-top: 0.75em;
+  border-block-end: 1px dashed #545454;
+  border-block-start: 1px dashed #545454;
+  margin-block-start: 0.75em;
   z-index: 0;
 }
 .line-highlight.line-highlight:before,

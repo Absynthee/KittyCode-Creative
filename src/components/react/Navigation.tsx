@@ -8,6 +8,7 @@ interface NavigationProps {
 
 function Navigation({ currentPath }: NavigationProps) {
   const [isDark, setIsDark] = useState(false);
+  const [activePath, setActivePath] = useState(currentPath);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -64,10 +65,19 @@ function Navigation({ currentPath }: NavigationProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY, isMobileMenuOpen]);
 
-  // Close menu on route change
+  // Close menu on route change. With view transitions the nav island is
+  // persisted (it never remounts), so it won't receive an updated currentPath
+  // prop. Instead we listen for Astro's page-load event to sync the active
+  // link and close the mobile menu after each client-side navigation.
   useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [currentPath]);
+    const handlePageLoad = () => {
+      setActivePath(window.location.pathname);
+      setIsMobileMenuOpen(false);
+    };
+    document.addEventListener("astro:page-load", handlePageLoad);
+    return () =>
+      document.removeEventListener("astro:page-load", handlePageLoad);
+  }, []);
 
   // Handle click outside
   useEffect(() => {
@@ -144,7 +154,7 @@ function Navigation({ currentPath }: NavigationProps) {
   };
 
   const checkIsActive = (path: string) => {
-    return isActive(path, currentPath);
+    return isActive(path, activePath);
   };
 
   return (
@@ -177,10 +187,15 @@ function Navigation({ currentPath }: NavigationProps) {
         className="nav-content"
         style={{ visibility: isVisible ? "visible" : "hidden" }}
       >
-        <div className="title">
+        <a
+          href="/#"
+          className="title"
+          aria-label="KittyCode Creative, go to home"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
           <img src="favicon.png" alt="" />
           <span className="nav-title">KittyCode Creative</span>
-        </div>
+        </a>
         <div className="main-nav">
           {navigation.main.map((item: NavItem) => (
             <a
@@ -194,25 +209,27 @@ function Navigation({ currentPath }: NavigationProps) {
             </a>
           ))}
 
-          <label htmlFor="theme-toggle" className="toggle">
+          <label htmlFor="theme-toggle-desktop" className="toggle">
             <input
-              id="theme-toggle"
+              id="theme-toggle-desktop"
               type="checkbox"
               checked={isDark}
               onChange={handleThemeToggle}
+              aria-label="Toggle dark mode"
             />
             <div></div>
           </label>
         </div>
 
         <div className="mobile-theme-section">
-          <span>Theme</span>
-          <label htmlFor="theme-toggle" className="mobile-toggle">
+          <span id="mobile-theme-label">Theme</span>
+          <label htmlFor="theme-toggle-mobile" className="mobile-toggle">
             <input
-              id="theme-toggle"
+              id="theme-toggle-mobile"
               type="checkbox"
               checked={isDark}
               onChange={handleThemeToggle}
+              aria-labelledby="mobile-theme-label"
             />
             <div></div>
           </label>
@@ -282,7 +299,7 @@ function Navigation({ currentPath }: NavigationProps) {
   background: hsl(from var(--background) h s l / 0.6);
   backdrop-filter: blur(0.75rem);
   gap: var(--space-3xl);
-  border-bottom: 1px solid var(--card);
+  border-block-end: 1px solid var(--card);
   transition: all 0.3s ease;
 }
 
@@ -293,11 +310,23 @@ function Navigation({ currentPath }: NavigationProps) {
   gap: var(--space-s);
   font-size: var(--step-1);
   font-weight: 600;
-  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
 
   img {
     width: 60px;
   }
+}
+
+.title:hover .nav-title {
+  color: var(--primary);
+}
+
+.title:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 8px;
 }
 
 .main-nav {
@@ -310,15 +339,15 @@ function Navigation({ currentPath }: NavigationProps) {
   color: hsl(from var(--foreground) h s l / 0.7);
   text-decoration: none;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease, border-color 0.3s ease;
   padding: 0.25rem 0.5rem;
   position: relative;
+  border-block-end: 2px solid transparent;
 }
 
 .nav-link:hover {
   color: var(--primary);
-  border-bottom: 2px solid var(--primary);
-  margin-bottom: -2px;
+  border-block-end-color: var(--primary);
 }
 
 .nav-link.active {
@@ -525,7 +554,7 @@ function Navigation({ currentPath }: NavigationProps) {
     height: 100vh;
     background: hsl(from var(--background) h s l / 0.8);
     backdrop-filter: blur(12px);
-    border-left: 1px solid hsl(from var(--card) h s l / 0.2);
+    border-inline-start: 1px solid hsl(from var(--card) h s l / 0.2);
     border-radius: 0;
     transform: translateX(100%);
     transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -559,12 +588,12 @@ function Navigation({ currentPath }: NavigationProps) {
   .nav-link {
     font-size: var(--step-0);
     padding: 0.25rem 2rem;
-    border-bottom: 1px solid transparent;
+    border-block-end: 1px solid transparent;
     position: relative;
   }
 
   .nav-link:hover {
-    border-bottom-color: var(--primary);
+    border-block-end-color: var(--primary);
   }
 
   .nav-link.active::before {
@@ -588,8 +617,8 @@ function Navigation({ currentPath }: NavigationProps) {
     align-items: center;
     justify-content: space-between;
     padding: 2rem 0;
-    border-top: 1px solid hsl(from var(--card) h s l / 1);
-    margin-top: auto;
+    border-block-start: 1px solid hsl(from var(--card) h s l / 1);
+    margin-block-start: auto;
     width: 70%;
   }
 

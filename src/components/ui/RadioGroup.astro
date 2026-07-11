@@ -62,7 +62,7 @@ const groupId = id || `radio-group-${Math.random().toString(36).substr(2, 9)}`;
     setElementAttribute,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const radioGroups = getHTMLElements(".radio-group");
 
     radioGroups.forEach((group) => {
@@ -94,7 +94,7 @@ const groupId = id || `radio-group-${Math.random().toString(36).substr(2, 9)}`;
           (input) =>
             isInputElement(input) &&
             input.value === defaultValue &&
-            !input.disabled
+            !input.disabled,
         );
         if (defaultInput && isInputElement(defaultInput)) {
           defaultInput.checked = true;
@@ -137,7 +137,7 @@ const groupId = id || `radio-group-${Math.random().toString(36).substr(2, 9)}`;
         // If nothing is checked, make first enabled input focusable
         if (!hasCheckedInput()) {
           const firstEnabled = inputs.find(
-            (input) => isInputElement(input) && !input.disabled
+            (input) => isInputElement(input) && !input.disabled,
           );
           if (firstEnabled && isInputElement(firstEnabled)) {
             firstEnabled.tabIndex = 0;
@@ -148,7 +148,7 @@ const groupId = id || `radio-group-${Math.random().toString(36).substr(2, 9)}`;
       function handleKeyDown(
         event: KeyboardEvent,
         allInputs: HTMLInputElement[],
-        currentIndex: number
+        currentIndex: number,
       ) {
         const enabledInputs = allInputs.filter((input) => !input.disabled);
         const currentInput = allInputs[currentIndex];
@@ -450,7 +450,6 @@ const groupId = id || `radio-group-${Math.random().toString(36).substr(2, 9)}`;
     border-color: var(--error);
   }
 
-  /* Responsive Design */
   @media screen and (max-width: 768px) {
     .radio-group--horizontal {
       flex-direction: column;

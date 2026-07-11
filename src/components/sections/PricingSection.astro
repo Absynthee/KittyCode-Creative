@@ -1,0 +1,27 @@
+---
+import Pricing from "@/components/sections/Pricing.astro";
+
+interface Props {
+  cta?: { text: string; href: string };
+}
+
+const { cta } = Astro.props;
+---
+
+<section id="services" class="section">
+  <sparkly-text
+    number-of-sparkles="5"
+    style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+  >
+    <mark>Simple, transparent pricing</mark>
+  </sparkly-text>
+
+  <h2>Services</h2>
+  <p>
+    We keep things simple with a focused set of website packages, so choosing is
+    easy and hassle-free. Every package includes hosting, SEO and a fully
+    bespoke, accessible build. Pay monthly to spread the cost, or as a one-off
+    payment, whichever suits you best.
+  </p>
+  <Pricing cta={cta} />
+</section>

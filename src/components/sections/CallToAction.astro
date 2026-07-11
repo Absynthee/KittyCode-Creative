@@ -1,0 +1,116 @@
+---
+import Button from "@/components/ui/Button.astro";
+
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  text?: string;
+  primaryCTA?: { text: string; href: string };
+  secondaryCTA?: { text: string; href: string };
+}
+
+const {
+  eyebrow = "Ready when you are",
+  heading = "Let's build something brilliant together",
+  text = "Whether you're starting fresh or refreshing an existing site, we'd love to hear about your project. Get a free, no-obligation quote today.",
+  primaryCTA = { text: "Get a Free Quote", href: "/#contact" },
+  secondaryCTA = { text: "See Our Work", href: "/#portfolio" },
+} = Astro.props;
+---
+
+<section class="cta" aria-labelledby="cta-heading">
+  <div class="cta-inner">
+    <p class="cta-eyebrow">{eyebrow}</p>
+    <h2 id="cta-heading" class="cta-heading">{heading}</h2>
+    <p class="cta-text">{text}</p>
+    <div class="cta-actions">
+      <Button href={primaryCTA.href} variant="primary" size="large">
+        {primaryCTA.text}
+      </Button>
+      {
+        secondaryCTA && (
+          <Button href={secondaryCTA.href} variant="outline" size="large">
+            {secondaryCTA.text}
+          </Button>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    inline-size: 100%;
+    padding-inline: 2rem;
+    padding-block: var(--space-2xl);
+  }
+
+  .cta-inner {
+    max-inline-size: 1000px;
+    margin-inline: auto;
+    padding: var(--space-2xl) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-xs);
+    border: 1px solid hsl(from var(--primary) h s l / 0.25);
+    border-radius: var(--radius);
+    background:
+      radial-gradient(
+        120% 120% at 50% 0%,
+        hsl(from var(--primary) h s l / 0.12),
+        transparent 70%
+      ),
+      hsl(from var(--card) h s l / 0.05);
+    backdrop-filter: blur(8px);
+  }
+
+  .cta-eyebrow {
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primary);
+  }
+
+  .cta-heading {
+    font-size: var(--step-3);
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  .cta-text {
+    max-inline-size: 56ch;
+    color: hsl(from var(--foreground) h s l / 0.75);
+    text-wrap: pretty;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-block-start: var(--space-xs);
+  }
+
+  @media (max-width: 600px) {
+    .cta {
+      padding-inline: 1rem;
+    }
+
+    .cta-inner {
+      padding: var(--space-xl) var(--space-m);
+    }
+
+    .cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+      inline-size: 100%;
+    }
+
+    .cta-actions :global(.btn) {
+      inline-size: 100%;
+    }
+  }
+</style>

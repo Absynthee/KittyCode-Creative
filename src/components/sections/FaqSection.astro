@@ -1,0 +1,79 @@
+---
+import {
+  Accordion,
+  AccordionContent,
+  AccordionTrigger,
+  AccordionItem,
+} from "@/components/ui/accordion/";
+---
+
+<section id="faq" class="section">
+  <sparkly-text
+    number-of-sparkles="5"
+    style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+  >
+    <mark>these look fur-miliar</mark>
+  </sparkly-text>
+
+  <h2>FAQs</h2>
+  <p>
+    If you can’t find an answer to one of your burning questions, please get in
+    touch. Hopefully though, we already have the answers right here!
+  </p>
+  <Accordion defaultValue="services">
+    <AccordionItem value="services">
+      <AccordionTrigger>What services do you offer?</AccordionTrigger>
+      <AccordionContent>
+        We offer bespoke web design, front-end web development and SEO. We build
+        websites using the latest technologies and ensure they are responsive,
+        accessible, and optimised for search engines.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="why-us">
+      <AccordionTrigger>Why should we choose you?</AccordionTrigger>
+      <AccordionContent>
+        We're certainly glad you're considering us! Our focus is on building
+        accessible, responsive, and user-friendly websites. We pride ourselves
+        on our attention to detail and our commitment to delivering high-quality
+        work.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="contact">
+      <AccordionTrigger>How can I contact you?</AccordionTrigger>
+      <AccordionContent>
+        The best way to contact us is to fill out our form on our contact page.
+        You can also email us directly at hello@kittycodecreative.com with any
+        enquiries.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="hosting">
+      <AccordionTrigger>Is hosting included in your packages?</AccordionTrigger>
+      <AccordionContent>
+        Yes, all of our monthly packages include hosting charges. This enables
+        us to keep your website up and running. If you stop your monthly
+        payments before your contract expires, your hosting will also stop. If
+        you're not on a monthly package, we can host for you for an additional
+        fee.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="seo">
+      <AccordionTrigger>Do you offer SEO?</AccordionTrigger>
+      <AccordionContent>
+        Yes, all of our web packages include SEO as standard. While we can't
+        guarantee a top spot on Google, we follow best practices to get your
+        website ranking as well as possible and keep it discoverable across
+        search engines and AI assistants.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="maintenance">
+      <AccordionTrigger
+        >I already have a website, can you manage and update it for me?</AccordionTrigger
+      >
+      <AccordionContent>
+        Absolutely! We have no set pricing for this sort of request, so it will
+        depend on a case-by-case basis. Send us a message and we will gladly
+        manage your website for you.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</section>

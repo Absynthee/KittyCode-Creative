@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 interface Props {
   title: string;
   description?: string;
@@ -49,6 +51,10 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
 
+  <!-- View Transitions: keeps persistent islands (nav) mounted across
+       navigations for smooth, app-like page changes -->
+  <ClientRouter />
+
   <!-- Title and Description -->
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
@@ -63,8 +69,8 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <!-- Author -->
   <meta name="author" content={author} />
 
-  <!-- Canonical URL -->
-  {canonical && <link rel="canonical" href={canonical} />}
+  <!-- Canonical URL (self-referencing by default) -->
+  <link rel="canonical" href={currentUrl} />
 
   <!-- Robots -->
   {noindex && <meta name="robots" content="noindex, nofollow" />}
@@ -78,14 +84,18 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={imageUrl} />
+  <meta property="og:image:alt" content={`${siteName}: ${title}`} />
   <meta property="og:site_name" content={siteName} />
+  <meta property="og:locale" content="en_GB" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@KittyCodeCreate" />
   <meta name="twitter:url" content={currentUrl} />
   <meta name="twitter:title" content={fullTitle} />
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={imageUrl} />
+  <meta name="twitter:image:alt" content={`${siteName}: ${title}`} />
 
   <!-- Favicons -->
   <link rel="icon" type="image/png" href="/favicon.png" />
@@ -103,23 +113,39 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <!-- Preconnect to external domains for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Load fonts without blocking render: fetch as a non-applied "print"
+       stylesheet, then switch to "all" once it has loaded. The &display=swap
+       in the URL shows fallback text until the webfont is ready. -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
   />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
 
-  <!-- Theme initialization script (prevents flash) -->
+  <!-- Theme initialization script (prevents flash). Runs on first load and
+       re-applies on every view-transition swap: Astro replaces the incoming
+       page's <html>, which has no `dark` class (it's added client-side), so we
+       reapply from storage on astro:after-swap before the new page paints. -->
   <script is:inline>
     (function () {
-      const savedTheme = localStorage.getItem("theme");
-      const prefersDark = window.matchMedia?.(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      const isDark = savedTheme ? savedTheme === "dark" : prefersDark;
-      if (isDark) {
-        document.documentElement.classList.add("dark");
+      function applyTheme() {
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia?.(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        const isDark = savedTheme ? savedTheme === "dark" : prefersDark;
+        document.documentElement.classList.toggle("dark", isDark);
+        window.__INITIAL_THEME__ = isDark;
       }
-      window.__INITIAL_THEME__ = isDark;
+      applyTheme();
+      document.addEventListener("astro:after-swap", applyTheme);
     })();
   </script>
 
@@ -145,4 +171,7 @@ const imageUrl = new URL(image, Astro.url.origin).href;
     defer
     src="https://cloud.umami.is/script.js"
     data-website-id="fd4e5c7b-e631-45b1-beef-6c040075417d"></script>
+
+  <!-- Page-specific head tags (e.g. fonts only one page needs) -->
+  <slot />
 </head>

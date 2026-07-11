@@ -1,5 +1,7 @@
 ---
-export interface Props {
+import type { HTMLAttributes } from "astro/types";
+
+export interface Props extends Omit<HTMLAttributes<"input">, "size" | "type"> {
   variant?:
     | "default"
     | "primary"
@@ -10,14 +12,6 @@ export interface Props {
     | "error";
   size?: "small" | "medium" | "large";
   type?: "text" | "email" | "password" | "number" | "tel" | "url" | "search";
-  placeholder?: string;
-  value?: string;
-  name?: string;
-  id?: string;
-  disabled?: boolean;
-  required?: boolean;
-  readonly?: boolean;
-  class?: string;
 }
 
 const {
@@ -32,6 +26,7 @@ const {
   required = false,
   readonly = false,
   class: className = "",
+  tabindex,
   ...rest
 } = Astro.props;
 
@@ -62,6 +57,7 @@ const classes = [
   {disabled}
   {required}
   {readonly}
+  {tabindex}
   class={classes}
   {...rest}
 />
@@ -96,8 +92,12 @@ const classes = [
     box-shadow: 0 0 0 2px hsl(from var(--primary) h s l / 0.2);
   }
 
+  /* The box-shadow above is the visible focus ring for both mouse and
+     keyboard, so clicking and tabbing look identical. The transparent
+     outline adds no second ring in normal rendering but becomes a system
+     ring under forced-colors / high-contrast mode. */
   .input:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
@@ -204,7 +204,6 @@ const classes = [
     box-shadow: 0 0 0 2px hsl(from var(--error) h s l / 0.2);
   }
 
-  /* Responsive adjustments */
   @media screen and (max-width: 768px) {
     .input--large {
       padding: 0.625rem 1.25rem;

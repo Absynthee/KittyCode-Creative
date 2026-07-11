@@ -1,0 +1,182 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { ArrowRight } from "@lucide/astro";
+
+interface Props {
+  /** Optional cap on how many projects to show (e.g. on the home page). */
+  limit?: number;
+}
+
+const { limit } = Astro.props;
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, limit ?? Infinity);
+---
+
+<ul class="portfolio-grid" role="list">
+  {
+    projects.map((project, index) => (
+      <li class="portfolio-card" style={`--delay: ${index * 0.1}s`}>
+        <a
+          class="portfolio-link"
+          href={`/portfolio/${project.id}`}
+          aria-label={`Read the ${project.data.title} case study`}
+        >
+          <div class="portfolio-image">
+            <Image
+              src={project.data.cover}
+              alt={
+                project.data.coverAlt ||
+                `Preview of the ${project.data.title} website`
+              }
+              width={800}
+              height={600}
+              loading={index < 2 ? "eager" : "lazy"}
+            />
+            <span class="portfolio-icon" aria-hidden="true">
+              <ArrowRight size={20} />
+            </span>
+          </div>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">{project.data.title}</h3>
+            <p class="portfolio-description">{project.data.description}</p>
+            <div class="portfolio-tags">
+              {project.data.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .portfolio-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .portfolio-card {
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .portfolio-link {
+    display: flex;
+    flex-direction: column;
+    block-size: 100%;
+    text-decoration: none;
+    color: inherit;
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-link:hover {
+    border-color: hsl(from var(--primary) h s l / 0.4);
+    box-shadow: 0 8px 28px hsl(from var(--primary) h s l / 0.12);
+  }
+
+  .portfolio-link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .portfolio-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: hsl(from var(--primary) h s l / 0.05);
+  }
+
+  .portfolio-image img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.4s ease;
+  }
+
+  .portfolio-link:hover .portfolio-image img {
+    transform: scale(1.05);
+  }
+
+  .portfolio-icon {
+    position: absolute;
+    inset-block-start: 0.75rem;
+    inset-inline-end: 0.75rem;
+    display: grid;
+    place-items: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border-radius: 50%;
+    color: var(--primary-foreground, var(--white));
+    background: var(--primary);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+  }
+
+  .portfolio-link:hover .portfolio-icon,
+  .portfolio-link:focus-visible .portfolio-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .portfolio-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: var(--space-m);
+    flex: 1;
+  }
+
+  .portfolio-title {
+    font-size: var(--step-1);
+  }
+
+  .portfolio-description {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    flex: 1;
+  }
+
+  .portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

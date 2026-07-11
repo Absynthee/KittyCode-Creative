@@ -61,17 +61,17 @@ const triggerId = `tabs-trigger-${value}`;
   .tabs-content :global(h4),
   .tabs-content :global(h5),
   .tabs-content :global(h6) {
-    margin-top: 0;
-    margin-bottom: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 1rem;
     color: var(--foreground);
   }
 
   .tabs-content :global(p) {
-    margin-bottom: 1rem;
+    margin-block-end: 1rem;
   }
 
   .tabs-content :global(p:last-child) {
-    margin-bottom: 0;
+    margin-block-end: 0;
   }
 
   .tabs-content :global(code) {
@@ -86,20 +86,19 @@ const triggerId = `tabs-trigger-${value}`;
     padding: 1rem;
     border-radius: var(--radius);
     overflow-x: auto;
-    margin-bottom: 1rem;
+    margin-block-end: 1rem;
   }
 
   .tabs-content :global(ul),
   .tabs-content :global(ol) {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
+    margin-block-end: 1rem;
+    padding-inline-start: 1.5rem;
   }
 
   .tabs-content :global(li) {
-    margin-bottom: 0.25rem;
+    margin-block-end: 0.25rem;
   }
 
-  /* Responsive design */
   @media screen and (max-width: 768px) {
     .tabs-content {
       padding: 1rem;

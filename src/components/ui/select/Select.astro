@@ -34,7 +34,7 @@ const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
     isHTMLElement,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const selects = getHTMLElements(".select");
 
     selects.forEach((select) => {
@@ -46,8 +46,6 @@ const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
 
       if (!trigger || !content || !valueElement) return;
 
-      // At this point, we know trigger, content, and valueElement are not null
-      // TypeScript assertion for clarity
       const safeContent = content!;
       const safeValueElement = valueElement!;
       const safeTrigger = trigger!;
@@ -116,7 +114,7 @@ const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
             const enabledItems = items.filter(
               (item) =>
                 !item.hasAttribute("disabled") &&
-                !item.classList.contains("select-item--disabled")
+                !item.classList.contains("select-item--disabled"),
             );
 
             if (enabledItems.length > 0) {
@@ -140,10 +138,10 @@ const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
 
         // Focus first enabled item or selected item
         const selectedItem = safeContent.querySelector(
-          ".select-item[data-selected]:not([disabled]):not(.select-item--disabled)"
+          ".select-item[data-selected]:not([disabled]):not(.select-item--disabled)",
         ) as HTMLElement;
         const firstEnabledItem = safeContent.querySelector(
-          ".select-item:not([disabled]):not(.select-item--disabled)"
+          ".select-item:not([disabled]):not(.select-item--disabled)",
         ) as HTMLElement;
 
         setTimeout(() => {
@@ -165,14 +163,14 @@ const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
       function setSelectedValue(value: string, text?: string) {
         // Check if the item being selected is disabled
         const selectedItem = safeContent.querySelector(
-          `[data-value="${value}"]`
+          `[data-value="${value}"]`,
         ) as HTMLElement;
         if (
           selectedItem &&
           (selectedItem.hasAttribute("disabled") ||
             selectedItem.classList.contains("select-item--disabled"))
         ) {
-          return; // Don't allow setting disabled values
+          return;
         }
 
         selectedValue = value;
@@ -229,7 +227,7 @@ const selectId = `select-${Math.random().toString(36).substr(2, 9)}`;
         const enabledItems = items.filter(
           (item) =>
             !item.hasAttribute("disabled") &&
-            !item.classList.contains("select-item--disabled")
+            !item.classList.contains("select-item--disabled"),
         );
 
         const currentIndex = enabledItems.indexOf(focusedItem);

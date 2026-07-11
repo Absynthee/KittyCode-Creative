@@ -2,19 +2,129 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import TopBar from "@/components/ui/TopBar.astro";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionTrigger,
-  AccordionItem,
-} from "@/components/ui/accordion/index.ts";
-import Switch from "@/components/ui/Switch.astro";
-import Review from "@/components/ui/Review.astro";
+import TrustStrip from "@/components/sections/TrustStrip.astro";
+import StatsSection from "@/components/sections/StatsSection.astro";
+import AboutSection from "@/components/sections/AboutSection.astro";
+import FeaturesSection from "@/components/sections/FeaturesSection.astro";
+import ProcessSection from "@/components/sections/ProcessSection.astro";
+import PricingSection from "@/components/sections/PricingSection.astro";
+import PortfolioSection from "@/components/sections/PortfolioSection.astro";
+import TestimonialsSection from "@/components/sections/TestimonialsSection.astro";
+import FaqSection from "@/components/sections/FaqSection.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl } from "@/lib/schema";
+
+// Structured data for search engines and AI / agentic crawlers
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["ProfessionalService", "WebDesignAgency"],
+      "@id": `${siteUrl}/#organization`,
+      name: "KittyCode Creative",
+      url: siteUrl,
+      email: "hello@kittycodecreative.com",
+      description:
+        "KittyCode Creative is a modern web design and development agency based in Eastbourne, East Sussex. We build bespoke, fully accessible (WCAG-compliant) and responsive websites from scratch for individuals and small businesses.",
+      areaServed: { "@type": "Country", name: "United Kingdom" },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Eastbourne",
+        addressRegion: "East Sussex",
+        addressCountry: "GB",
+      },
+      knowsAbout: [
+        "Web Design",
+        "Web Development",
+        "Accessibility (WCAG)",
+        "Responsive Design",
+        "Search Engine Optimisation",
+        "Front-end Development",
+      ],
+      sameAs: [
+        "https://www.facebook.com/KittyCodeCreative",
+        "https://www.linkedin.com/company/kittycode-creative",
+        "https://x.com/KittyCodeCreate",
+        "https://www.instagram.com/kittycode_creative",
+      ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          name: "Standard Website",
+          description: "A 1–3 page bespoke website with hosting included.",
+          price: "650",
+          priceCurrency: "GBP",
+        },
+        {
+          "@type": "Offer",
+          name: "Premium Website",
+          description: "A 4–10 page bespoke website with unlimited updates.",
+          price: "2000",
+          priceCurrency: "GBP",
+        },
+        {
+          "@type": "Offer",
+          name: "Premium+ Website",
+          description: "Up to 100 pages with CMS, blog and priority support.",
+          price: "3000",
+          priceCurrency: "GBP",
+        },
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "KittyCode Creative",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What services do you offer?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We offer bespoke web design, front-end web development and SEO. Every website is hand-coded from scratch and built to be responsive, accessible and optimised for search engines.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Why should we choose you?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Our focus is on building accessible, responsive and user-friendly websites. We pride ourselves on attention to detail and a commitment to delivering high-quality, WCAG-compliant work.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Is hosting included in your packages?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, all of our monthly packages include hosting. If you choose a one-off purchase instead, we can host for you for an additional fee.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Do you offer SEO?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. All of our web packages include SEO. While we cannot guarantee a top Google ranking, we follow best practices to get your website ranking as well as possible.",
+          },
+        },
+      ],
+    },
+  ],
+};
 ---
 
 <Layout
   title="Web Design & Development Agency"
-  description="KittyCode Creative, a bespoke web design agency in Eastbourne. Specialising in personalised web design and development, SEO, as well as logo services to enhance your online presence. Contact us today!"
+  description="KittyCode Creative, a bespoke web design agency in Eastbourne. Specialising in personalised, accessible web design, front-end development and SEO to enhance your online presence. Contact us today!"
 >
   <TopBar
     content="KittyCode Creative - Bespoke Web Design & Development Agency in Eastbourne, East Sussex"
@@ -22,8 +132,8 @@ import Review from "@/components/ui/Review.astro";
     hidden={true}
   />
   <Hero
-    role="Welcome to KittyCode Creative"
-    name="Web Design & Development"
+    role="Welcome to KittyCode Creative"
+    name="Web Design & Development"
     primaryCTA={{
       text: "Our Services",
       href: "#services",
@@ -32,216 +142,23 @@ import Review from "@/components/ui/Review.astro";
       text: "Contact Us",
       href: "#contact",
     }}
-    bio="KittyCode Creative is a web design agency based in Eastbourne, East Sussex. We specialise in creating beautiful, professional, responsive and accessible websites, as well as front-end web development and design solutions. Check out our portfolio below, or contact us for more information."
+    bio="KittyCode Creative is a web design agency based in Eastbourne, East Sussex. We specialise in creating beautiful, professional, responsive and accessible websites, as well as front-end web development and design solutions. Check out our portfolio below, or contact us for more information."
   />
 
-  <section id="stats" class="section">
-    <h2>stats</h2>
-  </section>
+  <TrustStrip />
 
-  <section id="about" class="section" aria-labelledby="about-title">
-    <mark>we're the cat's paw-jamas</mark>
-    <h2 id="about-title">About Us</h2>
-    <p>
-      KittyCode Creative is a new, modern web design and development agency
-      based in Eastbourne. Our goal is to provide everyone with unique and
-      accessible websites. With our low price of entry, we cater towards
-      individuals promoting their personal website or portfolio, as well as
-      small businesses improving their digital footprint or updating their
-      online presence.
-    </p>
-    <p>
-      All of our websites are built from scratch using best practices in order
-      to ensure every website is fully WCAG (Web Content Accessibility
-      Guidelines) compliant and responsive on all browsers and devices.
-    </p>
-    <p>
-      As well as web design and development, we offer a <a href="/#"
-        >logo design service</a
-      > that is sure to improve your brand image.
-    </p>
-  </section>
+  <StatsSection />
+  <AboutSection />
+  <FeaturesSection />
+  <ProcessSection />
+  <PricingSection />
+  <PortfolioSection />
+  <TestimonialsSection />
+  <FaqSection />
 
-  <section id="services" class="section">
-    <sparkly-text
-      number-of-sparkles="5"
-      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-    >
-      <mark>we offer purrfection</mark>
-    </sparkly-text>
+  <CallToAction />
 
-    <h2>Services</h2>
-    <p>
-      Our services are tailored to make the process easier on our clients.The
-      less hassle, the better. Our packages come in either one-off payments, or
-      monthly contracts to spread the cost.
-    </p>
-    <Switch variant="default" size="large" name="payments">Payments</Switch>
-  </section>
+  <ContactSection />
 
-  <section id="portfolio" class="section">
-    <sparkly-text
-      number-of-sparkles="5"
-      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-    >
-      <mark>how do you like us meow</mark>
-    </sparkly-text>
-
-    <h2>Portfolio</h2>
-  </section>
-
-  <section
-    id="testimonials"
-    class="section"
-    aria-labelledby="testimonials-title"
-  >
-    <sparkly-text
-      number-of-sparkles="5"
-      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-    >
-      <mark>what our friends say</mark>
-    </sparkly-text>
-
-    <h2 id="testimonials-title">Customer Reviews</h2>
-    <Review />
-  </section>
-
-  <section id="faq" class="section">
-    <sparkly-text
-      number-of-sparkles="5"
-      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-    >
-      <mark>these look fur-miliar</mark>
-    </sparkly-text>
-
-    <h2>FAQs</h2>
-    <p>
-      If you can’t find an answer to one of your burning questions, please get
-      in touch. Hopefully though, we already have the answers right here!
-    </p>
-    <Accordion defaultValue="services">
-      <AccordionItem value="services">
-        <AccordionTrigger>What services do you offer?</AccordionTrigger>
-        <AccordionContent>
-          We offer a range of services including web design, web development,
-          SEO, and logo design. We develop websites using the latest
-          technologies and ensure they are responsive, accessible, and optimised
-          for search engines.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="why-us">
-        <AccordionTrigger>Why should we choose you?</AccordionTrigger>
-        <AccordionContent>
-          We're certainly glad you're considering us! Our focus is on building
-          accessible, responsive, and user-friendly websites. We pride ourselves
-          on our attention to detail and our commitment to delivering
-          high-quality work.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="contact">
-        <AccordionTrigger>How can I contact you?</AccordionTrigger>
-        <AccordionContent>
-          The best way to contact us is to fill out our form on our contact
-          page. You can also email us directly at hello@kittycodecreative.com
-          with any enquiries.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="hosting">
-        <AccordionTrigger
-          >Is hosting included in your packages?</AccordionTrigger
-        >
-        <AccordionContent>
-          Yes, all of our monthly packages include hosting charges. This enables
-          us to keep your website up and running. If you stop your monthly
-          payments before your contract expires, your hosting will also stop. If
-          you're not on a monthly package, we can host for you for an additional
-          fee.
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="maintenance">
-        <AccordionTrigger
-          >I already have a website, can you manage and update it for me?</AccordionTrigger
-        >
-        <AccordionContent>
-          Absolutely! We have no set pricing for this sort of request, so it
-          will depend on a case-by-case basis. Send us a message and we will
-          gladly manage your website for you.
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
-  </section>
-
-  <section id="contact" class="section">
-    <sparkly-text
-      number-of-sparkles="5"
-      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-    >
-      <mark>whisker me away</mark>
-    </sparkly-text>
-
-    <h2>Contact</h2>
-  </section>
-
-  <style>
-    .section {
-      display: grid;
-      place-items: center;
-      padding: 2rem;
-      max-width: 1800px;
-      margin: 0 auto;
-      width: 100%;
-
-      & > :nth-child(2) {
-        margin-top: var(--space-xs);
-      }
-
-      & > :nth-child(n + 3) {
-        margin-top: var(--space-l);
-      }
-
-      &:nth-child(even) {
-        background-color: hsl(from var(--primary-background) h s l / 0.1);
-      }
-
-      p {
-        max-width: 72ch;
-      }
-
-      a {
-        color: inherit;
-        font-weight: 500;
-        text-decoration: underline 3px solid var(--primary);
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: var(--primary);
-        }
-      }
-
-      mark {
-        background-color: var(--primary-background);
-        color: var(--foreground);
-        font-size: var(--step--2);
-        font-weight: 500;
-        padding: 0.2rem 0.4rem;
-        border-radius: 0.25rem;
-      }
-    }
-
-    #faq {
-      .accordion {
-        margin-top: var(--space-l);
-      }
-    }
-
-    #stats {
-      height: 40vh;
-    }
-
-    @media and (max-width: 768px) {
-      .section {
-        padding: 2rem 1rem;
-      }
-    }
-  </style>
+  <JsonLd data={structuredData} />
 </Layout>

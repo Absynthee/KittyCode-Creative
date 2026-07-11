@@ -19,7 +19,7 @@ const accordionId = `accordion-${Math.random().toString(36).substr(2, 9)}`;
 ---
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const accordions = document.querySelectorAll(".accordion");
 
     accordions.forEach((accordion) => {
@@ -123,6 +123,6 @@ const accordionId = `accordion-${Math.random().toString(36).substr(2, 9)}`;
     border-radius: var(--radius);
     background: var(--background);
     overflow: hidden;
-    text-align: left;
+    text-align: start;
   }
 </style>

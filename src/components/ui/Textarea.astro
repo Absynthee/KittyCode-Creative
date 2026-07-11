@@ -83,7 +83,7 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
     isTextAreaElement,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const textareas = getHTMLElements(".textarea");
 
     textareas.forEach((textareaElement) => {
@@ -96,14 +96,14 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
       const safeTextarea = textarea!;
 
       const isAutoResize = safeTextarea.classList.contains(
-        "textarea--auto-resize"
+        "textarea--auto-resize",
       );
       const maxLengthAttr = getElementAttribute(safeTextarea, "maxlength");
       const maxLength = maxLengthAttr ? parseInt(maxLengthAttr) : 0;
       const showCharCount = safeTextarea.hasAttribute("data-show-char-count");
       const ariaDescribedBy = getElementAttribute(
         safeTextarea,
-        "aria-describedby"
+        "aria-describedby",
       );
       const charCountElement =
         showCharCount && ariaDescribedBy
@@ -117,7 +117,7 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
           setElementStyle(
             safeTextarea,
             "height",
-            `${safeTextarea.scrollHeight}px`
+            `${safeTextarea.scrollHeight}px`,
           );
         }
 
@@ -234,8 +234,12 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
     box-shadow: 0 0 0 2px hsl(from var(--primary) h s l / 0.2);
   }
 
+  /* The box-shadow above is the visible focus ring for both mouse and
+     keyboard, so clicking and tabbing look identical. The transparent
+     outline adds no second ring in normal rendering but becomes a system
+     ring under forced-colors / high-contrast mode. */
   .textarea:focus-visible {
-    outline: 2px solid var(--primary);
+    outline: 2px solid transparent;
     outline-offset: 2px;
   }
 
@@ -371,8 +375,8 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
   .char-count {
     font-size: var(--step--2);
     color: hsl(from var(--foreground) h s l / 0.6);
-    text-align: right;
-    margin-top: 0.25rem;
+    text-align: end;
+    margin-block-start: 0.25rem;
     transition: color 0.2s ease;
   }
 
@@ -385,7 +389,6 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
     font-weight: 500;
   }
 
-  /* Responsive adjustments */
   @media screen and (max-width: 768px) {
     .textarea--large {
       padding: 0.625rem 1.25rem;

@@ -15,6 +15,7 @@ import {
 const currentPath = Astro.url.pathname;
 
 const footerNavLinks = navigation.footer;
+const footerLegalLinks = navigation.legal;
 const footerSocialLinks = navigation.social;
 ---
 
@@ -57,9 +58,22 @@ const footerSocialLinks = navigation.social;
       }
     </div>
 
+    <nav class="footer-legal" aria-label="Legal">
+      {
+        footerLegalLinks.map((item: FooterNavItem) => (
+          <a
+            href={item.path}
+            class={`legal-link ${isActive(item.path, currentPath) ? "active" : ""}`}
+            aria-label={item.ariaLabel}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
     <p class="copyright">
-      &copy; {new Date().getFullYear()}
-      KittyCode Creative
+      &copy; {new Date().getFullYear()} KittyCode Creative
     </p>
   </div>
 </footer>
@@ -76,8 +90,8 @@ const footerSocialLinks = navigation.social;
   .footer-content {
     position: relative;
     z-index: 2;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-inline-size: 1200px;
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
@@ -89,7 +103,7 @@ const footerSocialLinks = navigation.social;
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--space-m);
-    margin-bottom: var(--space-s);
+    margin-block-end: var(--space-s);
   }
 
   .nav-link {
@@ -121,15 +135,15 @@ const footerSocialLinks = navigation.social;
     display: flex;
     justify-content: center;
     gap: var(--space-s);
-    margin-bottom: var(--space-s);
+    margin-block-end: var(--space-s);
   }
 
   .social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    inline-size: 44px;
+    block-size: 44px;
     color: hsl(from var(--foreground) h s l / 0.7);
     background: hsl(from var(--card) h s l / 0.1);
     border: 1px solid hsl(from var(--border) h s l / 0.2);
@@ -149,6 +163,37 @@ const footerSocialLinks = navigation.social;
   .social-link:focus-visible {
     outline: 2px solid var(--primary);
     outline-offset: 2px;
+  }
+
+  .footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs) var(--space-m);
+  }
+
+  .legal-link {
+    color: hsl(from var(--foreground) h s l / 0.55);
+    text-decoration: none;
+    font-size: var(--step--1);
+    transition: color 0.2s ease;
+  }
+
+  .legal-link:hover {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .legal-link.active {
+    color: var(--primary);
+  }
+
+  .legal-link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 
   .copyright {
@@ -175,8 +220,8 @@ const footerSocialLinks = navigation.social;
 
   .sr-only {
     position: absolute;
-    width: 1px;
-    height: 1px;
+    inline-size: 1px;
+    block-size: 1px;
     padding: 0;
     margin: -1px;
     overflow: hidden;
@@ -185,7 +230,6 @@ const footerSocialLinks = navigation.social;
     border: 0;
   }
 
-  /* Responsive Design */
   @media screen and (max-width: 768px) {
     .footer-nav {
       gap: var(--space-s);
@@ -196,8 +240,8 @@ const footerSocialLinks = navigation.social;
     }
 
     .social-link {
-      width: 40px;
-      height: 40px;
+      inline-size: 40px;
+      block-size: 40px;
     }
   }
 

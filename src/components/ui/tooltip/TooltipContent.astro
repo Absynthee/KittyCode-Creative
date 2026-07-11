@@ -98,33 +98,33 @@ const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
   .tooltip-arrow[data-side="top"] {
     bottom: -5px;
     left: 50%;
-    margin-left: -4px;
-    border-top: none;
-    border-left: none;
+    margin-inline-start: -4px;
+    border-block-start: none;
+    border-inline-start: none;
   }
 
   .tooltip-arrow[data-side="bottom"] {
     top: -5px;
     left: 50%;
-    margin-left: -4px;
-    border-bottom: none;
-    border-right: none;
+    margin-inline-start: -4px;
+    border-block-end: none;
+    border-inline-end: none;
   }
 
   .tooltip-arrow[data-side="left"] {
     right: -5px;
     top: 50%;
-    margin-top: -4px;
-    border-left: none;
-    border-bottom: none;
+    margin-block-start: -4px;
+    border-inline-start: none;
+    border-block-end: none;
   }
 
   .tooltip-arrow[data-side="right"] {
     left: -5px;
     top: 50%;
-    margin-top: -4px;
-    border-right: none;
-    border-top: none;
+    margin-block-start: -4px;
+    border-inline-end: none;
+    border-block-start: none;
   }
 
   /* Arrow positioning when side changes due to collision detection */
@@ -133,12 +133,12 @@ const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
     top: auto;
     left: 50%;
     right: auto;
-    margin-left: -4px;
-    margin-top: 0;
-    border-top: none;
-    border-left: none;
-    border-bottom: 1px solid var(--border);
-    border-right: 1px solid var(--border);
+    margin-inline-start: -4px;
+    margin-block-start: 0;
+    border-block-start: none;
+    border-inline-start: none;
+    border-block-end: 1px solid var(--border);
+    border-inline-end: 1px solid var(--border);
   }
 
   .tooltip-content[data-actual-side="bottom"] .tooltip-arrow {
@@ -146,12 +146,12 @@ const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
     bottom: auto;
     left: 50%;
     right: auto;
-    margin-left: -4px;
-    margin-top: 0;
-    border-bottom: none;
-    border-right: none;
-    border-top: 1px solid var(--border);
-    border-left: 1px solid var(--border);
+    margin-inline-start: -4px;
+    margin-block-start: 0;
+    border-block-end: none;
+    border-inline-end: none;
+    border-block-start: 1px solid var(--border);
+    border-inline-start: 1px solid var(--border);
   }
 
   .tooltip-content[data-actual-side="left"] .tooltip-arrow {
@@ -159,12 +159,12 @@ const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
     left: auto;
     top: 50%;
     bottom: auto;
-    margin-top: -4px;
-    margin-left: 0;
-    border-left: none;
-    border-bottom: none;
-    border-right: 1px solid var(--border);
-    border-top: 1px solid var(--border);
+    margin-block-start: -4px;
+    margin-inline-start: 0;
+    border-inline-start: none;
+    border-block-end: none;
+    border-inline-end: 1px solid var(--border);
+    border-block-start: 1px solid var(--border);
   }
 
   .tooltip-content[data-actual-side="right"] .tooltip-arrow {
@@ -172,12 +172,12 @@ const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
     right: auto;
     top: 50%;
     bottom: auto;
-    margin-top: -4px;
-    margin-left: 0;
-    border-right: none;
-    border-top: none;
-    border-left: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    margin-block-start: -4px;
+    margin-inline-start: 0;
+    border-inline-end: none;
+    border-block-start: none;
+    border-inline-start: 1px solid var(--border);
+    border-block-end: 1px solid var(--border);
   }
 
   /* Dark mode adjustments */
@@ -190,7 +190,6 @@ const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
     background: hsl(from var(--background) h s calc(l + 5%));
   }
 
-  /* Responsive design */
   @media screen and (max-width: 768px) {
     .tooltip-content {
       max-width: 200px;

@@ -1,0 +1,76 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Portfolio from "@/components/sections/Portfolio.astro";
+import TestimonialsSection from "@/components/sections/TestimonialsSection.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${siteUrl}/portfolio#webpage`,
+      url: `${siteUrl}/portfolio`,
+      name: "Portfolio",
+      description:
+        "A selection of bespoke websites designed and hand-coded by KittyCode Creative for personal brands, portfolios and small businesses.",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#organization` },
+      mainEntity: {
+        "@type": "ItemList",
+        itemListElement: projects.map((project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "CreativeWork",
+            name: project.data.title,
+            url: `${siteUrl}/portfolio/${project.id}`,
+            description: project.data.description,
+            image: new URL(project.data.cover.src, siteUrl).href,
+            creator: { "@id": `${siteUrl}/#organization` },
+          },
+        })),
+      },
+    },
+    breadcrumbs([{ name: "Portfolio", path: "/portfolio" }]),
+  ],
+};
+---
+
+<Layout
+  title="Portfolio"
+  description="See bespoke websites hand-coded by KittyCode Creative for personal brands, portfolios and small businesses. Accessible, responsive and built to perform."
+>
+  <PageHero
+    eyebrow="how do you like us meow"
+    title="Our Portfolio"
+    lead="A selection of the bespoke websites we've designed and built, from personal brands and portfolios to small businesses. Want to be next? Let's talk."
+    primaryCTA={{ text: "Start Your Project", href: "/contact" }}
+    secondaryCTA={{ text: "Our Services", href: "/services" }}
+  />
+
+  <section id="portfolio" class="section">
+    <p>
+      Every project below was hand-coded from scratch and built to be fast,
+      accessible and easy for new customers to find.
+    </p>
+    <Portfolio />
+  </section>
+
+  <TestimonialsSection />
+
+  <CallToAction
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{ text: "Our Services", href: "/services" }}
+  />
+
+  <JsonLd data={structuredData} />
+</Layout>

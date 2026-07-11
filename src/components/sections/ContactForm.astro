@@ -1,0 +1,454 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Input from "@/components/ui/Input.astro";
+import Label from "@/components/ui/Label.astro";
+import Textarea from "@/components/ui/Textarea.astro";
+
+interface Props {
+  /** Web3Forms access key */
+  accessKey?: string;
+  variant?:
+    | "default"
+    | "primary"
+    | "secondary"
+    | "info"
+    | "success"
+    | "warning"
+    | "error";
+  size?: "small" | "medium" | "large";
+}
+
+const {
+  accessKey = "34317982-f38f-4672-b238-073c162f37c4",
+  variant = "primary",
+  size = "medium",
+} = Astro.props;
+---
+
+<div class="contact-form">
+  <form
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    class="contact-form-inner"
+    novalidate
+  >
+    <input type="hidden" name="access_key" value={accessKey} />
+    <input
+      type="hidden"
+      name="subject"
+      value="New enquiry from kittycodecreative.com"
+    />
+    <input type="hidden" name="from_name" value="KittyCode Creative Website" />
+
+    <div class="contact-fields">
+      <fieldset class="contact-field">
+        <Label htmlFor="contact-name" variant={variant} size={size} required>
+          Full Name
+        </Label>
+        <Input
+          id="contact-name"
+          name="name"
+          type="text"
+          placeholder="Sir Pawsworth III"
+          autocomplete="name"
+          variant={variant}
+          size={size}
+          required
+        />
+      </fieldset>
+
+      <fieldset class="contact-field">
+        <Label htmlFor="contact-email" variant={variant} size={size} required>
+          Email Address
+        </Label>
+        <Input
+          id="contact-email"
+          name="email"
+          type="email"
+          placeholder="meow@kittycodecreative.com"
+          autocomplete="email"
+          variant={variant}
+          size={size}
+          required
+        />
+      </fieldset>
+
+      <fieldset class="contact-field">
+        <Label htmlFor="contact-topic" variant={variant} size={size}>
+          What do you need?
+        </Label>
+        <Input
+          id="contact-topic"
+          name="topic"
+          type="text"
+          placeholder="A new website? A few questions? (optional)"
+          variant={variant}
+          size={size}
+        />
+      </fieldset>
+
+      <fieldset class="contact-field">
+        <Label htmlFor="contact-message" variant={variant} size={size} required>
+          Message
+        </Label>
+        <Textarea
+          id="contact-message"
+          name="message"
+          placeholder="Tell us about your project, your goals, or just say hello."
+          variant={variant}
+          size={size}
+          rows={6}
+          required
+          maxLength={1000}
+          showCharCount={true}
+          autoResize={true}
+        />
+      </fieldset>
+    </div>
+
+    {/* Honeypot field for spam bots */}
+    <input
+      type="checkbox"
+      name="botcheck"
+      class="botcheck"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+    />
+
+    <div class="contact-actions">
+      <Button type="submit" variant={variant} size={size}>Send Message</Button>
+      <Button type="reset" variant="outline" size={size}>Clear Form</Button>
+    </div>
+
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</div>
+
+<script>
+  import {
+    getHTMLElements,
+    getHTMLElement,
+    findElements,
+    addElementClass,
+    removeElementClass,
+    isInputElement,
+    isTextAreaElement,
+    getFormValue,
+  } from "@/lib/utils";
+
+  document.addEventListener("astro:page-load", () => {
+    const contactForms = getHTMLElements(".contact-form");
+
+    contactForms.forEach((wrapper) => {
+      const form = getHTMLElement("form", wrapper) as HTMLFormElement | null;
+      if (!form) return;
+
+      const inputs = findElements(
+        "input[required], textarea[required]",
+        wrapper,
+      );
+      const status = getHTMLElement(".form-status", wrapper);
+
+      inputs.forEach((input) => {
+        input.addEventListener("blur", validateField);
+        input.addEventListener("input", clearErrorOnInput);
+      });
+
+      form.addEventListener("submit", handleSubmit);
+
+      function getFieldError(
+        input: HTMLInputElement | HTMLTextAreaElement,
+      ): string | null {
+        const value = getFormValue(input);
+        if (input.required && !value.trim()) {
+          return `${getLabelText(input)} is required`;
+        }
+        if (value.trim() && input.type === "email") {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(value)) {
+            return "Please enter a valid email address";
+          }
+        }
+        return null;
+      }
+
+      function getLabelText(
+        input: HTMLInputElement | HTMLTextAreaElement,
+      ): string {
+        const label = getHTMLElement(`label[for="${input.id}"]`, wrapper);
+        return label
+          ? label.textContent?.replace("*", "").trim() || "Field"
+          : "Field";
+      }
+
+      function validateField(event: Event) {
+        const input = event.target;
+        if (!isInputElement(input) && !isTextAreaElement(input)) return;
+        const field = input.closest(".contact-field") as HTMLElement;
+        if (!field) return;
+        clearErrors(field);
+        const error = getFieldError(input);
+        if (error) showError(field, error);
+      }
+
+      function clearErrorOnInput(event: Event) {
+        const input = event.target;
+        if (!isInputElement(input) && !isTextAreaElement(input)) return;
+        const field = input.closest(".contact-field") as HTMLElement;
+        if (!field) return;
+        if (
+          getFormValue(input).trim() &&
+          field.classList.contains("field--error")
+        ) {
+          clearErrors(field);
+        }
+      }
+
+      function showError(field: HTMLElement, message: string) {
+        addElementClass(field, "field--error");
+        let errorEl = getHTMLElement(".error-message", field);
+        if (!errorEl) {
+          errorEl = document.createElement("span");
+          addElementClass(errorEl, "error-message");
+          field.appendChild(errorEl);
+        }
+        errorEl.textContent = message;
+      }
+
+      function clearErrors(field: HTMLElement) {
+        removeElementClass(field, "field--error");
+        const errorEl = getHTMLElement(".error-message", field);
+        if (errorEl) errorEl.remove();
+      }
+
+      async function handleSubmit(event: Event) {
+        event.preventDefault();
+        let hasErrors = false;
+
+        inputs.forEach((input) => {
+          if (!isInputElement(input) && !isTextAreaElement(input)) return;
+          const field = input.closest(".contact-field") as HTMLElement;
+          if (!field) return;
+          clearErrors(field);
+          const error = getFieldError(input);
+          if (error) {
+            showError(field, error);
+            hasErrors = true;
+          }
+        });
+
+        if (hasErrors) {
+          const firstError = wrapper.querySelector(
+            ".field--error input, .field--error textarea",
+          ) as HTMLElement | null;
+          firstError?.focus();
+          return;
+        }
+
+        if (!form) return;
+        const submitBtn = form.querySelector(
+          "button[type='submit']",
+        ) as HTMLButtonElement | null;
+
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Sending…";
+        }
+        if (status) {
+          status.textContent = "";
+          status.className = "form-status";
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+          });
+          const data = await response.json();
+
+          if (response.ok && data.success) {
+            form.reset();
+            if (status) {
+              status.textContent =
+                "Thanks! Your message is on its way. We'll be in touch soon. 😺";
+              status.classList.add("form-status--success");
+            }
+          } else {
+            throw new Error(data.message || "Submission failed");
+          }
+        } catch (error) {
+          if (status) {
+            status.textContent =
+              "Something went wrong. Please try again, or email hello@kittycodecreative.com.";
+            status.classList.add("form-status--error");
+          }
+        } finally {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Send Message";
+          }
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .contact-form {
+    max-inline-size: calc(50rem + 2rem);
+    margin: 0 auto;
+    inline-size: 100%;
+    padding-inline: 2rem;
+  }
+
+  .contact-form-inner {
+    padding: 2rem;
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+    transition: all ease-in-out 0.5s;
+  }
+
+  .contact-form-inner::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    block-size: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary),
+      var(--info),
+      var(--success),
+      var(--primary)
+    );
+    background-size: 200% 100%;
+    animation: shimmer 30s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      background-position: -200% 0;
+    }
+    50% {
+      background-position: 200% 0;
+    }
+  }
+
+  .contact-fields {
+    display: grid;
+    gap: 1.5rem;
+    margin-block-end: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-field {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: transform 0.2s ease;
+  }
+
+  .contact-field:focus-within {
+    transform: translateY(-1px);
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+
+  .botcheck {
+    position: absolute !important;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .error-message {
+    font-size: var(--step--2);
+    color: var(--error);
+    margin-block-start: 0.25rem;
+    display: block;
+    font-weight: 500;
+    animation: slideInDown 0.3s ease;
+  }
+
+  .form-status {
+    margin-block-start: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-status:empty {
+    display: none;
+  }
+
+  .form-status--success {
+    color: var(--success);
+  }
+
+  .form-status--error {
+    color: var(--error);
+  }
+
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .contact-form-inner:hover {
+    border-color: hsl(from var(--primary) h s l / 0.3);
+    box-shadow: 0 4px 20px hsl(from var(--primary) h s l / 0.1);
+  }
+
+  @media screen and (max-width: 768px) {
+    .contact-form {
+      margin: 0;
+      padding-inline: 1rem;
+    }
+
+    .contact-form-inner {
+      padding: 1.5rem 1rem;
+    }
+
+    .contact-form-inner::before {
+      animation: none;
+    }
+
+    .contact-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .contact-actions :global(.btn) {
+      inline-size: 100%;
+    }
+  }
+</style>

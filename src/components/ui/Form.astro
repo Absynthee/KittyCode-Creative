@@ -92,7 +92,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
     getFormValue,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const forms = getHTMLElements(".form-container");
 
     forms.forEach((form) => {
@@ -186,7 +186,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
       function showError(
         fieldContainer: HTMLElement,
         input: HTMLInputElement,
-        message: string
+        message: string,
       ) {
         addElementClass(fieldContainer, "field--error");
         removeElementClass(fieldContainer, "field--success");
@@ -199,7 +199,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
         if (label) {
           label.className = label.className.replace(
             /label--\w+/,
-            "label--error"
+            "label--error",
           );
         }
 
@@ -215,7 +215,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
 
       function showSuccess(
         fieldContainer: HTMLElement,
-        input: HTMLInputElement
+        input: HTMLInputElement,
       ) {
         if (input.required) {
           addElementClass(fieldContainer, "field--success");
@@ -224,7 +224,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
           // Update input variant
           input.className = input.className.replace(
             /input--\w+/,
-            "input--success"
+            "input--success",
           );
 
           // Update label variant
@@ -232,7 +232,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
           if (label) {
             label.className = label.className.replace(
               /label--\w+/,
-              "label--success"
+              "label--success",
             );
           }
         }
@@ -348,13 +348,13 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
 
   .form-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-block-end: 2rem;
   }
 
   .form-header h2 {
     font-size: var(--step-2);
     color: var(--foreground);
-    margin-bottom: 0.5rem;
+    margin-block-end: 0.5rem;
   }
 
   .form-header p {
@@ -366,7 +366,7 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
   .form-fields {
     display: grid;
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    margin-block-end: 2rem;
   }
 
   .field {
@@ -393,12 +393,11 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
   .error-message {
     font-size: var(--step--2);
     color: var(--error);
-    margin-top: 0.25rem;
+    margin-block-start: 0.25rem;
     display: block;
     font-weight: 500;
   }
 
-  /* Responsive design */
   @media screen and (max-width: 768px) {
     .form {
       padding: 1.5rem;

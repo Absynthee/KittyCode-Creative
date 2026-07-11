@@ -1,0 +1,29 @@
+---
+import IconCardGrid from "@/components/ui/IconCardGrid.astro";
+import { Palette, Accessibility, Smartphone, Search } from "@lucide/astro";
+
+const items = [
+  {
+    icon: Palette,
+    title: "Bespoke Design",
+    body: "Hand-coded from scratch, never a template. A website that's unmistakably yours.",
+  },
+  {
+    icon: Accessibility,
+    title: "Accessible by Default",
+    body: "Every build meets WCAG guidelines, so all of your visitors can use your site with ease.",
+  },
+  {
+    icon: Smartphone,
+    title: "Fully Responsive",
+    body: "Looks and works beautifully on every phone, tablet and desktop, on any browser.",
+  },
+  {
+    icon: Search,
+    title: "SEO & Performance",
+    body: "Fast, search-friendly sites with SEO included, helping new customers find you.",
+  },
+];
+---
+
+<IconCardGrid items={items} columns={4} />

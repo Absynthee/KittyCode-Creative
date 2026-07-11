@@ -28,7 +28,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
 ---
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     import("@/lib/sparkly-text.js");
   });
 
@@ -77,7 +77,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
   function rotateElement(
     event: MouseEvent,
     element: HTMLElement,
-    heroContainer: HTMLElement
+    heroContainer: HTMLElement,
   ): void {
     // Get mouse position
     const x = event.clientX;
@@ -117,8 +117,8 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     });
   }
 
-  // Initialize when DOM is loaded
-  document.addEventListener("DOMContentLoaded", initPhoneRotation);
+  // Initialize on first load and after every client-side navigation
+  document.addEventListener("astro:page-load", initPhoneRotation);
 </script>
 
 <section id="hero" class="hero hero--fullwidth" aria-labelledby="hero-title">
@@ -163,12 +163,12 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
         )
       }
     </div>
-    <div class="phone-container">
+    <div class="phone-container" aria-hidden="true">
       <div class="phone">
         <div class="phone-menu">
           <ChevronLeft class="menu-back-icon" size={28} />
           <div class="contact-info-container">
-            <img src="/favicon.png" class="menu-avatar" />
+            <img src="/favicon.png" alt="" class="menu-avatar" />
             <div class="contact-info">
               <p class="name">KittyCode Creative</p>
               <p class="role">Available to Code</p>
@@ -187,7 +187,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
             <Image
               class="typing-cat"
               src={Kitty}
-              alt="Hero Background"
+              alt=""
               height={100}
               width={100}
               loading="eager"
@@ -202,9 +202,11 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
             form.
           </div>
           <div class="chat-message chat-user-1 chat-phone-link">
-            Here's a link for you:
-            <a class="phone-link" href="services/website-questionnaire"
-              >kittycodecreative.com&sol; website-questionnaire</a
+            Here's a link for you: 
+            <a
+              class="phone-link"
+              href="services/website-questionnaire"
+              tabindex={-1}>kittycodecreative.com&sol; website-questionnaire</a
             >
           </div>
 
@@ -216,8 +218,9 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
           class="send-message-container"
           type="text"
           placeholder="Type your message..."
-          aria-label="Type your message"
           variant="primary"
+          readonly
+          tabindex={-1}
         />
       </div>
     </div>
@@ -243,9 +246,9 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
 
     .hero--fullwidth {
       display: flex;
-      margin: 0 auto;
-      width: 100%;
-      min-height: calc(100vh - 362px);
+      margin-inline: auto;
+      inline-size: 100%;
+      min-block-size: calc(100dvh - 660px);
     }
 
     .typing-cat {
@@ -258,10 +261,10 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       display: grid;
       grid-auto-flow: column;
       grid-template-columns: 2fr 1fr;
-      width: 100%;
-      max-width: 1800px;
+      inline-size: 100%;
+      max-inline-size: 1800px;
       align-items: center;
-      margin: 0 auto;
+      margin-inline: auto;
       padding: 6rem 2rem;
       gap: 3rem;
     }
@@ -269,8 +272,8 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     .hero-content {
       display: flex;
       flex-direction: column;
-      margin: 0 auto;
-      max-width: 1000px;
+      margin-inline: auto;
+      max-inline-size: 1000px;
       transition: all 0.3s ease-in-out;
     }
 
@@ -299,8 +302,8 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-size: 300% 300%;
-      padding-top: 1rem;
-      padding-bottom: 2rem;
+      padding-block-start: 1rem;
+      padding-block-end: 2rem;
       transform: perspective(5000px) rotateY(var(--rotateX))
         rotateX(var(--rotateY));
       animation:
@@ -313,17 +316,17 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       font-weight: 500;
       color: hsl(from var(--foreground) h s l / 0.8);
       line-height: 1.4;
-      max-width: 62ch;
+      max-inline-size: 62ch;
       text-wrap: balance;
       animation: fadeInUp 0.8s ease-out 0.6s both;
-      padding-bottom: 2rem;
+      padding-block-end: 2rem;
     }
 
     .hero-bio {
       font-size: var(--step-0);
       color: hsl(from var(--foreground) h s l / 0.8);
-      max-width: 78ch;
-      padding-bottom: 2rem;
+      max-inline-size: 78ch;
+      padding-block-end: 2rem;
       animation: fadeInUp 0.8s ease-out 0.8s both;
     }
 
@@ -342,7 +345,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       --rotateX: 0deg;
       --rotateY: 0deg;
       opacity: 0;
-      width: 25rem;
+      inline-size: 25rem;
       aspect-ratio: 9 / 18.4;
       outline: 1rem solid light-dark(var(--foreground), var(--card));
       border-radius: 2rem;
@@ -384,8 +387,8 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       display: block;
       position: relative;
       background-color: var(--background);
-      height: 100%;
-      width: 100%;
+      block-size: 100%;
+      inline-size: 100%;
       border-radius: 1rem;
       z-index: -1;
     }
@@ -396,17 +399,20 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       align-items: center;
       justify-content: space-evenly;
       color: var(--white);
-      border-radius: 1rem 1rem 0 0;
-      height: 5rem;
-      width: 100%;
+      border-start-start-radius: 1rem;
+      border-start-end-radius: 1rem;
+      border-end-end-radius: 0;
+      border-end-start-radius: 0;
+      block-size: 5rem;
+      inline-size: 100%;
       background: linear-gradient(-90deg, var(--primary), var(--secondary));
       z-index: -1;
-      margin-bottom: 1rem;
+      margin-block-end: 1rem;
     }
 
     .menu-avatar {
-      height: 40px;
-      width: 40px;
+      block-size: 40px;
+      inline-size: 40px;
       aspect-ratio: 1 / 1;
       margin-inline-end: 1rem;
     }
@@ -417,7 +423,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     }
 
     .contact-info {
-      min-width: 180px;
+      min-inline-size: 180px;
     }
 
     p.name {
@@ -471,10 +477,10 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
           content: "❤";
           position: absolute;
           display: grid;
-          bottom: -10px;
-          left: -10px;
-          width: 32px;
-          height: 32px;
+          inset-block-end: -10px;
+          inset-inline-start: -10px;
+          inline-size: 32px;
+          block-size: 32px;
           border-radius: 12px;
           color: var(--primary-absolute);
           background-color: var(--background);
@@ -490,14 +496,17 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     .chat-user-1 {
       display: flex;
       justify-content: start;
-      text-align: left;
-      width: fit-content;
-      max-width: 25ch;
+      text-align: start;
+      inline-size: fit-content;
+      max-inline-size: 25ch;
       margin-block-end: var(--space-2xs);
       padding-block: var(--space-2xs);
       padding-inline: var(--space-2xs);
       background-color: var(--primary-background);
-      border-radius: 12px 12px 12px 2px;
+      border-start-start-radius: 12px;
+      border-start-end-radius: 12px;
+      border-end-end-radius: 12px;
+      border-end-start-radius: 2px;
       color: var(--foreground);
     }
 
@@ -523,15 +532,18 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     .chat-user-2 {
       position: relative;
       display: flex;
-      text-align: right;
-      width: fit-content;
-      max-width: 25ch;
+      text-align: end;
+      inline-size: fit-content;
+      max-inline-size: 25ch;
       margin-block-end: var(--space-2xs);
       padding-block: var(--space-2xs);
       padding-inline: var(--space-2xs);
       background-color: var(--accent-3-background);
       color: var(--foreground);
-      border-radius: 12px 12px 2px 12px;
+      border-start-start-radius: 12px;
+      border-start-end-radius: 12px;
+      border-end-end-radius: 2px;
+      border-end-start-radius: 12px;
       place-self: end;
     }
 
@@ -539,11 +551,11 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       position: absolute;
       display: flex;
       margin: auto;
-      width: 90%;
+      inline-size: 90%;
       margin-inline: 5%;
       padding-inline: 1rem;
       align-items: center;
-      bottom: 1rem;
+      inset-block-end: 1rem;
     }
 
     @keyframes gradientShift {
@@ -642,7 +654,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       }
 
       .btn--large {
-        min-width: 10em;
+        min-inline-size: 10em;
       }
 
       .phone-container {
@@ -664,7 +676,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       }
 
       .btn--large {
-        min-width: 12em;
+        min-inline-size: 12em;
       }
 
       .phone-container {
@@ -684,7 +696,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       }
 
       .btn--large {
-        min-width: 12em;
+        min-inline-size: 12em;
       }
 
       .phone-container {

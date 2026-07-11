@@ -1,0 +1,169 @@
+---
+import Button from "@/components/ui/Button.astro";
+
+interface CTA {
+  text: string;
+  href: string;
+  variant?: "default" | "primary" | "secondary" | "outline" | "ghost";
+}
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  primaryCTA?: CTA;
+  secondaryCTA?: CTA;
+}
+
+const { eyebrow, title, lead, primaryCTA, secondaryCTA } = Astro.props;
+---
+
+<script>
+  // Register the <sparkly-text> custom element used in the eyebrow. On the
+  // home page this is loaded by the Hero; interior pages load it here so the
+  // eyebrow sparkles the same way everywhere.
+  document.addEventListener("astro:page-load", () => {
+    import("@/lib/sparkly-text.js");
+  });
+</script>
+
+<section class="page-hero" aria-labelledby="page-hero-title">
+  <div class="page-hero-inner">
+    <sparkly-text
+      number-of-sparkles="5"
+      style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+    >
+      <mark class="page-hero-eyebrow">{eyebrow}</mark>
+    </sparkly-text>
+
+    <h1 id="page-hero-title" class="page-hero-title">{title}</h1>
+
+    {lead && <p class="page-hero-lead">{lead}</p>}
+
+    {
+      (primaryCTA || secondaryCTA) && (
+        <div class="page-hero-actions">
+          {primaryCTA && (
+            <Button
+              href={primaryCTA.href}
+              variant={primaryCTA.variant || "primary"}
+              size="large"
+            >
+              {primaryCTA.text}
+            </Button>
+          )}
+          {secondaryCTA && (
+            <Button
+              href={secondaryCTA.href}
+              variant={secondaryCTA.variant || "outline"}
+              size="large"
+            >
+              {secondaryCTA.text}
+            </Button>
+          )}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    inline-size: 100%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    overflow: hidden;
+    margin-block-end: 0;
+    padding-block: calc(var(--space-3xl) + 3rem) var(--space-2xl);
+    padding-inline: 2rem;
+    background: var(--background);
+    background-image: conic-gradient(
+      from 255deg at 50% 0% in oklab,
+      var(--secondary),
+      var(--background),
+      var(--background),
+      var(--secondary)
+    );
+    background-blend-mode: color-dodge;
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-s);
+    max-inline-size: 900px;
+  }
+
+  .page-hero-eyebrow {
+    background-color: var(--primary-background);
+    color: var(--foreground);
+    font-size: var(--step--1);
+    font-weight: 500;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+  }
+
+  .page-hero-title {
+    font-size: var(--step-6);
+    line-height: 1;
+    margin: 0;
+    text-wrap: balance;
+    animation: heroFadeUp 0.7s ease-out 0.05s both;
+  }
+
+  .page-hero-lead {
+    max-inline-size: 68ch;
+    font-size: var(--step-1);
+    color: hsl(from var(--foreground) h s l / 0.8);
+    text-wrap: pretty;
+    animation: heroFadeUp 0.7s ease-out 0.15s both;
+  }
+
+  .page-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-block-start: var(--space-xs);
+    animation: heroFadeUp 0.7s ease-out 0.25s both;
+  }
+
+  @keyframes heroFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding-block: calc(var(--space-2xl) + 3rem) var(--space-xl);
+      padding-inline: 1rem;
+    }
+
+    .page-hero-title {
+      font-size: var(--step-5);
+    }
+
+    .page-hero-lead {
+      font-size: var(--step-0);
+    }
+
+    .page-hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+      inline-size: 100%;
+    }
+
+    .page-hero-actions :global(.btn) {
+      inline-size: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import { Code2, Accessibility, Server, Star } from "@lucide/astro";
+
+const items = [
+  { icon: Code2, label: "Hand-coded, never templated" },
+  { icon: Accessibility, label: "WCAG accessible" },
+  { icon: Server, label: "Hosting & SEO included" },
+  { icon: Star, label: "5-star rated" },
+];
+---
+
+<aside class="trust-strip" aria-label="Why clients choose us">
+  <ul class="trust-list" role="list">
+    {
+      items.map(({ icon: Icon, label }) => (
+        <li class="trust-item">
+          <Icon size={20} aria-hidden="true" />
+          <span>{label}</span>
+        </li>
+      ))
+    }
+  </ul>
+</aside>
+
+<style>
+  .trust-strip {
+    inline-size: 100%;
+    border-block: 1px solid hsl(from var(--border) h s l / 0.2);
+    background: hsl(from var(--primary) h s l / 0.04);
+  }
+
+  .trust-list {
+    list-style: none;
+    margin-inline: auto;
+    padding: var(--space-s) var(--space-m);
+    max-inline-size: 1280px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-s) var(--space-xl);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: hsl(from var(--foreground) h s l / 0.85);
+    white-space: nowrap;
+  }
+
+  .trust-item :global(svg) {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 600px) {
+    .trust-list {
+      gap: var(--space-xs) var(--space-l);
+    }
+
+    .trust-item {
+      font-size: var(--step--2);
+    }
+  }
+</style>

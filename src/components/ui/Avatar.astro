@@ -59,7 +59,7 @@ const avatarId = `avatar-${Math.random().toString(36).substr(2, 9)}`;
     isImageLoaded,
   } from "@/lib/utils";
 
-  document.addEventListener("DOMContentLoaded", () => {
+  document.addEventListener("astro:page-load", () => {
     const avatars = getHTMLElements(".avatar");
 
     avatars.forEach((avatar) => {
@@ -308,7 +308,6 @@ const avatarId = `avatar-${Math.random().toString(36).substr(2, 9)}`;
     background: var(--error);
   }
 
-  /* Responsive adjustments */
   @media screen and (max-width: 768px) {
     .avatar:hover {
       transform: none; /* Reduce hover effects on mobile */

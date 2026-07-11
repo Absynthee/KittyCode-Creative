@@ -9,6 +9,20 @@ import { Home } from "@lucide/astro";
   description="The page you're looking for doesn't exist. Return to Austin Spillman's portfolio homepage."
   noindex={true}
 >
+  <link
+    slot="head"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript slot="head">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
+
   <main class="error-page">
     <section id="404" class="error-container" aria-labelledby="error-title">
       <div class="error-content">
@@ -46,7 +60,7 @@ import { Home } from "@lucide/astro";
     width: 100%;
     max-width: 600px;
     text-align: center;
-    padding-top: 5rem;
+    padding-block-start: 5rem;
   }
 
   .error-content {
@@ -94,7 +108,6 @@ import { Home } from "@lucide/astro";
     align-items: center;
   }
 
-  /* Responsive Design */
   @media screen and (max-width: 768px) {
     .error-page {
       padding: 1rem;
@@ -133,14 +146,12 @@ import { Home } from "@lucide/astro";
     }
   }
 
-  /* Reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
     .help-link {
       transition: none;
     }
   }
 
-  /* High contrast mode */
   @media (prefers-contrast: high) {
     .error-code {
       color: hsl(from var(--primary) h s l / 0.5);

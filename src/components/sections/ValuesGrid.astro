@@ -1,0 +1,39 @@
+---
+import IconCardGrid from "@/components/ui/IconCardGrid.astro";
+import { Target, Eye, Heart, Compass } from "@lucide/astro";
+
+const items = [
+  {
+    icon: Target,
+    title: "Our Mission",
+    body: "To make professional, high-quality web design genuinely accessible and affordable for individuals and small local businesses, so everyone can reach their audience online.",
+  },
+  {
+    icon: Eye,
+    title: "Our Vision",
+    body: "To become the go-to web design agency for individuals and small businesses in our area, growing a reputation for excellent service, honest value and long-term partnerships.",
+  },
+  {
+    icon: Heart,
+    title: "Our Values",
+    body: "We work with transparency and integrity. We're upfront about our approach and capabilities, and we build results-driven websites so you can clearly see the impact of our work.",
+  },
+  {
+    icon: Compass,
+    title: "Our Approach",
+    body: "Every website is hand-coded and uniquely yours, fully responsive and accessible by everyone. We take the time to understand your goals and build something that truly reflects your vision.",
+  },
+];
+---
+
+<section id="values" class="section" aria-labelledby="values-title">
+  <mark>why we do it</mark>
+  <h2 id="values-title">What We Stand For</h2>
+  <p>
+    We pride ourselves on a client-centric approach, taking the time to
+    understand your unique needs so we can deliver a website that truly reflects
+    your vision.
+  </p>
+
+  <IconCardGrid items={items} columns={2} align="left" />
+</section>

@@ -1,7 +1,5 @@
 // Website Navigation
-// This file contains the navigation structure for the website
 
-// Definitions for navigation items and social links
 interface NavItem {
   label: string;
   path: string;
@@ -26,28 +24,23 @@ interface SocialItem {
 // Main navigation items
 const mainLinks: NavItem[] = [
   {
-    label: "Home",
-    path: "/#",
-    ariaLabel: "Go to Home",
-  },
-  {
     label: "Portfolio",
-    path: "/#portfolio",
+    path: "/portfolio",
     ariaLabel: "View all projects",
   },
   {
     label: "About",
-    path: "/#about",
+    path: "/about",
     ariaLabel: "Learn more about KittyCode Creative",
   },
   {
     label: "Services",
-    path: "/#services",
+    path: "/services",
     ariaLabel: "Explore our services",
   },
   {
     label: "Contact",
-    path: "/#contact",
+    path: "/contact",
     ariaLabel: "Contact KittyCode Creative",
   },
   {
@@ -66,28 +59,42 @@ const footerLinks: FooterNavItem[] = [
   },
   {
     label: "Portfolio",
-    path: "/#portfolio",
+    path: "/portfolio",
     ariaLabel: "View all projects",
   },
   {
     label: "About",
-    path: "/#about",
+    path: "/about",
     ariaLabel: "Learn more about KittyCode Creative",
   },
   {
     label: "Services",
-    path: "/#services",
+    path: "/services",
     ariaLabel: "Explore our services",
   },
   {
     label: "Contact",
-    path: "/#contact",
+    path: "/contact",
     ariaLabel: "Contact KittyCode Creative",
   },
   {
     label: "Blog",
     path: "/blog",
     ariaLabel: "Read our blog",
+  },
+];
+
+// Footer legal links (rendered separately, below the main footer nav)
+const legalLinks: FooterNavItem[] = [
+  {
+    label: "Privacy Policy",
+    path: "/privacy-policy",
+    ariaLabel: "Read our Privacy Policy",
+  },
+  {
+    label: "Terms & Conditions",
+    path: "/terms-and-conditions",
+    ariaLabel: "Read our Terms & Conditions",
   },
 ];
 
@@ -125,14 +132,13 @@ const socialLinks: SocialItem[] = [
   },
 ];
 
-// Export an object with all navigation-related data
 export const navigation = {
   main: mainLinks,
   footer: footerLinks,
+  legal: legalLinks,
   social: socialLinks,
 };
 
-// Utility function to check if a path is active
 export function isActive(path: string, currentPath: string): boolean {
   if (path === "/") {
     return currentPath === "/";
@@ -140,5 +146,4 @@ export function isActive(path: string, currentPath: string): boolean {
   return currentPath.startsWith(path);
 }
 
-// Export types for external use
 export type { NavItem, FooterNavItem, SocialItem };

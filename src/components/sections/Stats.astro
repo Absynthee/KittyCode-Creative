@@ -1,0 +1,160 @@
+---
+import { Accessibility, Star, Code2, MapPin } from "@lucide/astro";
+
+interface Stat {
+  value: string;
+  label: string;
+  description: string;
+  icon: "accessibility" | "star" | "code" | "pin";
+}
+
+interface Props {
+  stats?: Stat[];
+}
+
+const {
+  stats = [
+    {
+      value: "100%",
+      label: "WCAG Compliant",
+      description: "Every site built to accessibility standards from the ground up.",
+      icon: "accessibility",
+    },
+    {
+      value: "5.0",
+      label: "Average Rating",
+      description: "Rated five stars by every client we've worked with.",
+      icon: "star",
+    },
+    {
+      value: "0",
+      label: "Templates Used",
+      description: "100% bespoke. Hand-coded from scratch, never a template.",
+      icon: "code",
+    },
+    {
+      value: "Eastbourne",
+      label: "Based in East Sussex",
+      description: "A local agency serving clients across the UK and beyond.",
+      icon: "pin",
+    },
+  ],
+} = Astro.props;
+
+const icons = {
+  accessibility: Accessibility,
+  star: Star,
+  code: Code2,
+  pin: MapPin,
+};
+---
+
+<ul class="stats-grid" role="list">
+  {
+    stats.map((stat, index) => {
+      const Icon = icons[stat.icon];
+      return (
+        <li class="stat-card" style={`--delay: ${index * 0.1}s`}>
+          <span class="stat-icon" aria-hidden="true">
+            <Icon size={28} />
+          </span>
+          <p class="stat-value">{stat.value}</p>
+          <p class="stat-label">{stat.label}</p>
+          <p class="stat-description">{stat.description}</p>
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .stats-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2xs);
+    padding: var(--space-xl) var(--space-m);
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .stat-card:hover {
+    border-color: hsl(from var(--primary) h s l / 0.4);
+    box-shadow: 0 4px 20px hsl(from var(--primary) h s l / 0.1);
+  }
+
+  .stat-icon {
+    display: grid;
+    place-items: center;
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    border-radius: 50%;
+    color: var(--primary);
+    background: hsl(from var(--primary) h s l / 0.1);
+    margin-block-end: var(--space-xs);
+  }
+
+  .stat-value {
+    font-size: var(--step-3);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--primary);
+    text-wrap: balance;
+    min-block-size: calc(var(--step-3) * 1.1);
+    display: flex;
+    align-items: center;
+  }
+
+  .stat-label {
+    font-size: var(--step-0);
+    font-weight: 600;
+    color: var(--foreground);
+  }
+
+  .stat-description {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    max-inline-size: 28ch;
+    margin-block-start: var(--space-3xs);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 520px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
