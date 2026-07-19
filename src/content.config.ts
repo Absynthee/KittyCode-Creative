@@ -39,4 +39,28 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { projects };
+// Blog posts. Baked-in markdown for now: each post is a single file under
+// src/content/blog/, with the old site's slugs preserved as filenames so the
+// original URLs keep working. If a CMS is adopted later, only this loader
+// needs to change; the schema and the pages consuming it stay the same.
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      description: z.string(), // meta description
+      excerpt: z.string(), // lead paragraph, shown in the hero and on cards
+      pubDate: z.coerce.date(),
+      updatedDate: z.coerce.date().optional(),
+
+      cover: image(), // card thumbnail
+      coverAlt: z.string().default(""),
+      banner: image().optional(), // wide image at the top of the article
+      bannerAlt: z.string().default(""),
+
+      tags: z.array(z.string()).default([]),
+      draft: z.boolean().default(false),
+    }),
+});
+
+export const collections = { projects, blog };

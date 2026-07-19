@@ -10,6 +10,7 @@ import ProcessSection from "@/components/sections/ProcessSection.astro";
 import PricingSection from "@/components/sections/PricingSection.astro";
 import PortfolioSection from "@/components/sections/PortfolioSection.astro";
 import TestimonialsSection from "@/components/sections/TestimonialsSection.astro";
+import HighlightsSection from "@/components/sections/HighlightsSection.astro";
 import FaqSection from "@/components/sections/FaqSection.astro";
 import CallToAction from "@/components/sections/CallToAction.astro";
 import ContactSection from "@/components/sections/ContactSection.astro";
@@ -54,21 +55,21 @@ const structuredData = {
           "@type": "Offer",
           name: "Standard Website",
           description: "A 1–3 page bespoke website with hosting included.",
-          price: "650",
+          price: "900",
           priceCurrency: "GBP",
         },
         {
           "@type": "Offer",
           name: "Premium Website",
           description: "A 4–10 page bespoke website with unlimited updates.",
-          price: "2000",
+          price: "2400",
           priceCurrency: "GBP",
         },
         {
           "@type": "Offer",
           name: "Premium+ Website",
           description: "Up to 100 pages with CMS, blog and priority support.",
-          price: "3000",
+          price: "3750",
           priceCurrency: "GBP",
         },
       ],
@@ -98,6 +99,14 @@ const structuredData = {
           acceptedAnswer: {
             "@type": "Answer",
             text: "Our focus is on building accessible, responsive and user-friendly websites. We pride ourselves on attention to detail and a commitment to delivering high-quality, WCAG-compliant work.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Will I need to attend meetings or calls?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "No. We work asynchronously by default, so your whole project can run over email and messages on a schedule that suits you. If you'd prefer a quick call, we're happy to arrange one.",
           },
         },
         {
@@ -154,6 +163,7 @@ const structuredData = {
   <PricingSection />
   <PortfolioSection />
   <TestimonialsSection />
+  <HighlightsSection />
   <FaqSection />
 
   <CallToAction />

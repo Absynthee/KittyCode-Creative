@@ -1,0 +1,47 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import QuestionnaireForm from "@/components/sections/QuestionnaireForm.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/services/website-questionnaire#webpage`,
+      url: `${siteUrl}/services/website-questionnaire`,
+      name: "Website Design Questionnaire",
+      description:
+        "Complete our website questionnaire to give KittyCode Creative an insight into your web design needs, so we can tailor a website to your specific requirements.",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#organization` },
+    },
+    breadcrumbs([
+      { name: "Services", path: "/services" },
+      {
+        name: "Website Questionnaire",
+        path: "/services/website-questionnaire",
+      },
+    ]),
+  ],
+};
+---
+
+<Layout
+  title="Website Design Questionnaire"
+  description="Complete our website questionnaire to give KittyCode Creative an insight into your web design needs. It helps us tailor a website that meets your specific requirements and enhances your online presence."
+>
+  <PageHero
+    eyebrow="design my website"
+    title="Web Design Questionnaire"
+    lead="We know this is a little long, but the more we know about you and your business, the better the website we can build for you. Please take your time and answer with as much detail as you can."
+  />
+
+  <section id="questionnaire" class="section">
+    <QuestionnaireForm />
+  </section>
+
+  <JsonLd data={structuredData} />
+</Layout>

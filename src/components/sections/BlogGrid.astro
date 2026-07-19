@@ -1,0 +1,190 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import { ArrowRight } from "@lucide/astro";
+
+interface Props {
+  /** Optional cap on how many posts to show (e.g. in a "more posts" section). */
+  limit?: number;
+  /** Post id to leave out (e.g. the post currently being read). */
+  excludeId?: string;
+}
+
+const { limit, excludeId } = Astro.props;
+
+const dateFormat = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .filter((post) => post.id !== excludeId)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, limit ?? Infinity);
+---
+
+<ul class="blog-grid" role="list">
+  {
+    posts.map((post, index) => (
+      <li class="blog-card" style={`--delay: ${index * 0.1}s`}>
+        <a
+          class="blog-link"
+          href={`/blog/${post.id}`}
+          aria-label={`Read "${post.data.title}"`}
+        >
+          <div class="blog-image">
+            <Image
+              src={post.data.cover}
+              alt={post.data.coverAlt}
+              width={800}
+              height={600}
+              loading={index < 3 ? "eager" : "lazy"}
+            />
+            <span class="blog-icon" aria-hidden="true">
+              <ArrowRight size={20} />
+            </span>
+          </div>
+          <div class="blog-content">
+            <time class="blog-date" datetime={post.data.pubDate.toISOString()}>
+              {dateFormat.format(post.data.pubDate)}
+            </time>
+            <h3 class="blog-title">{post.data.title}</h3>
+            <p class="blog-excerpt">{post.data.excerpt}</p>
+          </div>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .blog-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .blog-card {
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .blog-link {
+    display: flex;
+    flex-direction: column;
+    block-size: 100%;
+    text-decoration: none;
+    color: inherit;
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .blog-link:hover {
+    border-color: hsl(from var(--primary) h s l / 0.4);
+    box-shadow: 0 8px 28px hsl(from var(--primary) h s l / 0.12);
+  }
+
+  .blog-link:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .blog-image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: hsl(from var(--primary) h s l / 0.05);
+  }
+
+  .blog-image img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s ease;
+  }
+
+  .blog-link:hover .blog-image img {
+    transform: scale(1.05);
+  }
+
+  .blog-icon {
+    position: absolute;
+    inset-block-start: 0.75rem;
+    inset-inline-end: 0.75rem;
+    display: grid;
+    place-items: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border-radius: 50%;
+    background: hsl(from var(--background) h s l / 0.7);
+    backdrop-filter: blur(6px);
+    color: var(--foreground);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: all 0.3s ease;
+  }
+
+  .blog-link:hover .blog-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .blog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    text-align: start;
+  }
+
+  .blog-date {
+    font-size: var(--step--2);
+    color: hsl(from var(--foreground) h s l / 0.6);
+  }
+
+  .blog-title {
+    font-size: var(--step-0);
+    margin: 0;
+  }
+
+  .blog-excerpt {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.75);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,10 +1,16 @@
 ---
-import { MessageSquare, PenTool, Code2, Rocket } from "@lucide/astro";
+import {
+  MessageSquare,
+  MessagesSquare,
+  PenTool,
+  Code2,
+  Rocket,
+} from "@lucide/astro";
 
 interface Step {
   title: string;
   description: string;
-  icon: "brief" | "design" | "build" | "launch";
+  icon: "brief" | "design" | "build" | "launch" | "feedback";
 }
 
 interface Props {
@@ -45,6 +51,7 @@ const icons = {
   design: PenTool,
   build: Code2,
   launch: Rocket,
+  feedback: MessagesSquare,
 };
 ---
 

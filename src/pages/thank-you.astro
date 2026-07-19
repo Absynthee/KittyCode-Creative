@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+---
+
+<Layout
+  title="Thank You"
+  description="Thanks for getting in touch with KittyCode Creative. We'll get back to you as soon as possible."
+  noindex={true}
+>
+  <PageHero
+    eyebrow="litter-ly in love with you"
+    title="Thank You!"
+    lead="Your form has been submitted successfully. We know it can take a little while to fill in, but it helps us deliver the best possible service. We'll get back to you as soon as we can."
+    primaryCTA={{ text: "Back to Home", href: "/" }}
+    secondaryCTA={{ text: "See Our Work", href: "/portfolio" }}
+  />
+</Layout>

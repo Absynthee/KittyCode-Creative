@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import BlogGrid from "@/components/sections/BlogGrid.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Blog",
+      "@id": `${siteUrl}/blog#blog`,
+      url: `${siteUrl}/blog`,
+      name: "The KittyCode Creative Blog",
+      description:
+        "Insights, expertise and the latest trends in web design and development from KittyCode Creative.",
+      publisher: { "@id": `${siteUrl}/#organization` },
+      isPartOf: { "@id": `${siteUrl}/#website` },
+    },
+    breadcrumbs([{ name: "Blog", path: "/blog" }]),
+  ],
+};
+---
+
+<Layout
+  title="The Blog"
+  description="Insights, expertise and the latest trends in web design and development from KittyCode Creative. From hand-coding and modern CSS to accessibility and the role of AI."
+>
+  <PageHero
+    eyebrow="welcome to"
+    title="The Blog"
+    lead="Here we share our insights, expertise and the latest trends in the world of web design and development. Whether you're a business owner looking to enhance your online presence, a developer seeking best practices, or simply passionate about the digital landscape, you'll find something worth reading."
+  />
+
+  <section id="posts" class="section">
+    <mark>fresh from the paws</mark>
+    <h2>All Posts</h2>
+    <BlogGrid />
+  </section>
+
+  <CallToAction
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{ text: "See Our Work", href: "/portfolio" }}
+  />
+
+  <JsonLd data={structuredData} />
+</Layout>

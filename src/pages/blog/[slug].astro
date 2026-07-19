@@ -1,0 +1,239 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+export const getStaticPaths = (async () => {
+  const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
+
+  // Sorted newest first, so index - 1 is the newer post, index + 1 the older.
+  return posts.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      newer: posts[index - 1] ?? null,
+      older: posts[index + 1] ?? null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, newer, older } = Astro.props;
+const { data } = entry;
+const { Content } = await render(entry);
+
+const dateFormat = new Intl.DateTimeFormat("en-GB", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+
+const pageUrl = `${siteUrl}/blog/${entry.id}`;
+const imageUrl = new URL(data.cover.src, siteUrl).href;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": `${pageUrl}#post`,
+      headline: data.title,
+      description: data.description,
+      url: pageUrl,
+      image: imageUrl,
+      datePublished: data.pubDate.toISOString(),
+      ...(data.updatedDate
+        ? { dateModified: data.updatedDate.toISOString() }
+        : {}),
+      author: { "@id": `${siteUrl}/#organization` },
+      publisher: { "@id": `${siteUrl}/#organization` },
+      isPartOf: { "@id": `${siteUrl}/blog#blog` },
+      mainEntityOfPage: pageUrl,
+      ...(data.tags.length ? { keywords: data.tags.join(", ") } : {}),
+    },
+    breadcrumbs([
+      { name: "Blog", path: "/blog" },
+      { name: data.title, path: `/blog/${entry.id}` },
+    ]),
+  ],
+};
+---
+
+<Layout
+  title={data.title}
+  description={data.description}
+  image={imageUrl}
+  type="article"
+  publishDate={data.pubDate}
+  updatedDate={data.updatedDate}
+>
+  <PageHero eyebrow="blog post" title={data.title} lead={data.excerpt} />
+
+  <section class="section blog-post">
+    <p class="post-date">
+      Published <time datetime={data.pubDate.toISOString()}
+        >{dateFormat.format(data.pubDate)}</time
+      >
+    </p>
+
+    {
+      data.banner && (
+        <Image
+          class="post-banner"
+          src={data.banner}
+          alt={data.bannerAlt}
+          width={1200}
+          loading="eager"
+        />
+      )
+    }
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    <nav class="post-nav" aria-label="More blog posts">
+      {
+        newer ? (
+          <a class="post-nav-link newer" href={`/blog/${newer.id}`}>
+            <ArrowLeft size={18} aria-hidden="true" />
+            <span>
+              <span class="post-nav-label">Newer</span>
+              {newer.data.title}
+            </span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      <a class="post-nav-all" href="/blog">All posts</a>
+      {
+        older ? (
+          <a class="post-nav-link older" href={`/blog/${older.id}`}>
+            <span>
+              <span class="post-nav-label">Older</span>
+              {older.data.title}
+            </span>
+            <ArrowRight size={18} aria-hidden="true" />
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
+  </section>
+
+  <CallToAction
+    heading="Ready to join the clowder?"
+    text="If anything you've read here has sparked an idea for your own website, we'd love to hear about it. Get a free, no-obligation quote today."
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{ text: "See Our Work", href: "/portfolio" }}
+  />
+
+  <JsonLd data={structuredData} />
+</Layout>
+
+<style>
+  .post-date {
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    margin-block-end: var(--space-m);
+  }
+
+  .post-banner {
+    inline-size: 100%;
+    block-size: auto;
+    max-block-size: 26rem;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-block-end: var(--space-l);
+  }
+
+  /* Newer / older navigation, mirroring the portfolio case-study nav */
+  .post-nav {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--space-m);
+    margin-block-start: var(--space-xl);
+    padding-block-start: var(--space-l);
+    border-block-start: 1px solid hsl(from var(--border) h s l / 0.15);
+  }
+
+  .post-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-inline-size: 0;
+    text-decoration: none;
+    color: var(--foreground);
+    font-weight: 600;
+    transition: color 0.2s ease;
+    /* Override the global `main a { margin-block-end }`. */
+    margin-block-end: 0;
+  }
+
+  .post-nav-link.newer {
+    justify-self: start;
+  }
+
+  .post-nav-link.older {
+    justify-self: end;
+    text-align: end;
+  }
+
+  .post-nav-link:hover {
+    color: var(--primary);
+  }
+
+  .post-nav-label {
+    display: block;
+    font-size: var(--step--2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    color: hsl(from var(--foreground) h s l / 0.7);
+  }
+
+  .post-nav-all {
+    justify-self: center;
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: hsl(from var(--foreground) h s l / 0.7);
+    text-decoration: none;
+    white-space: nowrap;
+    margin-block-end: 0;
+  }
+
+  .post-nav-all:hover {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  @media (max-width: 640px) {
+    .post-nav {
+      grid-template-columns: 1fr;
+      justify-items: start;
+      gap: var(--space-s);
+    }
+
+    .post-nav-link.older {
+      justify-self: start;
+      text-align: start;
+    }
+
+    .post-nav-all {
+      justify-self: start;
+      order: 1;
+    }
+  }
+</style>

@@ -1,0 +1,226 @@
+---
+// How the referral programme works: three big-numeral steps alongside an
+// "example receipt" card showing the reward maths. A layout unique to the
+// referral page, replacing the generic process timeline.
+const steps = [
+  {
+    title: "Tell a Friend",
+    description:
+      "Mention us to a friend, family member or fellow business owner who needs a website. No sign-up forms, no tracking links. A simple word of mouth is all it takes.",
+  },
+  {
+    title: "They Mention You",
+    description:
+      "When they get in touch through our contact form or by email, they drop your name. That's how we know who to thank, so make sure they don't forget!",
+  },
+  {
+    title: "You Get 10% of Their First Invoice",
+    description:
+      "We design and build their website, and once their first invoice is paid, we send you 10% of it in whatever way suits you best. The bigger the project, the bigger the thank you.",
+  },
+];
+---
+
+<section
+  id="how-referrals-work"
+  class="section"
+  aria-labelledby="how-referrals-work-title"
+>
+  <mark>share the love</mark>
+  <h2 id="how-referrals-work-title">How the Referral Programme Works</h2>
+  <p>
+    No sign-up forms, no tracking links, no hoops to jump through. If someone
+    books a project because of you, you get rewarded.
+  </p>
+
+  <div class="referral-layout">
+    <ol class="referral-steps" role="list">
+      {
+        steps.map((step, index) => (
+          <li class="referral-step" style={`--delay: ${index * 0.12}s`}>
+            <h3 class="referral-step-title">{step.title}</h3>
+            <p class="referral-step-description">{step.description}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <aside class="referral-receipt" aria-label="Example referral reward">
+      <p class="receipt-header">Example receipt</p>
+      <dl class="receipt-lines">
+        <div class="receipt-line">
+          <dt>Friend's new website</dt>
+          <dd>£2,000</dd>
+        </div>
+        <div class="receipt-line">
+          <dt>Effort required</dt>
+          <dd>One quick mention</dd>
+        </div>
+        <div class="receipt-line receipt-total">
+          <dt>Your reward (10%)</dt>
+          <dd>£200</dd>
+        </div>
+      </dl>
+      <p class="receipt-footer">Thank mew for sharing!</p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .referral-layout {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .referral-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+    counter-reset: referral-step;
+  }
+
+  .referral-step {
+    counter-increment: referral-step;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    column-gap: var(--space-m);
+    align-items: start;
+    animation: fadeInUp 0.6s ease-out var(--delay) both;
+  }
+
+  .referral-step::before {
+    content: "0" counter(referral-step);
+    grid-row: 1 / -1;
+    font-family: var(--font-family-heading);
+    font-size: var(--step-5);
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(
+      180deg,
+      var(--primary),
+      hsl(from var(--primary) h s l / 0.25)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .referral-step-title {
+    font-size: var(--step-1);
+    align-self: center;
+  }
+
+  .referral-step-description {
+    font-size: var(--step-0);
+    color: hsl(from var(--foreground) h s l / 0.7);
+    max-inline-size: 50ch;
+    text-wrap: pretty;
+  }
+
+  .referral-receipt {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    padding: var(--space-l) var(--space-m);
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px dashed hsl(from var(--primary) h s l / 0.45);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+    transform: rotate(-1.5deg);
+    transition: transform 0.3s ease;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+  }
+
+  .referral-receipt:hover {
+    transform: rotate(0deg);
+  }
+
+  .receipt-header {
+    font-size: var(--step--1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: center;
+    color: var(--primary);
+  }
+
+  .receipt-lines {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .receipt-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-s);
+    padding-block: var(--space-2xs);
+    border-block-end: 1px dashed hsl(from var(--border) h s l / 0.4);
+    font-size: var(--step--1);
+  }
+
+  .receipt-line dt {
+    color: hsl(from var(--foreground) h s l / 0.7);
+  }
+
+  .receipt-line dd {
+    margin: 0;
+    font-weight: 500;
+    text-align: end;
+  }
+
+  .receipt-total {
+    border-block-end: none;
+    font-size: var(--step-0);
+  }
+
+  .receipt-total dt {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+
+  .receipt-total dd {
+    color: var(--primary);
+    font-size: var(--step-2);
+    font-weight: 700;
+  }
+
+  .receipt-footer {
+    font-size: var(--step--2);
+    text-align: center;
+    color: hsl(from var(--foreground) h s l / 0.55);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* The rotated receipt keeps its tilt on hover-less touch devices; that's fine. */
+  @media (max-width: 860px) {
+    .referral-layout {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+    }
+
+    .referral-receipt {
+      max-inline-size: 24rem;
+      inline-size: 100%;
+      margin-inline: auto;
+    }
+  }
+</style>

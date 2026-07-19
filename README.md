@@ -7,14 +7,15 @@
   - ~~Individual Pages~~
 - ~~Services~~
   - ~~Web Design~~
-  - Web Questionnaire
-- Blog
-  - Individual Pages
+  - ~~Web Questionnaire~~
+- ~~Blog~~
+  - ~~Individual Pages~~ (baked-in markdown for now, CMS later)
 - ~~Contact~~
-- FAQ
+- ~~FAQ~~
+- ~~Thank You~~
 - ~~Privacy~~
 - ~~Terms~~
-- Referrals (10% commission)
-- Case Studies (maybe blog instead?)
-- Async Work
+- ~~Referrals (10% commission)~~
+- ~~Case Studies~~ (skipped, will be blog posts instead)
+- ~~Async Work~~
 - ~~Navigation (all links)~~

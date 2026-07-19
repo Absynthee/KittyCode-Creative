@@ -1,0 +1,126 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import Process from "@/components/sections/Process.astro";
+import IconCardGrid from "@/components/ui/IconCardGrid.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { CalendarX, NotebookPen, Clock, Zap } from "@lucide/astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const benefits = [
+  {
+    icon: CalendarX,
+    title: "No Meetings Required",
+    body: "There are no mandatory calls or catch-ups. Your project moves forward whether you're free at 9am or 9pm.",
+  },
+  {
+    icon: NotebookPen,
+    title: "Everything in Writing",
+    body: "Briefs, updates and decisions all live in writing, so nothing gets lost or forgotten and you can reread anything at any time.",
+  },
+  {
+    icon: Clock,
+    title: "Reply When It Suits You",
+    body: "Take your time over feedback instead of thinking on the spot in a meeting. Considered replies make for better websites.",
+  },
+  {
+    icon: Zap,
+    title: "More Time Making",
+    body: "Less time spent in meetings means more time designing and building. Your project gets our full, undivided focus.",
+  },
+];
+
+const steps = [
+  {
+    title: "Share Your Brief",
+    description:
+      "Fill in the contact form or our website questionnaire whenever suits you. The more detail, the better.",
+    icon: "brief" as const,
+  },
+  {
+    title: "We Design, You Review",
+    description:
+      "We send you design previews by email. Look them over in your own time and reply with your thoughts.",
+    icon: "design" as const,
+  },
+  {
+    title: "Refine in Writing",
+    description:
+      "We tweak and polish based on your written feedback until everything feels right. No calls needed.",
+    icon: "feedback" as const,
+  },
+  {
+    title: "Launch Day",
+    description:
+      "Your site goes live, and we stay on hand by email for updates, tweaks and support.",
+    icon: "launch" as const,
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/async-work#webpage`,
+      url: `${siteUrl}/async-work`,
+      name: "Async Work",
+      description:
+        "KittyCode Creative works asynchronously: no mandatory meetings, everything in writing, and progress on a schedule that suits your business.",
+      about: { "@id": `${siteUrl}/#organization` },
+      isPartOf: { "@id": `${siteUrl}/#website` },
+    },
+    breadcrumbs([{ name: "Async Work", path: "/async-work" }]),
+  ],
+};
+---
+
+<Layout
+  title="Async Work"
+  description="KittyCode Creative works asynchronously: no mandatory meetings, everything in writing, and progress on a schedule that suits your business. Here's how an async project runs."
+>
+  <PageHero
+    eyebrow="work at your own paw-ce"
+    title="We Work Asynchronously"
+    lead="No mandatory meetings, no phone tag, no interruptions to your working day. Your whole project can run over email and messages, on a schedule that suits you."
+    primaryCTA={{ text: "Start Your Project", href: "/contact" }}
+    secondaryCTA={{ text: "See How It Works", href: "#async-process" }}
+  />
+
+  <section id="why-async" class="section" aria-labelledby="why-async-title">
+    <mark>why async?</mark>
+    <h2 id="why-async-title">Why We Work This Way</h2>
+    <p>
+      Running a business is busy enough without squeezing in another video call.
+      Async working means your project moves forward without taking over your
+      calendar.
+    </p>
+    <IconCardGrid items={benefits} columns={2} align="left" />
+  </section>
+
+  <section
+    id="async-process"
+    class="section"
+    aria-labelledby="async-process-title"
+  >
+    <mark>how it works</mark>
+    <h2 id="async-process-title">An Async Project, From Start to Finish</h2>
+    <p>
+      Here's how a typical project runs when everything happens in writing. The
+      same steps as any great website, just without the meetings.
+    </p>
+    <Process steps={steps} />
+  </section>
+
+  <CallToAction
+    text="Prefer to talk something through? That's fine too. Async is our default, not a rule, so if a quick call would help, we're happy to arrange one. Either way, tell us about your project and we'll take it from there."
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{
+      text: "Fill In the Questionnaire",
+      href: "/services/website-questionnaire",
+    }}
+  />
+
+  <JsonLd data={structuredData} />
+</Layout>

@@ -3,8 +3,11 @@ import { Check } from "@lucide/astro";
 
 const included = [
   "A fully bespoke, hand-coded website",
+  "A custom design tailored to your brand",
   "Hosting and management (monthly plans)",
+  "Secure SSL and enhanced security",
   "Search engine optimisation (SEO)",
+  "Fast, lightweight pages with no bloat",
   "Design and content updates as required",
   "Optimised for desktop and mobile",
   "Fully responsive and WCAG accessible",
@@ -14,24 +17,29 @@ const included = [
 <section id="approach" class="section" aria-labelledby="approach-title">
   <mark>feline creative?</mark>
   <h2 id="approach-title">Websites Built By Hand</h2>
-  <p>
-    At KittyCode Creative we create unique, beautiful websites to help your
-    business grow. We design a layout best suited to your needs, then code every
-    site by hand.
-  </p>
 
   <div class="services-detail">
     <div class="services-copy">
       <p>
-        Hand-coding gives us far more control over the design and dramatically
-        improves performance, because there's no bloat to slow the site down.
-        Websites built this way out-perform most WordPress sites and drag-and-drop
-        page builders, which can cost up to ten times as much to run.
+        At KittyCode Creative we create unique, beautiful websites to help your
+        business grow. We design a layout best suited to your needs, then code
+        every site by hand. Hand-coding gives us far more control over the
+        design and dramatically improves performance, because there's no bloat
+        to slow the site down. Websites built this way out-perform most
+        WordPress sites and drag-and-drop page builders, which can cost up to
+        ten times as much to run.
       </p>
       <p>
         When it comes to the web, the faster and more organised sites win. Every
-        build is responsive, accessible and search-friendly from day one, so your
-        visitors get a great experience and search engines can find you.
+        build is responsive, accessible and search-friendly from day one, so
+        your visitors get a great experience and search engines can find you.
+      </p>
+      <p>
+        We also work asynchronously by default. Briefs, design previews and
+        feedback all happen in writing, so your project moves forward without
+        meetings eating into your day. Find out <a href="/async-work"
+          >how we work asynchronously</a
+        >.
       </p>
     </div>
 
@@ -70,6 +78,18 @@ const included = [
   .services-copy p {
     max-inline-size: 60ch;
     text-wrap: pretty;
+  }
+
+  .services-copy a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--primary);
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .services-copy a:hover {
+    color: var(--primary);
   }
 
   .services-included {

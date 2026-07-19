@@ -28,21 +28,21 @@ const structuredData = {
           "@type": "Offer",
           name: "Standard Website",
           description: "A 1–3 page bespoke website with hosting included.",
-          price: "650",
+          price: "900",
           priceCurrency: "GBP",
         },
         {
           "@type": "Offer",
           name: "Premium Website",
           description: "A 4–10 page bespoke website with unlimited updates.",
-          price: "2000",
+          price: "2400",
           priceCurrency: "GBP",
         },
         {
           "@type": "Offer",
           name: "Premium+ Website",
           description: "Up to 100 pages with CMS, blog and priority support.",
-          price: "3000",
+          price: "3750",
           priceCurrency: "GBP",
         },
       ],
@@ -71,8 +71,12 @@ const structuredData = {
   <FaqSection />
 
   <CallToAction
+    text="Whether you're starting fresh or refreshing an existing site, we'd love to hear about your project. Get a free quote, or get a head-start by filling in our website questionnaire."
     primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
-    secondaryCTA={{ text: "See Our Work", href: "/portfolio" }}
+    secondaryCTA={{
+      text: "Fill In the Questionnaire",
+      href: "/services/website-questionnaire",
+    }}
   />
 
   <JsonLd data={structuredData} />

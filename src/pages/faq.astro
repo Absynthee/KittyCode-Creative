@@ -1,0 +1,108 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import FaqSection from "@/components/sections/FaqSection.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const faqs = [
+  {
+    question: "What services do you offer?",
+    answer:
+      "We offer bespoke web design, front-end web development and SEO. We build websites using the latest technologies and ensure they are responsive, accessible, and optimised for search engines.",
+  },
+  {
+    question: "Why should we choose you?",
+    answer:
+      "Our focus is on building accessible, responsive, and user-friendly websites. We pride ourselves on our attention to detail and our commitment to delivering high-quality work.",
+  },
+  {
+    question: "Will I need to attend meetings or calls?",
+    answer:
+      "No. We work asynchronously by default, so your whole project can run over email and messages on a schedule that suits you. Everything is written down, nothing gets lost, and if you'd prefer a quick call, we're happy to arrange one.",
+  },
+  {
+    question: "How can I contact you?",
+    answer:
+      "The best way to contact us is to fill out our form on our contact page. You can also email us directly at hello@kittycodecreative.com with any enquiries.",
+  },
+  {
+    question: "Is hosting included in your packages?",
+    answer:
+      "Yes, all of our monthly packages include hosting charges. If you stop your monthly payments before your contract expires, your hosting will also stop. If you're not on a monthly package, we can host for you for an additional fee.",
+  },
+  {
+    question: "Do you offer SEO?",
+    answer:
+      "Yes, all of our web packages include SEO as standard. While we can't guarantee a top spot on Google, we follow best practices to get your website ranking as well as possible.",
+  },
+  {
+    question: "I already have a website, can you manage and update it for me?",
+    answer:
+      "Absolutely! We have no set pricing for this sort of request, so it will depend on a case-by-case basis. Send us a message and we will gladly manage your website for you.",
+  },
+  {
+    question: "Am I able to change the content on my website?",
+    answer:
+      "If you are on a package that grants you editor access, yes. Generally though, we prefer to make changes for you, as it keeps the design consistent. Just let us know what needs updating and we'll take care of it.",
+  },
+  {
+    question: "How fast will my website load?",
+    answer:
+      "Fast. Every website we build is hand-coded and optimised for performance, so no matter which package you choose, your pages will load in the blink of an eye.",
+  },
+  {
+    question: "What happens if I need to cancel my monthly payments?",
+    answer:
+      "Your monthly fee keeps your website up and running, so if payments stop without warning before your contract ends, your website will be taken down. If you need to cancel, please give us at least one month's notice so we can work something out with you.",
+  },
+  {
+    question: "What happens after my contract has ended?",
+    answer:
+      "After your contract is up, you will move onto a rolling monthly contract. When the time comes, we may be able to offer a new contract at a reduced price.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/faq#faqpage`,
+      url: `${siteUrl}/faq`,
+      name: "Frequently Asked Questions",
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#organization` },
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: { "@type": "Answer", text: faq.answer },
+      })),
+    },
+    breadcrumbs([{ name: "FAQ", path: "/faq" }]),
+  ],
+};
+---
+
+<Layout
+  title="Frequently Asked Questions"
+  description="Answers to the questions we get asked most about our web design packages, hosting, SEO, content updates and contracts. Can't find what you're looking for? Get in touch."
+>
+  <PageHero
+    eyebrow="these look fur-miliar"
+    title="Frequently Asked Questions"
+    lead="If you can't find an answer to one of your burning questions, please get in touch. Hopefully though, we already have the answers right here!"
+    primaryCTA={{ text: "Contact Us", href: "/contact" }}
+    secondaryCTA={{ text: "View Services", href: "/services" }}
+  />
+
+  <FaqSection extended={true} showIntro={false} />
+
+  <CallToAction
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{ text: "See Our Work", href: "/portfolio" }}
+  />
+
+  <JsonLd data={structuredData} />
+</Layout>

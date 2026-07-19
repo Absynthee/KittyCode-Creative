@@ -5,21 +5,37 @@ import {
   AccordionTrigger,
   AccordionItem,
 } from "@/components/ui/accordion/";
+
+interface Props {
+  /** Adds the longer set of questions shown on the dedicated FAQ page. */
+  extended?: boolean;
+  /** Hide the eyebrow/heading/intro when a PageHero already covers them. */
+  showIntro?: boolean;
+}
+
+const { extended = false, showIntro = true } = Astro.props;
 ---
 
 <section id="faq" class="section">
-  <sparkly-text
-    number-of-sparkles="5"
-    style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
-  >
-    <mark>these look fur-miliar</mark>
-  </sparkly-text>
+  {
+    showIntro && (
+      <>
+        <sparkly-text
+          number-of-sparkles="5"
+          style="--sparkly-text-color: color-mix(in srgb, currentColor, var(--primary) 100%);"
+        >
+          <mark>these look fur-miliar</mark>
+        </sparkly-text>
 
-  <h2>FAQs</h2>
-  <p>
-    If you can’t find an answer to one of your burning questions, please get in
-    touch. Hopefully though, we already have the answers right here!
-  </p>
+        <h2>FAQs</h2>
+        <p>
+          If you can’t find an answer to one of your burning questions, please
+          get in touch. Hopefully though, we already have the answers right
+          here!
+        </p>
+      </>
+    )
+  }
   <Accordion defaultValue="services">
     <AccordionItem value="services">
       <AccordionTrigger>What services do you offer?</AccordionTrigger>
@@ -36,6 +52,15 @@ import {
         accessible, responsive, and user-friendly websites. We pride ourselves
         on our attention to detail and our commitment to delivering high-quality
         work.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem value="async">
+      <AccordionTrigger>Will I need to attend meetings or calls?</AccordionTrigger>
+      <AccordionContent>
+        Nope! We work asynchronously by default, so your whole project can run
+        over email and messages on a schedule that suits you. Everything is
+        written down, nothing gets lost, and if you'd ever prefer a quick call,
+        we're happy to arrange one.
       </AccordionContent>
     </AccordionItem>
     <AccordionItem value="contact">
@@ -75,5 +100,52 @@ import {
         manage your website for you.
       </AccordionContent>
     </AccordionItem>
+    {
+      extended && (
+        <>
+          <AccordionItem value="content-changes">
+            <AccordionTrigger>
+              Am I able to change the content on my website?
+            </AccordionTrigger>
+            <AccordionContent>
+              If you are on a package that grants you editor access, yes.
+              Generally though, we prefer to make changes for you, as it keeps
+              the design consistent and means you don't have to worry about it.
+              Just let us know what needs updating and we'll take care of it.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="speed">
+            <AccordionTrigger>How fast will my website load?</AccordionTrigger>
+            <AccordionContent>
+              Fast. Every website we build is hand-coded and optimised for
+              performance, so no matter which package you choose, your pages
+              will load in the blink of an eye.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="cancelling">
+            <AccordionTrigger>
+              What happens if I need to cancel my monthly payments?
+            </AccordionTrigger>
+            <AccordionContent>
+              Your monthly fee keeps your website up and running, so if
+              payments stop without warning before your contract ends, your
+              website will be taken down. We understand things don't always go
+              to plan though. If you need to cancel, please give us at least
+              one month's notice so we can work something out with you.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="contract-end">
+            <AccordionTrigger>
+              What happens after my contract has ended?
+            </AccordionTrigger>
+            <AccordionContent>
+              After your contract is up, you will move onto a rolling monthly
+              contract. When the time comes, we may be able to offer a new
+              contract at a reduced price.
+            </AccordionContent>
+          </AccordionItem>
+        </>
+      )
+    }
   </Accordion>
 </section>
