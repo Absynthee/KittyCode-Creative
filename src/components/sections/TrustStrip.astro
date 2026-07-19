@@ -1,25 +1,39 @@
 ---
-import { Code2, Accessibility, Server, Star } from "@lucide/astro";
+import { Code2, Accessibility, Server, Star, CalendarX } from "@lucide/astro";
 
 const items = [
   { icon: Code2, label: "Hand-coded, never templated" },
   { icon: Accessibility, label: "WCAG accessible" },
   { icon: Server, label: "Hosting & SEO included" },
+  { icon: CalendarX, label: "Async-friendly, no meetings needed" },
   { icon: Star, label: "5-star rated" },
 ];
 ---
 
 <aside class="trust-strip" aria-label="Why clients choose us">
-  <ul class="trust-list" role="list">
-    {
-      items.map(({ icon: Icon, label }) => (
-        <li class="trust-item">
-          <Icon size={20} aria-hidden="true" />
-          <span>{label}</span>
-        </li>
-      ))
-    }
-  </ul>
+  <div class="trust-marquee">
+    <ul class="trust-list" role="list">
+      {
+        items.map(({ icon: Icon, label }) => (
+          <li class="trust-item">
+            <Icon size={20} aria-hidden="true" />
+            <span>{label}</span>
+          </li>
+        ))
+      }
+    </ul>
+    <!-- Duplicate list purely for the seamless marquee loop on mobile -->
+    <ul class="trust-list trust-list--clone" aria-hidden="true">
+      {
+        items.map(({ icon: Icon, label }) => (
+          <li class="trust-item">
+            <Icon size={20} aria-hidden="true" />
+            <span>{label}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </aside>
 
 <style>
@@ -29,16 +43,25 @@ const items = [
     background: hsl(from var(--primary) h s l / 0.04);
   }
 
+  .trust-marquee {
+    display: flex;
+    justify-content: center;
+  }
+
   .trust-list {
     list-style: none;
-    margin-inline: auto;
+    margin: 0;
     padding: var(--space-s) var(--space-m);
-    max-inline-size: 1280px;
+    max-inline-size: 90%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: var(--space-s) var(--space-xl);
+  }
+
+  .trust-list--clone {
+    display: none;
   }
 
   .trust-item {
@@ -57,12 +80,63 @@ const items = [
   }
 
   @media (max-width: 600px) {
-    .trust-list {
-      gap: var(--space-xs) var(--space-l);
+    .trust-marquee {
+      --marquee-gap: var(--space-l);
+      justify-content: flex-start;
+      overflow: hidden;
+      gap: var(--marquee-gap);
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        black 8%,
+        black 92%,
+        transparent
+      );
+    }
+
+    .trust-list,
+    .trust-list--clone {
+      display: flex;
+      flex-wrap: nowrap;
+      max-inline-size: none;
+      min-inline-size: max-content;
+      gap: var(--marquee-gap);
+      padding-inline: 0;
+      animation: marquee-scroll 25s linear infinite;
     }
 
     .trust-item {
       font-size: var(--step--2);
+    }
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--marquee-gap)));
+    }
+  }
+
+  /* Reduced motion: fall back to the static wrapped layout */
+  @media (max-width: 600px) and (prefers-reduced-motion: reduce) {
+    .trust-marquee {
+      justify-content: center;
+      overflow: visible;
+      mask-image: none;
+    }
+
+    .trust-list {
+      animation: none;
+      flex-wrap: wrap;
+      min-inline-size: 0;
+      gap: var(--space-xs) var(--space-l);
+      padding: var(--space-s) var(--space-m);
+    }
+
+    .trust-list--clone {
+      display: none;
     }
   }
 </style>

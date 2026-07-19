@@ -1,11 +1,18 @@
 ---
-import { Accessibility, Star, Code2, MapPin } from "@lucide/astro";
+import {
+  Accessibility,
+  Star,
+  Code2,
+  MapPin,
+  CalendarX,
+  Gift,
+} from "@lucide/astro";
 
 interface Stat {
   value: string;
   label: string;
   description: string;
-  icon: "accessibility" | "star" | "code" | "pin";
+  icon: "accessibility" | "star" | "code" | "pin" | "calendar" | "gift";
 }
 
 interface Props {
@@ -33,6 +40,18 @@ const {
       icon: "code",
     },
     {
+      value: "0",
+      label: "Meetings Required",
+      description: "Async by default. Your project runs in writing, on your schedule.",
+      icon: "calendar",
+    },
+    {
+      value: "10%",
+      label: "Referral Reward",
+      description: "Earn 10% of a friend's first invoice when they book through you.",
+      icon: "gift",
+    },
+    {
       value: "Eastbourne",
       label: "Based in East Sussex",
       description: "A local agency serving clients across the UK and beyond.",
@@ -46,6 +65,8 @@ const icons = {
   star: Star,
   code: Code2,
   pin: MapPin,
+  calendar: CalendarX,
+  gift: Gift,
 };
 ---
 
@@ -74,7 +95,7 @@ const icons = {
     padding: 0;
     inline-size: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
@@ -154,7 +175,36 @@ const icons = {
 
   @media (max-width: 520px) {
     .stats-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xs);
+    }
+
+    .stat-card {
+      padding: var(--space-s) var(--space-2xs);
+    }
+
+    .stat-icon {
+      inline-size: 2.75rem;
+      block-size: 2.75rem;
+      margin-block-end: var(--space-3xs);
+    }
+
+    .stat-icon :global(svg) {
+      inline-size: 22px;
+      block-size: 22px;
+    }
+
+    .stat-value {
+      font-size: var(--step-2);
+      min-block-size: calc(var(--step-2) * 1.1);
+    }
+
+    .stat-label {
+      font-size: var(--step--1);
+    }
+
+    .stat-description {
+      font-size: var(--step--2);
     }
   }
 </style>

@@ -102,8 +102,10 @@ const footerSocialLinks = navigation.social;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-m);
+    gap: var(--space-s);
     margin-block-end: var(--space-s);
+    max-inline-size: 900px;
+    margin-inline: auto;
   }
 
   .nav-link {
@@ -111,8 +113,8 @@ const footerSocialLinks = navigation.social;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.2s ease;
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius);
+    padding: 0.25rem 0.75rem;
+    /* border-radius: var(--radius); */
     position: relative;
   }
 
@@ -171,10 +173,11 @@ const footerSocialLinks = navigation.social;
     justify-content: center;
     align-items: center;
     gap: var(--space-xs) var(--space-m);
+    margin-block-end: var(--space-s);
   }
 
   .legal-link {
-    color: hsl(from var(--foreground) h s l / 0.55);
+    color: hsl(from var(--foreground) h s l / 0.7);
     text-decoration: none;
     font-size: var(--step--1);
     transition: color 0.2s ease;
@@ -197,7 +200,7 @@ const footerSocialLinks = navigation.social;
   }
 
   .copyright {
-    color: hsl(from var(--foreground) h s l / 0.6);
+    color: hsl(from var(--foreground) h s l / 0.7);
   }
 
   .copyright a {
@@ -247,13 +250,11 @@ const footerSocialLinks = navigation.social;
 
   @media screen and (max-width: 480px) {
     .footer-nav {
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-xs);
+      gap: var(--space-2xs) var(--space-3xs);
     }
 
     .nav-link {
-      padding: 0.25rem 2rem;
+      padding: 0.25rem 0.5rem;
     }
   }
 </style>

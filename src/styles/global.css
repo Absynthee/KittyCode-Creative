@@ -84,8 +84,8 @@
   --space-3xl: clamp(6.75rem, 6.4891rem + 1.3043vw, 7.5rem);
 
   /* custom fonts */
-  --font-family: "Inter", sans-serif;
-  --font-family-heading: "Inter", sans-serif;
+  --font-family: "Inter Variable", "Inter", sans-serif;
+  --font-family-heading: "Inter Variable", "Inter", sans-serif;
 
   scroll-behavior: smooth;
   transition-behavior: allow-discrete;
@@ -157,7 +157,7 @@ h6,
 .section-title {
   font-family: var(--font-family-heading);
   overflow-wrap: break-word;
-  text-wrap: balanced;
+  text-wrap: balance;
 }
 
 #root,
@@ -195,13 +195,14 @@ nav {
 }
 
 p,
-a {
+a,
+li {
   font-size: var(--step-0);
 }
 
 h1 {
   font-weight: 800;
-  line-height: 0.9em;
+  line-height: 1;
   font-size: var(--step-6);
   margin-block-end: var(--space-3xs);
 }
@@ -209,7 +210,7 @@ h1 {
 h2 {
   font-size: var(--step-4);
   font-weight: 700;
-  line-height: var(--space-m);
+  line-height: max(1em, var(--space-m));
   margin-block-end: var(--space-3xs);
 }
 
@@ -233,7 +234,7 @@ main {
   /* margin: auto; */
   /* margin-block: 6rem; */
 
-  section {
+  &:not(.home) section {
     margin-block-end: var(--space-m);
   }
 

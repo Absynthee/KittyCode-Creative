@@ -58,6 +58,37 @@ function truncateText(text: string, maxLength: number = 500) {
 }
 ---
 
+<script>
+  function refreshExpandButtons() {
+    document.querySelectorAll<HTMLElement>(".review-card").forEach((card) => {
+      const text = card.querySelector<HTMLElement>(".review-text p");
+      const button = card.querySelector<HTMLButtonElement>(".review-expand");
+      if (!text || !button || card.classList.contains("expanded")) return;
+      button.hidden = text.scrollHeight <= text.clientHeight + 1;
+    });
+  }
+
+  function initReviewExpanders() {
+    document
+      .querySelectorAll<HTMLButtonElement>(".review-expand")
+      .forEach((button) => {
+        button.addEventListener("click", () => {
+          const card = button.closest(".review-card");
+          if (!card) return;
+          const expanded = card.classList.toggle("expanded");
+          button.setAttribute("aria-expanded", String(expanded));
+          button.textContent = expanded ? "Show less" : "Read more";
+          if (!expanded) refreshExpandButtons();
+        });
+      });
+
+    refreshExpandButtons();
+  }
+
+  document.addEventListener("astro:page-load", initReviewExpanders);
+  window.addEventListener("resize", refreshExpandButtons, { passive: true });
+</script>
+
 <div class="testimonials-container">
   {
     reviews.length > 0 ? (
@@ -106,6 +137,14 @@ function truncateText(text: string, maxLength: number = 500) {
             <blockquote class="review-text">
               <p>{truncateText(review.text)}</p>
             </blockquote>
+            <button
+              class="review-expand"
+              type="button"
+              aria-expanded="false"
+              hidden
+            >
+              Read more
+            </button>
           </article>
         ))}
       </div>
@@ -171,7 +210,7 @@ function truncateText(text: string, maxLength: number = 500) {
 
   .review-date {
     font-size: var(--step--1);
-    color: hsl(from var(--foreground) h s l / 0.6);
+    color: hsl(from var(--foreground) h s l / 0.7);
     display: block;
   }
 
@@ -227,6 +266,12 @@ function truncateText(text: string, maxLength: number = 500) {
     border: 0;
   }
 
+  @media (min-width: 769px) {
+    .review-expand {
+      display: none;
+    }
+  }
+
   @keyframes slideInUp {
     from {
       opacity: 0;
@@ -249,6 +294,31 @@ function truncateText(text: string, maxLength: number = 500) {
   @media (max-width: 768px) {
     .testimonials-container {
       padding: 2rem 1rem;
+    }
+
+    .review-card:not(.expanded) .review-text p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 6;
+      line-clamp: 6;
+      overflow: hidden;
+    }
+
+    .review-expand {
+      display: inline-block;
+      background: none;
+      border: none;
+      padding: 0;
+      margin-block-start: var(--space-3xs);
+      color: var(--primary);
+      font-size: var(--step--1);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .review-expand:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
 
     .reviews-grid {

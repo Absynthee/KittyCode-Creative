@@ -177,6 +177,16 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
   @media (max-width: 600px) {
     .portfolio-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .portfolio-image {
+      aspect-ratio: 16 / 9;
+    }
+
+    .portfolio-content {
+      padding: var(--space-s);
+      gap: 0.5rem;
     }
   }
 </style>

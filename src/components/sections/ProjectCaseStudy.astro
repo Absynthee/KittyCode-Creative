@@ -257,7 +257,7 @@ const { Content } = await render(entry);
   /* Prose column: left-aligned within its grid track */
   .case-prose {
     margin-inline: 0;
-    max-inline-size: 68ch;
+    max-inline-size: 74ch;
   }
 
   .case-quote {
@@ -328,7 +328,7 @@ const { Content } = await render(entry);
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-weight: 500;
-    color: hsl(from var(--foreground) h s l / 0.55);
+    color: hsl(from var(--foreground) h s l / 0.7);
   }
 
   .case-nav-all {
@@ -359,6 +359,12 @@ const { Content } = await render(entry);
   }
 
   @media (max-width: 560px) {
+    .case-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-s);
+    }
+
     .case-nav-all {
       display: none;
     }
