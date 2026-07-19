@@ -144,6 +144,12 @@ const { items, columns = 3, align = "left" } = Astro.props;
     }
   }
 
+  @media (max-width: 768px) {
+    .icon-card {
+      padding: var(--space-m) var(--space-s);
+    }
+  }
+
   @media (max-width: 760px) {
     .card-grid[data-cols="3"] {
       grid-template-columns: 1fr;
