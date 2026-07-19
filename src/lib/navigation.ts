@@ -50,6 +50,30 @@ const mainLinks: NavItem[] = [
   },
 ];
 
+// Secondary links, shown in the mobile menu only
+const secondaryLinks: NavItem[] = [
+  {
+    label: "FAQ",
+    path: "/faq",
+    ariaLabel: "Read our frequently asked questions",
+  },
+  {
+    label: "Referrals",
+    path: "/referrals",
+    ariaLabel: "Learn about our referral programme",
+  },
+  {
+    label: "Async Work",
+    path: "/async-work",
+    ariaLabel: "Learn how we work asynchronously",
+  },
+  {
+    label: "Questionnaire",
+    path: "/services/website-questionnaire",
+    ariaLabel: "Fill in our website questionnaire",
+  },
+];
+
 // Footer navigation links
 const footerLinks: FooterNavItem[] = [
   {
@@ -73,6 +97,21 @@ const footerLinks: FooterNavItem[] = [
     ariaLabel: "Explore our services",
   },
   {
+    label: "Questionnaire",
+    path: "/services/website-questionnaire",
+    ariaLabel: "Fill in our website questionnaire",
+  },
+  {
+    label: "Referrals",
+    path: "/referrals",
+    ariaLabel: "Learn about our referral programme",
+  },
+  {
+    label: "Async Work",
+    path: "/async-work",
+    ariaLabel: "Learn how we work asynchronously",
+  },
+  {
     label: "Contact",
     path: "/contact",
     ariaLabel: "Contact KittyCode Creative",
@@ -81,6 +120,11 @@ const footerLinks: FooterNavItem[] = [
     label: "Blog",
     path: "/blog",
     ariaLabel: "Read our blog",
+  },
+  {
+    label: "FAQ",
+    path: "/faq",
+    ariaLabel: "Read our frequently asked questions",
   },
 ];
 
@@ -134,6 +178,7 @@ const socialLinks: SocialItem[] = [
 
 export const navigation = {
   main: mainLinks,
+  secondary: secondaryLinks,
   footer: footerLinks,
   legal: legalLinks,
   social: socialLinks,
