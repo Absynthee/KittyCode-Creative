@@ -27,6 +27,7 @@ const { currentPath } = Astro.props;
     <a href="/#" class="title" aria-label="KittyCode Creative, go to home">
       <img src="/favicon.png" alt="" />
       <span class="nav-title">KittyCode Creative</span>
+      <span class="nav-title-mobile">Home</span>
     </a>
 
     <div class="main-nav">
@@ -302,6 +303,10 @@ const { currentPath } = Astro.props;
     inline-size: 60px;
   }
 
+  .nav-title-mobile {
+    display: none;
+  }
+
   .title:hover .nav-title {
     color: var(--primary);
   }
@@ -519,7 +524,7 @@ const { currentPath } = Astro.props;
       transform: translateX(100%);
       transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       flex-direction: column;
-      padding-block: calc(5rem + env(safe-area-inset-top, 0px))
+      padding-block: calc(3rem + env(safe-area-inset-top, 0px))
         calc(2rem + env(safe-area-inset-bottom, 0px));
       padding-inline: 2rem;
       gap: var(--space-l);
@@ -533,9 +538,13 @@ const { currentPath } = Astro.props;
       margin-inline-start: 0;
     }
 
+    .title img,
     .title .nav-title {
-      visibility: unset;
-      inline-size: auto;
+      display: none;
+    }
+
+    .nav-title-mobile {
+      display: unset;
     }
 
     .menu-open .nav-content {
@@ -545,7 +554,7 @@ const { currentPath } = Astro.props;
     .main-nav {
       flex-direction: column;
       align-items: center;
-      gap: var(--space-m);
+      gap: var(--space-s);
       margin-inline-end: 0;
     }
 
@@ -564,7 +573,7 @@ const { currentPath } = Astro.props;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--space-s);
+      gap: var(--space-xs);
       inline-size: 70%;
       padding-block-start: var(--space-l);
       border-block-start: 1px solid hsl(from var(--card) h s l / 0.5);
