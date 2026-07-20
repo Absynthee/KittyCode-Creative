@@ -6,6 +6,7 @@ import Navigation from "../components/sections/Navigation.astro";
 import Head from "@/components/sections/Head.astro";
 import Footer from "@/components/sections/Footer.astro";
 import ScrollToTop from "../components/ui/ScrollToTop.astro";
+import { ogImageForPath } from "@/lib/og";
 
 interface Props {
   title?: string;
@@ -28,6 +29,10 @@ const {
   publishDate,
   updatedDate,
 } = Astro.props;
+
+// Use a page's auto-generated OG card when one is registered for its path,
+// unless the page passed an explicit image. Falls back to the sitewide default.
+const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -35,7 +40,7 @@ const {
   <Head
     {title}
     {description}
-    {image}
+    image={ogImage}
     {canonical}
     {noindex}
     {type}
