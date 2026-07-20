@@ -20,7 +20,7 @@ const {
   class: className = "",
 } = Astro.props;
 
-const contentId = `tooltip-content-${Math.random().toString(36).substr(2, 9)}`;
+const contentId = `tooltip-content-${Math.random().toString(36).slice(2, 11)}`;
 ---
 
 <div

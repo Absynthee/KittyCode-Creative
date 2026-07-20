@@ -67,7 +67,7 @@ const classes = [
   .filter(Boolean)
   .join(" ");
 
-const textareaId = id || `textarea-${Math.random().toString(36).substr(2, 9)}`;
+const textareaId = id || `textarea-${Math.random().toString(36).slice(2, 11)}`;
 const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
 ---
 

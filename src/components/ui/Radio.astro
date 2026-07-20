@@ -40,7 +40,7 @@ const classes = [baseClasses, variantClass, sizeClass, disabledClass, className]
   .filter(Boolean)
   .join(" ");
 
-const radioId = id || `radio-${Math.random().toString(36).substr(2, 9)}`;
+const radioId = id || `radio-${Math.random().toString(36).slice(2, 11)}`;
 ---
 
 <label class={classes}>

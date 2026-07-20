@@ -6,7 +6,7 @@ interface Props {
 
 const { defaultValue, class: className = "" } = Astro.props;
 
-const tabsId = `tabs-${Math.random().toString(36).substr(2, 9)}`;
+const tabsId = `tabs-${Math.random().toString(36).slice(2, 11)}`;
 ---
 
 <script>

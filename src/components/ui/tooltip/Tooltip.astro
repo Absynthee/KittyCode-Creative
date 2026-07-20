@@ -13,7 +13,7 @@ const {
   class: className = "",
 } = Astro.props;
 
-const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
+const tooltipId = `tooltip-${Math.random().toString(36).slice(2, 11)}`;
 ---
 
 <script>
@@ -22,18 +22,21 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
 
     tooltips.forEach((tooltip) => {
       const openDelay = parseInt(
-        tooltip.getAttribute("data-open-delay") || "200"
+        tooltip.getAttribute("data-open-delay") || "200",
       );
       const closeDelay = parseInt(
-        tooltip.getAttribute("data-close-delay") || "200"
+        tooltip.getAttribute("data-close-delay") || "200",
       );
       const disableHoverableContent =
         tooltip.getAttribute("data-disable-hoverable") === "true";
 
-      const trigger = tooltip.querySelector(".tooltip-trigger");
-      const content = tooltip.querySelector(".tooltip-content");
+      const triggerEl = tooltip.querySelector<HTMLElement>(".tooltip-trigger");
+      const contentEl = tooltip.querySelector<HTMLElement>(".tooltip-content");
 
-      if (!trigger || !content) return;
+      if (!triggerEl || !contentEl) return;
+
+      const trigger: HTMLElement = triggerEl;
+      const content: HTMLElement = contentEl;
 
       let openTimeout: number;
       let closeTimeout: number;
@@ -65,7 +68,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
         const side = content.getAttribute("data-side") || "top";
         const align = content.getAttribute("data-align") || "center";
         const sideOffset = parseInt(
-          content.getAttribute("data-side-offset") || "4"
+          content.getAttribute("data-side-offset") || "4",
         );
         const avoidCollisions =
           content.getAttribute("data-avoid-collisions") !== "false";
@@ -87,7 +90,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
               triggerRect,
               contentRect,
               align,
-              "horizontal"
+              "horizontal",
             );
             break;
           case "bottom":
@@ -96,7 +99,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
               triggerRect,
               contentRect,
               align,
-              "horizontal"
+              "horizontal",
             );
             break;
           case "left":
@@ -104,7 +107,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
               triggerRect,
               contentRect,
               align,
-              "vertical"
+              "vertical",
             );
             left = triggerRect.left - contentRect.width - sideOffset;
             break;
@@ -113,7 +116,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
               triggerRect,
               contentRect,
               align,
-              "vertical"
+              "vertical",
             );
             left = triggerRect.right + sideOffset;
             break;
@@ -145,11 +148,11 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
           // Ensure tooltip stays within viewport bounds
           left = Math.max(
             8,
-            Math.min(left, viewportWidth - contentRect.width - 8)
+            Math.min(left, viewportWidth - contentRect.width - 8),
           );
           top = Math.max(
             8,
-            Math.min(top, viewportHeight - contentRect.height - 8)
+            Math.min(top, viewportHeight - contentRect.height - 8),
           );
         }
 
@@ -163,7 +166,7 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
         triggerRect: DOMRect,
         contentRect: DOMRect,
         align: string,
-        direction: "horizontal" | "vertical"
+        direction: "horizontal" | "vertical",
       ) {
         if (direction === "horizontal") {
           switch (align) {
@@ -219,12 +222,8 @@ const tooltipId = `tooltip-${Math.random().toString(36).substr(2, 9)}`;
             positionTooltip();
           }
         },
-        { passive: true }
+        { passive: true },
       );
-
-      console.log("Tooltip found:", tooltip);
-      console.log("Trigger found:", trigger);
-      console.log("Content found:", content);
     });
   });
 </script>
