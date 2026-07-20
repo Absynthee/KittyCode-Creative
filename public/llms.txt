@@ -1,12 +1,14 @@
 # KittyCode Creative
 
-> KittyCode Creative is a modern web design and development agency based in Eastbourne, East Sussex, UK. We build bespoke, fully accessible (WCAG-compliant) and responsive websites from scratch for individuals and small businesses. Every project includes SEO and hosting options.
+> KittyCode Creative is a modern web design and development agency based in Eastbourne, East Sussex, UK. We build bespoke, fully accessible (WCAG-compliant) and responsive websites from scratch for individuals and small businesses. Every project is optimised to be found on search engines and AI assistants (SEO, AIO and GEO), and includes hosting options.
 
 ## About
 
 KittyCode Creative caters to individuals promoting a personal website or portfolio, and small businesses improving their digital footprint or updating their online presence. With a low price of entry, all websites are hand-coded from scratch using best practices, never from templates, to ensure they are fully WCAG (Web Content Accessibility Guidelines) compliant and responsive on all browsers and devices.
 
-We currently focus exclusively on building websites (web design, front-end development and SEO). We no longer offer logo design in order to provide the best quality websites - no compromises.
+We currently focus exclusively on building websites (web design, front-end development, and optimisation for search engines and AI). We no longer offer logo design in order to provide the best quality websites - no compromises.
+
+Every site is built to be found across both search engines and AI assistants, covering SEO (Search Engine Optimisation, ranking on Google and Bing), AIO (AI Optimisation, making the site readable by AI assistants and agentic crawlers) and GEO (Generative Engine Optimisation, earning citations in AI-generated answers from tools like ChatGPT, Gemini and Copilot). We achieve this through semantic hand-coded HTML, structured data (JSON-LD) on every page, fast and lightweight pages, and clear, well-structured content.
 
 ## Services & Pricing
 
@@ -14,7 +16,16 @@ We currently focus exclusively on building websites (web design, front-end devel
 - **Premium** (recommended): £75/month or £2000 one-off. 4–10 page website, hosting included, unlimited updates, 100,000 monthly visits, secure SSL. Best for startups. 24 month contract or 50% deposit. £450 initial design fee.
 - **Premium+**: £100/month or £3000 one-off. Up to 100 pages, CMS content & blog pages, increased hosting speed, 1,000,000 monthly visits, priority edits. Best for small businesses. 24 month contract or 50% deposit. £750 initial design fee.
 
-All packages include SEO and a fully bespoke, accessible build. Hosting is included in monthly packages; one-off purchases can be hosted for an additional fee.
+All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, accessible build. Hosting is included in monthly packages; one-off purchases can be hosted for an additional fee.
+
+## Key pages
+
+- [Services](https://www.kittycodecreative.com/services): web design and development packages, pricing and process.
+- [SEO, AIO & GEO](https://www.kittycodecreative.com/seo): how we optimise sites to be found on Google and cited by AI assistants like ChatGPT, Gemini and Copilot.
+- [Portfolio](https://www.kittycodecreative.com/portfolio): examples of websites we have designed and built.
+- [About](https://www.kittycodecreative.com/about): who we are and how we work.
+- [Contact](https://www.kittycodecreative.com/contact): get a free, no-obligation quote.
+- [Blog](https://www.kittycodecreative.com/blog): articles on web design, accessibility and being found online.
 
 ## Contact
 
@@ -31,5 +42,6 @@ All packages include SEO and a fully bespoke, accessible build. Hosting is inclu
 - Bespoke, hand-coded websites (no templates)
 - Fully WCAG-compliant and accessible
 - Responsive on all browsers and devices
-- SEO included with every package
+- SEO, AIO and GEO included with every package
+- Sites built to be found on search engines and cited by AI assistants
 - Based in Eastbourne, serving clients across the UK

@@ -1,0 +1,268 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageHero from "@/components/sections/PageHero.astro";
+import IconCardGrid from "@/components/ui/IconCardGrid.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+import JsonLd from "@/components/JsonLd.astro";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionTrigger,
+  AccordionItem,
+} from "@/components/ui/accordion/";
+import { Search, Bot, Sparkles, Check } from "@lucide/astro";
+import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+
+const pillars = [
+  {
+    icon: Search,
+    title: "SEO",
+    body: "Search Engine Optimisation. The classic discipline of ranking well on Google and Bing through fast, semantic, well-structured pages that search crawlers can read and trust.",
+  },
+  {
+    icon: Bot,
+    title: "AIO",
+    body: "AI Optimisation. Making your site easy for AI assistants and agentic crawlers to read, understand and act on, so tools like ChatGPT, Copilot and Gemini represent you accurately.",
+  },
+  {
+    icon: Sparkles,
+    title: "GEO",
+    body: "Generative Engine Optimisation. Earning citations and mentions in AI-generated answers, so when someone asks an AI for a recommendation, your business is the one it names.",
+  },
+];
+
+const practices = [
+  "Semantic, hand-coded HTML that machines can parse",
+  "Structured data (JSON-LD) on every page",
+  "Fast, lightweight pages with strong Core Web Vitals",
+  "Clear headings, answers and content structure",
+  "Descriptive metadata, titles and social cards",
+  "Accessible markup (WCAG) that doubles as clean signal",
+  "Crawlable sitemap, robots and canonical URLs",
+  "Content written to be quoted and cited",
+];
+
+const faqs = [
+  {
+    id: "difference",
+    q: "What's the difference between SEO, AIO and GEO?",
+    a: "SEO gets you ranking in traditional search results on Google and Bing. AIO makes your site easy for AI assistants and their crawlers to read and understand. GEO focuses on being cited and recommended inside AI-generated answers. They overlap heavily, and the same solid foundations serve all three.",
+  },
+  {
+    id: "why-now",
+    q: "Why does this matter now?",
+    a: "More and more people start with an AI assistant instead of a search box, asking ChatGPT, Gemini or Copilot for recommendations directly. If your site isn't structured for those tools to read and cite, you can be invisible in exactly the moment a customer is deciding who to choose.",
+  },
+  {
+    id: "guarantee",
+    q: "Can you guarantee I'll appear in Google or ChatGPT answers?",
+    a: "No one honestly can, as the ranking and citation systems are owned by the platforms and change constantly. What we can do is follow best practice, build clean and structured foundations, and give you the best possible chance of being found across both search engines and AI assistants.",
+  },
+  {
+    id: "included",
+    q: "Is this a separate service or included in my website?",
+    a: "The foundations, semantic HTML, structured data, performance and SEO, are included as standard in every website we build. If you have a larger or existing site and want a deeper, ongoing focus on AI visibility, we're happy to scope that as dedicated work.",
+  },
+  {
+    id: "existing-site",
+    q: "Will this work if I already have a website?",
+    a: "Yes. We can audit your existing site, add structured data, tidy up your content and markup, and improve performance, whether or not we originally built it. Send us a message and we'll take a look.",
+  },
+];
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": `${siteUrl}/seo#service`,
+      serviceType: "SEO, AIO & GEO",
+      name: "SEO, AIO & Generative Engine Optimisation",
+      url: `${siteUrl}/seo`,
+      description:
+        "Search Engine Optimisation (SEO), AI Optimisation (AIO) and Generative Engine Optimisation (GEO) for small businesses. We build fast, semantic, structured websites that rank on Google and get cited by AI assistants like ChatGPT, Gemini and Copilot.",
+      provider: { "@id": `${siteUrl}/#organization` },
+      areaServed: { "@type": "Country", name: "United Kingdom" },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/seo#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
+    breadcrumbs([{ name: "SEO, AIO & GEO", path: "/seo" }]),
+  ],
+};
+---
+
+<Layout
+  title="SEO, AIO & GEO"
+  description="Get found on Google and in AI answers. KittyCode Creative builds fast, semantic, structured websites optimised for search engines (SEO), AI assistants (AIO) and generative engines (GEO) like ChatGPT, Gemini and Copilot."
+>
+  <PageHero
+    eyebrow="get found everywhere"
+    title="SEO, AIO & GEO"
+    lead="People don't just search on Google any more, they ask AI assistants too. We build websites that get found in both, so you show up whether someone types a query or asks ChatGPT for a recommendation."
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{ text: "View Our Services", href: "/services" }}
+  />
+
+  <section id="pillars" class="section" aria-labelledby="pillars-title">
+    <mark>three front doors</mark>
+    <h2 id="pillars-title">The Web Has Changed</h2>
+    <p>
+      Search engines are no longer the only way people find you. AI assistants
+      now answer questions and make recommendations directly, so being visible
+      means being readable by both. These three disciplines cover it.
+    </p>
+    <IconCardGrid items={pillars} columns={3} align="left" />
+  </section>
+
+  <section id="how" class="section" aria-labelledby="how-title">
+    <mark>how we do it</mark>
+    <h2 id="how-title">Built to Be Found</h2>
+
+    <div class="how-detail">
+      <div class="how-copy">
+        <p>
+          There's no single trick to ranking well or getting cited by an AI. It
+          comes down to the same fundamentals we build into every site: clean,
+          semantic code, fast pages and content that's genuinely clear and well
+          structured. Machines and people both reward the same thing.
+        </p>
+        <p>
+          Because we hand-code every website, we have complete control over the
+          markup and the structured data underneath it. That means search
+          engines and AI crawlers get an unambiguous, machine-readable picture
+          of who you are, what you do and why you should be recommended, rather
+          than guessing from bloated, templated pages.
+        </p>
+        <p>
+          It's all included as standard, so <a href="/services">every website</a
+          > we build starts life optimised for search engines and AI assistants alike.
+        </p>
+      </div>
+
+      <div class="how-included">
+        <h3 class="included-title">What we build in</h3>
+        <ul class="included-list" role="list">
+          {
+            practices.map((item) => (
+              <li>
+                <Check size={18} aria-hidden="true" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="seo-faq" class="section" aria-labelledby="seo-faq-title">
+    <mark>the questions we get</mark>
+    <h2 id="seo-faq-title">SEO, AIO & GEO FAQs</h2>
+    <p>
+      New terms, same goal: helping the right people find you. Here are the
+      questions we hear most often.
+    </p>
+    <Accordion defaultValue="difference">
+      {
+        faqs.map((faq) => (
+          <AccordionItem value={faq.id}>
+            <AccordionTrigger>{faq.q}</AccordionTrigger>
+            <AccordionContent>{faq.a}</AccordionContent>
+          </AccordionItem>
+        ))
+      }
+    </Accordion>
+  </section>
+
+  <CallToAction
+    heading="Want to be found on Google and in AI answers?"
+    text="Whether you need a brand-new site built for discoverability or an audit of your existing one, we'd love to help. Get a free, no-obligation quote today."
+    primaryCTA={{ text: "Get a Free Quote", href: "/contact" }}
+    secondaryCTA={{ text: "See Our Work", href: "/portfolio" }}
+  />
+
+  <JsonLd data={structuredData} />
+</Layout>
+
+<style>
+  .how-detail {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+    text-align: start;
+  }
+
+  .how-copy {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+  }
+
+  .how-copy p {
+    max-inline-size: 60ch;
+    text-wrap: pretty;
+  }
+
+  .how-copy a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--primary);
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .how-copy a:hover {
+    color: var(--primary);
+  }
+
+  .how-included {
+    padding: var(--space-l) var(--space-m);
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+  }
+
+  .included-title {
+    font-size: var(--step-1);
+    margin-block-end: var(--space-s);
+  }
+
+  .included-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .included-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.85);
+  }
+
+  .included-list :global(svg) {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 860px) {
+    .how-detail {
+      grid-template-columns: 1fr;
+      gap: var(--space-l);
+    }
+  }
+</style>

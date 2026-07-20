@@ -53,6 +53,11 @@ const mainLinks: NavItem[] = [
 // Secondary links, shown in the mobile menu only
 const secondaryLinks: NavItem[] = [
   {
+    label: "SEO, AIO & GEO",
+    path: "/seo",
+    ariaLabel: "Learn about our SEO, AIO and GEO services",
+  },
+  {
     label: "FAQ",
     path: "/faq",
     ariaLabel: "Read our frequently asked questions",
@@ -95,6 +100,11 @@ const footerLinks: FooterNavItem[] = [
     label: "Services",
     path: "/services",
     ariaLabel: "Explore our services",
+  },
+  {
+    label: "SEO, AIO & GEO",
+    path: "/seo",
+    ariaLabel: "Learn about our SEO, AIO and GEO services",
   },
   {
     label: "Questionnaire",

@@ -3,7 +3,6 @@ import Layout from "@/layouts/Layout.astro";
 import PageHero from "@/components/sections/PageHero.astro";
 import ContactMethods from "@/components/sections/ContactMethods.astro";
 import ContactForm from "@/components/sections/ContactForm.astro";
-import FaqSection from "@/components/sections/FaqSection.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
 
@@ -46,14 +45,15 @@ const structuredData = {
       Fill in the form below and we'll be in touch. Prefer email? Reach us any
       time at <a href="mailto:hello@kittycodecreative.com"
         >hello@kittycodecreative.com</a
-      >. Planning a new website? Get a head-start by filling in our <a
+      >.
+    </p>
+    <p>
+      Planning a new website? Get a head-start by filling in our <a
         href="/services/website-questionnaire">website questionnaire</a
       >.
     </p>
     <ContactForm />
   </section>
-
-  <FaqSection />
 
   <JsonLd data={structuredData} />
 </Layout>
