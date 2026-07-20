@@ -20,16 +20,16 @@ All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, ac
 
 ## Key pages
 
-- [Services](https://www.kittycodecreative.com/services): web design and development packages, pricing and process.
-- [SEO, AIO & GEO](https://www.kittycodecreative.com/seo): how we optimise sites to be found on Google and cited by AI assistants like ChatGPT, Gemini and Copilot.
-- [Portfolio](https://www.kittycodecreative.com/portfolio): examples of websites we have designed and built.
-- [About](https://www.kittycodecreative.com/about): who we are and how we work.
-- [Contact](https://www.kittycodecreative.com/contact): get a free, no-obligation quote.
-- [Blog](https://www.kittycodecreative.com/blog): articles on web design, accessibility and being found online.
+- [Services](https://kittycodecreative.com/services): web design and development packages, pricing and process.
+- [SEO, AIO & GEO](https://kittycodecreative.com/seo): how we optimise sites to be found on Google and cited by AI assistants like ChatGPT, Gemini and Copilot.
+- [Portfolio](https://kittycodecreative.com/portfolio): examples of websites we have designed and built.
+- [About](https://kittycodecreative.com/about): who we are and how we work.
+- [Contact](https://kittycodecreative.com/contact): get a free, no-obligation quote.
+- [Blog](https://kittycodecreative.com/blog): articles on web design, accessibility and being found online.
 
 ## Contact
 
-- Website: https://www.kittycodecreative.com
+- Website: https://kittycodecreative.com
 - Email: hello@kittycodecreative.com
 - Location: Eastbourne, East Sussex, United Kingdom
 - Facebook: https://www.facebook.com/KittyCodeCreative

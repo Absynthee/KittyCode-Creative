@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kittycodecreative.com/sitemap-index.xml
+Sitemap: https://kittycodecreative.com/sitemap-index.xml
