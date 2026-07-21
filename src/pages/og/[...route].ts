@@ -12,25 +12,22 @@ export const { getStaticPaths, GET } = await OGImageRoute({
     description: page.description,
     logo: {
       path: "./public/favicon.png",
-      size: [120],
+      size: [110],
     },
-    // KittyCode brand: near-black with a warm ember tint, primary #d94713.
-    bgGradient: [
-      [10, 10, 12],
-      [30, 13, 6],
-    ],
-    border: { color: [217, 71, 19], width: 24, side: "inline-start" },
+    // Matches public/og-image.png: dark card with a warm ember glow in the
+    // top-left corner (pre-rendered) and a bold orange headline.
+    bgImage: { path: "./src/assets/og/bg.png", fit: "cover" },
     padding: 70,
     font: {
       title: {
-        color: [255, 255, 255],
-        size: 74,
+        color: [217, 71, 19],
+        size: 76,
         weight: "Bold",
         lineHeight: 1.1,
         families: ["Inter"],
       },
       description: {
-        color: [206, 206, 212],
+        color: [214, 214, 220],
         size: 34,
         weight: "Medium",
         lineHeight: 1.4,
