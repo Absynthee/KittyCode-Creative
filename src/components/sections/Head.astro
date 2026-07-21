@@ -118,7 +118,7 @@ const imageUrl = new URL(image, Astro.url.origin).href;
       function applyTheme() {
         const savedTheme = localStorage.getItem("theme");
         const prefersDark = window.matchMedia?.(
-          "(prefers-color-scheme: dark)"
+          "(prefers-color-scheme: dark)",
         ).matches;
         const isDark = savedTheme ? savedTheme === "dark" : prefersDark;
         document.documentElement.classList.toggle("dark", isDark);
@@ -130,16 +130,6 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   </script>
 
   <!-- Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZSCGN3WZR0"
-  ></script>
-  <script lang="js">
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", "G-ZSCGN3WZR0");
-  </script>
   <meta
     name="facebook-domain-verification"
     content="u5px9xlv79fcbyx51ynvlt64qrsjj2"

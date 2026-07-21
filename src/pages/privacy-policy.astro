@@ -5,7 +5,7 @@ import Prose from "@/components/sections/Prose.astro";
 import JsonLd from "@/components/JsonLd.astro";
 import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
 
-const lastUpdated = "10 July 2026";
+const lastUpdated = "21 July 2026";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -19,7 +19,7 @@ const structuredData = {
         "How KittyCode Creative collects, uses and protects your information when you use our website and services.",
       isPartOf: { "@id": `${siteUrl}/#website` },
       publisher: { "@id": `${siteUrl}/#organization` },
-      dateModified: "2026-07-10",
+      dateModified: "2026-07-21",
     },
     breadcrumbs([{ name: "Privacy Policy", path: "/privacy-policy" }]),
   ],
@@ -90,13 +90,30 @@ const structuredData = {
 
     <h2>Cookies &amp; Analytics</h2>
     <p>
-      We use cookies and privacy-friendly analytics to understand how our
-      website is used and to improve it. This includes Google Analytics and
-      Umami for usage statistics, and Web3Forms to process contact form
-      submissions. Cookies are small files placed on your device that help us
-      understand your preferences and improve functionality. You can disable
-      cookies through your browser settings, though this may affect certain
-      features of our site.
+      We don't use tracking cookies, and there's no cookie banner on this site
+      because there's nothing to ask you to consent to.
+    </p>
+    <p>
+      For usage statistics we use <a
+        href="https://umami.is/privacy"
+        rel="noopener">Umami</a
+      >, a privacy-friendly analytics tool that is cookieless: it stores no
+      files on your device and doesn't track you between websites or build a
+      profile of you. It gives us aggregate numbers such as how many people
+      visited a page and which site referred them.
+    </p>
+    <p>
+      The only things we store on your device are the display preferences you
+      set yourself — your choice of light or dark mode, and your preferred card
+      layout. These are kept in your browser's local storage, are never sent to
+      us or anyone else, and exist purely so the site looks the way you left it.
+      Clearing your browser storage removes them.
+    </p>
+    <p>
+      Contact form submissions are processed by <a
+        href="https://web3forms.com/privacy"
+        rel="noopener">Web3Forms</a
+      >, which passes your message on to us by email.
     </p>
 
     <h2>Data Security</h2>
