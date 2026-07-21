@@ -59,16 +59,27 @@ fill(
   ),
 );
 
-// Domain footer, bottom-left in bold orange — mirrors og-image's URL. Baked
-// into the background so every card shares it (the card text sits above it).
+// Text baked into the background (shared by every card): the "KittyCode
+// Creative" wordmark beside the logo up top, and the domain footer bottom-left.
 const fontData = new Uint8Array(fs.readFileSync("src/assets/og/Inter-Bold.ttf"));
 const typeface = CanvasKit.Typeface.MakeFreeTypeFaceFromData(fontData.buffer);
-const font = new CanvasKit.Font(typeface, 36);
-font.setSubpixel(true);
-const textPaint = new CanvasKit.Paint();
-textPaint.setColor(CanvasKit.Color(217, 71, 19, 1));
-textPaint.setAntiAlias(true);
-canvas.drawText("kittycodecreative.com", 70, H - 58, textPaint, font);
+
+// Wordmark in white, vertically centred against the 110px logo drawn by
+// astro-og-canvas at (70, 70) — see src/pages/og/[...route].ts.
+const nameFont = new CanvasKit.Font(typeface, 40);
+nameFont.setSubpixel(true);
+const namePaint = new CanvasKit.Paint();
+namePaint.setColor(CanvasKit.Color(255, 255, 255, 1));
+namePaint.setAntiAlias(true);
+canvas.drawText("KittyCode Creative", 198, 139, namePaint, nameFont);
+
+// Domain footer, bottom-left in bold orange — mirrors og-image's URL.
+const urlFont = new CanvasKit.Font(typeface, 36);
+urlFont.setSubpixel(true);
+const urlPaint = new CanvasKit.Paint();
+urlPaint.setColor(CanvasKit.Color(217, 71, 19, 1));
+urlPaint.setAntiAlias(true);
+canvas.drawText("kittycodecreative.com", 70, H - 58, urlPaint, urlFont);
 
 const img = surface.makeImageSnapshot();
 const png = img.encodeToBytes();

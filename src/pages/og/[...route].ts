@@ -21,14 +21,14 @@ export const { getStaticPaths, GET } = await OGImageRoute({
     font: {
       title: {
         color: [217, 71, 19],
-        size: 76,
+        size: 72,
         weight: "Bold",
         lineHeight: 1.1,
         families: ["Inter"],
       },
       description: {
         color: [214, 214, 220],
-        size: 34,
+        size: 32,
         weight: "Medium",
         lineHeight: 1.4,
         families: ["Inter"],
