@@ -697,5 +697,25 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
         display: none;
       }
     }
+
+    /* Keep both CTAs on a single full-width row on mobile */
+    @media screen and (max-width: 768px) {
+      .hero-buttons {
+        inline-size: 100%;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        gap: var(--space-2xs);
+      }
+
+      .hero-buttons :global(.btn) {
+        flex: 1 1 0;
+        inline-size: auto;
+        min-inline-size: 0;
+        min-width: 0;
+        padding-inline: var(--space-2xs);
+        white-space: normal;
+        text-align: center;
+      }
+    }
   </style>
 </section>

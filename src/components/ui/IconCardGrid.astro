@@ -163,5 +163,29 @@ const { items, columns = 3, align = "left" } = Astro.props;
     .card-grid[data-cols="4"] {
       grid-template-columns: 1fr;
     }
+
+    /* Icon sits beside the title instead of above it */
+    .card-grid[data-align="left"] .icon-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: var(--space-xs);
+    }
+
+    .card-grid[data-align="left"] .icon-card-icon {
+      grid-column: 1;
+      grid-row: 1;
+      margin-block-end: 0;
+    }
+
+    .card-grid[data-align="left"] .icon-card-title {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .card-grid[data-align="left"] .icon-card-body,
+    .card-grid[data-align="left"] .icon-card-link {
+      grid-column: 1 / -1;
+    }
   }
 </style>

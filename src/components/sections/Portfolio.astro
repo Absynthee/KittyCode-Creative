@@ -189,4 +189,27 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
       gap: 0.5rem;
     }
   }
+
+  /* Compact list, chosen with the toggle in the listing header */
+  @media (max-width: 640px) {
+    :global(html[data-cards="compact"]) .portfolio-image {
+      display: none;
+    }
+
+    :global(html[data-cards="compact"]) .portfolio-grid {
+      gap: 0.75rem;
+    }
+
+    :global(html[data-cards="compact"]) .portfolio-content {
+      padding: var(--space-xs) var(--space-s);
+    }
+
+    :global(html[data-cards="compact"]) .portfolio-title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      overflow: hidden;
+    }
+  }
 </style>

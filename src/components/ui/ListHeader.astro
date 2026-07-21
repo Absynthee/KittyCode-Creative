@@ -1,0 +1,103 @@
+---
+// Heading row for the portfolio and blog listings: the section title on one
+// side and, on mobile only, a switch that strips the cover images out of the
+// cards for a compact list. The choice is stored per visitor and applied to
+// <html>, so each grid can style itself without knowing about the toggle.
+import Switch from "@/components/ui/Switch.astro";
+
+interface Props {
+  /** Listing title, e.g. "All Projects". */
+  title: string;
+  /** Heading id, so the surrounding section can point aria-labelledby at it. */
+  id: string;
+}
+
+const { title, id } = Astro.props;
+---
+
+<script is:inline>
+  // Runs before the grid below is parsed, so a returning visitor who prefers
+  // the compact list never sees the images flash in first.
+  try {
+    if (localStorage.getItem("kc-compact-cards") === "compact") {
+      document.documentElement.dataset.cards = "compact";
+    }
+  } catch {}
+</script>
+
+<div class="list-header">
+  <h2 class="list-title" {id}>{title}</h2>
+  <Switch variant="primary" size="small" class="compact-switch">Compact</Switch>
+</div>
+
+<script>
+  const STORAGE_KEY = "kc-compact-cards";
+
+  function initCompactToggle() {
+    const input = document.querySelector<HTMLInputElement>(
+      ".compact-switch input[type='checkbox']",
+    );
+
+    // This listener outlives client-side navigation, so pages without a toggle
+    // (the home page teaser, "more posts") clear the flag rather than inherit
+    // a compact layout they offer no way out of.
+    if (!input) {
+      delete document.documentElement.dataset.cards;
+      return;
+    }
+
+    const remember = (value: string) => {
+      try {
+        localStorage.setItem(STORAGE_KEY, value);
+      } catch {}
+    };
+
+    let stored = false;
+    try {
+      stored = localStorage.getItem(STORAGE_KEY) === "compact";
+    } catch {}
+
+    input.checked = stored;
+    document.documentElement.dataset.cards = stored ? "compact" : "full";
+
+    input.addEventListener("change", () => {
+      const mode = input.checked ? "compact" : "full";
+      document.documentElement.dataset.cards = mode;
+      remember(mode);
+    });
+  }
+
+  document.addEventListener("astro:page-load", initCompactToggle);
+</script>
+
+<style>
+  .list-header {
+    inline-size: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    /* Tops up the --space-xs the section gives the grid below */
+    margin-block-end: var(--space-2xs);
+  }
+
+  .list-title {
+    margin: 0;
+  }
+
+  /* The toggle is a mobile affordance: the wider grids show images regardless */
+  .list-header :global(.compact-switch) {
+    display: none;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    .list-title {
+      font-size: var(--step-3);
+    }
+
+    .list-header :global(.compact-switch) {
+      display: inline-flex;
+    }
+  }
+</style>

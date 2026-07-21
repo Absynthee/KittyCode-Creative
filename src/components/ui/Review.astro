@@ -85,68 +85,299 @@ function truncateText(text: string, maxLength: number = 500) {
     refreshExpandButtons();
   }
 
-  document.addEventListener("astro:page-load", initReviewExpanders);
+  // Mobile carousel: the reviews grid becomes a snap-scrolling track that
+  // auto-advances, and can be swiped (native touch scroll) or dragged with a
+  // mouse. Autoplay stops for good once the visitor takes over.
+  let teardownCarousel: (() => void) | null = null;
+
+  function initReviewCarousel() {
+    teardownCarousel?.();
+    teardownCarousel = null;
+
+    const scroller = document.querySelector<HTMLElement>(".reviews-grid");
+    const dotsNav = document.querySelector<HTMLElement>(".review-dots");
+    if (!scroller || !dotsNav) return;
+
+    const cards = Array.from(
+      scroller.querySelectorAll<HTMLElement>(".review-card"),
+    );
+    const dots = Array.from(
+      dotsNav.querySelectorAll<HTMLButtonElement>(".review-dot"),
+    );
+    if (cards.length < 2) return;
+
+    const AUTOPLAY_MS = 7000;
+    const isMobile = window.matchMedia("(max-width: 768px)");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let timer = 0;
+    let engaged = false;
+    let onScreen = true;
+    let frame = 0;
+
+    const offsetOf = (card: HTMLElement) =>
+      card.offsetLeft - scroller.offsetLeft;
+
+    const activeIndex = () => {
+      let closest = 0;
+      let smallest = Infinity;
+      cards.forEach((card, index) => {
+        const distance = Math.abs(offsetOf(card) - scroller.scrollLeft);
+        if (distance < smallest) {
+          smallest = distance;
+          closest = index;
+        }
+      });
+      return closest;
+    };
+
+    const goTo = (index: number, smooth = true) => {
+      const card = cards[(index + cards.length) % cards.length];
+      scroller.scrollTo({
+        left: offsetOf(card),
+        behavior: smooth && !reduceMotion.matches ? "smooth" : "auto",
+      });
+    };
+
+    const syncDots = () => {
+      const active = activeIndex();
+      dots.forEach((dot, index) => {
+        dot.setAttribute("aria-current", String(index === active));
+      });
+    };
+
+    const stop = () => {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = 0;
+    };
+
+    const start = () => {
+      stop();
+      if (engaged || !onScreen || document.hidden) return;
+      if (!isMobile.matches || reduceMotion.matches) return;
+      timer = window.setInterval(() => goTo(activeIndex() + 1), AUTOPLAY_MS);
+    };
+
+    // Any deliberate interaction hands control to the visitor for good, so a
+    // review can't slide away mid-sentence.
+    const engage = () => {
+      engaged = true;
+      stop();
+    };
+
+    const onScroll = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        syncDots();
+      });
+    };
+
+    // Pointer dragging, used for both mouse and touch so the distance needed
+    // to move on is the same either way: a short drag or a quick flick is
+    // enough to advance, anything smaller settles back.
+    const DRAG_START = 4;
+
+    let dragging = false;
+    let dragged = false;
+    let startX = 0;
+    let startScroll = 0;
+    let startIndex = 0;
+    let startTime = 0;
+    let settleTimer = 0;
+
+    const onPointerDown = (event: PointerEvent) => {
+      if (!isMobile.matches) return;
+      if (event.pointerType === "mouse" && event.button !== 0) return;
+      engage();
+      window.clearTimeout(settleTimer);
+      dragging = true;
+      dragged = false;
+      startX = event.clientX;
+      startScroll = scroller.scrollLeft;
+      startIndex = activeIndex();
+      startTime = event.timeStamp;
+    };
+
+    const onPointerMove = (event: PointerEvent) => {
+      if (!dragging) return;
+      const delta = event.clientX - startX;
+      if (!dragged) {
+        if (Math.abs(delta) < DRAG_START) return;
+        dragged = true;
+        scroller.classList.add("is-dragging");
+        scroller.setPointerCapture(event.pointerId);
+      }
+      scroller.scrollLeft = startScroll - delta;
+    };
+
+    const endDrag = (event: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false;
+      if (!dragged) return;
+
+      const delta = event.clientX - startX;
+      const distance = Math.abs(delta);
+      const elapsed = Math.max(event.timeStamp - startTime, 1);
+      const threshold = Math.min(48, scroller.clientWidth * 0.12);
+      const flicked = distance > 12 && distance / elapsed > 0.4;
+
+      const target =
+        distance > threshold || flicked
+          ? startIndex + (delta < 0 ? 1 : -1)
+          : startIndex;
+
+      goTo(Math.min(Math.max(target, 0), cards.length - 1));
+      // Snapping stays off until the glide finishes, so re-enabling it can't
+      // yank the track mid-animation.
+      settleTimer = window.setTimeout(
+        () => scroller.classList.remove("is-dragging"),
+        450,
+      );
+    };
+
+    const onDotClick = (event: Event) => {
+      const dot = (event.target as HTMLElement).closest<HTMLElement>(
+        ".review-dot",
+      );
+      if (!dot) return;
+      engage();
+      goTo(Number(dot.dataset.index));
+    };
+
+    const onVisibility = () => (document.hidden ? stop() : start());
+    const onModeChange = () => {
+      stop();
+      if (isMobile.matches) start();
+      else scroller.scrollTo({ left: 0, behavior: "auto" });
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        onScreen ? start() : stop();
+      },
+      { threshold: 0.3 },
+    );
+
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    scroller.addEventListener("pointerdown", onPointerDown);
+    scroller.addEventListener("pointermove", onPointerMove);
+    scroller.addEventListener("pointerup", endDrag);
+    scroller.addEventListener("pointercancel", endDrag);
+    scroller.addEventListener("dragstart", (event) => event.preventDefault());
+    scroller.addEventListener("click", engage);
+    scroller.addEventListener("focusin", engage);
+    dotsNav.addEventListener("click", onDotClick);
+    document.addEventListener("visibilitychange", onVisibility);
+    isMobile.addEventListener("change", onModeChange);
+    observer.observe(scroller);
+
+    scroller.classList.add("has-drag");
+    syncDots();
+    start();
+
+    teardownCarousel = () => {
+      stop();
+      window.clearTimeout(settleTimer);
+      if (frame) cancelAnimationFrame(frame);
+      scroller.classList.remove("has-drag");
+      observer.disconnect();
+      scroller.removeEventListener("scroll", onScroll);
+      scroller.removeEventListener("pointerdown", onPointerDown);
+      scroller.removeEventListener("pointermove", onPointerMove);
+      scroller.removeEventListener("pointerup", endDrag);
+      scroller.removeEventListener("pointercancel", endDrag);
+      scroller.removeEventListener("click", engage);
+      scroller.removeEventListener("focusin", engage);
+      dotsNav.removeEventListener("click", onDotClick);
+      document.removeEventListener("visibilitychange", onVisibility);
+      isMobile.removeEventListener("change", onModeChange);
+    };
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    initReviewExpanders();
+    initReviewCarousel();
+  });
   window.addEventListener("resize", refreshExpandButtons, { passive: true });
 </script>
 
 <div class="testimonials-container">
   {
     reviews.length > 0 ? (
-      <div class="reviews-grid" role="list">
-        {reviews.map((review, index) => (
-          <article
-            class="review-card"
-            role="listitem"
-            style={`--delay: ${index * 0.1}s`}
-          >
-            <div class="review-header">
-              <div class="reviewer-info">
-                <Avatar
-                  src={review.profile_photo_url}
-                  alt={`${review.author_name}'s profile photo`}
-                  size="large"
-                  variant="default"
-                />
-                <div class="reviewer-details">
-                  <h3 class="reviewer-name">{review.author_name}</h3>
-                  <time
-                    class="review-date"
-                    datetime={new Date(review.time * 1000).toISOString()}
-                  >
-                    {review.relative_time_description}
-                  </time>
+      <div class="reviews-carousel">
+        <div class="reviews-grid" role="list">
+          {reviews.map((review, index) => (
+            <article
+              class="review-card"
+              role="listitem"
+              style={`--delay: ${index * 0.1}s`}
+            >
+              <div class="review-header">
+                <div class="reviewer-info">
+                  <Avatar
+                    src={review.profile_photo_url}
+                    alt={`${review.author_name}'s profile photo`}
+                    size="large"
+                    variant="default"
+                  />
+                  <div class="reviewer-details">
+                    <h3 class="reviewer-name">{review.author_name}</h3>
+                    <time
+                      class="review-date"
+                      datetime={new Date(review.time * 1000).toISOString()}
+                    >
+                      {review.relative_time_description}
+                    </time>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div
-              class="rating"
-              role="img"
-              aria-label={`${review.rating} out of 5 stars`}
-            >
-              {generateStars(review.rating).map((filled) => (
-                <Star
-                  size={20}
-                  class={filled ? "star-filled" : "star-empty"}
-                  aria-hidden="true"
-                />
-              ))}
-              <span class="sr-only">{review.rating} out of 5 stars</span>
-            </div>
+              <div
+                class="rating"
+                role="img"
+                aria-label={`${review.rating} out of 5 stars`}
+              >
+                {generateStars(review.rating).map((filled) => (
+                  <Star
+                    size={20}
+                    class={filled ? "star-filled" : "star-empty"}
+                    aria-hidden="true"
+                  />
+                ))}
+                <span class="sr-only">{review.rating} out of 5 stars</span>
+              </div>
 
-            <blockquote class="review-text">
-              <p>{truncateText(review.text)}</p>
-            </blockquote>
-            <button
-              class="review-expand"
-              type="button"
-              aria-expanded="false"
-              hidden
-            >
-              Read more
-            </button>
-          </article>
-        ))}
+              <blockquote class="review-text">
+                <p>{truncateText(review.text)}</p>
+              </blockquote>
+              <button
+                class="review-expand"
+                type="button"
+                aria-expanded="false"
+                hidden
+              >
+                Read more
+              </button>
+            </article>
+          ))}
+        </div>
+
+        {reviews.length > 1 && (
+          <div class="review-dots" role="group" aria-label="Choose a review">
+            {reviews.map((review, index) => (
+              <button
+                class="review-dot"
+                type="button"
+                aria-current={index === 0 ? "true" : "false"}
+                aria-label={`Review ${index + 1} of ${reviews.length}, by ${review.author_name}`}
+                data-index={index}
+              />
+            ))}
+          </div>
+        )}
       </div>
     ) : (
       <div class="no-reviews" role="status">
@@ -158,9 +389,15 @@ function truncateText(text: string, maxLength: number = 500) {
 </div>
 
 <style>
+  /* Spacing above comes from the section's own rhythm (global.css), so no
+     padding here — matching the other section content blocks. */
   .testimonials-container {
-    margin-inline: auto;
-    padding: var(--space-l) 0;
+    margin: 0;
+    padding: 0;
+    inline-size: 100%;
+  }
+
+  .reviews-carousel {
     inline-size: 100%;
   }
 
@@ -168,6 +405,11 @@ function truncateText(text: string, maxLength: number = 500) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
+  }
+
+  /* Carousel controls only exist on mobile */
+  .review-dots {
+    display: none;
   }
 
   .review-card {
@@ -292,10 +534,6 @@ function truncateText(text: string, maxLength: number = 500) {
   }
 
   @media (max-width: 768px) {
-    .testimonials-container {
-      padding: 2rem 0;
-    }
-
     .review-card:not(.expanded) .review-text p {
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -321,9 +559,85 @@ function truncateText(text: string, maxLength: number = 500) {
       outline-offset: 2px;
     }
 
+    /* Grid becomes a swipeable, snap-scrolling carousel */
     .reviews-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+      display: flex;
+      inline-size: 100%;
+      /* A row of non-wrapping flex items reports the sum of all three cards as
+         its min-content width, which would stretch the section. Containment
+         makes the track size from the section instead of from the cards. */
+      contain: inline-size;
+      gap: 1rem;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding-block-end: 0.5rem;
+      cursor: grab;
+    }
+
+    .reviews-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Set by the carousel script, so touch scrolling still works without JS */
+    .reviews-grid.has-drag {
+      touch-action: pan-y pinch-zoom;
+    }
+
+    .reviews-grid.is-dragging {
+      cursor: grabbing;
+      scroll-snap-type: none;
+      scroll-behavior: auto;
+      user-select: none;
+    }
+
+    .review-card {
+      flex: 0 0 100%;
+      min-inline-size: 0;
+      scroll-snap-align: start;
+    }
+
+    .review-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.25rem;
+      margin-block-start: var(--space-xs);
+    }
+
+    /* 1.5rem button keeps a comfortable touch target around a small dot */
+    .review-dot {
+      display: grid;
+      place-items: center;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      padding: 0;
+      border: none;
+      background: none;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+
+    .review-dot::after {
+      content: "";
+      inline-size: 0.5rem;
+      block-size: 0.5rem;
+      border-radius: 9999px;
+      background: hsl(from var(--foreground) h s l / 0.25);
+      transition:
+        background-color 0.3s ease,
+        inline-size 0.3s ease;
+    }
+
+    .review-dot[aria-current="true"]::after {
+      inline-size: 1.25rem;
+      background: var(--primary);
+    }
+
+    .review-dot:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
     }
 
     .review-header {
@@ -333,6 +647,16 @@ function truncateText(text: string, maxLength: number = 500) {
 
     .reviewer-info {
       inline-size: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reviews-grid {
+      scroll-behavior: auto;
+    }
+
+    .review-card {
+      animation: none;
     }
   }
 </style>

@@ -340,6 +340,10 @@ main {
     padding-block: var(--space-xl);
     padding-inline: 1rem;
   }
+
+  .section.section > :nth-child(n + 3) {
+    margin-block-start: var(--space-s);
+  }
 }
 
 .tag {

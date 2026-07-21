@@ -146,5 +146,29 @@ const highlights = [
     .highlight-grid {
       grid-template-columns: 1fr;
     }
+
+    /* Icon sits beside the title instead of above it */
+    .highlight-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: var(--space-xs);
+    }
+
+    .highlight-icon {
+      grid-column: 1;
+      grid-row: 1;
+      margin-block-end: 0;
+    }
+
+    .highlight-title {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .highlight-body,
+    .highlight-more {
+      grid-column: 1 / -1;
+    }
   }
 </style>

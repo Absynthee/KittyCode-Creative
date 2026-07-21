@@ -186,5 +186,31 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft))
     .blog-grid {
       grid-template-columns: 1fr;
     }
+
+    /* Compact list, chosen with the toggle in the listing header */
+    :global(html[data-cards="compact"]) .blog-image {
+      display: none;
+    }
+
+    :global(html[data-cards="compact"]) .blog-grid {
+      gap: 0.75rem;
+    }
+
+    :global(html[data-cards="compact"]) .blog-content {
+      padding: var(--space-xs) var(--space-s);
+    }
+
+    :global(html[data-cards="compact"]) .blog-title {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      overflow: hidden;
+    }
+
+    :global(html[data-cards="compact"]) .blog-excerpt {
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+    }
   }
 </style>

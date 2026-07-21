@@ -354,8 +354,18 @@ const {
       gap: var(--space-s);
     }
 
+    /* Price moves to the top right, alongside the tier name */
     .plan-header {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--space-xs);
       padding-block-end: var(--space-xs);
+    }
+
+    .plan-price {
+      text-align: end;
+      white-space: nowrap;
     }
 
     .plan-features {

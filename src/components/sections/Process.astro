@@ -180,5 +180,45 @@ const icons = {
     .process-grid {
       grid-template-columns: 1fr;
     }
+
+    /* Marker sits beside the title instead of above it */
+    .process-step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      column-gap: var(--space-xs);
+      text-align: start;
+      padding: 0;
+    }
+
+    .process-marker {
+      grid-column: 1;
+      grid-row: 1;
+      inline-size: 2.75rem;
+      block-size: 2.75rem;
+      margin-block-end: 0;
+    }
+
+    .process-marker :global(svg) {
+      inline-size: 20px;
+      block-size: 20px;
+    }
+
+    .process-number {
+      inline-size: 1.25rem;
+      block-size: 1.25rem;
+      inset-block-start: -0.375rem;
+      inset-inline-end: -0.375rem;
+    }
+
+    .process-title {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .process-description {
+      grid-column: 1 / -1;
+      max-inline-size: none;
+    }
   }
 </style>
