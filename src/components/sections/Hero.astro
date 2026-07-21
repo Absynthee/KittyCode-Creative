@@ -290,7 +290,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
 
     .hero-name {
       color: var(--foreground);
-      font-size: calc(var(--step-4) * 2);
+      font-size: var(--step-5);
       background: linear-gradient(
         135deg,
         var(--secondary) 0%,
@@ -645,10 +645,6 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     }
 
     @media screen and (max-width: 1100px) {
-      .hero-name {
-        font-size: var(--step-6);
-      }
-
       .btn--large {
         min-inline-size: 10em;
       }
@@ -659,10 +655,6 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     }
 
     @media screen and (max-width: 910px) {
-      .hero-name {
-        font-size: var(--step-5);
-      }
-
       .hero-buttons {
         align-items: center;
         gap: var(--space-2xs) var(--space-s);
