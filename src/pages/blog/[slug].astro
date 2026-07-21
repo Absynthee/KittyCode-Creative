@@ -36,7 +36,9 @@ const dateFormat = new Intl.DateTimeFormat("en-GB", {
 });
 
 const pageUrl = `${siteUrl}/blog/${entry.id}`;
-const imageUrl = new URL(data.cover.src, siteUrl).href;
+// Resolve the cover against the deploy origin (Astro.site is env-driven) so the
+// og:image works on preview/branch deploys, not just the production domain.
+const imageUrl = new URL(data.cover.src, Astro.site ?? siteUrl).href;
 
 const structuredData = {
   "@context": "https://schema.org",

@@ -27,7 +27,9 @@ const { entry, prev, next } = Astro.props;
 const { data } = entry;
 
 const pageUrl = `${siteUrl}/portfolio/${entry.id}`;
-const imageUrl = new URL(data.cover.src, siteUrl).href;
+// Resolve the cover against the deploy origin (Astro.site is env-driven) so the
+// og:image works on preview/branch deploys, not just the production domain.
+const imageUrl = new URL(data.cover.src, Astro.site ?? siteUrl).href;
 
 const structuredData = {
   "@context": "https://schema.org",
