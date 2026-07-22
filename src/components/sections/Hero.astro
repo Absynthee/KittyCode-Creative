@@ -673,7 +673,12 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        padding-block: var(--space-3xl);
+        padding-block-start: var(--space-3xl);
+        padding-block-end: var(--space-2xl);
+      }
+
+      .hero-name {
+        padding-block-end: 4rem;
       }
 
       .hero-buttons {
