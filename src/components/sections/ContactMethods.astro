@@ -1,6 +1,6 @@
 ---
 import IconCardGrid from "@/components/ui/IconCardGrid.astro";
-import { Mail, MapPin, Clock } from "@lucide/astro";
+import { Mail, MessageCircle, MapPin, Clock } from "@lucide/astro";
 
 const items = [
   {
@@ -8,6 +8,13 @@ const items = [
     title: "Email us",
     body: "hello@kittycodecreative.com",
     href: "mailto:hello@kittycodecreative.com",
+  },
+  {
+    icon: MessageCircle,
+    title: "WhatsApp us",
+    body: "+44 7480 694425",
+    href: "https://wa.me/447480694425",
+    external: true,
   },
   {
     icon: MapPin,
@@ -27,9 +34,10 @@ const items = [
   <h2 id="methods-title">Let's Work Together</h2>
   <p>
     Ready to join the clowder? Whether you have a project in mind or just a few
-    questions, we'd love to hear from you. Prefer to keep it social? Find us on
-    Facebook, LinkedIn, X and Instagram in the footer below.
+    questions, we'd love to hear from you. Drop us an email or a WhatsApp
+    message, or find us on Facebook, LinkedIn, X and Instagram in the footer
+    below.
   </p>
 
-  <IconCardGrid items={items} columns={3} align="center" />
+  <IconCardGrid items={items} columns={4} align="center" />
 </section>
