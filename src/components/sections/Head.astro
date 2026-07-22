@@ -134,12 +134,16 @@ const imageUrl = new URL(image, Astro.url.origin).href;
     name="facebook-domain-verification"
     content="u5px9xlv79fcbyx51ynvlt64qrsjj2"
   />
-  <!-- Umami, proxied through /kc/* to cloud.umami.is (see public/_redirects)
-       so the tracker and its beacon are same-origin requests. Only resolves on
+  <!-- Umami, proxied through /kc/ (see public/_redirects) so the tracker and
+       its beacon are same-origin requests. data-host-url is required: without
+       it the tracker posts to its hardcoded gateway.umami.is regardless of
+       where it was served from. Relative on purpose, so deploy previews report
+       to their own origin rather than production. Both paths only resolve on
        Netlify, so analytics is silently inert in `astro dev`. -->
   <script
     defer
     src="/kc/script.js"
+    data-host-url="/kc"
     data-website-id="fd4e5c7b-e631-45b1-beef-6c040075417d"></script>
 
   <!-- Page-specific head tags (e.g. fonts only one page needs) -->

@@ -1,58 +1,58 @@
-# Analytics proxy (200 = rewrite, the URL stays on this domain). Serving
-# Umami's tracker and its collect endpoint from our own origin makes both
-# requests first-party: no third-party connection to open, and content
-# blockers that match the cloud.umami.is hostname no longer drop pageviews.
-# The tracker derives its collect endpoint from its own src, so /kc/script.js
-# posts to /kc/api/send and the one splat rule covers both.
-/kc/*  https://cloud.umami.is/:splat  200
+# Analytics proxy (200 = rewrite, the URL stays on this domain). Serving Umami's tracker and its collect endpoint from our own origin makes both requests first-party: no third-party connection to open, and blockers that match the umami.is hostname no longer drop pageviews. Two rules rather than one splat because the tracker and the collector are different hosts. The tracker also hardcodes gateway.umami.is rather than deriving the collector from its own src, so Head.astro overrides that with data-host-url; keep the attribute and the second rule in sync
 
-# Legacy URLs from the previous site (301 = permanent, preserves SEO).
-# The old Apache host served extensionless URLs, but stale links may
-# still use the .html variants, so both forms are covered.
+/kc/script.js https://cloud.umami.is/script.js 200
+/kc/api/send https://gateway.umami.is/api/send 200
+
+# Legacy URLs from the previous site (301 = permanent, preserves SEO). The old Apache host served extensionless URLs, but stale links may still use the .html variants, so both forms are covered.
 
 # Renamed pages
-/about-us                          /about        301
-/about-us.html                     /about        301
-/our-blog                          /blog         301
-/our-blog.html                     /blog         301
-/our-portfolio                     /portfolio    301
-/our-portfolio.html                /portfolio    301
-/privacy/privacy-policy            /privacy-policy         301
-/privacy/privacy-policy.html       /privacy-policy         301
-/privacy/terms-and-conditions      /terms-and-conditions   301
-/privacy/terms-and-conditions.html /terms-and-conditions   301
+
+/about-us /about 301
+/about-us.html /about 301
+/our-blog /blog 301
+/our-blog.html /blog 301
+/our-portfolio /portfolio 301
+/our-portfolio.html /portfolio 301
+/privacy/privacy-policy /privacy-policy 301
+/privacy/privacy-policy.html /privacy-policy 301
+/privacy/terms-and-conditions /terms-and-conditions 301
+/privacy/terms-and-conditions.html /terms-and-conditions 301
 
 # Web design content now lives on the services overview page
-/services/web-design               /services     301
-/services/web-design.html          /services     301
+
+/services/web-design /services 301
+/services/web-design.html /services 301
 
 # Logo design is no longer offered
-/services/logo-design              /services     301
-/services/logo-design.html         /services     301
-/services/logo-questionnaire       /services     301
-/services/logo-questionnaire.html  /services     301
+
+/services/logo-design /services 301
+/services/logo-design.html /services 301
+/services/logo-questionnaire /services 301
+/services/logo-questionnaire.html /services 301
 
 # Old blog slug typo
-/blog/why-acessibility-matters      /blog/why-accessibility-matters 301
+
+/blog/why-acessibility-matters /blog/why-accessibility-matters 301
 /blog/why-acessibility-matters.html /blog/why-accessibility-matters 301
 
 # Same page, old .html form
-/index.html                              /              301
-/contact.html                            /contact       301
-/faq.html                                /faq           301
-/services.html                           /services      301
-/thank-you.html                          /thank-you     301
-/services/website-questionnaire.html     /services/website-questionnaire 301
-/blog/benefits-of-hand-coding-your-website.html          /blog/benefits-of-hand-coding-your-website          301
-/blog/lights-out-dark-theme.html                         /blog/lights-out-dark-theme                         301
-/blog/the-human-behind-kittycode-creative.html           /blog/the-human-behind-kittycode-creative           301
+
+/index.html / 301
+/contact.html /contact 301
+/faq.html /faq 301
+/services.html /services 301
+/thank-you.html /thank-you 301
+/services/website-questionnaire.html /services/website-questionnaire 301
+/blog/benefits-of-hand-coding-your-website.html /blog/benefits-of-hand-coding-your-website 301
+/blog/lights-out-dark-theme.html /blog/lights-out-dark-theme 301
+/blog/the-human-behind-kittycode-creative.html /blog/the-human-behind-kittycode-creative 301
 /blog/the-launch-of-a-new-digital-web-design-agency.html /blog/the-launch-of-a-new-digital-web-design-agency 301
-/blog/the-power-of-modern-css.html                       /blog/the-power-of-modern-css                       301
-/blog/the-role-of-ai-in-web-design.html                  /blog/the-role-of-ai-in-web-design                  301
-/blog/website-giveaway-reflection.html                   /blog/website-giveaway-reflection                   301
-/blog/why-every-business-needs-a-website.html            /blog/why-every-business-needs-a-website            301
-/portfolio/austins-portfolio.html                        /portfolio/austins-portfolio                        301
-/portfolio/beyond-the-tavern.html                        /portfolio/beyond-the-tavern                        301
-/portfolio/ctrlaltcookie.html                            /portfolio/ctrlaltcookie                            301
-/portfolio/glyn-jones-wedding.html                       /portfolio/glyn-jones-wedding                       301
-/portfolio/tobost-certified.html                         /portfolio/tobost-certified                         301
+/blog/the-power-of-modern-css.html /blog/the-power-of-modern-css 301
+/blog/the-role-of-ai-in-web-design.html /blog/the-role-of-ai-in-web-design 301
+/blog/website-giveaway-reflection.html /blog/website-giveaway-reflection 301
+/blog/why-every-business-needs-a-website.html /blog/why-every-business-needs-a-website 301
+/portfolio/austins-portfolio.html /portfolio/austins-portfolio 301
+/portfolio/beyond-the-tavern.html /portfolio/beyond-the-tavern 301
+/portfolio/ctrlaltcookie.html /portfolio/ctrlaltcookie 301
+/portfolio/glyn-jones-wedding.html /portfolio/glyn-jones-wedding 301
+/portfolio/tobost-certified.html /portfolio/tobost-certified 301
