@@ -1,3 +1,11 @@
+# Analytics proxy (200 = rewrite, the URL stays on this domain). Serving
+# Umami's tracker and its collect endpoint from our own origin makes both
+# requests first-party: no third-party connection to open, and content
+# blockers that match the cloud.umami.is hostname no longer drop pageviews.
+# The tracker derives its collect endpoint from its own src, so /kc/script.js
+# posts to /kc/api/send and the one splat rule covers both.
+/kc/*  https://cloud.umami.is/:splat  200
+
 # Legacy URLs from the previous site (301 = permanent, preserves SEO).
 # The old Apache host served extensionless URLs, but stale links may
 # still use the .html variants, so both forms are covered.
