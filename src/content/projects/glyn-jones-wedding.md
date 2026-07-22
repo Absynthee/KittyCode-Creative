@@ -3,13 +3,14 @@ title: "Glyn Jones Wedding"
 client: "The Glyn-Jones Family"
 description: "An elegant single-page celebration site for a personal event."
 summary: "An elegant single-page celebration site that tells a couple's story and shares everything guests need to know about their wedding day."
-cover: ../../assets/images/glyn-jones-wedding.jpg
+cover: ../../assets/images/portfolio/glynjoneswedding.webp
 coverAlt: "The Glyn Jones Wedding celebration website on a laptop screen"
+liveUrl: "https://glynjoneswedding.uk/"
 year: 2025
 order: 4
-tags: ["Event", "Responsive", "Bespoke"]
+tags: ["Event", "Responsive", "Bespoke", "Wedding"]
 services: ["Web Design", "Front-end Development"]
-tech: ["Astro", "Hand-coded CSS"]
+tech: ["JS", "CSS", "HTML", "PHP"]
 ---
 
 ## The brief

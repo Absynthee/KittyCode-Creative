@@ -3,7 +3,7 @@ title: "Austin's Portfolio"
 client: "Austin Spillman"
 description: "A clean, modern developer portfolio showcasing projects and skills."
 summary: "A clean, fast, bespoke portfolio for the founder of KittyCode Creative, built to show off creative and front-end development work."
-cover: ../../assets/images/austins-portfolio.jpg
+cover: ../../assets/images/portfolio/austin-portfolio-v2.webp
 coverAlt: "Austin Spillman's developer portfolio website on a laptop screen"
 liveUrl: "https://austinspillman.com"
 year: 2024
@@ -11,7 +11,7 @@ order: 3
 featured: true
 tags: ["Portfolio", "Performance", "Bespoke"]
 services: ["Web Design", "Front-end Development"]
-tech: ["Astro", "Hand-coded CSS", "TypeScript"]
+tech: ["Astro", "CSS", "TypeScript"]
 ---
 
 ## The brief

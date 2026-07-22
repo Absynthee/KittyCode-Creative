@@ -3,15 +3,15 @@ title: "CtrlAltCookie"
 client: "Cookie"
 description: "A vibrant personal brand site and landing page for a content creator."
 summary: "A bold, animated landing page that pulls a content creator's entire online world into one place, from socials and stats to the latest links."
-cover: ../../assets/images/ctrlaltcookie.jpg
+cover: ../../assets/images/portfolio/ctrlaltcookie.webp
 coverAlt: "The CtrlAltCookie personal brand website on a laptop screen"
 liveUrl: "https://ctrlaltcookie.com"
 year: 2025
 order: 1
 featured: true
-tags: ["Personal Brand", "Responsive", "Animation"]
+tags: ["Personal Brand", "Streamer", "Animation"]
 services: ["Web Design", "Front-end Development"]
-tech: ["Astro", "Hand-coded CSS", "JavaScript"]
+tech: ["GSAP", "CSS", "JavaScript"]
 testimonial:
   quote: "Working with KittyCode Creative on my website was easy and fluid. They responded to my requests the same day and pitched in a lot of ideas that ended up being better than what I'd come up with anyway."
   author: "Cookie"

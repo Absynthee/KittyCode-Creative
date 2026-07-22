@@ -34,7 +34,7 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
                 project.data.coverAlt ||
                 `Preview of the ${project.data.title} website`
               }
-              width={800}
+              width={900}
               height={600}
               loading={index < 2 ? "eager" : "lazy"}
             />
@@ -97,7 +97,7 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
 
   .portfolio-image {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 2;
     overflow: hidden;
     background: hsl(from var(--primary) h s l / 0.05);
   }

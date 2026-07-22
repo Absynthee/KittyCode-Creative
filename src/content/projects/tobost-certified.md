@@ -3,11 +3,12 @@ title: "Tobost Certified"
 client: "Tobost06"
 description: "A professional gaming blog with news, reviews and a trustworthy feel."
 summary: "A professional gaming blog and content hub featuring news, reviews and updates, with a clean, trustworthy feel that keeps readers coming back."
-cover: ../../assets/images/tobost-certified.jpg
+cover: ../../assets/images/portfolio/tobostcertified.webp
 coverAlt: "The Tobost Certified gaming blog website on a laptop screen"
+liveUrl: "https://tobost-certified.netlify.app/"
 year: 2024
 order: 5
-tags: ["Business", "Accessible", "SEO"]
+tags: ["Business", "Accessible", "Blog"]
 services: ["Web Design", "Front-end Development", "SEO"]
 tech: ["Astro", "Hand-coded CSS", "JavaScript"]
 ---

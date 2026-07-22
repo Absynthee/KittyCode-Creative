@@ -3,15 +3,15 @@ title: "Beyond the Tavern"
 client: "Rose, Beyond the Tavern"
 description: "A bold, characterful website for a tabletop gaming small business."
 summary: "A characterful website and blog for a tabletop gaming small business, built to show off original artwork and drive traffic to an Etsy shop."
-cover: ../../assets/images/beyond-the-tavern.jpg
+cover: ../../assets/images/portfolio/beyondthetavern.webp
 coverAlt: "The Beyond the Tavern small business website on a laptop screen"
-liveUrl: "https://beyondthetavern.co.uk"
+liveUrl: "https://absynthee.github.io/Beyond-The-Tavern/"
 year: 2024
 order: 2
 featured: true
 tags: ["Small Business", "Accessible", "SEO"]
 services: ["Web Design", "Front-end Development", "SEO"]
-tech: ["Astro", "Hand-coded CSS", "JavaScript"]
+tech: ["HTML", "CSS", "JavaScript"]
 testimonial:
   quote: "Austin really impressed me with their attention to detail when designing my new business website. Every part was so well thought out, and I appreciated them going the extra mile to add the interactive and animated elements I asked for. To any startup, small business, entrepreneur or influencer looking for a responsive, fast and aesthetically pleasing website, I'd definitely recommend KittyCode Creative!"
   author: "Rose Butcher"
