@@ -93,11 +93,14 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <meta name="twitter:image" content={imageUrl} />
   <meta name="twitter:image:alt" content={`${siteName}: ${title}`} />
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" href="/favicon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <!-- Favicons. Opaque on purpose (brand orange baked in): the mark is a black
+       cat, so a transparent icon sinks into dark tab bars and iOS flattens
+       apple-touch-icon transparency onto black. public/favicon.png stays
+       transparent and serves as the logo mark for the nav, hero and OG cards. -->
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <!-- Manifest -->
   <link rel="manifest" href="/site.webmanifest" />
