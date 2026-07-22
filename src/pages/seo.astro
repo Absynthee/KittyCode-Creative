@@ -11,7 +11,7 @@ import {
   AccordionItem,
 } from "@/components/ui/accordion/";
 import { Search, Bot, Sparkles, Check } from "@lucide/astro";
-import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
+import { SITE_URL as siteUrl, breadcrumbs, AREA_SERVED } from "@/lib/schema";
 
 const pillars = [
   {
@@ -82,7 +82,7 @@ const structuredData = {
       description:
         "Search Engine Optimisation (SEO), AI Optimisation (AIO) and Generative Engine Optimisation (GEO) for small businesses. We build fast, semantic, structured websites that rank on Google and get cited by AI assistants like ChatGPT, Gemini and Copilot.",
       provider: { "@id": `${siteUrl}/#organization` },
-      areaServed: { "@type": "Country", name: "United Kingdom" },
+      areaServed: AREA_SERVED,
     },
     {
       "@type": "FAQPage",

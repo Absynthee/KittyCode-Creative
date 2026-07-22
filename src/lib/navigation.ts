@@ -184,6 +184,12 @@ const socialLinks: SocialItem[] = [
     icon: "email",
     ariaLabel: "Send us an email",
   },
+  {
+    label: "WhatsApp",
+    path: "https://wa.me/447480694425",
+    icon: "whatsapp",
+    ariaLabel: "Message us on WhatsApp",
+  },
 ];
 
 export const navigation = {
