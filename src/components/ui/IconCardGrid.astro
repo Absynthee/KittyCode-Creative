@@ -24,7 +24,10 @@ const { items, columns = 3, align = "left" } = Astro.props;
     items.map((item, index) => {
       const Icon = item.icon;
       return (
-        <li class="icon-card" style={`--delay: ${index * 0.1}s`}>
+        <li
+          class="icon-card"
+          style={`--delay: ${index * 0.1}s; --reveal-index: ${index}`}
+        >
           <span class="icon-card-icon" aria-hidden="true">
             <Icon size={26} />
           </span>

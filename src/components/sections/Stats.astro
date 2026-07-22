@@ -75,7 +75,10 @@ const icons = {
     stats.map((stat, index) => {
       const Icon = icons[stat.icon];
       return (
-        <li class="stat-card" style={`--delay: ${index * 0.1}s`}>
+        <li
+          class="stat-card"
+          style={`--delay: ${index * 0.1}s; --reveal-index: ${index}`}
+        >
           <span class="stat-icon" aria-hidden="true">
             <Icon size={28} />
           </span>

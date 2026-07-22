@@ -60,7 +60,10 @@ const icons = {
     steps.map((step, index) => {
       const Icon = icons[step.icon];
       return (
-        <li class="process-step" style={`--delay: ${index * 0.1}s`}>
+        <li
+          class="process-step"
+          style={`--delay: ${index * 0.1}s; --reveal-index: ${index}`}
+        >
           <div class="process-marker">
             <span class="process-icon" aria-hidden="true">
               <Icon size={24} />

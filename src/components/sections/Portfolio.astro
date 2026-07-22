@@ -18,7 +18,10 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
 <ul class="portfolio-grid" role="list">
   {
     projects.map((project, index) => (
-      <li class="portfolio-card" style={`--delay: ${index * 0.1}s`}>
+      <li
+        class="portfolio-card"
+        style={`--delay: ${index * 0.1}s; --reveal-index: ${index}`}
+      >
         <a
           class="portfolio-link"
           href={`/portfolio/${project.id}`}

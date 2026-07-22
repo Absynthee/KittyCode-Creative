@@ -94,7 +94,7 @@ const {
       plans.map((plan, index) => (
         <li
           class:list={["plan", { "plan--recommended": plan.recommended }]}
-          style={`--delay: ${index * 0.1}s`}
+          style={`--delay: ${index * 0.1}s; --reveal-index: ${index}`}
         >
           {plan.recommended && <span class="plan-badge">Recommended</span>}
           <div class="plan-header">
