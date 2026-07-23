@@ -56,3 +56,8 @@
 /portfolio/ctrlaltcookie.html /portfolio/ctrlaltcookie 301
 /portfolio/glyn-jones-wedding.html /portfolio/glyn-jones-wedding 301
 /portfolio/tobost-certified.html /portfolio/tobost-certified 301
+
+# Consolidate SEO: send Netlify subdomain aliases to the primary domain
+
+https://kittycode-creative.netlify.app/* https://kittycodecreative.com/:splat 301!
+https://main--kittycode-creative.netlify.app/* https://kittycodecreative.com/:splat 301!
