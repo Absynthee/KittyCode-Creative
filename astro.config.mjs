@@ -5,16 +5,22 @@ import sitemap from "@astrojs/sitemap";
 
 // Resolve the canonical origin from Netlify's build environment so canonical
 // links, Open Graph images and the sitemap always point at the domain actually
-// serving the build — otherwise a preview/staging deploy advertises production
-// URLs whose assets 404 (e.g. og:image on the test site).
-//   - DEPLOY_PRIME_URL: branch deploys & deploy previews (the test site)
-//   - URL:              the site's primary production URL
-//   - fallback:         local `astro build`
-// The production domain comes from Netlify's primary-domain setting.
+// serving the build.
+//
+// Netlify sets DEPLOY_PRIME_URL in *every* context — and on a production build
+// it is the `main--kittycode-creative.netlify.app` branch subdomain, NOT the
+// custom domain. So it can't be trusted unconditionally: production must pin to
+// the canonical domain, while branch/preview deploys use their own
+// DEPLOY_PRIME_URL so absolute assets (og:image, sitemap) resolve on the deploy
+// that's actually serving them.
+//   - CONTEXT === "production": the live custom domain
+//   - branch/preview deploys:   that deploy's own URL
+//   - local `astro build`:      the same canonical fallback
+const PRODUCTION_URL = "https://kittycodecreative.com";
 const site =
-  process.env.DEPLOY_PRIME_URL ||
-  process.env.URL ||
-  "https://kittycodecreative.com";
+  process.env.CONTEXT === "production"
+    ? PRODUCTION_URL
+    : process.env.DEPLOY_PRIME_URL || PRODUCTION_URL;
 
 // https://astro.build/config
 export default defineConfig({
