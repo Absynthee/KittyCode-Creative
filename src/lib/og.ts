@@ -63,9 +63,9 @@ export const ogPages: Record<string, OgEntry> = {
       "Insights on web design, modern CSS, accessibility and being found online.",
   },
   referrals: {
-    title: "Refer a Friend, Earn 10%",
+    title: "Refer a Friend, Earn £100",
     description:
-      "Send someone our way and earn 10% of their first invoice when they book a project. No limits, no catches.",
+      "Send someone our way and earn £100 when they book a project. No limits, no catches.",
   },
   "services/website-questionnaire": {
     title: "Website Questionnaire",

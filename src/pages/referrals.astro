@@ -11,19 +11,19 @@ import {
   AccordionTrigger,
   AccordionItem,
 } from "@/components/ui/accordion/";
-import { Percent, Infinity, Users, Wallet } from "@lucide/astro";
+import { PoundSterling, Infinity, Users, Wallet } from "@lucide/astro";
 import { SITE_URL as siteUrl, breadcrumbs } from "@/lib/schema";
 
 const perks = [
   {
-    icon: Percent,
+    icon: PoundSterling,
     title: "Real Money, Not Credit",
-    body: "Your reward is 10% of your referral's first invoice, paid directly to you. No vouchers, no account credit, no catches.",
+    body: "Your reward is a flat £100, paid directly to you. No vouchers, no account credit, no catches.",
   },
   {
     icon: Infinity,
     title: "No Referral Limit",
-    body: "There's no cap on how many people you can refer. Every successful referral earns you another 10%.",
+    body: "There's no cap on how many people you can refer. Every successful referral earns you another £100.",
   },
   {
     icon: Users,
@@ -46,7 +46,7 @@ const structuredData = {
       url: `${siteUrl}/referrals`,
       name: "Referral Programme",
       description:
-        "Refer a friend to KittyCode Creative and earn 10% of their first project invoice. No limits, no catches, and you don't need to be a client to take part.",
+        "Refer a friend to KittyCode Creative and earn £100 when they book a project. No limits, no catches, and you don't need to be a client to take part.",
       about: { "@id": `${siteUrl}/#organization` },
       isPartOf: { "@id": `${siteUrl}/#website` },
     },
@@ -57,12 +57,12 @@ const structuredData = {
 
 <Layout
   title="Referral Programme"
-  description="Refer a friend to KittyCode Creative and earn 10% of their first invoice when they book a project. No limits, no catches, and you don't need to be a client to take part."
+  description="Refer a friend to KittyCode Creative and earn £100 when they book a project. No limits, no catches, and you don't need to be a client to take part."
 >
   <PageHero
     eyebrow="tell your fur-iends"
-    title="Refer a Friend, Earn 10%"
-    lead="Know someone who needs a website? Send them our way. When they book their first project with us, we'll send you 10% of their first invoice as a thank you."
+    title="Refer a Friend, Earn £100"
+    lead="Know someone who needs a website? Send them our way. When they book their first project with us, we'll send you £100 as a thank you."
     primaryCTA={{ text: "Refer Someone Now", href: "/contact" }}
     secondaryCTA={{ text: "View Our Services", href: "/services" }}
   />
@@ -125,9 +125,9 @@ const structuredData = {
       <AccordionItem value="earn">
         <AccordionTrigger>How much can I earn?</AccordionTrigger>
         <AccordionContent>
-          10% of your referral's first invoice, so the bigger their project, the
-          bigger your reward. There's no limit on how many people you can refer
-          either.
+          A flat £100 for every successful referral, however big or small their
+          project turns out to be. There's no limit on how many people you can
+          refer either.
         </AccordionContent>
       </AccordionItem>
     </Accordion>

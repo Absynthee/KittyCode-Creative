@@ -15,7 +15,7 @@
 - ~~Thank You~~
 - ~~Privacy~~
 - ~~Terms~~
-- ~~Referrals (10% commission)~~
+- ~~Referrals (£100 per referral)~~
 - ~~Case Studies~~ (skipped, will be blog posts instead)
 - ~~Async Work~~
 - ~~Navigation (all links)~~
