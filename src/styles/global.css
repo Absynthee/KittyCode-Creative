@@ -309,7 +309,7 @@ main {
 .section > p {
   max-inline-size: 60ch;
   text-align: center;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 /* Underline only inline text links inside intro paragraphs,

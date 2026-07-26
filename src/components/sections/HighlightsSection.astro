@@ -140,12 +140,25 @@ const highlights = [
     }
   }
 
+  @media (max-width: 768px) {
+    .highlight-card {
+      padding: var(--space-m) var(--space-s);
+    }
+    .highlight-grid {
+      gap: var(--space-xs);
+      margin-block-end: 0;
+
+      a {
+        margin-block-end: 0;
+      }
+    }
+  }
+
   @media (max-width: 640px) {
     .highlight-grid {
       grid-template-columns: 1fr;
     }
 
-    /* Icon sits beside the title instead of above it */
     .highlight-card {
       display: grid;
       grid-template-columns: auto 1fr;

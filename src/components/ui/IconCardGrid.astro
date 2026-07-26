@@ -149,7 +149,10 @@ const { items, columns = 3, align = "left" } = Astro.props;
 
   @media (max-width: 768px) {
     .icon-card {
-      padding: var(--space-m) var(--space-s);
+      padding: var(--space-s);
+    }
+    .card-grid {
+      gap: var(--space-xs);
     }
   }
 
@@ -167,7 +170,6 @@ const { items, columns = 3, align = "left" } = Astro.props;
       grid-template-columns: 1fr;
     }
 
-    /* Icon sits beside the title instead of above it */
     .card-grid[data-align="left"] .icon-card {
       display: grid;
       grid-template-columns: auto 1fr;

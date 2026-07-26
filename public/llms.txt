@@ -12,9 +12,13 @@ Every site is built to be found across both search engines and AI assistants, co
 
 ## Services & Pricing
 
-- **Standard**: £60/month or £1300 one-off. 1–3 page website, hosting included, enhanced security, 10,000 monthly visits, secure SSL. Best for individuals and startups. 12 month contract (monthly) or 50% deposit (one-off). £350 initial design fee.
-- **Premium** (recommended): £180/month or £3400 one-off. 4–10 page website, hosting included, unlimited updates, 100,000 monthly visits, secure SSL. Best for small businesses. 12 month contract or 50% deposit. £500 initial design fee.
-- **Complete**: £320/month or £5800 one-off. Up to 100 pages, CMS content & blog pages, increased hosting speed, 1,000,000 monthly visits, priority edits. Best for larger businesses. 12 month contract or 50% deposit. £800 initial design fee.
+- **Basic**: £60/month or £1300 one-off. Up to 3 pages, handles 10,000 visitors a month, content changes made for you, hosting and security and SSL included, built to be found on Google. Best for individuals and startups. 12 month contract (monthly) or 50% deposit (one-off). £350 initial design fee.
+- **Standard** (recommended): £180/month or £3400 one-off. 4 to 10 pages, handles 100,000 visitors a month, unlimited changes at any time, hosting and security and SSL included, built to be found on Google. Best for small businesses. 12 month contract or 50% deposit. £500 initial design fee.
+- **Complete**: £320/month or £5800 one-off. Up to 100 pages, handles 1,000,000 visitors a month, priority changes handled first, self-service editing for blog posts and content, faster hosting with security and SSL, built to be found on Google. Best for larger businesses. 12 month contract or 50% deposit. £800 initial design fee.
+
+Every package is responsive across phones, tablets and desktop, and is built to WCAG accessibility standards. Every site is hand-coded rather than built from a template, and projects run asynchronously with no mandatory meetings or calls.
+
+Turnaround is typically two weeks to two months from start to launch, depending on the size of the project. Clients normally provide their own copy and images, though KittyCode Creative can assist with some of it if needed.
 
 All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, accessible build. The initial design fee is already included in the one-off price, and is charged separately at the start of a monthly plan. Hosting is included in monthly packages; one-off purchases can be hosted for an additional fee.
 
