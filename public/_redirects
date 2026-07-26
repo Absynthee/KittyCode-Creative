@@ -1,7 +1,6 @@
-# Analytics proxy (200 = rewrite, the URL stays on this domain). Serving Umami's tracker and its collect endpoint from our own origin makes both requests first-party: no third-party connection to open, and blockers that match the umami.is hostname no longer drop pageviews. Two rules rather than one splat because the tracker and the collector are different hosts. The tracker also hardcodes gateway.umami.is rather than deriving the collector from its own src, so Head.astro overrides that with data-host-url; keep the attribute and the second rule in sync
+# Analytics proxy (200 = rewrite, the URL stays on this domain). Serving Umami's tracker from our own origin makes it first-party: no third-party connection to open, and blockers that match the umami.is hostname no longer drop pageviews. The tracker also hardcodes gateway.umami.is rather than deriving the collector from its own src, so Head.astro overrides that with data-host-url; keep the attribute in sync. The collector endpoint (/kc/api/send) is NOT rewritten here — it's handled by netlify/edge-functions/umami-send.ts, which injects the visitor's real IP (x-umami-client-ip) so Umami Cloud geolocates the visitor and not this proxy's egress IP.
 
 /kc/script.js https://cloud.umami.is/script.js 200
-/kc/api/send https://gateway.umami.is/api/send 200
 
 # Legacy URLs from the previous site (301 = permanent, preserves SEO). The old Apache host served extensionless URLs, but stale links may still use the .html variants, so both forms are covered.
 
