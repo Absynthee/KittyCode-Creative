@@ -271,13 +271,9 @@ function truncateText(text: string, maxLength: number = 500) {
   {
     reviews.length > 0 ? (
       <div class="reviews-carousel">
-        <div class="reviews-grid" role="list">
+        <ul class="reviews-grid" role="list">
           {reviews.map((review, index) => (
-            <article
-              class="review-card"
-              role="listitem"
-              style={`--delay: ${index * 0.1}s`}
-            >
+            <li class="review-card" style={`--delay: ${index * 0.1}s`}>
               <div class="review-header">
                 <div class="reviewer-info">
                   <Avatar
@@ -310,7 +306,6 @@ function truncateText(text: string, maxLength: number = 500) {
                     aria-hidden="true"
                   />
                 ))}
-                <span class="sr-only">{review.rating} out of 5 stars</span>
               </div>
 
               <blockquote class="review-text">
@@ -324,9 +319,9 @@ function truncateText(text: string, maxLength: number = 500) {
               >
                 Read more
               </button>
-            </article>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {reviews.length > 1 && (
           <div class="review-dots" role="group" aria-label="Choose a review">
@@ -352,8 +347,6 @@ function truncateText(text: string, maxLength: number = 500) {
 </div>
 
 <style>
-  /* Spacing above comes from the section's own rhythm (global.css), so no
-     padding here — matching the other section content blocks. */
   .testimonials-container {
     margin: 0;
     padding: 0;
@@ -365,12 +358,14 @@ function truncateText(text: string, maxLength: number = 500) {
   }
 
   .reviews-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
-  /* Carousel controls only exist on mobile */
   .review-dots {
     display: none;
   }
@@ -459,18 +454,6 @@ function truncateText(text: string, maxLength: number = 500) {
     opacity: 0.5;
   }
 
-  .sr-only {
-    position: absolute;
-    inline-size: 1px;
-    block-size: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   @media (min-width: 769px) {
     .review-expand {
       display: none;
@@ -522,13 +505,9 @@ function truncateText(text: string, maxLength: number = 500) {
       outline-offset: 2px;
     }
 
-    /* Grid becomes a swipeable, snap-scrolling carousel */
     .reviews-grid {
       display: flex;
       inline-size: 100%;
-      /* A row of non-wrapping flex items reports the sum of all three cards as
-         its min-content width, which would stretch the section. Containment
-         makes the track size from the section instead of from the cards. */
       contain: inline-size;
       gap: 1rem;
       overflow-x: auto;
@@ -544,7 +523,6 @@ function truncateText(text: string, maxLength: number = 500) {
       display: none;
     }
 
-    /* Set by the carousel script, so touch scrolling still works without JS */
     .reviews-grid.has-drag {
       touch-action: pan-y pinch-zoom;
     }
@@ -569,7 +547,6 @@ function truncateText(text: string, maxLength: number = 500) {
       margin-block-start: var(--space-xs);
     }
 
-    /* 1.5rem button keeps a comfortable touch target around a small dot */
     .review-dot {
       display: grid;
       place-items: center;
