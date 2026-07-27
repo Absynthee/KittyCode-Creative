@@ -51,7 +51,7 @@ const classes = [
   <slot />
   {
     required && (
-      <span class="required-indicator" aria-label="required">
+      <span class="required-indicator" aria-hidden="true">
         *
       </span>
     )
@@ -74,7 +74,7 @@ const classes = [
   }
 
   .required-indicator {
-    color: var(--primary);
+    color: var(--primary-text);
     margin-inline-start: 0.25rem;
     font-weight: 600;
   }
@@ -118,11 +118,11 @@ const classes = [
   }
 
   .label--primary {
-    color: var(--primary);
+    color: var(--primary-text);
   }
 
   .label--primary:hover {
-    color: hsl(from var(--primary) h s l / 0.8);
+    color: color-mix(in oklab, var(--primary-text), var(--foreground) 25%);
   }
 
   .label--secondary {

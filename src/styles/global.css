@@ -8,6 +8,7 @@
   --primary: oklch(0.6459 0.1675 46.08);
   --primary-background: oklch(0.6666 0.2077 37.58);
   --primary-foreground: oklch(0.145 0 0);
+  --primary-text: oklch(0.55 0.1675 46.08);
   --secondary: oklch(0.5666 0.1589 44.03);
   --secondary-background: oklch(0.6991 0.1579 54.69);
   --secondary-foreground: oklch(0.145 0 0);
@@ -43,6 +44,7 @@
   --foreground: oklch(0.985 0 0);
   --primary: oklch(0.6666 0.2077 37.58);
   --primary-background: oklch(0.5666 0.1589 44.03);
+  --primary-text: var(--primary);
   --secondary: oklch(0.6991 0.1579 54.69);
   --secondary-background: oklch(0.5702 0.1531 48.94);
   --muted: oklch(65.004% 0.00007 271.152);
@@ -120,8 +122,6 @@ ol[role="list"] {
 
 body {
   -webkit-font-smoothing: antialiased;
-  /* min-block-size: 100dvh; */
-  /* line-height: 1.5; */
 }
 
 img,
@@ -239,7 +239,7 @@ main {
   }
 
   a {
-    color: hsl(from var(--primary) h s l / 0.9);
+    color: var(--primary-text);
     margin-block-end: var(--space-s);
   }
 }
@@ -312,8 +312,6 @@ main {
   text-wrap: pretty;
 }
 
-/* Underline only inline text links inside intro paragraphs,
-   not buttons, cards or other anchor-based components. */
 .section > p a {
   color: inherit;
   font-weight: 500;
@@ -323,7 +321,7 @@ main {
 }
 
 .section > p a:hover {
-  color: var(--primary);
+  color: var(--primary-text);
 }
 
 .section mark {
@@ -349,7 +347,7 @@ main {
 .tag {
   font-size: var(--step--2);
   font-weight: 500;
-  color: hsl(from var(--primary) h s l / 0.9);
+  color: var(--primary-text);
   background: hsl(from var(--primary) h s l / 0.1);
   padding: 0.2rem 0.6rem;
   border-radius: 9999px;
@@ -403,11 +401,11 @@ main {
 }
 
 .prose li::marker {
-  color: var(--primary);
+  color: var(--primary-text);
 }
 
 .prose a {
-  color: var(--primary);
+  color: var(--primary-text);
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -415,7 +413,7 @@ main {
 }
 
 .prose a:hover {
-  color: hsl(from var(--primary) h s l / 0.75);
+  color: color-mix(in oklab, var(--primary-text), var(--foreground) 25%);
 }
 
 .prose strong {

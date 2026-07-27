@@ -308,7 +308,7 @@ const { currentPath } = Astro.props;
   }
 
   .title:hover .nav-title {
-    color: var(--primary);
+    color: var(--primary-text);
   }
 
   .title:focus-visible {
@@ -336,12 +336,12 @@ const { currentPath } = Astro.props;
   }
 
   .nav-link:hover {
-    color: var(--primary);
+    color: var(--primary-text);
     border-block-end-color: var(--primary);
   }
 
   .nav-link.active {
-    color: var(--primary);
+    color: var(--primary-text);
     font-weight: 600;
   }
 
@@ -381,7 +381,21 @@ const { currentPath } = Astro.props;
 
   .toggle input,
   .mobile-toggle input {
-    display: none;
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .toggle input:focus-visible + div,
+  .mobile-toggle input:focus-visible + div {
+    outline: 2px solid var(--primary);
+    outline-offset: 4px;
   }
 
   .toggle input + div,

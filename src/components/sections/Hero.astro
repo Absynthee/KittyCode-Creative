@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import Button from "@/components/ui/Button.astro";
-import Input from "../ui/Input.astro";
 
 import Kitty from "@/assets/images/kitty.gif";
 import { ChevronLeft, EllipsisVertical } from "@lucide/astro";
@@ -214,14 +213,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
             Awesome. Thank you, KittyCode! 😍
           </div>
         </div>
-        <Input
-          class="send-message-container"
-          type="text"
-          placeholder="Type your message..."
-          variant="primary"
-          readonly
-          tabindex={-1}
-        />
+        <div class="send-message-container">Type your message...</div>
       </div>
     </div>
   </div>
@@ -570,12 +562,20 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     .phone .send-message-container {
       position: absolute;
       display: flex;
-      margin: auto;
-      inline-size: 90%;
-      margin-inline: 5%;
-      padding-inline: 1rem;
       align-items: center;
       inset-block-end: 1rem;
+      inline-size: 90%;
+      margin-inline: 5%;
+      min-block-size: 2.5rem;
+      padding-block: 0.5rem;
+      padding-inline: 1rem;
+      border: 1px solid var(--primary);
+      border-radius: var(--radius);
+      background: hsl(from var(--background) h s l / 0.8);
+      color: hsl(from var(--foreground) h s l / 0.6);
+      font-size: var(--step--1);
+      line-height: var(--space-m);
+      user-select: none;
     }
 
     @keyframes gradientShift {
