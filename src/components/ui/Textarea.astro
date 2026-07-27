@@ -196,7 +196,6 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
 </div>
 
 <style>
-  /* Wrapper for textarea and character count */
   .textarea-wrapper {
     display: flex;
     flex-direction: column;
@@ -204,7 +203,6 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
     width: 100%;
   }
 
-  /* Base Textarea Styles */
   .textarea {
     display: block;
     width: 100%;
@@ -222,7 +220,7 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
   }
 
   .textarea::placeholder {
-    color: hsl(from var(--foreground) h s l / 0.5);
+    color: hsl(from var(--foreground) h s l / 0.6);
   }
 
   .textarea:hover {
@@ -234,10 +232,6 @@ const charCountId = showCharCount ? `${textareaId}-char-count` : undefined;
     box-shadow: 0 0 0 2px hsl(from var(--primary) h s l / 0.2);
   }
 
-  /* The box-shadow above is the visible focus ring for both mouse and
-     keyboard, so clicking and tabbing look identical. The transparent
-     outline adds no second ring in normal rendering but becomes a system
-     ring under forced-colors / high-contrast mode. */
   .textarea:focus-visible {
     outline: 2px solid transparent;
     outline-offset: 2px;

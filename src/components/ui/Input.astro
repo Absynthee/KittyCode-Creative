@@ -80,7 +80,7 @@ const classes = [
   }
 
   .input::placeholder {
-    color: hsl(from var(--foreground) h s l / 0.5);
+    color: hsl(from var(--foreground) h s l / 0.6);
   }
 
   .input:hover {
@@ -92,10 +92,6 @@ const classes = [
     box-shadow: 0 0 0 2px hsl(from var(--primary) h s l / 0.2);
   }
 
-  /* The box-shadow above is the visible focus ring for both mouse and
-     keyboard, so clicking and tabbing look identical. The transparent
-     outline adds no second ring in normal rendering but becomes a system
-     ring under forced-colors / high-contrast mode. */
   .input:focus-visible {
     outline: 2px solid transparent;
     outline-offset: 2px;

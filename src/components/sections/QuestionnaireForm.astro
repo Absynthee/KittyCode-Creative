@@ -3,7 +3,6 @@ import Button from "@/components/ui/Button.astro";
 import Input from "@/components/ui/Input.astro";
 import Label from "@/components/ui/Label.astro";
 import Textarea from "@/components/ui/Textarea.astro";
-import Checkbox from "@/components/ui/Checkbox.astro";
 import Radio from "@/components/ui/Radio.astro";
 import { abs } from "@/lib/schema";
 
@@ -22,32 +21,48 @@ interface Props {
 }
 
 const {
-  accessKey = "34317982-f38f-4672-b238-073c162f37c4",
+  accessKey = "686b7c11-3bbc-4c8b-8f7b-ec3e5f7aa0f5",
   variant = "primary",
   size = "medium",
 } = Astro.props;
 
-const extras = [
-  "Blog",
-  "Google/Facebook Testimonials",
-  "E-commerce",
-  "Contact Form",
+const labelColors = {
+  default: "var(--foreground)",
+  primary: "var(--primary)",
+  secondary: "var(--secondary-foreground)",
+  info: "var(--info)",
+  success: "var(--success)",
+  warning: "var(--warning)",
+  error: "var(--error)",
+};
+
+const labelSizes = {
+  small: "var(--step--2)",
+  medium: "var(--step--1)",
+  large: "var(--step-0)",
+};
+
+const budgets = [
+  "Prefer a monthly plan",
+  "Up to £1,500",
+  "£1,500 to £3,500",
+  "£3,500 to £6,000",
+  "£6,000+",
+  "Not sure yet",
 ];
 
-const styles = [
-  "Corporate",
-  "Professional",
-  "Approachable",
-  "Calm",
-  "Friendly",
-  "Playful",
-  "Stylish",
+const timelines = [
+  "As soon as possible",
+  "1 to 3 months",
+  "3 to 6 months",
+  "No fixed deadline",
 ];
-
-const pageCounts = ["1-3", "4-10", "11-50", "50+"];
 ---
 
-<div class="questionnaire-form">
+<div
+  class="questionnaire-form"
+  style={`--legend-color: ${labelColors[variant]}; --legend-size: ${labelSizes[size]};`}
+>
   <form
     action="https://api.web3forms.com/submit"
     method="POST"
@@ -70,7 +85,7 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
           id="q-name"
           name="name"
           type="text"
-          placeholder="Sir Pawsworth III"
+          placeholder=""
           autocomplete="name"
           variant={variant}
           size={size}
@@ -86,7 +101,7 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
           id="q-business-name"
           name="Business Name"
           type="text"
-          placeholder="KittyCode Creative"
+          placeholder=""
           autocomplete="organization"
           variant={variant}
           size={size}
@@ -102,7 +117,7 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
           id="q-email"
           name="email"
           type="email"
-          placeholder="meow@kittycodecreative.com"
+          placeholder=""
           autocomplete="email"
           variant={variant}
           size={size}
@@ -111,24 +126,40 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
       </fieldset>
     </div>
 
-    <h3 class="questionnaire-heading">Business Details</h3>
+    <h3 class="questionnaire-heading">Your Business</h3>
     <div class="questionnaire-fields">
-      <fieldset class="questionnaire-field">
+      <fieldset class="questionnaire-field questionnaire-field--full">
         <Label
           htmlFor="q-business-about"
           variant={variant}
           size={size}
           required
         >
-          What does your business do?
+          Tell us about your business and who you're trying to reach
         </Label>
         <Textarea
           id="q-business-about"
-          name="What does your business do?"
-          placeholder="Your industry and goals."
+          name="About the business and audience"
+          placeholder="What you do, and the customers you want to attract."
           variant={variant}
           size={size}
-          rows={4}
+          rows={3}
+          required
+          autoResize={true}
+        />
+      </fieldset>
+
+      <fieldset class="questionnaire-field questionnaire-field--full">
+        <Label htmlFor="q-purpose" variant={variant} size={size} required>
+          What should the website achieve?
+        </Label>
+        <Textarea
+          id="q-purpose"
+          name="What should the website achieve?"
+          placeholder="More enquiries, online sales, somewhere to send people. Whatever success looks like for you."
+          variant={variant}
+          size={size}
+          rows={3}
           required
           autoResize={true}
         />
@@ -139,227 +170,67 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
           htmlFor="q-existing-website"
           variant={variant}
           size={size}
-          required
+          optional
         >
           Do you already have a website?
         </Label>
-        <Textarea
+        <Input
           id="q-existing-website"
-          name="Do you already have a website?"
-          placeholder="If so, please leave a link to the existing website."
+          name="Existing website"
+          type="url"
+          placeholder="https://yourwebsite.com"
           variant={variant}
           size={size}
-          rows={4}
-          required
-          autoResize={true}
         />
       </fieldset>
 
       <fieldset class="questionnaire-field">
-        <Label htmlFor="q-customers" variant={variant} size={size} required>
-          Who are your potential customers?
+        <Label htmlFor="q-brand-assets" variant={variant} size={size} optional>
+          What brand assets do you already have?
         </Label>
         <Textarea
-          id="q-customers"
-          name="Who are your potential customers?"
-          placeholder="Age range, location, interests, and so on."
+          id="q-brand-assets"
+          name="Existing brand assets"
+          placeholder="A logo, brand guide, colours or fonts."
           variant={variant}
           size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label
-          htmlFor="q-differentiators"
-          variant={variant}
-          size={size}
-          required
-        >
-          How does your business differ from competitors?
-        </Label>
-        <Textarea
-          id="q-differentiators"
-          name="How does your business differ from competitors?"
-          placeholder="What do you do differently? How do you market yourself in a way that's better than others?"
-          variant={variant}
-          size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field questionnaire-field--full">
-        <Label htmlFor="q-competitors" variant={variant} size={size} required>
-          Who are your main competitors?
-        </Label>
-        <Textarea
-          id="q-competitors"
-          name="Who are your main competitors?"
-          placeholder="Similar businesses in your industry. Researching competitors helps us design an appropriate website for you."
-          variant={variant}
-          size={size}
-          rows={4}
-          required
+          rows={2}
           autoResize={true}
         />
       </fieldset>
     </div>
 
-    <h3 class="questionnaire-heading">Website Details</h3>
-    <div class="questionnaire-fields">
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-purpose" variant={variant} size={size} required>
-          What is the website's main purpose?
-        </Label>
-        <Textarea
-          id="q-purpose"
-          name="What is the website's purpose?"
-          placeholder="Try to summarise the goal of your website and what you want it to achieve."
-          variant={variant}
-          size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-logo" variant={variant} size={size} required>
-          Do you already have a logo for your brand?
-        </Label>
-        <Textarea
-          id="q-logo"
-          name="Do you have a logo?"
-          placeholder="If not, will you need a logo as well?"
-          variant={variant}
-          size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-content" variant={variant} size={size} required>
-          Do you have content ready for your website?
-        </Label>
-        <Textarea
-          id="q-content"
-          name="Do you have website content ready?"
-          placeholder="The text and images you are putting on the website."
-          variant={variant}
-          size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-hosting" variant={variant} size={size} required>
-          Will you require hosting?
-        </Label>
-        <Textarea
-          id="q-hosting"
-          name="Will you require hosting?"
-          placeholder="Hosting is included in all of our monthly packages. Otherwise, we will look at a one-off cost."
-          variant={variant}
-          size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-    </div>
-
-    <h4 class="questionnaire-subheading">
-      Please share 3 websites you like the look of:
-    </h4>
-    <div class="questionnaire-fields questionnaire-fields--thirds">
-      {
-        [1, 2, 3].map((n) => (
-          <fieldset class="questionnaire-field">
-            <Label
-              htmlFor={`q-website-like-${n}`}
-              variant={variant}
-              size={size}
-              required
-            >
-              Website {n}
-            </Label>
-            <Input
-              id={`q-website-like-${n}`}
-              name={`Website ${n}`}
-              type="text"
-              placeholder={`https://website-${n}.com`}
-              variant={variant}
-              size={size}
-              required
-            />
-          </fieldset>
-        ))
-      }
-    </div>
+    <h3 class="questionnaire-heading">Your Project</h3>
 
     <fieldset class="questionnaire-options">
-      <legend class="questionnaire-subheading">
-        Do you need any of the following?
+      <legend class="questionnaire-legend">
+        What is your budget for the project?
       </legend>
       <div class="questionnaire-choices">
         {
-          extras.map((extra) => (
-            <Checkbox
-              name="Website Extras"
-              value={extra}
-              variant={variant}
-              size={size}
-            >
-              {extra}
-            </Checkbox>
+          budgets.map((budget) => (
+            <Radio name="Budget" value={budget} variant={variant} size={size}>
+              {budget}
+            </Radio>
           ))
         }
       </div>
     </fieldset>
 
     <fieldset class="questionnaire-options">
-      <legend class="questionnaire-subheading">
-        What kind of style or feel would you like your website to portray?
+      <legend class="questionnaire-legend">
+        When would you like to launch?
       </legend>
       <div class="questionnaire-choices">
         {
-          styles.map((style) => (
-            <Checkbox
-              name="Website Style"
-              value={style}
-              variant={variant}
-              size={size}
-            >
-              {style}
-            </Checkbox>
-          ))
-        }
-      </div>
-    </fieldset>
-
-    <fieldset class="questionnaire-options">
-      <legend class="questionnaire-subheading">
-        How many pages do you think your website will need?
-      </legend>
-      <div class="questionnaire-choices">
-        {
-          pageCounts.map((count) => (
+          timelines.map((timeline) => (
             <Radio
-              name="How many pages?"
-              value={count}
-              checked={count === "1-3"}
+              name="Timeline"
+              value={timeline}
               variant={variant}
               size={size}
             >
-              {count}
+              {timeline}
             </Radio>
           ))
         }
@@ -367,81 +238,37 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
     </fieldset>
 
     <div class="questionnaire-fields">
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-brand-guide" variant={variant} size={size} required>
-          Does your business have a brand guide?
-        </Label>
-        <Textarea
-          id="q-brand-guide"
-          name="Brand Guide"
-          placeholder="Any brand guide, style guide or design system that will aid in the consistency of design across your brand."
+      <fieldset class="questionnaire-field questionnaire-field--full">
+        <Label
+          htmlFor="q-websites-liked"
           variant={variant}
           size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-seo" variant={variant} size={size} required>
-          Is it vital to be found on the first page of Google?
+          optional
+        >
+          Any websites you like the look of?
         </Label>
         <Textarea
-          id="q-seo"
-          name="SEO ranking"
-          placeholder="How important is SEO for your business?"
+          id="q-websites-liked"
+          name="Websites you like"
+          placeholder="Links to any sites whose style appeals to you, and what you like about them."
           variant={variant}
           size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-launch-date" variant={variant} size={size} required>
-          Do you have an ideal launch date?
-        </Label>
-        <Textarea
-          id="q-launch-date"
-          name="Website launch date"
-          placeholder="This can help us with time management of the project."
-          variant={variant}
-          size={size}
-          rows={4}
-          required
-          autoResize={true}
-        />
-      </fieldset>
-
-      <fieldset class="questionnaire-field">
-        <Label htmlFor="q-budget" variant={variant} size={size} required>
-          What is your budget?
-        </Label>
-        <Textarea
-          id="q-budget"
-          name="What is your budget?"
-          placeholder="What is your budget for the project?"
-          variant={variant}
-          size={size}
-          rows={4}
-          required
+          rows={3}
           autoResize={true}
         />
       </fieldset>
 
       <fieldset class="questionnaire-field questionnaire-field--full">
-        <Label htmlFor="q-extra-info" variant={variant} size={size}>
+        <Label htmlFor="q-extra-info" variant={variant} size={size} optional>
           Anything else you feel might be important?
         </Label>
         <Textarea
           id="q-extra-info"
           name="Extra information"
-          placeholder="Anything that isn't mentioned in the other sections, or something you want to expand on. (optional)"
+          placeholder="Anything that isn't mentioned above, or something you want to expand on."
           variant={variant}
           size={size}
-          rows={5}
+          rows={4}
           autoResize={true}
         />
       </fieldset>
@@ -704,9 +531,14 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
     margin-block-start: 0;
   }
 
-  .questionnaire-subheading {
-    margin-block: 1.5rem 1rem;
-    font-size: var(--step-0);
+  .questionnaire-legend {
+    display: inline-block;
+    padding-inline: 0;
+    margin-block-end: 0.25rem;
+    font-size: var(--legend-size);
+    font-weight: 500;
+    line-height: var(--space-s);
+    color: var(--legend-color);
     position: relative;
     z-index: 1;
   }
@@ -718,10 +550,6 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
     margin-block-end: 2rem;
     position: relative;
     z-index: 1;
-  }
-
-  .questionnaire-fields--thirds {
-    grid-template-columns: repeat(3, 1fr);
   }
 
   .questionnaire-field {
@@ -750,10 +578,6 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
     margin-block-end: 2rem;
     position: relative;
     z-index: 1;
-  }
-
-  .questionnaire-options .questionnaire-subheading {
-    margin-block-start: 0;
   }
 
   .questionnaire-choices {
@@ -832,8 +656,7 @@ const pageCounts = ["1-3", "4-10", "11-50", "50+"];
       animation: none;
     }
 
-    .questionnaire-fields,
-    .questionnaire-fields--thirds {
+    .questionnaire-fields {
       grid-template-columns: 1fr;
     }
 
