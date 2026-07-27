@@ -228,20 +228,40 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
 
   <style>
     .hero {
+      --hero-tint: oklch(from var(--secondary) 0.8 0.12 h);
+      --hero-falloff: 16deg;
+      --hero-blend: multiply;
+      --hero-angle: 255deg;
+      --hero-origin: 50% 0%;
+
       position: relative;
       overflow: hidden;
       background: var(--background);
       background-image: conic-gradient(
-        from 255deg at 50% 0% in oklab,
-        var(--secondary),
-        var(--background),
-        var(--background),
-        var(--secondary)
+        from var(--hero-angle) at var(--hero-origin) in oklab,
+        var(--hero-tint) 0deg,
+        var(--hero-falloff),
+        var(--background) 120deg,
+        var(--background) 250deg,
+        calc(360deg - var(--hero-falloff)),
+        var(--hero-tint) 360deg
       );
-      background-blend-mode: color-dodge;
-      min-block-size: 100dvh;
+      background-blend-mode: var(--hero-blend);
       display: grid;
       place-items: center;
+    }
+
+    :global(.dark) .hero {
+      --hero-tint: var(--secondary);
+      --hero-blend: color-dodge;
+
+      background-image: conic-gradient(
+        from var(--hero-angle) at var(--hero-origin) in oklab,
+        var(--hero-tint),
+        var(--background),
+        var(--background),
+        var(--hero-tint)
+      );
     }
 
     .hero--fullwidth {
@@ -650,13 +670,8 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
 
     @media screen and (max-width: 1100px) {
       .hero {
-        background-image: conic-gradient(
-          from 235deg at 50% -5% in oklab,
-          var(--secondary),
-          var(--background),
-          var(--background),
-          var(--secondary)
-        );
+        --hero-angle: 235deg;
+        --hero-origin: 50% -5%;
       }
 
       .btn--large {
@@ -712,13 +727,7 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     /* Keep both CTAs on a single full-width row on mobile */
     @media screen and (max-width: 768px) {
       .hero {
-        background-image: conic-gradient(
-          from 215deg at 50% -5% in oklab,
-          var(--secondary),
-          var(--background),
-          var(--background),
-          var(--secondary)
-        );
+        --hero-angle: 215deg;
       }
 
       .hero-buttons {
