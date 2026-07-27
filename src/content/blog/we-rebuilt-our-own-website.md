@@ -46,7 +46,7 @@ We used to offer logo design alongside web design. Doing one thing properly beat
 
 **WhatsApp.** [You can send us a message](https://wa.me/447480694425) now instead of writing an email. Same cats, fewer formalities.
 
-**Referrals.** [Send someone our way](/referrals) and, when they book their first project, we'll send you 10% of their first invoice as a thank you.
+**Referrals.** [Send someone our way](/referrals) and, when they book their first project, we'll send you £100 as a thank you.
 
 ## Other bits
 

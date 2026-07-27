@@ -1,7 +1,7 @@
 ---
-title: "Refer a Friend, Earn 10%"
-description: "Know someone who needs a website? Refer them to KittyCode Creative and earn 10% of their first invoice. No cap, no vouchers, and you don't need to be a client to take part."
-excerpt: "We'd rather put our money towards the people who recommend us than towards adverts. So if you send someone our way and they book a project, we'll send you 10% of their first invoice."
+title: "Refer a Friend, Earn £100"
+description: "Know someone who needs a website? Refer them to KittyCode Creative and earn £100 when they book a project. No cap, no vouchers, and you don't need to be a client to take part."
+excerpt: "We'd rather put our money towards the people who recommend us than towards adverts. So if you send someone our way and they book a project, we'll send you £100."
 pubDate: 2026-07-24
 cover: ../../assets/images/blog/kittycode.jpg
 coverAlt: "The KittyCode Creative logo"
@@ -13,7 +13,7 @@ draft: true
 
 Almost every project we've worked on came from someone telling someone else about us. Not from an advert, and not from us chasing anyone. Just a recommendation from a person who liked what we built.
 
-So we've made that official. If you point someone our way and they book a project, we'll send you 10% of their first invoice.
+So we've made that official. If you point someone our way and they book a project, we'll send you £100.
 
 ## How it works
 
@@ -27,13 +27,13 @@ That's the whole process. No codes to remember, no dashboard to log into, no for
 
 ## The details worth knowing
 
-**It's real money.** Your 10% is paid straight to you, in whatever way suits you best. Not credit towards a future project, not a voucher, not a discount you'll never use.
+**It's real money.** Your £100 is paid straight to you, in whatever way suits you best. Not credit towards a future project, not a voucher, not a discount you'll never use.
 
-**There's no cap.** Refer one person or refer ten. Every project that lands earns you another 10%.
+**There's no cap.** Refer one person or refer ten. Every project that lands earns you another £100.
 
 **You don't have to be a client.** Plenty of people know someone who needs a website without needing one themselves. You're still in.
 
-Because our packages start at £900, a single referral is worth £90 or more. Point a friend towards a larger project and it climbs from there.
+**It's the same £100 every time.** It doesn't matter which package they choose or how big the project turns out to be. One referral, one hundred pounds, and no maths for anyone to do.
 
 ## Why we do it this way
 

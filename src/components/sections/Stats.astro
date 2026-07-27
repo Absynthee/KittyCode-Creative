@@ -24,7 +24,7 @@ const {
     {
       value: "100%",
       label: "WCAG Compliant",
-      description: "Every site built to accessibility standards from the ground up.",
+      description: "Every site built for complete accessibility.",
       icon: "accessibility",
     },
     {
@@ -34,27 +34,15 @@ const {
       icon: "star",
     },
     {
-      value: "0",
-      label: "Templates Used",
-      description: "100% bespoke. Hand-coded from scratch, never a template.",
-      icon: "code",
-    },
-    {
-      value: "0",
-      label: "Meetings Required",
-      description: "Async by default. Your project runs in writing, on your schedule.",
-      icon: "calendar",
-    },
-    {
-      value: "10%",
+      value: "£100",
       label: "Referral Reward",
-      description: "Earn 10% of a friend's first invoice when they book through you.",
+      description: "Earn £100 when a friend books a project through you.",
       icon: "gift",
     },
     {
-      value: "Eastbourne",
-      label: "Based in East Sussex",
-      description: "A local agency serving clients across the UK and beyond.",
+      value: "Flexible",
+      label: "Choose how you pay",
+      description: "Pay monthly or as a one-off, whichever suits you best.",
       icon: "pin",
     },
   ],
@@ -98,7 +86,7 @@ const icons = {
     padding: 0;
     inline-size: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 
@@ -108,7 +96,7 @@ const icons = {
     align-items: center;
     text-align: center;
     gap: var(--space-2xs);
-    padding: var(--space-xl) var(--space-m);
+    padding: var(--space-m) var(--space-m);
     background: hsl(from var(--card) h s l / 0.05);
     border: 1px solid hsl(from var(--border) h s l / 0.2);
     border-radius: var(--radius);

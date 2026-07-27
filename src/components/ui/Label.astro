@@ -12,6 +12,7 @@ export interface Props {
   align?: "left" | "center" | "right";
   htmlFor?: string;
   required?: boolean;
+  optional?: boolean;
   class?: string;
   id?: string;
 }
@@ -22,6 +23,7 @@ const {
   align = "left",
   htmlFor,
   required = false,
+  optional = false,
   class: className = "",
   id,
   ...rest
@@ -54,17 +56,16 @@ const classes = [
       </span>
     )
   }
+  {optional && <span class="optional-indicator">(optional)</span>}
 </label>
 
 <style>
-  /* Base Label Styles */
   .label {
     display: inline-block;
     font-weight: 500;
     color: var(--foreground);
     cursor: pointer;
     transition: color 0.2s ease;
-    /* margin-block-end: var(--space-3xs); */
     line-height: var(--space-s);
   }
 
@@ -76,6 +77,13 @@ const classes = [
     color: var(--primary);
     margin-inline-start: 0.25rem;
     font-weight: 600;
+  }
+
+  .optional-indicator {
+    color: hsl(from var(--foreground) h s l / 0.6);
+    margin-inline-start: 0.25rem;
+    font-size: 0.875em;
+    font-weight: 400;
   }
 
   /* Size Variants */

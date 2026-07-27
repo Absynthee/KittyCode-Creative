@@ -85,6 +85,7 @@ const icons = {
     list-style: none;
     margin: 0;
     padding: 0;
+    padding-block-start: var(--space-s);
     inline-size: 100%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -171,7 +172,7 @@ const icons = {
   @media (max-width: 860px) {
     .process-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-l) 1.5rem;
+      gap: var(--space-xs);
     }
 
     .process-step:not(:last-child)::after {
@@ -179,12 +180,11 @@ const icons = {
     }
   }
 
-  @media (max-width: 480px) {
+  /* @media (max-width: 480px) {
     .process-grid {
       grid-template-columns: 1fr;
     }
 
-    /* Marker sits beside the title instead of above it */
     .process-step {
       display: grid;
       grid-template-columns: auto 1fr;
@@ -223,5 +223,5 @@ const icons = {
       grid-column: 1 / -1;
       max-inline-size: none;
     }
-  }
+  } */
 </style>

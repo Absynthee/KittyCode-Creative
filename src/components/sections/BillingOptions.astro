@@ -1,0 +1,231 @@
+---
+import { Clock, Wallet } from "@lucide/astro";
+
+interface Point {
+  label: string;
+  value: string;
+}
+
+interface Option {
+  name: string;
+  summary: string;
+  points: Point[];
+  bestFor: string;
+}
+
+const options: Option[] = [
+  {
+    name: "Pay monthly",
+    summary:
+      "Spread the cost across a 12 month term and let us look after the site while you do.",
+    points: [
+      {
+        label: "To get started",
+        value: "The initial design fee, then your first monthly payment",
+      },
+      {
+        label: "Hosting",
+        value: "Included for as long as your plan is running",
+      },
+      { label: "Updates", value: "Included as part of the plan" },
+      {
+        label: "Commitment",
+        value: "12 month term, then a rolling monthly contract",
+      },
+      {
+        label: "Cost",
+        value:
+          "Lower across the first year, though payments continue after the initial term",
+      },
+    ],
+    bestFor:
+      "Best if you'd rather keep the upfront cost down and have hosting and updates handled for you.",
+  },
+  {
+    name: "Buy outright",
+    summary:
+      "Pay once, own the finished website, and carry no ongoing commitment to us.",
+    points: [
+      {
+        label: "To get started",
+        value: "A 50% deposit, with the design fee already in the price",
+      },
+      { label: "Hosting", value: "Not included, available for a separate fee" },
+      { label: "Updates", value: "Quoted separately whenever you need them" },
+      { label: "Commitment", value: "None once your site is live" },
+      {
+        label: "Cost",
+        value: "More to begin with, but nothing to pay every month after that",
+      },
+    ],
+    bestFor:
+      "Best if you have the budget upfront and want the site to be yours with no monthly tie-in.",
+  },
+];
+---
+
+<section
+  id="payment-options"
+  class="section"
+  aria-labelledby="payment-options-title"
+>
+  <mark>pick your paw-ment</mark>
+  <h2 id="payment-options-title">Monthly or One-Off?</h2>
+  <p>
+    Every package can be paid either way, and the website you get is identical.
+    The difference is what you pay upfront, what stays included afterwards, and
+    how long you're tied in.
+  </p>
+
+  <div class="billing-options">
+    {
+      options.map((option) => (
+        <article class="option">
+          <div class="option-header">
+            <span class="option-icon" aria-hidden="true">
+              {option.name === "Pay monthly" ? (
+                <Clock size={22} />
+              ) : (
+                <Wallet size={22} />
+              )}
+            </span>
+            <h3 class="option-name">{option.name}</h3>
+          </div>
+
+          <p class="option-summary">{option.summary}</p>
+
+          <dl class="option-points">
+            {option.points.map((point) => (
+              <div class="point">
+                <dt>{point.label}</dt>
+                <dd>{point.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <p class="option-best">{option.bestFor}</p>
+        </article>
+      ))
+    }
+  </div>
+
+  <p class="billing-note">
+    One-off prices already include the initial design fee. On a monthly plan
+    that fee is charged separately at the start, then your payments begin.
+    Either way you get the same bespoke, accessible build with SEO as standard.
+    Not sure which suits you? <a href="/contact">Ask us</a> and we'll talk it
+    through.
+  </p>
+</section>
+
+<style>
+  .billing-options {
+    inline-size: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-l);
+    align-items: stretch;
+    text-align: start;
+  }
+
+  .option {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    padding: var(--space-l) var(--space-m);
+    background: hsl(from var(--card) h s l / 0.05);
+    border: 1px solid hsl(from var(--border) h s l / 0.2);
+    border-radius: var(--radius);
+    backdrop-filter: blur(8px);
+  }
+
+  .option-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-block-end: var(--space-s);
+    border-block-end: 1px solid hsl(from var(--border) h s l / 0.2);
+  }
+
+  .option-icon {
+    display: inline-flex;
+    color: var(--primary);
+  }
+
+  .option-name {
+    font-size: var(--step-1);
+    text-transform: capitalize;
+  }
+
+  .option-summary {
+    max-inline-size: 60ch;
+    text-wrap: pretty;
+    color: hsl(from var(--foreground) h s l / 0.85);
+  }
+
+  .option-points {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .point {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 0.5rem var(--space-2xs);
+    align-items: baseline;
+  }
+
+  .point dt {
+    font-size: var(--step--1);
+    font-weight: 600;
+  }
+
+  .point dd {
+    margin: 0;
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.85);
+    text-wrap: pretty;
+  }
+
+  .option-best {
+    margin-block-start: auto;
+    padding-block-start: var(--space-s);
+    border-block-start: 1px solid hsl(from var(--border) h s l / 0.2);
+    font-size: var(--step--2);
+    color: hsl(from var(--foreground) h s l / 0.6);
+    text-wrap: pretty;
+  }
+
+  .billing-note {
+    margin-block-start: var(--space-m);
+    font-size: var(--step--1);
+    color: hsl(from var(--foreground) h s l / 0.6);
+    text-wrap: pretty;
+  }
+
+  .billing-note a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--primary);
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .billing-note a:hover {
+    color: var(--primary);
+  }
+
+  @media (max-width: 860px) {
+    .billing-options {
+      grid-template-columns: 1fr;
+    }
+
+    .point {
+      grid-template-columns: 1fr;
+      gap: 0.125rem;
+    }
+  }
+</style>
