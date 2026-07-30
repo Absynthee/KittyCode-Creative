@@ -4,9 +4,9 @@ description: "Know someone who needs a website? Refer them to KittyCode Creative
 excerpt: "We'd rather put our money towards the people who recommend us than towards adverts. So if you send someone our way and they book a project, we'll send you £100."
 pubDate: 2026-07-28
 cover: ../../assets/images/blog/refer.png
-coverAlt: "The KittyCode Creative logo"
+coverAlt: "Refer a friend, earn £100"
 banner: ../../assets/images/blog/refer-banner.png
-bannerAlt: "The KittyCode Creative logo"
+bannerAlt: "Refer a friend, earn £100"
 tags: ["Referrals", "Web Design", "Small Business"]
 ---
 
