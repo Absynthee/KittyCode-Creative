@@ -2,13 +2,12 @@
 title: "Refer a Friend, Earn £100"
 description: "Know someone who needs a website? Refer them to KittyCode Creative and earn £100 when they book a project. No cap, no vouchers, and you don't need to be a client to take part."
 excerpt: "We'd rather put our money towards the people who recommend us than towards adverts. So if you send someone our way and they book a project, we'll send you £100."
-pubDate: 2026-07-24
-cover: ../../assets/images/blog/kittycode.jpg
-coverAlt: "The KittyCode Creative logo"
-banner: ../../assets/images/blog/kittycode-banner.jpg
-bannerAlt: "The KittyCode Creative logo"
+pubDate: 2026-07-28
+cover: ../../assets/images/blog/refer.png
+coverAlt: "Refer a friend, earn £100"
+banner: ../../assets/images/blog/refer-banner.png
+bannerAlt: "Refer a friend, earn £100"
 tags: ["Referrals", "Web Design", "Small Business"]
-draft: true
 ---
 
 Almost every project we've worked on came from someone telling someone else about us. Not from an advert, and not from us chasing anyone. Just a recommendation from a person who liked what we built.
