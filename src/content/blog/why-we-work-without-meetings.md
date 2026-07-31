@@ -3,12 +3,11 @@ title: "Why We Work Without Meetings"
 description: "We build websites asynchronously, with no mandatory calls. Here's why working in writing produces better websites, backed by research on meetings, interruptions and focus."
 excerpt: "We don't book meetings by default. Your whole project can run over email and messages, at whatever time of day suits you. Here's why we work that way, and why it tends to be better for you too."
 pubDate: 2026-07-31
-cover: ../../assets/images/blog/kittycode.jpg
-coverAlt: "The KittyCode Creative logo"
-banner: ../../assets/images/blog/kittycode-banner.jpg
-bannerAlt: "The KittyCode Creative logo"
+cover: ../../assets/images/blog/async.png
+coverAlt: ""
+banner: ../../assets/images/blog/async-banner.png
+bannerAlt: ""
 tags: ["Async Work", "Process", "Web Design", "Remote Work"]
-draft: true
 ---
 
 When you hire most agencies, the first thing that lands is a calendar invite. We do it differently. We work asynchronously by default, which means your project runs over email and messages, and you reply whenever it suits you.
