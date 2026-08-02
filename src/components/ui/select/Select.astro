@@ -57,7 +57,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
       let selectedValue = defaultValue || "";
       let isOpen = false;
 
-      // Initialize
       if (selectedValue) {
         setSelectedValue(selectedValue);
       } else {
@@ -65,7 +64,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
         addElementClass(safeValueElement, "placeholder");
       }
 
-      // Toggle dropdown
       safeTrigger.addEventListener("click", (e) => {
         e.preventDefault();
         if (safeTrigger.hasAttribute("disabled")) return;
@@ -77,10 +75,8 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
         }
       });
 
-      // Handle item selection
       items.forEach((item) => {
         item.addEventListener("click", () => {
-          // Don't allow selection of disabled items
           if (
             item.hasAttribute("disabled") ||
             item.classList.contains("select-item--disabled")
@@ -98,11 +94,9 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
         });
       });
 
-      // Keyboard navigation
       safeTrigger.addEventListener("keydown", handleTriggerKeyDown);
       safeContent.addEventListener("keydown", handleContentKeyDown);
 
-      // Prevent disabled items from receiving focus
       items.forEach((item) => {
         item.addEventListener("focus", (e) => {
           if (
@@ -110,7 +104,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
             item.classList.contains("select-item--disabled")
           ) {
             e.preventDefault();
-            // Focus next enabled item instead
             const enabledItems = items.filter(
               (item) =>
                 !item.hasAttribute("disabled") &&
@@ -124,7 +117,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
         });
       });
 
-      // Close on outside click
       document.addEventListener("click", (e) => {
         if (!select.contains(e.target as Node) && isOpen) {
           closeDropdown();
@@ -136,7 +128,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
         setElementAttribute(safeContent, "data-state", "open");
         setElementAttribute(safeTrigger, "aria-expanded", "true");
 
-        // Focus first enabled item or selected item
         const selectedItem = safeContent.querySelector(
           ".select-item[data-selected]:not([disabled]):not(.select-item--disabled)",
         ) as HTMLElement;
@@ -161,7 +152,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
       }
 
       function setSelectedValue(value: string, text?: string) {
-        // Check if the item being selected is disabled
         const selectedItem = safeContent.querySelector(
           `[data-value="${value}"]`,
         ) as HTMLElement;
@@ -175,13 +165,11 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
 
         selectedValue = value;
 
-        // Update display
         const displayText = text || selectedItem?.textContent?.trim() || value;
 
         safeValueElement.textContent = displayText;
         removeElementClass(safeValueElement, "placeholder");
 
-        // Update selected states
         items.forEach((item) => {
           if (getElementAttribute(item, "data-value") === value) {
             setElementAttribute(item, "data-selected", "");
@@ -192,12 +180,10 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
           }
         });
 
-        // Update hidden input
         if (hiddenInput) {
           hiddenInput.value = value;
         }
 
-        // Dispatch change event
         const changeEvent = new CustomEvent("change", {
           detail: { value, text: displayText },
           bubbles: true,
@@ -223,7 +209,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
       function handleContentKeyDown(event: KeyboardEvent) {
         const focusedItem = document.activeElement as HTMLElement;
 
-        // Only include enabled items for navigation
         const enabledItems = items.filter(
           (item) =>
             !item.hasAttribute("disabled") &&
@@ -236,7 +221,6 @@ const selectId = `select-${Math.random().toString(36).slice(2, 11)}`;
           case "Enter":
           case " ":
             event.preventDefault();
-            // Only allow selection if item is enabled and is a select item
             if (
               focusedItem &&
               focusedItem.classList.contains("select-item") &&

@@ -1,7 +1,6 @@
-// Regenerates src/assets/og/bg.png — the shared background for the auto-
-// generated OG cards (src/pages/og/[...route].ts). It mirrors the look of
-// public/og-image.png: a dark card with a warm ember glow in the top-left
-// corner (minus the phone mockup). Tweak the glow values below and rerun:
+// Regenerates src/assets/og/bg.png, the shared background for the generated OG
+// cards. Mirrors public/og-image.png without the phone mockup. Tweak the glow
+// values below and rerun:
 //
 //   node scripts/generate-og-bg.mjs
 //
@@ -59,13 +58,12 @@ fill(
   ),
 );
 
-// Text baked into the background (shared by every card): the "KittyCode
-// Creative" wordmark beside the logo up top, and the domain footer bottom-left.
+// Text baked in here rather than per-card: wordmark up top, domain bottom-left.
 const fontData = new Uint8Array(fs.readFileSync("src/assets/og/Inter-Bold.ttf"));
 const typeface = CanvasKit.Typeface.MakeFreeTypeFaceFromData(fontData.buffer);
 
-// Wordmark in white, vertically centred against the 110px logo drawn by
-// astro-og-canvas at (70, 70) — see src/pages/og/[...route].ts.
+// Vertically centred against the 110px logo astro-og-canvas draws at (70, 70).
+// See src/pages/og/[...route].ts.
 const nameFont = new CanvasKit.Font(typeface, 40);
 nameFont.setSubpixel(true);
 const namePaint = new CanvasKit.Paint();
@@ -73,7 +71,7 @@ namePaint.setColor(CanvasKit.Color(255, 255, 255, 1));
 namePaint.setAntiAlias(true);
 canvas.drawText("KittyCode Creative", 198, 139, namePaint, nameFont);
 
-// Domain footer, bottom-left in bold orange — mirrors og-image's URL.
+// Mirrors the URL treatment in og-image.png.
 const urlFont = new CanvasKit.Font(typeface, 36);
 urlFont.setSubpixel(true);
 const urlPaint = new CanvasKit.Paint();

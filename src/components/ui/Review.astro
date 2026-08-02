@@ -1,5 +1,4 @@
 ---
-// Review.astro
 import { Star, User } from "@lucide/astro";
 import Avatar from "@/components/ui/Avatar.astro";
 import { reviews as defaultReviews } from "@/lib/reviews";
@@ -48,9 +47,8 @@ function truncateText(text: string, maxLength: number = 500) {
     refreshExpandButtons();
   }
 
-  // Mobile carousel: the reviews grid becomes a snap-scrolling track that
-  // auto-advances, and can be swiped (native touch scroll) or dragged with a
-  // mouse. Autoplay stops for good once the visitor takes over.
+  // Mobile only: the grid becomes a snap-scrolling track that auto-advances
+  // until the visitor swipes or drags, then stops for good.
   let teardownCarousel: (() => void) | null = null;
 
   function initReviewCarousel() {
@@ -122,8 +120,7 @@ function truncateText(text: string, maxLength: number = 500) {
       timer = window.setInterval(() => goTo(activeIndex() + 1), AUTOPLAY_MS);
     };
 
-    // Any deliberate interaction hands control to the visitor for good, so a
-    // review can't slide away mid-sentence.
+    // Stops autoplay permanently, so a review can't slide away mid-sentence.
     const engage = () => {
       engaged = true;
       stop();
@@ -137,9 +134,8 @@ function truncateText(text: string, maxLength: number = 500) {
       });
     };
 
-    // Pointer dragging, used for both mouse and touch so the distance needed
-    // to move on is the same either way: a short drag or a quick flick is
-    // enough to advance, anything smaller settles back.
+    // One threshold for mouse and touch, so a short drag or quick flick
+    // advances and anything smaller settles back.
     const DRAG_START = 4;
 
     let dragging = false;
@@ -192,8 +188,7 @@ function truncateText(text: string, maxLength: number = 500) {
           : startIndex;
 
       goTo(Math.min(Math.max(target, 0), cards.length - 1));
-      // Snapping stays off until the glide finishes, so re-enabling it can't
-      // yank the track mid-animation.
+      // Re-enabling snap mid-glide yanks the track, so wait for the end.
       settleTimer = window.setTimeout(
         () => scroller.classList.remove("is-dragging"),
         450,
