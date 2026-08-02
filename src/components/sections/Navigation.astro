@@ -103,8 +103,8 @@ const { currentPath } = Astro.props;
     let menuOpen = false;
     let lastScrollY = 0;
 
-    // The drawer sits off-canvas when closed on mobile; `inert` keeps its
-    // links out of the tab order and accessibility tree while invisible.
+    // `inert` keeps the off-canvas drawer's links out of the tab order and
+    // accessibility tree while it is invisible.
     const syncInert = () => {
       content.inert = mobileQuery.matches && !menuOpen;
     };
@@ -145,7 +145,6 @@ const { currentPath } = Astro.props;
         }
       });
 
-    // Auto-hide on scroll
     window.addEventListener(
       "scroll",
       () => {
@@ -192,7 +191,6 @@ const { currentPath } = Astro.props;
       { passive: true },
     );
 
-    // Any nav link click closes the menu
     nav.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => setMenu(false));
     });
@@ -221,7 +219,6 @@ const { currentPath } = Astro.props;
 </script>
 
 <style is:global>
-  /* Base Navigation */
   .navigation {
     position: fixed;
     z-index: 1000;
@@ -233,7 +230,6 @@ const { currentPath } = Astro.props;
     transform: translateY(-100px);
   }
 
-  /* Hamburger (hidden on desktop) */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -273,7 +269,6 @@ const { currentPath } = Astro.props;
     transform: rotate(-45deg) translate(7px, -6px);
   }
 
-  /* Desktop Navigation Content */
   .nav-content {
     display: flex;
     justify-content: space-between;
@@ -363,7 +358,6 @@ const { currentPath } = Astro.props;
     overflow: hidden;
   }
 
-  /* Theme Toggle */
   .toggle,
   .mobile-toggle {
     transform: scale(0.66);
@@ -473,7 +467,6 @@ const { currentPath } = Astro.props;
     outline-offset: 2px;
   }
 
-  /* Mobile Responsive */
 
   @media screen and (max-width: 1200px) {
     .title {
