@@ -28,7 +28,6 @@ const {
   ...rest
 } = Astro.props;
 
-// Generate class names
 const baseClasses = "btn";
 const variantClass = `btn--${variant}`;
 const sizeClass = `btn--${size}`;
@@ -38,7 +37,6 @@ const classes = [baseClasses, variantClass, sizeClass, disabledClass, className]
   .filter(Boolean)
   .join(" ");
 
-// Choose element type
 const Element = href ? "a" : "button";
 const elementProps = href ? { href, ...rest } : { type, disabled, ...rest };
 ---
@@ -48,7 +46,6 @@ const elementProps = href ? { href, ...rest } : { type, disabled, ...rest };
 </Element>
 
 <style>
-  /* Base Button Styles */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -90,7 +87,6 @@ const elementProps = href ? { href, ...rest } : { type, disabled, ...rest };
     scale: unset;
   }
 
-  /* Size Variants */
   .btn--small {
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
@@ -138,7 +134,6 @@ const elementProps = href ? { href, ...rest } : { type, disabled, ...rest };
     min-width: 7em;
   }
 
-  /* Style Variants */
   /* default unused, fallback to primary */
   .btn--default {
     background: hsl(from var(--primary-background) h s l / 0.15);

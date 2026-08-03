@@ -27,7 +27,7 @@ The site needed real character to match the artwork, but it still had to be quic
 
 ## What we built
 
-We designed a bold, characterful one-page layout paired with a blog, hand-coded for performance and accessibility. Interactive and animated touches bring the personality Rose asked for, while clear calls to action point visitors to the shop. SEO best practices were baked in from the start so the site is discoverable across search engines and AI assistants.
+We designed a bold, characterful one-page layout paired with a blog, custom-built for performance and accessibility. Interactive and animated touches bring the personality Rose asked for, while clear calls to action point visitors to the shop. SEO best practices were baked in from the start so the site is discoverable across search engines and AI assistants.
 
 ## The outcome
 

@@ -1,4 +1,3 @@
-// Website Navigation
 
 interface NavItem {
   label: string;
@@ -21,7 +20,6 @@ interface SocialItem {
   ariaLabel?: string;
 }
 
-// Main navigation items
 const mainLinks: NavItem[] = [
   {
     label: "Portfolio",
@@ -79,7 +77,6 @@ const secondaryLinks: NavItem[] = [
   },
 ];
 
-// Footer navigation links
 const footerLinks: FooterNavItem[] = [
   {
     label: "Home",

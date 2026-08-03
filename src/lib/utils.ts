@@ -1,6 +1,3 @@
-// @/lib/utils.ts
-
-// HTML Element Type Helpers
 export function getHTMLElement(
   selector: string,
   parent?: Document | HTMLElement
@@ -49,7 +46,6 @@ export function getButtonElement(
   return container.querySelector(selector) as HTMLButtonElement;
 }
 
-// Utility functions for common DOM operations
 export function setElementStyle(
   element: HTMLElement | null,
   property: string,
@@ -88,7 +84,6 @@ export function removeElementClass(
   }
 }
 
-// Image loading utilities
 export function isImageLoaded(img: HTMLImageElement | null): boolean {
   return img ? img.complete && img.naturalWidth > 0 : false;
 }
@@ -97,7 +92,6 @@ export function isImageError(img: HTMLImageElement | null): boolean {
   return img ? img.complete && img.naturalWidth === 0 : false;
 }
 
-// Event listener utilities with proper typing
 export function addElementEventListener<K extends keyof HTMLElementEventMap>(
   element: HTMLElement | null,
   type: K,
@@ -109,7 +103,6 @@ export function addElementEventListener<K extends keyof HTMLElementEventMap>(
   }
 }
 
-// Form element utilities
 export function getFormValue(
   element: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null
 ): string {
@@ -125,7 +118,6 @@ export function setFormValue(
   }
 }
 
-// Attribute utilities
 export function setElementAttribute(
   element: HTMLElement | null,
   name: string,
@@ -152,7 +144,6 @@ export function removeElementAttribute(
   }
 }
 
-// Animation and transition utilities
 export function waitForTransition(
   element: HTMLElement | null,
   property?: string
@@ -173,7 +164,6 @@ export function waitForTransition(
   });
 }
 
-// Focus management utilities
 export function focusElement(
   element: HTMLElement | null,
   options?: FocusOptions
@@ -189,7 +179,6 @@ export function blurElement(element: HTMLElement | null): void {
   }
 }
 
-// Array filtering helpers for DOM collections
 export function filterHTMLElements(elements: Element[]): HTMLElement[] {
   return elements.filter((el): el is HTMLElement => el instanceof HTMLElement);
 }
@@ -200,7 +189,6 @@ export function filterImageElements(elements: Element[]): HTMLImageElement[] {
   );
 }
 
-// Validation helpers
 export function isHTMLElement(element: unknown): element is HTMLElement {
   return element instanceof HTMLElement;
 }
@@ -219,7 +207,6 @@ export function isTextAreaElement(
   return element instanceof HTMLTextAreaElement;
 }
 
-// Generic element finder with type assertion
 export function findElement<T extends HTMLElement>(
   selector: string,
   parent?: Document | HTMLElement,

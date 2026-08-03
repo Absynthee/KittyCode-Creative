@@ -28,7 +28,6 @@ const accordionId = `accordion-${Math.random().toString(36).slice(2, 11)}`;
       const items = accordion.querySelectorAll(".accordion-item");
       const triggers = accordion.querySelectorAll(".accordion-trigger");
 
-      // Initialize default open items
       if (defaultValue) {
         const defaultValues =
           type === "multiple" ? defaultValue.split(",") : [defaultValue];
@@ -42,7 +41,6 @@ const accordionId = `accordion-${Math.random().toString(36).slice(2, 11)}`;
         });
       }
 
-      // Add click listeners to triggers
       triggers.forEach((trigger) => {
         trigger.addEventListener("click", () => {
           const item = trigger.closest(".accordion-item");
@@ -50,7 +48,6 @@ const accordionId = `accordion-${Math.random().toString(36).slice(2, 11)}`;
           const isOpen = item.hasAttribute("data-open");
 
           if (type === "single") {
-            // Close all other items in single mode
             items.forEach((otherItem) => {
               if (otherItem !== item) {
                 closeItem(otherItem);
@@ -58,7 +55,6 @@ const accordionId = `accordion-${Math.random().toString(36).slice(2, 11)}`;
             });
           }
 
-          // Toggle current item
           if (isOpen) {
             closeItem(item);
           } else {

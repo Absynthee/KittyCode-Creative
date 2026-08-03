@@ -1,7 +1,6 @@
-// Single source of truth for customer reviews. Both the visible testimonials
-// (Review.astro) and the JSON-LD review markup on the home page read from here,
-// so the star ratings on the page always match the structured data — a
-// requirement for Google's review rich results.
+// Review.astro and the home page JSON-LD both read from here, so visible star
+// ratings always match the structured data. Google requires that for review
+// rich results.
 
 export interface CustomerReview {
   author_name: string;

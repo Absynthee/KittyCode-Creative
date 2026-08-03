@@ -32,32 +32,23 @@ const imageUrl = new URL(image, Astro.url.origin).href;
 ---
 
 <head>
-  <!-- Basic Meta Tags -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
 
-  <!-- View Transitions: keeps persistent islands (nav) mounted across
-       navigations for smooth, app-like page changes -->
   <ClientRouter />
 
-  <!-- Title and Description -->
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
 
-  <!-- Author -->
   <meta name="author" content={author} />
 
-  <!-- Canonical URL (self-referencing by default) -->
   <link rel="canonical" href={currentUrl} />
 
-  <!-- Robots -->
   {noindex && <meta name="robots" content="noindex, nofollow" />}
 
-  <!-- Sitemap -->
   <link rel="sitemap" href="/sitemap-index.xml" />
 
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content={type} />
   {
     type === "article" && publishDate && (
@@ -84,7 +75,6 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <meta property="og:site_name" content={siteName} />
   <meta property="og:locale" content="en_GB" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@KittyCodeCreate" />
   <meta name="twitter:url" content={currentUrl} />
@@ -93,29 +83,23 @@ const imageUrl = new URL(image, Astro.url.origin).href;
   <meta name="twitter:image" content={imageUrl} />
   <meta name="twitter:image:alt" content={`${siteName}: ${title}`} />
 
-  <!-- Favicons. Opaque on purpose (brand orange baked in): the mark is a black
-       cat, so a transparent icon sinks into dark tab bars and iOS flattens
-       apple-touch-icon transparency onto black. public/favicon.png stays
-       transparent and serves as the logo mark for the nav, hero and OG cards. -->
+  <!-- Opaque on purpose: the mark is a black cat, so a transparent icon sinks
+       into dark tab bars. public/favicon.png stays transparent for nav/hero/OG. -->
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-  <!-- Manifest -->
   <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Theme Color -->
   <meta name="theme-color" content="#d94713" />
   <meta name="msapplication-TileColor" content="#000" />
 
   <!-- Fonts are self-hosted via @fontsource-variable/inter, imported in
-       Layout.astro and bundled into the site CSS. -->
+       Layout.astro. -->
 
-  <!-- Theme initialization script (prevents flash). Runs on first load and
-       re-applies on every view-transition swap: Astro replaces the incoming
-       page's <html>, which has no `dark` class (it's added client-side), so we
-       reapply from storage on astro:after-swap before the new page paints. -->
+  <!-- Prevents theme flash. Re-runs on astro:after-swap because the incoming
+       page's <html> has no `dark` class until this reapplies it. -->
   <script is:inline>
     (function () {
       function applyTheme() {
@@ -132,26 +116,19 @@ const imageUrl = new URL(image, Astro.url.origin).href;
     })();
   </script>
 
-  <!-- Analytics -->
   <meta
     name="facebook-domain-verification"
     content="u5px9xlv79fcbyx51ynvlt64qrsjj2"
   />
-  <!-- Umami, proxied through /kc/ so the tracker and its beacon are same-origin
-       requests. The tracker script is a rewrite in public/_redirects; the beacon
-       (/kc/api/send) goes through netlify/edge-functions/umami-send.ts, which
-       forwards the visitor's real IP so Umami Cloud geolocates correctly.
-       data-host-url is required: without it the tracker posts to its hardcoded
-       gateway.umami.is regardless of where it was served from. Relative on
-       purpose, so deploy previews report to their own origin rather than
-       production. Both paths only resolve on Netlify, so analytics is silently
-       inert in `astro dev`. -->
+  <!-- Umami is proxied through /kc/ (rewrite in public/_redirects, beacon via
+       netlify/edge-functions/umami-send.ts). data-host-url is required, and
+       relative on purpose so previews report to their own origin. Only resolves
+       on Netlify, so analytics is inert in `astro dev`. -->
   <script
     defer
     src="/kc/script.js"
     data-host-url="/kc"
     data-website-id="fd4e5c7b-e631-45b1-beef-6c040075417d"></script>
 
-  <!-- Page-specific head tags (e.g. fonts only one page needs) -->
   <slot />
 </head>

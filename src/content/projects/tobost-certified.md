@@ -10,7 +10,7 @@ year: 2024
 order: 5
 tags: ["Business", "Accessible", "Blog"]
 services: ["Web Design", "Front-end Development", "SEO"]
-tech: ["Astro", "Hand-coded CSS", "JavaScript"]
+tech: ["Astro", "Custom CSS", "JavaScript"]
 ---
 
 ## The brief
@@ -23,7 +23,7 @@ Content-heavy sites live or die by structure. Articles had to be easy to browse,
 
 ## What we built
 
-We designed and hand-coded a well-structured blog with a clear reading experience and a professional, trustworthy look. News, reviews and updates are organised so readers can navigate easily, and SEO best practices were built in to help the content rank and stay discoverable.
+We designed and custom-built a well-structured blog with a clear reading experience and a professional, trustworthy look. News, reviews and updates are organised so readers can navigate easily, and SEO best practices were built in to help the content rank and stay discoverable.
 
 ## The outcome
 

@@ -3,10 +3,9 @@ import { ChevronUp } from "@lucide/astro";
 ---
 
 <script>
-  // The scroll listener is registered once at module load with a stable handler
-  // that looks up the current button each time, so it survives view-transition
-  // navigations (where the button is swapped for a fresh element) without
-  // accumulating duplicate listeners.
+  // Registered once with a stable handler that looks the button up each time.
+  // View transitions swap in a fresh button, so binding per navigation would
+  // stack duplicate listeners.
   const handleScroll = () => {
     const button = document.querySelector(".scroll-to-top");
     button?.classList.toggle("visible", window.scrollY > 300);
@@ -14,7 +13,6 @@ import { ChevronUp } from "@lucide/astro";
 
   window.addEventListener("scroll", handleScroll, { passive: true });
 
-  // Rebind the click handler after each navigation onto the current button.
   document.addEventListener("astro:page-load", () => {
     const button = document.querySelector(".scroll-to-top");
     if (!button) return;

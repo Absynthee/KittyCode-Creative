@@ -19,9 +19,7 @@ const { eyebrow, title, lead, primaryCTA, secondaryCTA } = Astro.props;
 ---
 
 <script>
-  // Register the <sparkly-text> custom element used in the eyebrow. On the
-  // home page this is loaded by the Hero; interior pages load it here so the
-  // eyebrow sparkles the same way everywhere.
+  // The Hero loads <sparkly-text> on the home page; interior pages need it here.
   document.addEventListener("astro:page-load", () => {
     import("@/lib/sparkly-text.js");
   });

@@ -1,14 +1,14 @@
 # KittyCode Creative
 
-> KittyCode Creative is a modern web design and development agency based in Eastbourne, East Sussex, UK. We build bespoke, fully accessible (WCAG-compliant) and responsive websites from scratch for individuals and small businesses. Every project is optimised to be found on search engines and AI assistants (SEO, AIO and GEO), and includes hosting options.
+> KittyCode Creative is a modern web design and development agency based in Eastbourne, East Sussex, UK. We build bespoke, fully accessible (WCAG-compliant) and responsive websites for individuals and small businesses. Every project is optimised to be found on search engines and AI assistants (SEO, AIO and GEO), and includes hosting options.
 
 ## About
 
-KittyCode Creative caters to individuals promoting a personal website or portfolio, and small businesses improving their digital footprint or updating their online presence. With a low price of entry, all websites are hand-coded from scratch using best practices, never from templates, to ensure they are fully WCAG (Web Content Accessibility Guidelines) compliant and responsive on all browsers and devices.
+KittyCode Creative caters to individuals promoting a personal website or portfolio, and small businesses improving their digital footprint or updating their online presence. With a low price of entry, all websites are custom-built using best practices to ensure they are fully WCAG (Web Content Accessibility Guidelines) compliant and responsive on all browsers and devices. We work from our own foundations to keep projects moving quickly, then customise them heavily around each client's brand, so no two sites look or feel the same.
 
 We currently focus exclusively on building websites (web design, front-end development, and optimisation for search engines and AI). We no longer offer logo design in order to provide the best quality websites - no compromises.
 
-Every site is built to be found across both search engines and AI assistants, covering SEO (Search Engine Optimisation, ranking on Google and Bing), AIO (AI Optimisation, making the site readable by AI assistants and agentic crawlers) and GEO (Generative Engine Optimisation, earning citations in AI-generated answers from tools like ChatGPT, Gemini and Copilot). We achieve this through semantic hand-coded HTML, structured data (JSON-LD) on every page, fast and lightweight pages, and clear, well-structured content.
+Every site is built to be found across both search engines and AI assistants, covering SEO (Search Engine Optimisation, ranking on Google and Bing), AIO (AI Optimisation, making the site readable by AI assistants and agentic crawlers) and GEO (Generative Engine Optimisation, earning citations in AI-generated answers from tools like ChatGPT, Gemini and Copilot). We achieve this through semantic, custom-built HTML, structured data (JSON-LD) on every page, fast and lightweight pages, and clear, well-structured content.
 
 ## Services & Pricing
 
@@ -16,7 +16,7 @@ Every site is built to be found across both search engines and AI assistants, co
 - **Standard** (recommended): £180/month or £3400 one-off. 4 to 10 pages, handles 100,000 visitors a month, unlimited changes at any time, hosting and security and SSL included, built to be found on Google. Best for small businesses. 12 month contract or 50% deposit. £500 initial design fee.
 - **Complete**: £320/month or £5800 one-off. Up to 100 pages, handles 1,000,000 visitors a month, priority changes handled first, self-service editing for blog posts and content, faster hosting with security and SSL, built to be found on Google. Best for larger businesses. 12 month contract or 50% deposit. £800 initial design fee.
 
-Every package is responsive across phones, tablets and desktop, and is built to WCAG accessibility standards. Every site is hand-coded rather than built from a template, and projects run asynchronously with no mandatory meetings or calls.
+Every package is responsive across phones, tablets and desktop, and is built to WCAG accessibility standards. Every site is custom-built and heavily customised to the client, and projects run asynchronously with no mandatory meetings or calls.
 
 Turnaround is typically two weeks to two months from start to launch, depending on the size of the project. Clients normally provide their own copy and images, though KittyCode Creative can assist with some of it if needed.
 
@@ -43,7 +43,7 @@ All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, ac
 
 ## Key facts
 
-- Bespoke, hand-coded websites (no templates)
+- Bespoke, custom-built websites, heavily customised per client
 - Fully WCAG-compliant and accessible
 - Responsive on all browsers and devices
 - SEO, AIO and GEO included with every package

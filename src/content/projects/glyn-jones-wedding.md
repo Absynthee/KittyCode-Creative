@@ -19,11 +19,11 @@ The Glyn-Jones family wanted a beautiful, personal website for their wedding: so
 
 ## The challenge
 
-Wedding sites need to feel special and heartfelt while remaining genuinely useful. The information had to be effortless to find on a phone at a glance, and the whole experience had to feel bespoke rather than templated.
+Wedding sites need to feel special and heartfelt while remaining genuinely useful. The information had to be effortless to find on a phone at a glance, and the whole experience had to feel personal and one of a kind.
 
 ## What we built
 
-We designed a refined single-page site that balances storytelling with clear, well-organised details. The layout is fully responsive, so guests can find times, locations and information quickly from any device, and every element was hand-coded to match the tone of the day.
+We designed a refined single-page site that balances storytelling with clear, well-organised details. The layout is fully responsive, so guests can find times, locations and information quickly from any device, and every element was customised to match the tone of the day.
 
 ## The outcome
 

@@ -1,15 +1,12 @@
 import type { Context } from "https://edge.netlify.com";
 
-// Proxies the Umami beacon (/kc/api/send -> gateway.umami.is/api/send) at the
-// edge so it stays a first-party request (blockers matching the umami.is
-// hostname can't drop it), while fixing geolocation.
+// Proxies the Umami beacon (/kc/api/send -> gateway.umami.is/api/send) so it
+// stays a first-party request that hostname-matching blockers can't drop.
 //
-// A plain _redirects proxy can't do this: the request reaches Umami from
-// Netlify's egress IP, and Umami Cloud (behind Cloudflare) reads `cf-connecting-ip`
-// — which is Netlify, not the visitor — so every hit lands in the proxy's
-// datacenter. Umami Cloud checks `x-umami-client-ip` ABOVE `cf-connecting-ip`
-// in its IP precedence list, so injecting the real visitor IP there makes it
-// geolocate the actual visitor. See src/lib/ip.ts in umami-software/umami.
+// A plain _redirects proxy won't work: Umami Cloud reads `cf-connecting-ip`,
+// which would be Netlify's egress IP, putting every hit in the proxy's
+// datacenter. It checks `x-umami-client-ip` above that, so injecting the real
+// visitor IP there fixes geolocation. See src/lib/ip.ts in umami-software/umami.
 const UMAMI_COLLECT = "https://gateway.umami.is/api/send";
 
 export default async (request: Request, context: Context) => {

@@ -31,7 +31,6 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     import("@/lib/sparkly-text.js");
   });
 
-  // Mouse-follow rotation script for phone container
   function initPhoneRotation(): void {
     const phone = document.querySelector<HTMLElement>(".phone-container");
     const heroContainer = document.querySelector<HTMLElement>(".hero");
@@ -46,21 +45,19 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
       return;
     }
 
-    // Remove animation after it completes to prevent interference
+    // The intro animation fights the mouse-follow transform, so clear it once
+    // it has run.
     setTimeout(() => {
       phone.style.animation = "none";
       phone.style.opacity = "1";
     }, 4000);
 
-    // Ensure smooth transitions are enabled
     phone.style.transition = "transform 0.3s ease-out";
 
-    // Only listen to mousemove when inside hero container
     heroContainer.addEventListener("mouseenter", () => {
       document.addEventListener("mousemove", handleMouseMove);
     });
 
-    // Reset and stop listening when mouse leaves hero container
     heroContainer.addEventListener("mouseleave", () => {
       document.removeEventListener("mousemove", handleMouseMove);
       resetPhoneRotation(phone);
@@ -78,13 +75,11 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     element: HTMLElement,
     heroContainer: HTMLElement,
   ): void {
-    // Get mouse position
     const x = event.clientX;
     const y = event.clientY;
 
     const heroRect = heroContainer.getBoundingClientRect();
 
-    // Check if mouse is actually within hero container bounds
     if (
       x < heroRect.left ||
       x > heroRect.right ||
@@ -102,15 +97,12 @@ const { name, role, bio, primaryCTA, secondaryCTA } = Astro.props;
     const offsetX = ((x - middleX) / middleX) * 20;
     const offsetY = ((y - middleY) / middleY) * 10;
 
-    // Set CSS custom properties for rotation
     element.style.setProperty("--rotateX", `${offsetX}deg`);
     element.style.setProperty("--rotateY", `${-offsetY}deg`);
   }
 
   function resetPhoneRotation(element: HTMLElement): void {
-    // Use requestAnimationFrame to ensure smooth transition
     requestAnimationFrame(() => {
-      // Reset to center position with smooth transition
       element.style.setProperty("--rotateX", "0deg");
       element.style.setProperty("--rotateY", "0deg");
     });

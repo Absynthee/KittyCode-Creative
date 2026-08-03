@@ -30,8 +30,7 @@ const {
   updatedDate,
 } = Astro.props;
 
-// Use a page's auto-generated OG card when one is registered for its path,
-// unless the page passed an explicit image. Falls back to the sitewide default.
+// An explicit image wins, then a generated card, then the sitewide default.
 const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 ---
 
@@ -58,7 +57,6 @@ const ogImage = image ?? ogImageForPath(Astro.url.pathname);
 
     <main id="main" class:list={[{ home: Astro.url.pathname === "/" }]}>
       <slot />
-      <!-- Main content slot, where pages are inserted -->
     </main>
 
     <ScrollToTop />

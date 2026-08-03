@@ -3,9 +3,9 @@ title: "Why We Work Without Meetings"
 description: "We build websites asynchronously, with no mandatory calls. Here's why working in writing produces better websites, backed by research on meetings, interruptions and focus."
 excerpt: "We don't book meetings by default. Your whole project can run over email and messages, at whatever time of day suits you. Here's why we work that way, and why it tends to be better for you too."
 pubDate: 2026-07-31
-cover: ../../assets/images/blog/async.png
+cover: ../../assets/images/blog/async-1.png
 coverAlt: ""
-banner: ../../assets/images/blog/async-banner.png
+banner: ../../assets/images/blog/async-1-banner.png
 bannerAlt: ""
 tags: ["Async Work", "Process", "Web Design", "Remote Work"]
 ---

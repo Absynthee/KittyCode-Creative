@@ -24,7 +24,7 @@ The bar for a developer's own site is high. It had to be exceptionally fast, ful
 
 ## What we built
 
-We hand-coded a clean, modern portfolio with a strong sense of identity and a focus on performance. Projects and skills are presented clearly, the layout adapts perfectly across devices, and the underlying code is a working example of the standards KittyCode Creative builds to.
+We custom-built a clean, modern portfolio with a strong sense of identity and a focus on performance. Projects and skills are presented clearly, the layout adapts perfectly across devices, and the underlying code is a working example of the standards KittyCode Creative builds to.
 
 ## The outcome
 

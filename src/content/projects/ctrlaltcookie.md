@@ -27,7 +27,7 @@ Link-in-bio tools are quick, but they all look the same and none of them felt li
 
 ## What we built
 
-We designed and hand-coded a bespoke landing page with a bold, playful identity and tasteful animation that rewards interaction without getting in the way. Every social channel, stat and important link is surfaced in one clean, responsive layout, and the whole thing is fast and accessible on any device.
+We designed and custom-built a bespoke landing page with a bold, playful identity and tasteful animation that rewards interaction without getting in the way. Every social channel, stat and important link is surfaced in one clean, responsive layout, and the whole thing is fast and accessible on any device.
 
 ## The outcome
 

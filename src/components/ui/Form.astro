@@ -58,7 +58,6 @@ const {
   class: className = "",
 } = Astro.props;
 
-// Default buttons if none provided
 const defaultButtons: FormButton[] = [
   {
     label: "Submit",
@@ -101,13 +100,11 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
 
       if (!formElement) return;
 
-      // Real-time validation
       inputs.forEach((input) => {
         input.addEventListener("blur", validateField);
         input.addEventListener("input", clearErrorOnInput);
       });
 
-      // Form submission validation
       formElement.addEventListener("submit", handleSubmit);
 
       function validateField(event: Event) {
@@ -191,10 +188,8 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
         addElementClass(fieldContainer, "field--error");
         removeElementClass(fieldContainer, "field--success");
 
-        // Update input variant
         input.className = input.className.replace(/input--\w+/, "input--error");
 
-        // Update label variant
         const label = getHTMLElement("label", fieldContainer);
         if (label) {
           label.className = label.className.replace(
@@ -203,7 +198,6 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
           );
         }
 
-        // Show error message
         let errorElement = getHTMLElement(".error-message", fieldContainer);
         if (!errorElement) {
           errorElement = document.createElement("span");
@@ -221,13 +215,11 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
           addElementClass(fieldContainer, "field--success");
           removeElementClass(fieldContainer, "field--error");
 
-          // Update input variant
           input.className = input.className.replace(
             /input--\w+/,
             "input--success",
           );
 
-          // Update label variant
           const label = getHTMLElement("label", fieldContainer);
           if (label) {
             label.className = label.className.replace(
@@ -237,7 +229,6 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
           }
         }
 
-        // Remove error message
         const errorElement = getHTMLElement(".error-message", fieldContainer);
         if (errorElement) {
           errorElement.remove();
@@ -332,7 +323,6 @@ const getFieldSize = (field: FormField): "small" | "medium" | "large" => {
 </div>
 
 <style>
-  /* Form Layout Styles Only */
   .form-container {
     max-width: 600px;
     margin: 0 auto;
