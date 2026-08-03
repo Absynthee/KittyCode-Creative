@@ -3,12 +3,11 @@ title: "Working Without Meetings, Part Two: Anxiety and Accessibility"
 description: "Part two on why we work asynchronously. For a lot of people a call isn't just inconvenient, it's a barrier. Here's how a written-first process helps with anxiety and accessibility."
 excerpt: "Part one was about time and focus. This one is about people. For a lot of them, a call isn't an inconvenience, it's a barrier, and a written-first way of working quietly removes it."
 pubDate: 2026-08-03
-cover: ../../assets/images/blog/async.png
+cover: ../../assets/images/blog/async-2.png
 coverAlt: ""
-banner: ../../assets/images/blog/async-banner.png
+banner: ../../assets/images/blog/async-2-banner.png
 bannerAlt: "The KittyCode Creative logo"
 tags: ["Async Work", "Accessibility", "Process", "Web Design"]
-draft: true
 ---
 
 In [part one](/blog/why-we-work-without-meetings) we looked at what meetings do to your time and your focus. That's the practical case for working without them. This one is about something we care about more. For a lot of people, a call isn't just an inconvenience. It's a barrier.
