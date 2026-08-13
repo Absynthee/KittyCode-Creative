@@ -1,11 +1,15 @@
 ---
 import Pricing from "@/components/sections/Pricing.astro";
+import { Plane } from "@lucide/astro";
 
 interface Props {
   cta?: { text: string; href: string };
 }
 
 const { cta } = Astro.props;
+// update for active promotion
+const promoEnds = new Date("2026-08-21T00:00:00Z");
+const promoActive = Date.now() < promoEnds.getTime();
 ---
 
 <section id="services" class="section">
@@ -23,5 +27,115 @@ const { cta } = Astro.props;
     bespoke, accessible build. Pay monthly to spread the cost, or as a one-off
     payment, whichever suits you best.
   </p>
+
+  <!-- update for active promotion -->
+  {
+    promoActive && (
+      <aside class="promo" aria-labelledby="promo-title">
+        <div class="promo-header">
+          <h3 id="promo-title" class="promo-title">
+            <Plane class="promo-icon" aria-hidden="true" />
+            Airbourne offer: 15% off
+          </h3>
+          <span class="promo-badge">Ends 20th August</span>
+        </div>
+        <p class="promo-text">
+          Airbourne is back for its 32nd year, so we're taking 15% off one-off
+          package prices and initial design fees. Mention Airbourne when you{" "}
+          <a href="/contact">get in touch</a> and we'll apply it to your quote.
+        </p>
+      </aside>
+    )
+  }
+
   <Pricing cta={cta} />
 </section>
+
+<style>
+  .promo {
+    inline-size: 100%;
+    margin-block: var(--space-m) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+    padding-block: var(--space-m);
+    padding-inline: var(--space-l);
+    text-align: start;
+    background:
+      linear-gradient(
+        135deg,
+        hsl(from var(--primary) h s l / 0.2),
+        hsl(from var(--primary) h s l / 0.07)
+      ),
+      var(--background);
+    border: 2px solid hsl(from var(--primary) h s l / 0.55);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 24px hsl(from var(--primary) h s l / 0.25);
+  }
+
+  .promo-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-s);
+  }
+
+  .promo-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--step-1);
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  .promo-icon {
+    inline-size: 1rlh;
+    block-size: 1rlh;
+    flex-shrink: 0;
+    color: var(--primary);
+  }
+
+  .promo-badge {
+    margin-inline-start: auto;
+    padding-block: 0.25rem;
+    padding-inline: 0.75rem;
+    font-size: var(--step--2);
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--primary-foreground);
+    background-color: var(--primary-background);
+    border-radius: 999px;
+  }
+
+  .promo-text {
+    max-inline-size: 70ch;
+    font-size: var(--step-0);
+    color: var(--foreground);
+    text-wrap: pretty;
+  }
+
+  .promo-text a {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline 3px solid var(--primary);
+    text-underline-offset: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .promo-text a:hover {
+    color: var(--primary-text);
+  }
+
+  @media (max-width: 560px) {
+    .promo {
+      padding-inline: var(--space-m);
+    }
+
+    .promo-badge {
+      margin-inline-start: 0;
+    }
+  }
+</style>
