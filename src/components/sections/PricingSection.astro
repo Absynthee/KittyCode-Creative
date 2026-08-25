@@ -1,15 +1,37 @@
 ---
 import Pricing from "@/components/sections/Pricing.astro";
-import { Plane } from "@lucide/astro";
+import { BadgePercent } from "@lucide/astro";
 
 interface Props {
   cta?: { text: string; href: string };
 }
 
+interface Promo {
+  title: string;
+  badge?: string;
+  text: string;
+  linkText: string;
+  linkHref: string;
+  textAfter?: string;
+}
+
 const { cta } = Astro.props;
-// update for active promotion
-const promoEnds = new Date("2026-08-21T00:00:00Z");
-const promoActive = Date.now() < promoEnds.getTime();
+
+// Update for an active promotion:
+function activePromo(): Promo | null {
+  return null;
+
+  // return {
+  //   title: "Summer offer: 15% off",
+  //   badge: "Ends 20th August",
+  //   text: "We're taking 15% off one-off package prices and initial design fees. Mention the offer when you",
+  //   linkText: "get in touch",
+  //   linkHref: "/contact",
+  //   textAfter: "and we'll apply it to your quote.",
+  // };
+}
+
+const promo = activePromo();
 ---
 
 <section id="services" class="section">
@@ -28,21 +50,19 @@ const promoActive = Date.now() < promoEnds.getTime();
     payment, whichever suits you best.
   </p>
 
-  <!-- update for active promotion -->
   {
-    promoActive && (
+    promo && (
       <aside class="promo" aria-labelledby="promo-title">
         <div class="promo-header">
           <h3 id="promo-title" class="promo-title">
-            <Plane class="promo-icon" aria-hidden="true" />
-            Airbourne offer: 15% off
+            <BadgePercent class="promo-icon" aria-hidden="true" />
+            {promo.title}
           </h3>
-          <span class="promo-badge">Ends 20th August</span>
+          {promo.badge && <span class="promo-badge">{promo.badge}</span>}
         </div>
         <p class="promo-text">
-          Airbourne is back for its 32nd year, so we're taking 15% off one-off
-          package prices and initial design fees. Mention Airbourne when you{" "}
-          <a href="/contact">get in touch</a> and we'll apply it to your quote.
+          {promo.text} <a href={promo.linkHref}>{promo.linkText}</a>{" "}
+          {promo.textAfter}
         </p>
       </aside>
     )
