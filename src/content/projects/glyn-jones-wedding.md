@@ -19,7 +19,7 @@ The Glyn-Jones family wanted a beautiful, personal website for their wedding: so
 
 ## The challenge
 
-Wedding sites need to feel special and heartfelt while remaining genuinely useful. The information had to be effortless to find on a phone at a glance, and the whole experience had to feel personal and one of a kind.
+Wedding sites need to feel special and heartfelt while remaining useful in practice. The information had to be effortless to find on a phone at a glance, and the whole experience had to feel personal and one of a kind.
 
 ## What we built
 

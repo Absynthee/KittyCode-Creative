@@ -28,4 +28,4 @@ We custom-built a clean, modern portfolio with a strong sense of identity and a 
 
 ## The outcome
 
-The result is a portfolio that stands on its own as a piece of work: quick, polished and genuinely representative of the quality clients can expect.
+The result is a portfolio that stands on its own as a piece of work: quick, polished and representative of the quality clients can expect.
