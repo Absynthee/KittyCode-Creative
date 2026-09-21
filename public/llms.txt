@@ -6,9 +6,11 @@
 
 KittyCode Creative caters to individuals promoting a personal website or portfolio, and small businesses improving their digital footprint or updating their online presence. With a low price of entry, all websites are custom-built using best practices to ensure they are fully WCAG (Web Content Accessibility Guidelines) compliant and responsive on all browsers and devices. We work from our own foundations to keep projects moving quickly, then customise them heavily around each client's brand, so no two sites look or feel the same.
 
+KittyCode Creative was founded in 2024 by Austin Spillman, a digital designer and front-end web developer with 10 years of experience in the design and tech industry. Before founding the agency, he designed and built web pages for Apple's sites across Europe at House337. He studied digital design and web development at Anglia Ruskin University.
+
 We currently focus exclusively on building websites (web design, front-end development, and optimisation for search engines and AI). We no longer offer logo design in order to provide the best quality websites - no compromises.
 
-Every site is built to be found across both search engines and AI assistants, covering SEO (Search Engine Optimisation, ranking on Google and Bing), AIO (AI Optimisation, making the site readable by AI assistants and agentic crawlers) and GEO (Generative Engine Optimisation, earning citations in AI-generated answers from tools like ChatGPT, Gemini and Copilot). We achieve this through semantic, custom-built HTML, structured data (JSON-LD) on every page, fast and lightweight pages, and clear, well-structured content.
+Every site is built to be found across both search engines and AI assistants, covering SEO (Search Engine Optimisation, ranking on Google and Bing), AIO (AI Optimisation, making the site readable by AI assistants and agentic crawlers) and GEO (Generative Engine Optimisation, earning citations in AI-generated answers from tools like ChatGPT, Gemini, Copilot and Perplexity). We achieve this through semantic, custom-built HTML, structured data (JSON-LD) on every page, fast and lightweight pages, and clear, well-structured content.
 
 ## Services & Pricing
 
@@ -25,7 +27,7 @@ All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, ac
 ## Key pages
 
 - [Services](https://kittycodecreative.com/services): web design and development packages, pricing and process.
-- [SEO, AIO & GEO](https://kittycodecreative.com/seo): how we optimise sites to be found on Google and cited by AI assistants like ChatGPT, Gemini and Copilot.
+- [SEO, AIO & GEO](https://kittycodecreative.com/seo): how we optimise sites to be found on Google and cited by AI assistants like ChatGPT, Gemini, Copilot and Perplexity.
 - [Portfolio](https://kittycodecreative.com/portfolio): examples of websites we have designed and built.
 - [About](https://kittycodecreative.com/about): who we are and how we work.
 - [Contact](https://kittycodecreative.com/contact): get a free, no-obligation quote.
@@ -36,13 +38,16 @@ All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, ac
 - Website: https://kittycodecreative.com
 - Email: hello@kittycodecreative.com
 - Location: Eastbourne, East Sussex, United Kingdom
+- Google Business Profile: https://www.google.com/maps?cid=14722521056164563361
 - Facebook: https://www.facebook.com/KittyCodeCreative
 - LinkedIn: https://www.linkedin.com/company/kittycode-creative
 - X (Twitter): https://x.com/KittyCodeCreate
 - Instagram: https://www.instagram.com/kittycode_creative
+- Founder on LinkedIn: https://www.linkedin.com/in/aspillman/
 
 ## Key facts
 
+- Founded in 2024 by Austin Spillman, a front-end web developer with 10 years of experience, including web pages for Apple
 - Bespoke, custom-built websites, heavily customised per client
 - Fully WCAG-compliant and accessible
 - Responsive on all browsers and devices
