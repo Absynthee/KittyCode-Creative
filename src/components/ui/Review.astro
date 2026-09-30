@@ -1,7 +1,7 @@
 ---
 import { Star, User } from "@lucide/astro";
 import Avatar from "@/components/ui/Avatar.astro";
-import { reviews as defaultReviews } from "@/lib/reviews";
+import { reviews as defaultReviews, formatReviewDate } from "@/lib/reviews";
 import type { CustomerReview } from "@/lib/reviews";
 
 interface Props {
@@ -279,11 +279,8 @@ function truncateText(text: string, maxLength: number = 500) {
                   />
                   <div class="reviewer-details">
                     <h3 class="reviewer-name">{review.author_name}</h3>
-                    <time
-                      class="review-date"
-                      datetime={new Date(review.time * 1000).toISOString()}
-                    >
-                      {review.relative_time_description}
+                    <time class="review-date" datetime={review.date}>
+                      {formatReviewDate(review.date)}
                     </time>
                   </div>
                 </div>

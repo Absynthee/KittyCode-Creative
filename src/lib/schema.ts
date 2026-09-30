@@ -9,6 +9,28 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const orgRef = { "@id": ORG_ID };
 export const websiteRef = { "@id": WEBSITE_ID };
 
+// Embedded as the Organization's founder on the home and about pages, so
+// crawlers see the person's experience, not just the agency's founding date.
+export const FOUNDER = {
+  "@type": "Person",
+  "@id": `${SITE_URL}/about#founder`,
+  name: "Austin Spillman",
+  jobTitle: "Founder and Front-end Web Developer",
+  description:
+    "Digital designer and front-end web developer with 10 years of experience in the design and tech industry, including designing and building web pages for Apple's sites across Europe at House337.",
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Anglia Ruskin University",
+  },
+  knowsAbout: [
+    "Front-end Web Development",
+    "Web Design",
+    "Digital Design",
+    "Accessibility (WCAG)",
+  ],
+  sameAs: ["https://www.linkedin.com/in/aspillman/"],
+};
+
 // Ordered nearest-first so local geo queries have concrete places to match.
 export const AREA_SERVED = [
   { "@type": "City", name: "Eastbourne" },
