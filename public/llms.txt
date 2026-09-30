@@ -22,7 +22,7 @@ Every package is responsive across phones, tablets and desktop, and is built to 
 
 Turnaround is typically two weeks to two months from start to launch, depending on the size of the project. Clients normally provide their own copy and images, though KittyCode Creative can assist with some of it if needed.
 
-All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, accessible build. The initial design fee is already included in the one-off price, and is charged separately at the start of a monthly plan. Hosting is included in monthly packages; one-off purchases can be hosted for an additional fee.
+All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, accessible build. Pricing is all-inclusive: there are no add-ons, upsells or extra charges, and the only thing clients pay for separately is their own domain name. The initial design fee is already included in the one-off price, and is charged separately at the start of a monthly plan. Hosting is included in monthly packages; one-off builds don't include hosting and are handed over for the client to host themselves.
 
 ## Key pages
 
@@ -52,5 +52,6 @@ All packages include SEO, AIO and GEO as standard, alongside a fully bespoke, ac
 - Fully WCAG-compliant and accessible
 - Responsive on all browsers and devices
 - SEO, AIO and GEO included with every package
+- All-inclusive pricing with no extras; the only separate cost is the client's own domain name
 - Sites built to be found on search engines and cited by AI assistants
 - Based in Eastbourne, serving clients across the UK
