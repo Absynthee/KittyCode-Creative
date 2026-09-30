@@ -3,10 +3,10 @@ title: "No Extras: What a Website Really Costs"
 description: "A low headline price doesn't always mean a low bill. Here's what to look for when comparing web design quotes, and why every KittyCode Creative package is all-inclusive, with no add-ons or upsells."
 excerpt: "The price on the front of the box isn't always the price you end up paying. Here's what to check before you compare website quotes, and why ours come with no extras."
 pubDate: 2026-09-30
-cover: ../../assets/images/blog/no-extras.png
-coverAlt: "£0 extras"
-banner: ../../assets/images/blog/no-extras-banner.png
-bannerAlt: "The price you see is the price you pay."
+cover: ../../assets/images/blog/no-extras.svg
+coverAlt: "No extras. The price you see is the price you pay."
+banner: ../../assets/images/blog/no-extras-banner.svg
+bannerAlt: "No add-ons. No upsells. No surprise invoices."
 tags: ["Pricing", "Web Design", "Small Business"]
 ---
 
