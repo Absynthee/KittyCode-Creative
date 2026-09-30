@@ -50,18 +50,6 @@ Built with [Astro](https://astro.build) and hosted on [Netlify](https://www.netl
 
 Both appear on the site, in the sitemap and in structured data automatically.
 
-### Running locally
-
-Requires Node 22 or later.
-
-```sh
-npm install
-npm run dev        # local dev server at http://localhost:4321
-npm run build      # production build into dist/
-npm run preview    # serve the build locally
-npm run typecheck  # astro check
-```
-
 ### Branches and deploys
 
 Work goes into `preview`, which Netlify builds as a deploy preview. Merging `preview` into `main` deploys to kittycodecreative.com.
